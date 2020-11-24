@@ -1,5 +1,12 @@
 import './scss/app.scss';
 import Axios from 'axios';
+import accordion from './accordion';
+import slider from './slider';
+import scrollTrigger from './scroll-trigger';
+
+accordion.initAccordion();
+slider.initSlider();
+scrollTrigger.initScrollTrigger();
 
 async function getData() {
   const masterRef = await Axios.get(`${process.env.API_URL}`).then((resp) => {
