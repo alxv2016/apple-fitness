@@ -24,9 +24,10 @@ body {
   line-height: $body-line-height;
   font-weight: 400;
   height: 100%;
+  color: color('dark');
+  background-color: color('light');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  //color: map-get($system-light, text);
   // removes bounce in scrolling
   overscroll-behavior: none;
   font-size: $body--2;

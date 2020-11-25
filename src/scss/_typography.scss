@@ -1,6 +1,11 @@
 /* Typography styles */
 p {
+  font-size: $body--2;
   margin-bottom: $spacing--lg;
+  @include breakpoint(md) {
+    font-size: $body--1;
+    margin-bottom: $spacing--xl;
+  }
 }
 
 h1,
@@ -10,40 +15,68 @@ h4,
 form legend {
   line-height: $heading-line-height;
   font-weight: inherit;
-  margin: $spacing--lg 0 $spacing--sm;
+  margin: $spacing--xl 0 $spacing--sm;
+}
+
+.huge--title {
+  font-size: $large--title;
+  @include breakpoint(md) {
+    font-size: $huge--title;
+  }
 }
 
 .large-title {
-  font-size: $large--title;
+  font-size: $title--1;
+  @include breakpoint(md) {
+    font-size: $large--title;
+  }
 }
 
 h1,
 .title--1 {
-  font-size: $title--1;
+  font-size: $title--2;
   margin-top: 0;
+  @include breakpoint(md) {
+    font-size: $title--1;
+  }
 }
 
 h2,
 .title--2 {
-  font-size: $title--2;
+  font-size: $title--3;
+  @include breakpoint(md) {
+    font-size: $title--2;
+  }
 }
 
 h3,
 .title--3 {
-  font-size: $title--3;
+  font-size: $subtitle--2;
+  @include breakpoint(md) {
+    font-size: $title--3;
+  }
 }
 
 h4,
 .subtitle--2 {
-  font-size: $subtitle--2;
+  font-size: $subtitle;
+  @include breakpoint(md) {
+    font-size: $subtitle--2;
+  }
 }
 
 .subtitle {
-  font-size: $subtitle;
+  font-size: $body--1;
+  @include breakpoint(md) {
+    font-size: $subtitle;
+  }
 }
 
 .body--1 {
-  font-size: $body--1;
+  font-size: $body--2;
+  @include breakpoint(md) {
+    font-size: $body--1;
+  }
 }
 
 .body--2 {

@@ -1,13 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Roboto+Mono:500|Roboto:400,500,700&display=swap');
 // Base type
 $base-font-family: 'Roboto', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
 $base-font-size: 1rem !default;
 $heading-line-height: 1.25 !default;
 $body-line-height: 1.65 !default;
-$max-screen-size: 1280px !default;
+$max-screen-size: 1024px !default;
+$max-content-size: 768px !default;
 $font-families: (
   roboto: 'Roboto',
   abril: 'Abril Fatface',
   mono: 'Roboto Mono',
+) !default;
+// Icon sizes
+$icon-sizes: (
+  xs: 18px,
+  sm: 24px,
+  md: 36px,
+  lg: 48px,
+  xl: 56px,
 ) !default;
 // Font weights
 $font-weights: (
@@ -24,18 +34,10 @@ $breakpoints: (
   xxl: 1440px,
 ) !default;
 // Colors
-$kanye-colors: (
-  primary-bg: #ecece2,
-  secondary-bg: #f8f8f9,
-  light-bg: #ffffff,
-  dark: #3c393a,
-  medium: #96918f,
-  primary: #737a7c,
-  secondary: #b1c4b4,
-  tertiary: #c2c0ba,
-  primary-accent: #ffb147,
-  secondary-accent: #d6e8ae,
-  brand: #ceccc5,
+$colors: (
+  light: #ffffff,
+  offwhite: #f8f9fa,
+  dark: #433f3f,
 ) !default;
 // Border radius
 $border-radius: 1.25rem !default;
@@ -53,14 +55,22 @@ $title--3: 1.728rem; //(1.44 * 1.2) 27px
 $title--2: 2.074rem; //(1.728 * 1.2) 33px
 $title--1: 2.488rem; //(2.074 * 1.2) 39px
 $large--title: 2.986rem; //(2.489 * 1.2) 47px
+$huge--title: 3.58rem; // (2.968 * 1.2) 57px
 // Spacing scale
-$spacing--base: 1rem !default;
-$spacing--2xs: 0.125 * $spacing--base; // 2px;
-$spacing--xs: 0.25 * $spacing--base; // 4px
-$spacing--sm: 0.5 * $spacing--base; // 8px
-$spacing--md: 0.75 * $spacing--base; // 12px
-$spacing--lg: 1.25 * $spacing--base; // 20px
-$spacing--xl: 2 * $spacing--base; // 32px
-$spacing--2xl: 3.25 * $spacing--base; // 52px
-$spacing--3xl: 5.25 * $spacing--base; // 84px
-$spacing--4xl: 8.5 * $spacing--base; // 136px
+$spacing--2xs: 0.125rem; // 2px
+$spacing--xs: 0.25rem; // 4px
+$spacing--sm: 0.5rem; // 8px
+$spacing--md: 0.75rem; // 12px
+$spacing--lg: 1rem; // 16px
+$spacing--xl: 1.5rem; // 24px
+$spacing--2xl: 2rem; // 32px
+$spacing--3xl: 2.5rem; // 40px
+$spacing--4xl: 3rem; // 48px
+// layout scale
+$layout--2xs: 1rem; // 16px
+$layout--xs: 1.5rem; // 24px
+$layout--sm: 2rem; // 32px
+$layout--md: 3rem; // 48px
+$layout--lg: 4rem; // 64px
+$layout--xl: 6rem; // 96px
+$layout--2xl: 10rem; // 160px
