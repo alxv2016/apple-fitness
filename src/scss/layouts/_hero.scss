@@ -1,0 +1,155 @@
+.section-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e6e6e6;
+}
+
+.hero-image-container {
+  --image-w: 578px;
+  --image-h: 401px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  width: var(--image-w);
+  height: var(--image-h);
+  @include breakpoint(md) {
+    --image-w: 833px;
+    --image-h: 578px;
+  }
+  @include breakpoint(lg) {
+    --image-w: 1200px;
+    --image-h: 833px;
+  }
+}
+
+.hero-image,
+.hero-image-shadow {
+  position: relative;
+  left: -10%;
+  margin-right: auto;
+  width: inherit;
+  height: inherit;
+  background-size: var(--image-w) var(--image-h);
+  background-repeat: no-repeat;
+  @include breakpoint(md) {
+    height: inherit;
+    width: inherit;
+    left: 0;
+  }
+  @include breakpoint(lg) {
+    height: inherit;
+    width: inherit;
+  }
+}
+
+.hero-image {
+  background-image: url('../assets/hero_04.jpg');
+  mask-size: var(--image-w) var(--image-h);
+  mask-image: url('../assets/hero_04_mask.png');
+  mask-repeat: no-repeat;
+}
+
+.hero-image-shadow {
+  position: absolute;
+  background-image: url('../assets/hero_04_shadow.png');
+}
+
+.hero-title {
+  --logo-w: 320px;
+  --logo-h: 58px;
+  position: absolute;
+  margin-bottom: $spacing--4xl;
+  width: var(--logo-w);
+  height: var(--logo-h);
+  @include breakpoint(md) {
+    --logo-w: 540px;
+    --logo-h: 99px;
+  }
+  @include breakpoint(lg) {
+    --logo-w: 855px;
+    --logo-h: 151px;
+  }
+}
+
+.logo-container {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  .logo {
+    height: inherit;
+    width: inherit;
+    will-change: transform;
+  }
+  &--apple,
+  &--f,
+  &--i,
+  &--t,
+  &--n,
+  &--e {
+    z-index: 2;
+  }
+  @include breakpoint(md) {
+    &--apple,
+    &--f {
+      z-index: auto;
+    }
+    &--s1 {
+      z-index: 2;
+    }
+  }
+  @include breakpoint(lg) {
+    &--f {
+      z-index: auto;
+    }
+  }
+
+  &--apple .logo {
+    background-repeat: no-repeat;
+    background-image: url('../assets/logo_fitness_apple.svg');
+    background-size: contain;
+  }
+  &--f .logo {
+    background-repeat: no-repeat;
+    background-image: url('../assets/logo_fitness_f.svg');
+    background-size: contain;
+  }
+  &--i .logo {
+    background-repeat: no-repeat;
+    background-image: url('../assets/logo_fitness_i.svg');
+    background-size: contain;
+  }
+  &--t .logo {
+    background-repeat: no-repeat;
+    background-image: url('../assets/logo_fitness_t.svg');
+    background-size: contain;
+  }
+  &--n .logo {
+    background-repeat: no-repeat;
+    background-image: url('../assets/logo_fitness_n.svg');
+    background-size: contain;
+  }
+  &--e .logo {
+    background-repeat: no-repeat;
+    background-image: url('../assets/logo_fitness_e.svg');
+    background-size: contain;
+  }
+  &--s1 .logo {
+    background-repeat: no-repeat;
+    background-image: url('../assets/logo_fitness_s1.svg');
+    background-size: contain;
+  }
+  &--s2 .logo {
+    background-repeat: no-repeat;
+    background-image: url('../assets/logo_fitness_s2.svg');
+    background-size: contain;
+  }
+  &--plus .logo {
+    background-repeat: no-repeat;
+    background-image: url('../assets/logo_fitness_plus.svg');
+    background-size: contain;
+  }
+}
