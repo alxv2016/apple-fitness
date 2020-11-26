@@ -7,8 +7,8 @@ import scrollTrigger from './scroll-trigger';
 // slider.initSlider();
 scrollTrigger.heroSection();
 
-const heroContainer = document.querySelector('.js-hero-container');
-const heroImages: string[] = ['hero-01', 'hero-02', 'hero-04', 'hero-04'];
+const heroContainer = document.querySelector('.js-hero');
+const heroImages: string[] = ['hero-01', 'hero-02', 'hero-03', 'hero-04'];
 randomizeHeroImage();
 function randomize(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;

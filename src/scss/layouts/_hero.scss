@@ -65,6 +65,8 @@
   position: absolute;
   width: var(--logo-w);
   height: var(--logo-h);
+  margin: 0;
+  white-space: nowrap;
   @include breakpoint(md) {
     --logo-w: 540px;
     --logo-h: 99px;
@@ -94,7 +96,8 @@
   }
   @include breakpoint(md) {
     &--apple,
-    &--f {
+    &--f,
+    &--i {
       z-index: auto;
     }
     &--s1 {
@@ -162,6 +165,14 @@
   .hero-image-shadow {
     background-image: url('../assets/hero_01_shadow.png');
   }
+  .logo-container {
+    @include breakpoint(md) {
+      &--i,
+      &--t {
+        z-index: auto;
+      }
+    }
+  }
 }
 
 .hero-02 {
@@ -171,6 +182,15 @@
   }
   .hero-image-shadow {
     background-image: url('../assets/hero_02_shadow.png');
+  }
+  .logo-container {
+    @include breakpoint(md) {
+      &--i,
+      &--t,
+      &--e {
+        z-index: auto;
+      }
+    }
   }
 }
 
@@ -182,6 +202,17 @@
   .hero-image-shadow {
     background-image: url('../assets/hero_03_shadow.png');
   }
+  .logo-container {
+    @include breakpoint(md) {
+      &--i,
+      &--t {
+        z-index: auto;
+      }
+      &--s2 {
+        z-index: 2;
+      }
+    }
+  }
 }
 
 .hero-04 {
@@ -191,5 +222,15 @@
   }
   .hero-image-shadow {
     background-image: url('../assets/hero_04_shadow.png');
+  }
+  @include breakpoint(md) {
+    &--apple,
+    &--f,
+    &--i {
+      z-index: auto;
+    }
+    &--s1 {
+      z-index: 2;
+    }
   }
 }
