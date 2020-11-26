@@ -7,22 +7,23 @@
 }
 
 .hero-image-container {
-  --image-w: 578px;
-  --image-h: 401px;
+  --image-w: 576px;
+  --image-h: 469px;
   position: relative;
   display: flex;
+  margin-top: $layout--lg;
   align-items: center;
   justify-content: center;
   z-index: 1;
   width: var(--image-w);
   height: var(--image-h);
   @include breakpoint(md) {
-    --image-w: 833px;
-    --image-h: 578px;
+    --image-w: 768px;
+    --image-h: 625px;
   }
   @include breakpoint(lg) {
-    --image-w: 1200px;
-    --image-h: 833px;
+    --image-w: 1068px;
+    --image-h: 870px;
   }
 }
 
@@ -47,22 +48,21 @@
 }
 
 .hero-image {
-  background-image: url('../assets/hero_04.jpg');
+  background-image: url('../assets/hero_01.jpg');
   mask-size: var(--image-w) var(--image-h);
-  mask-image: url('../assets/hero_04_mask.png');
+  mask-image: url('../assets/hero_01_mask.png');
   mask-repeat: no-repeat;
 }
 
 .hero-image-shadow {
   position: absolute;
-  background-image: url('../assets/hero_04_shadow.png');
+  background-image: url('../assets/hero_01_shadow.png');
 }
 
 .hero-title {
   --logo-w: 320px;
   --logo-h: 58px;
   position: absolute;
-  margin-bottom: $spacing--4xl;
   width: var(--logo-w);
   height: var(--logo-h);
   @include breakpoint(md) {
@@ -151,5 +151,45 @@
     background-repeat: no-repeat;
     background-image: url('../assets/logo_fitness_plus.svg');
     background-size: contain;
+  }
+}
+
+.hero-01 {
+  .hero-image {
+    background-image: url('../assets/hero_01.jpg');
+    mask-image: url('../assets/hero_01_mask.png');
+  }
+  .hero-image-shadow {
+    background-image: url('../assets/hero_01_shadow.png');
+  }
+}
+
+.hero-02 {
+  .hero-image {
+    background-image: url('../assets/hero_02.jpg');
+    mask-image: url('../assets/hero_02_mask.png');
+  }
+  .hero-image-shadow {
+    background-image: url('../assets/hero_02_shadow.png');
+  }
+}
+
+.hero-03 {
+  .hero-image {
+    background-image: url('../assets/hero_03.jpg');
+    mask-image: url('../assets/hero_03_mask.png');
+  }
+  .hero-image-shadow {
+    background-image: url('../assets/hero_03_shadow.png');
+  }
+}
+
+.hero-04 {
+  .hero-image {
+    background-image: url('../assets/hero_04.jpg');
+    mask-image: url('../assets/hero_04_mask.png');
+  }
+  .hero-image-shadow {
+    background-image: url('../assets/hero_04_shadow.png');
   }
 }

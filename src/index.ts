@@ -3,11 +3,20 @@ import './scss/app.scss';
 // import accordion from './accordion';
 // import slider from './slider';
 import scrollTrigger from './scroll-trigger';
-
 // accordion.initAccordion();
 // slider.initSlider();
-scrollTrigger.initScrollTrigger();
+scrollTrigger.heroSection();
 
+const heroContainer = document.querySelector('.js-hero-container');
+const heroImages: string[] = ['hero-01', 'hero-02', 'hero-04', 'hero-04'];
+randomizeHeroImage();
+function randomize(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function randomizeHeroImage() {
+  const index = randomize(0, 3);
+  heroContainer?.classList.add(`${heroImages[index]}`);
+}
 // async function getData() {
 //   const masterRef = await Axios.get(`${process.env.API_URL}`).then((resp) => {
 //     return resp.data.refs[0].ref;

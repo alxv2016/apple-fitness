@@ -4,7 +4,7 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const scrollTrigger = {
-  initScrollTrigger: () => {
+  stickyHeader: () => {
     // Header on scroll animation
     ScrollTrigger.create({
       onUpdate: (self: any) => {
@@ -20,6 +20,18 @@ const scrollTrigger = {
             ? headerNav?.classList.add('js-header--hidden')
             : headerNav?.classList.remove('js-header--hidden');
         }
+      },
+    });
+  },
+  heroSection: () => {
+    gsap.to('.js-logo', {
+      yPercent: -40,
+      scrollTrigger: {
+        markers: false,
+        trigger: 'js-hero',
+        start: 'top top',
+        end: 'center top',
+        scrub: 0.45,
       },
     });
   },
