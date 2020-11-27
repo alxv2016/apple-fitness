@@ -56,7 +56,6 @@ const scrollTrigger = {
   },
   introSection: () => {
     const video = document.querySelector<HTMLMediaElement>('.js-intro-video');
-    video?.addEventListener('ended', hideVideo);
     function hideVideo(ev: any) {
       gsap.to('.js-intro-video', {
         ease: 'ease',
@@ -64,6 +63,7 @@ const scrollTrigger = {
       });
       ev.target.removeEventListener('ended', hideVideo);
     }
+    video?.addEventListener('ended', hideVideo);
     const playVideo = gsap.timeline({
       scrollTrigger: {
         markers: true,

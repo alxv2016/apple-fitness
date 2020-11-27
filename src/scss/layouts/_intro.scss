@@ -1,9 +1,8 @@
-.intro-watch-container {
-  --image-w: 446px;
-  --image-h: 762px;
+// Watch render
+.intro-watch {
   position: relative;
-  width: var(--image-w);
-  height: var(--image-h);
+  width: 446px;
+  height: 762px;
   &:before {
     position: absolute;
     content: '';
@@ -15,52 +14,54 @@
     background-repeat: no-repeat;
     background-image: url('../assets/intro_watch_shadow.png');
   }
+  &__render {
+    position: absolute;
+    z-index: 2;
+    height: inherit;
+    width: inherit;
+    background-size: 446px 762px;
+    background-repeat: no-repeat;
+    background-image: url('../assets/intro_watch.jpg');
+    mask-size: 446px 762px;
+    mask-image: url('../assets/intro_watch_mask.png');
+    mask-repeat: no-repeat;
+  }
 }
 
-.intro-watch {
-  position: absolute;
-  z-index: 2;
-  height: inherit;
-  width: inherit;
-  background-size: var(--image-w) var(--image-h);
-  background-repeat: no-repeat;
-  background-image: url('../assets/intro_watch.jpg');
-  mask-size: var(--image-w) var(--image-h);
-  mask-image: url('../assets/intro_watch_mask.png');
-  mask-repeat: no-repeat;
-}
-
-.intro-video-container {
+// Video
+.intro-watch-video {
   position: absolute;
   z-index: 1;
   top: 178px;
   left: 47px;
   width: 332px;
   height: 404px;
-  object-fit: contain;
-}
 
-.intro-video-start {
-  position: absolute;
-  z-index: auto;
-  top: 0;
-  left: 0;
-  width: inherit;
-  height: inherit;
-  background-size: 332px 404px;
-  background-repeat: no-repeat;
-  background-image: url('../assets/intro_watch_start.jpg');
-  opacity: 1;
-}
-
-.intro-video-end {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: inherit;
-  height: inherit;
-  background-size: 332px 404px;
-  background-repeat: no-repeat;
-  background-image: url('../assets/intro_watch_end.jpg');
+  &__start,
+  &__end {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    background-size: 332px 404px;
+    background-repeat: no-repeat;
+  }
+  &__start {
+    z-index: auto;
+    background-image: url('../assets/intro_watch_start.jpg');
+    opacity: 1;
+  }
+  &__end {
+    z-index: -1;
+    background-image: url('../assets/intro_watch_end.jpg');
+  }
+  &__video {
+    position: relative;
+    object-fit: contain;
+    display: none;
+    @include breakpoint(md) {
+      display: block;
+    }
+  }
 }
