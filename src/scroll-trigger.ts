@@ -56,12 +56,14 @@ const scrollTrigger = {
   },
   introSection: () => {
     const video = document.querySelector<HTMLMediaElement>('.js-intro-video');
-    video?.addEventListener('ended', (ev) => {
+    video?.addEventListener('ended', hideVideo);
+    function hideVideo(ev: any) {
       gsap.to('.js-intro-video', {
         ease: 'ease',
         opacity: 0,
       });
-    });
+      ev.target.removeEventListener('ended', hideVideo);
+    }
     const playVideo = gsap.timeline({
       scrollTrigger: {
         markers: true,
@@ -75,7 +77,6 @@ const scrollTrigger = {
             opacity: 1,
           });
           self.isActive ? video?.play() : video?.pause();
-          console.log('toggled');
         },
       },
     });
