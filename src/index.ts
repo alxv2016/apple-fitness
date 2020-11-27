@@ -6,7 +6,7 @@ import scrollTrigger from './scroll-trigger';
 // accordion.initAccordion();
 // slider.initSlider();
 scrollTrigger.heroSection();
-
+scrollTrigger.introSection();
 const heroContainer = document.querySelector('.js-hero');
 const heroImages: string[] = ['hero-01', 'hero-02', 'hero-03', 'hero-04'];
 randomizeHeroImage();

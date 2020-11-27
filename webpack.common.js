@@ -87,7 +87,7 @@ module.exports = {
       },
       // Webpack5 assets loader
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|mp4)$/i,
         type: 'asset/resource',
       },
       // Fonts and SVGs: Inline files

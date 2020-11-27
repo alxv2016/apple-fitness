@@ -8,7 +8,7 @@
   min-height: 68px;
   transform: translateY(0);
   transition: transform 0.3s ease-out;
-  @include frosted-glass(color('light'));
+  @include frosted-glass(color('light'), 0.72);
   &__container {
     position: relative;
     display: flex;
@@ -25,6 +25,8 @@
     justify-content: center;
     height: 44px;
     width: 44px;
+    background-color: color('dark');
+    border-radius: 90px;
   }
 }
 

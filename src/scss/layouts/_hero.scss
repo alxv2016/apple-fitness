@@ -1,29 +1,28 @@
-.section-media {
+.hero {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e6e6e6;
-}
+  margin-top: $layout--2xl;
 
-.hero-image-container {
-  --image-w: 576px;
-  --image-h: 469px;
-  position: relative;
-  display: flex;
-  margin-top: $layout--lg;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  width: var(--image-w);
-  height: var(--image-h);
-  @include breakpoint(md) {
+  &-image-container {
     --image-w: 768px;
     --image-h: 625px;
-  }
-  @include breakpoint(lg) {
-    --image-w: 1068px;
-    --image-h: 870px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    width: var(--image-w);
+    height: var(--image-h);
+    @include breakpoint(md) {
+      --image-w: 998px;
+      --image-h: 813px;
+    }
+    @include breakpoint(lg) {
+      --image-w: 1068px;
+      --image-h: 870px;
+    }
   }
 }
 
@@ -233,4 +232,30 @@
       z-index: 2;
     }
   }
+}
+
+.hero-content {
+  position: relative;
+  width: 100%;
+  max-width: 768px;
+  margin: auto;
+  @include container-padding;
+
+  .title--1 {
+    font-weight: font-weight('bold');
+    line-height: $heading-line-height;
+  }
+
+  &__value-prop {
+    position: relative;
+    width: 100%;
+    margin-top: $layout--md;
+    @include breakpoint(md) {
+      margin-top: $layout--lg;
+    }
+  }
+}
+
+.hero-pricing {
+  margin-top: $layout--xl;
 }

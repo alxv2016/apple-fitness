@@ -25,88 +25,16 @@
     max-width: $max-screen-size;
     margin: auto;
     @include container-padding;
-    padding-top: $layout--xl;
-    padding-bottom: $layout--xl;
-    @include breakpoint(md) {
-      padding-top: $layout--2xl;
-      padding-bottom: $layout--2xl;
-    }
-  }
-
-  &__container-no-constraints {
-    position: relative;
-    padding-top: $layout--xl;
-    padding-bottom: $layout--xl;
-    @include breakpoint(md) {
-      padding-top: $layout--2xl;
-      padding-bottom: $layout--2xl;
-    }
-  }
-
-  &__container-fullwidth {
-    position: relative;
-    max-width: $max-screen-size;
-    margin: auto;
-    padding-top: $layout--xl;
-    padding-bottom: $layout--xl;
-    @include breakpoint(md) {
-      padding-top: $layout--2xl;
-      padding-bottom: $layout--2xl;
-    }
+    // padding-top: $layout--xl;
+    // padding-bottom: $layout--xl;
+    // @include breakpoint(md) {
+    //   padding-top: $layout--2xl;
+    //   padding-bottom: $layout--2xl;
+    // }
   }
 
   &--overflow {
     overflow: hidden;
-  }
-
-  &-title {
-    font-size: $title--1;
-    font-weight: font-weight('bold');
-    margin: 0;
-    margin-bottom: $layout--xs;
-    @include breakpoint(md) {
-      font-size: $large--title;
-      margin-bottom: $layout--sm;
-    }
-
-    &--hero {
-      @include breakpoint(lg) {
-        font-size: $huge--title;
-      }
-    }
-  }
-
-  &-subtitle {
-    font-size: $title--3;
-    font-weight: font-weight('bold');
-    margin: 0;
-    margin-bottom: $spacing--lg;
-    @include breakpoint(md) {
-      font-size: $title--2;
-    }
-  }
-
-  &-overline {
-    font-size: $body--2;
-    font-weight: font-weight('medium');
-    @include breakpoint(md) {
-      font-size: $body--1;
-    }
-    @include breakpoint(lg) {
-      font-size: $subtitle;
-    }
-  }
-
-  &-body {
-    font-size: $body--1;
-    margin: 0;
-    @include breakpoint(md) {
-      font-size: $subtitle;
-    }
-  }
-
-  &-body ~ &-body {
-    margin-top: $spacing--md;
   }
 }
 

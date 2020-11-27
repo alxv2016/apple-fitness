@@ -1,0 +1,66 @@
+.intro-watch-container {
+  --image-w: 446px;
+  --image-h: 762px;
+  position: relative;
+  width: var(--image-w);
+  height: var(--image-h);
+  &:before {
+    position: absolute;
+    content: '';
+    width: 634px;
+    height: 1082px;
+    top: 0;
+    left: 0;
+    background-size: 634px 1082px;
+    background-repeat: no-repeat;
+    background-image: url('../assets/intro_watch_shadow.png');
+  }
+}
+
+.intro-watch {
+  position: absolute;
+  z-index: 2;
+  height: inherit;
+  width: inherit;
+  background-size: var(--image-w) var(--image-h);
+  background-repeat: no-repeat;
+  background-image: url('../assets/intro_watch.jpg');
+  mask-size: var(--image-w) var(--image-h);
+  mask-image: url('../assets/intro_watch_mask.png');
+  mask-repeat: no-repeat;
+}
+
+.intro-video-container {
+  position: absolute;
+  z-index: 1;
+  top: 178px;
+  left: 47px;
+  width: 332px;
+  height: 404px;
+  object-fit: contain;
+}
+
+.intro-video-start {
+  position: absolute;
+  z-index: auto;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  background-size: 332px 404px;
+  background-repeat: no-repeat;
+  background-image: url('../assets/intro_watch_start.jpg');
+  opacity: 1;
+}
+
+.intro-video-end {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  background-size: 332px 404px;
+  background-repeat: no-repeat;
+  background-image: url('../assets/intro_watch_end.jpg');
+}

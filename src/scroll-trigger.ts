@@ -34,6 +34,55 @@ const scrollTrigger = {
         scrub: 0.45,
       },
     });
+
+    const valueProp = gsap.timeline({
+      defaults: {
+        ease: 'powerIn',
+        opacity: 0,
+        stagger: 0.25,
+      },
+      scrollTrigger: {
+        markers: false,
+        trigger: '.js-hero-content',
+        start: '-=620 center',
+        end: 'bottom center',
+        scrub: 0.45,
+      },
+    });
+
+    valueProp.from('.js-value-prop', {
+      yPercent: 200,
+    });
+  },
+  introSection: () => {
+    const video = document.querySelector<HTMLMediaElement>('.js-intro-video');
+    video?.addEventListener('ended', (ev) => {
+      gsap.to('.js-intro-video', {
+        ease: 'ease',
+        opacity: 0,
+      });
+    });
+    const playVideo = gsap.timeline({
+      scrollTrigger: {
+        markers: true,
+        trigger: '.js-intro',
+        start: '-=100 center',
+        end: 'bottom center',
+        toggleActions: 'play pause resume reverse',
+        onToggle: (self) => {
+          gsap.to('.js-intro-video', {
+            ease: 'ease',
+            opacity: 1,
+          });
+          self.isActive ? video?.play() : video?.pause();
+          console.log('toggled');
+        },
+      },
+    });
+    playVideo.to('.js-intro-start', {
+      opacity: 0,
+      ease: 'ease',
+    });
   },
 };
 

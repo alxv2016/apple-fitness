@@ -18,15 +18,28 @@ form legend {
   margin: $spacing--xl 0 $spacing--sm;
 }
 
+.extra-huge--title {
+  font-size: $huge--title;
+  font-weight: font-weight('bold');
+  line-height: $headline-line-height;
+  margin-bottom: $spacing--4xl;
+  @include breakpoint(md) {
+    font-size: $huge--title * 1.65;
+  }
+}
+
 .huge--title {
   font-size: $large--title;
+  line-height: $headline-line-height;
   @include breakpoint(md) {
     font-size: $huge--title;
   }
 }
 
-.large-title {
+.large--title {
   font-size: $title--1;
+  line-height: $heading-line-height;
+  font-weight: font-weight('bold');
   @include breakpoint(md) {
     font-size: $large--title;
   }
@@ -44,6 +57,7 @@ h1,
 h2,
 .title--2 {
   font-size: $title--3;
+  font-weight: font-weight('medium');
   @include breakpoint(md) {
     font-size: $title--2;
   }
