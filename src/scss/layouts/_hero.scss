@@ -258,4 +258,11 @@
 
 .hero-pricing {
   margin-top: $layout--xl;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: $spacing--lg 0;
+  @include breakpoint(md) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0 $spacing--lg;
+  }
 }

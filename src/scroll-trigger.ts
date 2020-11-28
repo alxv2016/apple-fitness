@@ -66,7 +66,7 @@ const scrollTrigger = {
     video?.addEventListener('ended', hideVideo);
     const playVideo = gsap.timeline({
       scrollTrigger: {
-        markers: true,
+        markers: false,
         trigger: '.js-intro',
         start: '-=100 center',
         end: 'bottom center',
@@ -84,6 +84,55 @@ const scrollTrigger = {
       opacity: 0,
       ease: 'ease',
     });
+
+    const introItems = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
+      scrollTrigger: {
+        markers: false,
+        trigger: '.js-items',
+        start: 'top center',
+        end: '+=400 center',
+        scrub: 0.75,
+      },
+    });
+
+    introItems
+      .to('.js-intro-watch', {
+        scale: 0.35,
+      })
+      .to(
+        '.js-intro-watch',
+        {
+          yPercent: -20,
+        },
+        0
+      )
+      .from(
+        '.js-intro-ipad',
+        {
+          xPercent: -20,
+          opacity: 0,
+        },
+        0
+      )
+      .from(
+        '.js-intro-tv',
+        {
+          xPercent: 20,
+          opacity: 0,
+        },
+        0
+      )
+      .from(
+        '.js-intro-iphone',
+        {
+          yPercent: 40,
+          opacity: 0,
+        },
+        0
+      );
   },
 };
 

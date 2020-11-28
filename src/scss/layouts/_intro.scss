@@ -1,30 +1,43 @@
 // Watch render
 .intro-watch {
   position: relative;
-  width: 446px;
-  height: 762px;
+  width: 295px;
+  height: 503px;
+  @include breakpoint(md) {
+    width: 446px;
+    height: 762px;
+  }
   &:before {
     position: absolute;
     content: '';
-    width: 634px;
-    height: 1082px;
+    width: 419px;
+    height: 715px;
     top: 0;
     left: 0;
-    background-size: 634px 1082px;
+    background-size: 419px 715px;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_watch_shadow.png');
+    @include breakpoint(md) {
+      width: 634px;
+      height: 1082px;
+      background-size: 634px 1082px;
+    }
   }
   &__render {
     position: absolute;
     z-index: 2;
     height: inherit;
     width: inherit;
-    background-size: 446px 762px;
+    background-size: 295px 503px;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_watch.jpg');
-    mask-size: 446px 762px;
+    mask-size: 295px 503px;
     mask-image: url('../assets/intro_watch_mask.png');
     mask-repeat: no-repeat;
+    @include breakpoint(md) {
+      background-size: 446px 762px;
+      mask-size: 446px 762px;
+    }
   }
 }
 
@@ -32,10 +45,16 @@
 .intro-watch-video {
   position: absolute;
   z-index: 1;
-  top: 178px;
-  left: 47px;
-  width: 332px;
-  height: 404px;
+  top: 119px;
+  left: 33px;
+  width: 217px;
+  height: 264px;
+  @include breakpoint(md) {
+    top: 178px;
+    left: 47px;
+    width: 332px;
+    height: 404px;
+  }
 
   &__start,
   &__end {
@@ -44,7 +63,10 @@
     left: 0;
     width: inherit;
     height: inherit;
-    background-size: 332px 404px;
+    background-size: 217px 264px;
+    @include breakpoint(md) {
+      background-size: 332px 404px;
+    }
     background-repeat: no-repeat;
   }
   &__start {
@@ -64,4 +86,131 @@
       display: block;
     }
   }
+}
+
+// iPad
+.intro-ipad {
+  position: relative;
+  width: 791px;
+  height: 572px;
+  &:before {
+    position: absolute;
+    content: '';
+    width: 908px;
+    height: 704px;
+    top: 0;
+    left: 0;
+    background-size: 908px 704px;
+    background-repeat: no-repeat;
+    background-image: url('../assets/intro_ipad_shadow.png');
+  }
+  &__render {
+    position: absolute;
+    z-index: 2;
+    height: inherit;
+    width: inherit;
+    background-size: 791px 572px;
+    background-repeat: no-repeat;
+    background-image: url('../assets/intro_ipad.jpg');
+    mask-size: 791px 572px;
+    mask-image: url('../assets/intro_ipad_mask.png');
+    mask-repeat: no-repeat;
+  }
+}
+
+// TV
+.intro-tv {
+  position: relative;
+  width: 1261px;
+  height: 718px;
+  &:before {
+    position: absolute;
+    content: '';
+    width: 1425px;
+    height: 805px;
+    top: 0;
+    left: 0;
+    background-size: 1425px 805px;
+    background-repeat: no-repeat;
+    background-image: url('../assets/intro_tv_shadow.png');
+  }
+  &__render {
+    position: absolute;
+    z-index: 2;
+    height: inherit;
+    width: inherit;
+    background-size: 1261px 718px;
+    background-repeat: no-repeat;
+    background-image: url('../assets/intro_tv.jpg');
+    mask-size: 1261px 718px;
+    mask-image: url('../assets/intro_tv_mask.png');
+    mask-repeat: no-repeat;
+  }
+}
+
+// iPhone
+.intro-iphone {
+  position: relative;
+  width: 235px;
+  height: 457px;
+  &:before {
+    position: absolute;
+    content: '';
+    width: 366px;
+    height: 541px;
+    top: 0;
+    left: 0;
+    background-size: 366px 541px;
+    background-repeat: no-repeat;
+    background-image: url('../assets/intro_iphone_shadow.png');
+  }
+  &__render {
+    position: absolute;
+    z-index: 2;
+    height: inherit;
+    width: inherit;
+    background-size: 235px 457px;
+    background-repeat: no-repeat;
+    background-image: url('../assets/intro_iphone.jpg');
+    mask-size: 235px 457px;
+    mask-image: url('../assets/intro_iphone_mask.png');
+    mask-repeat: no-repeat;
+  }
+}
+
+.grid-container {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(2, 480px);
+  grid-template-columns: 1fr 300px 1fr;
+  grid-gap: 0 $spacing--lg;
+}
+
+.watch-item {
+  position: relative;
+  grid-column: 2 / 3;
+  justify-self: center;
+}
+
+.iphone-item {
+  position: relative;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  align-self: start;
+  justify-self: center;
+}
+
+.tv-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  grid-column: 3 / 4;
+}
+
+.ipad-item {
+  position: absolute;
+  top: 0;
+  right: 0;
+  grid-column: 1 / 2;
 }
