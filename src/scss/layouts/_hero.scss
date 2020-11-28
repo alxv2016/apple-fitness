@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: $layout--2xl;
+  margin-top: $layout--lg;
 
   &-image-container {
     --image-w: 768px;
@@ -33,22 +33,16 @@
   margin-right: auto;
   width: inherit;
   height: inherit;
-  background-size: var(--image-w) var(--image-h);
+  background-size: contain;
   background-repeat: no-repeat;
   @include breakpoint(md) {
-    height: inherit;
-    width: inherit;
     left: 0;
-  }
-  @include breakpoint(lg) {
-    height: inherit;
-    width: inherit;
   }
 }
 
 .hero-image {
   background-image: url('../assets/hero_01.jpg');
-  mask-size: var(--image-w) var(--image-h);
+  mask-size: contain;
   mask-image: url('../assets/hero_01_mask.png');
   mask-repeat: no-repeat;
 }
@@ -64,11 +58,14 @@
   position: absolute;
   width: var(--logo-w);
   height: var(--logo-h);
-  margin: 0;
   white-space: nowrap;
+  @include breakpoint(sm) {
+    --logo-w: 464px;
+    --logo-h: 84px;
+  }
   @include breakpoint(md) {
-    --logo-w: 540px;
-    --logo-h: 99px;
+    --logo-w: 680px;
+    --logo-h: 124px;
   }
   @include breakpoint(lg) {
     --logo-w: 855px;
@@ -81,9 +78,10 @@
   width: inherit;
   height: inherit;
   .logo {
+    background-repeat: no-repeat;
+    background-size: contain;
     height: inherit;
     width: inherit;
-    will-change: transform;
   }
   &--apple,
   &--f,
@@ -110,49 +108,31 @@
   }
 
   &--apple .logo {
-    background-repeat: no-repeat;
     background-image: url('../assets/logo_fitness_apple.svg');
-    background-size: contain;
   }
   &--f .logo {
-    background-repeat: no-repeat;
     background-image: url('../assets/logo_fitness_f.svg');
-    background-size: contain;
   }
   &--i .logo {
-    background-repeat: no-repeat;
     background-image: url('../assets/logo_fitness_i.svg');
-    background-size: contain;
   }
   &--t .logo {
-    background-repeat: no-repeat;
     background-image: url('../assets/logo_fitness_t.svg');
-    background-size: contain;
   }
   &--n .logo {
-    background-repeat: no-repeat;
     background-image: url('../assets/logo_fitness_n.svg');
-    background-size: contain;
   }
   &--e .logo {
-    background-repeat: no-repeat;
     background-image: url('../assets/logo_fitness_e.svg');
-    background-size: contain;
   }
   &--s1 .logo {
-    background-repeat: no-repeat;
     background-image: url('../assets/logo_fitness_s1.svg');
-    background-size: contain;
   }
   &--s2 .logo {
-    background-repeat: no-repeat;
     background-image: url('../assets/logo_fitness_s2.svg');
-    background-size: contain;
   }
   &--plus .logo {
-    background-repeat: no-repeat;
     background-image: url('../assets/logo_fitness_plus.svg');
-    background-size: contain;
   }
 }
 
@@ -175,6 +155,10 @@
 }
 
 .hero-02 {
+  .hero-image,
+  .hero-image-shadow {
+    left: 0;
+  }
   .hero-image {
     background-image: url('../assets/hero_02.jpg');
     mask-image: url('../assets/hero_02_mask.png');
@@ -183,6 +167,9 @@
     background-image: url('../assets/hero_02_shadow.png');
   }
   .logo-container {
+    &--e {
+      z-index: auto;
+    }
     @include breakpoint(md) {
       &--i,
       &--t,
@@ -202,6 +189,10 @@
     background-image: url('../assets/hero_03_shadow.png');
   }
   .logo-container {
+    &--s1,
+    &--s2 {
+      z-index: 2;
+    }
     @include breakpoint(md) {
       &--i,
       &--t {
