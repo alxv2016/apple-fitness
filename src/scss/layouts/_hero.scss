@@ -254,8 +254,13 @@
       left: 0;
       height: 100%;
       width: 100%;
-      animation: placeHolderShimmer 775ms infinite ease both;
-      background-image: linear-gradient(to left, transparent 0%, rgba(250, 19, 82, 1) 40%, transparent 100%);
+      animation: placeHolderShimmer 0.8s infinite ease both;
+      background: linear-gradient(
+        90deg,
+        rgba(250, 19, 82, 0) 25%,
+        rgba(250, 19, 82, 0.6194852941176471) 50%,
+        rgba(250, 19, 82, 0) 75%
+      );
       background-repeat: no-repeat;
       border-radius: 0.25rem;
     }
