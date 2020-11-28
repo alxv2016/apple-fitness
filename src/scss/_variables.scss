@@ -2,7 +2,7 @@
 // Base type
 $base-font-family: 'Roboto', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
 $base-font-size: 1rem !default;
-$headline-line-height: 1 !default;
+$headline-line-height: 1.15 !default;
 $heading-line-height: 1.25 !default;
 $body-line-height: 1.65 !default;
 $max-screen-size: 1024px !default;
@@ -35,8 +35,9 @@ $breakpoints: (
 // Colors
 $colors: (
   light: #ffffff,
-  offwhite: #f8f9fa,
+  offwhite: #f5f5f7,
   light-grey: #e6e6e6,
+  dark-offset: #86868b,
   dark: #2d2a2a,
 ) !default;
 // Border radius

@@ -37,7 +37,7 @@ const scrollTrigger = {
 
     const valueProp = gsap.timeline({
       defaults: {
-        ease: 'powerIn',
+        ease: 'power3',
         opacity: 0,
         stagger: 0.25,
       },

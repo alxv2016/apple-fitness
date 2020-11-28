@@ -232,28 +232,80 @@
   margin: auto;
   @include container-padding;
 
-  .title--1 {
-    font-weight: font-weight('bold');
-    line-height: $heading-line-height;
+  .extra-huge--title {
+    position: relative;
+    color: color('dark');
+    @supports (--css: variables) {
+      background: linear-gradient(45deg, rgba(250, 19, 82, 1) 16%, rgba(28, 26, 26, 1) 80%);
+      background-clip: text;
+      color: transparent;
+    }
+    &:empty {
+      position: relative;
+      min-height: $huge--title * 1.65;
+      min-width: 100%;
+    }
+    &:after {
+      opacity: 0;
+      content: '';
+      position: absolute;
+      transition: opacity 325ms ease;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      animation: placeHolderShimmer 775ms infinite ease both;
+      background-image: linear-gradient(to left, transparent 0%, rgba(250, 19, 82, 1) 40%, transparent 100%);
+      background-repeat: no-repeat;
+      border-radius: 0.25rem;
+    }
+  }
+
+  .extra-huge--title.is-loading {
+    // position: relative;
+    // border: 3px solid blue;
+    // min-height: $huge--title * 1.65;
+    // min-width: 100%;
+    &::after {
+      opacity: 1;
+    }
   }
 
   &__value-prop {
     position: relative;
     width: 100%;
     margin-top: $layout--md;
-    @include breakpoint(md) {
-      margin-top: $layout--lg;
-    }
   }
 }
 
 .hero-pricing {
-  margin-top: $layout--xl;
+  margin-top: $layout--lg;
+  margin-bottom: $layout--lg;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: $spacing--lg 0;
   @include breakpoint(md) {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 0 $spacing--lg;
+    margin-top: $layout--xl;
+    margin-bottom: $layout--xl;
+  }
+
+  .title--3 {
+    color: color('dark-offset');
+    font-weight: font-weight('medium');
+  }
+  .large--title {
+    margin-top: 0;
+  }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
   }
 }
