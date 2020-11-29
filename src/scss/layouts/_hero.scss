@@ -33,23 +33,17 @@
   margin-right: auto;
   width: inherit;
   height: inherit;
+  transition: background-image 0.3s ease;
   background-size: contain;
   background-repeat: no-repeat;
+  mask-size: contain;
   @include breakpoint(md) {
     left: 0;
   }
 }
 
-.hero-image {
-  background-image: url('../assets/hero_01.jpg');
-  mask-size: contain;
-  mask-image: url('../assets/hero_01_mask.png');
-  mask-repeat: no-repeat;
-}
-
 .hero-image-shadow {
   position: absolute;
-  background-image: url('../assets/hero_01_shadow.png');
 }
 
 .hero-title {
