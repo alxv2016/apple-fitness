@@ -228,47 +228,68 @@
 
   .extra-huge--title {
     position: relative;
+    min-height: $huge--title * 1.65;
     color: color('dark');
     @supports (--css: variables) {
       background: linear-gradient(45deg, rgba(250, 19, 82, 1) 16%, rgba(28, 26, 26, 1) 80%);
       background-clip: text;
       color: transparent;
     }
-  }
 
-  &:empty {
-    position: relative;
-    min-height: $huge--title * 1.65;
-  }
-  &:after {
-    opacity: 0;
-    content: '';
-    position: absolute;
-    transition: opacity 325ms ease;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    animation: placeHolderShimmer 0.8s infinite ease both;
-    background: linear-gradient(
-      90deg,
-      rgba(250, 19, 82, 0) 25%,
-      rgba(250, 19, 82, 0.6194852941176471) 50%,
-      rgba(250, 19, 82, 0) 75%
-    );
-    background-repeat: no-repeat;
-    border-radius: 0.25rem;
+    &:after {
+      opacity: 0;
+      content: '';
+      position: absolute;
+      transition: opacity 325ms ease;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      animation: placeHolderShimmer 0.8s infinite ease both;
+      background: linear-gradient(
+        90deg,
+        rgba(250, 19, 82, 0) 25%,
+        rgba(250, 19, 82, 0.6194852941176471) 50%,
+        rgba(250, 19, 82, 0) 75%
+      );
+      background-repeat: no-repeat;
+      border-radius: 0.25rem;
+    }
   }
 
   &__value-prop {
     position: relative;
     width: 100%;
+    min-height: $large--title;
     margin-top: $layout--md;
+
+    &:after {
+      opacity: 0;
+      content: '';
+      position: absolute;
+      transition: opacity 325ms ease;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      animation: placeHolderShimmer 0.8s infinite ease both;
+      background: linear-gradient(
+        90deg,
+        rgba(250, 19, 82, 0) 25%,
+        rgba(32, 32, 32, 0.619) 50%,
+        rgba(250, 19, 82, 0) 75%
+      );
+      background-repeat: no-repeat;
+      border-radius: 0.25rem;
+    }
   }
 }
 
-.hero-content.is-loading {
-  &:after {
+.hero-content.is-loading,
+.hero-pricing.is-loading {
+  .extra-huge--title:after,
+  .hero-content__value-prop:after,
+  .hero-pricing__container:after {
     opacity: 1;
   }
 }
@@ -292,6 +313,32 @@
   }
   .large--title {
     margin-top: 0;
+  }
+
+  &__container {
+    position: relative;
+    &:empty {
+      min-height: 278px;
+    }
+    &:after {
+      opacity: 0;
+      content: '';
+      position: absolute;
+      transition: opacity 325ms ease;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      animation: placeHolderShimmer 0.8s infinite ease both;
+      background: linear-gradient(
+        90deg,
+        rgba(250, 19, 82, 0) 25%,
+        rgba(32, 32, 32, 0.619) 50%,
+        rgba(250, 19, 82, 0) 75%
+      );
+      background-repeat: no-repeat;
+      border-radius: 0.25rem;
+    }
   }
 }
 
