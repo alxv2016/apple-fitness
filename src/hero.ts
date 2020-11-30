@@ -13,6 +13,17 @@ const hero = {
     image.className = 'hero-image';
     heros.forEach((heroImg) => {
       if (currentHero === heroImg.hero_id) {
+        const mql = window.matchMedia('(min-width: 768px)');
+        mql.addEventListener('change', handleMediaMatch);
+
+        function handleMediaMatch(e: MediaQueryListEvent) {
+          if (e.matches) {
+            console.log(e);
+            console.log(e.matches);
+          } else {
+            console.log(e.matches);
+          }
+        }
         shadow.style.backgroundImage = `url('${heroImg.image_layer_3.url}')`;
         image.setAttribute(
           'style',
