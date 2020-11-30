@@ -12,23 +12,21 @@ const scrollTrigger = {
         const scrollPos = self.scroller.pageYOffset;
         let scrollingDown = false;
         scrollDirection === 1 ? (scrollingDown = true) : (scrollingDown = false);
-        const headerNav = document.querySelector('.js-header');
+        const headerNav = document.querySelector('[data-target="header"]');
         const headerHeight = headerNav?.getBoundingClientRect().height;
 
         if (headerHeight && scrollPos >= headerHeight) {
-          scrollingDown
-            ? headerNav?.classList.add('js-header--hidden')
-            : headerNav?.classList.remove('js-header--hidden');
+          scrollingDown ? headerNav?.setAttribute('data-state', 'hidden') : headerNav?.removeAttribute('data-state');
         }
       },
     });
   },
   heroSection: () => {
-    gsap.to('.js-logo', {
+    gsap.to('[data-target="logo"]', {
       yPercent: -40,
       scrollTrigger: {
         markers: false,
-        trigger: 'js-hero',
+        trigger: '[data-target="hero"]',
         start: 'top top',
         end: 'center top',
         scrub: 0.45,
@@ -43,14 +41,14 @@ const scrollTrigger = {
       },
       scrollTrigger: {
         markers: false,
-        trigger: '.js-hero-content',
+        trigger: '[data-target="hero-content"]',
         start: '-=620 center',
         end: 'bottom center',
         scrub: 0.45,
       },
     });
 
-    valueProp.from('.js-value-prop', {
+    valueProp.from('[data-target="value-prop"]', {
       yPercent: 200,
     });
   },

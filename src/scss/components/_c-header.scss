@@ -28,10 +28,9 @@
     background-color: color('dark');
     border-radius: 90px;
   }
-}
-
-.js-header--hidden {
-  transform: translateY(-80px);
+  &[data-state='hidden'] {
+    transform: translateY(-80px);
+  }
 }
 
 .brand-logo {
