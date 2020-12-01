@@ -20,8 +20,9 @@ async function getData(ref: string) {
   hero.heroContainer?.setAttribute('data-state', 'loading');
   heroContentParent?.setAttribute('data-state', 'loading');
   pricingContentParent?.setAttribute('data-state', 'loading');
+  const query = '[[at(document.type, "apple_fitness_plus")]]';
   return await Axios.get(`${process.env.API_URL}/documents/search`, {
-    params: {ref: ref, access_token: process.env.ACCESS_TOKEN},
+    params: {ref: ref, access_token: process.env.ACCESS_TOKEN, q: query},
   }).then((resp) => resp.data.results);
 }
 
@@ -29,10 +30,9 @@ async function proccessData() {
   try {
     const ref = await masterRef();
     const data = await getData(ref);
-    const appleFitnessData = data.filter((data: any) => data.type === 'apple_fitness_plus');
+    const appleFitnessData = data[0].data.body;
     // throw new Error('uh oh');
-
-    accessData(appleFitnessData[0].data);
+    accessData(appleFitnessData);
     heroContentParent?.removeAttribute('data-state');
     pricingContentParent?.removeAttribute('data-state');
     hero.heroContainer?.removeAttribute('data-state');
@@ -52,11 +52,11 @@ function createElement(element: string, classes: string | null = null) {
 }
 
 function accessData(data: any) {
-  console.log(data);
+  //console.log(data);
   const heroId = hero.heroContainer?.getAttribute('data-hero');
-  const heroImages = data.body.filter((content: any) => content.slice_type === 'hero_image')[0];
-  const heroContent = data.body.filter((content: any) => content.slice_type === 'hero_content')[0];
-  const pricingContent = data.body.filter((content: any) => content.slice_type === 'pricing')[0];
+  const heroImages = data.filter((content: any) => content.slice_type === 'hero_image')[0];
+  const heroContent = data.filter((content: any) => content.slice_type === 'hero_content')[0];
+  const pricingContent = data.filter((content: any) => content.slice_type === 'pricing')[0];
   const currentHero = heroImages.items.filter((hero: any) => hero.hero_id === heroId)[0];
   hero.attachHeroImage(currentHero);
   const valuePropContainers = heroContentParent?.querySelectorAll('[data-target="value-prop"]');
