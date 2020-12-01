@@ -2,39 +2,56 @@ const hero = {
   heroImage: document.querySelector('[data-target="hero-image"]'),
   heroContainer: document.querySelector('[data-target="hero"]'),
   heroImages: ['hero-01', 'hero-02', 'hero-03', 'hero-04'],
-  randomizeHero: () => {
-    const index = hero.randomize(0, 3);
-    hero.heroContainer?.setAttribute('data-hero', hero.heroImages[index]);
+  randomizeHero: function () {
+    const index = this.randomize(0, 3);
+    this.heroContainer?.setAttribute('data-hero', hero.heroImages[index]);
   },
-  attachHeroImage: (heros: any[], currentHero: any) => {
-    const shadow = document.createElement('figure');
-    const image = document.createElement('figure');
-    shadow.className = 'hero-image-shadow';
-    image.className = 'hero-image';
-    heros.forEach((heroImg) => {
-      if (currentHero === heroImg.hero_id) {
-        const mql = window.matchMedia('(min-width: 768px)');
-        mql.addEventListener('change', handleMediaMatch);
+  setBackgroundImage: function (element: HTMLElement, url: string) {
+    element.style.backgroundImage = `url('${url}')`;
+  },
+  setImageMask: function (element: HTMLElement, url: string) {
+    element.style.webkitMaskImage = `url('${url}')`;
+    element.style.maskImage = `url('${url}')`;
+  },
+  createHeroElement: function (element: string, className: string) {
+    const el = document.createElement(element);
+    el.className = className;
+    return el;
+  },
+  attachHeroImage: function (currentHero: any) {
+    const imageSet = {
+      shadow: this.createHeroElement('figure', 'hero-image-shadow'),
+      image: this.createHeroElement('figure', 'hero-image'),
+    };
+    const md = window.matchMedia('(min-width: 768px)');
+    if (md.matches) {
+      this.setBackgroundImage(imageSet.image, currentHero.image_layer_1.url);
+      this.setImageMask(imageSet.image, currentHero.image_layer_2.url);
+      this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.url);
+    } else {
+      this.setBackgroundImage(imageSet.image, currentHero.image_layer_1.small.url);
+      this.setImageMask(imageSet.image, currentHero.image_layer_2.small.url);
+      this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.small.url);
+    }
+    console.log(currentHero);
 
-        function handleMediaMatch(e: MediaQueryListEvent) {
-          if (e.matches) {
-            console.log(e);
-            console.log(e.matches);
-          } else {
-            console.log(e.matches);
-          }
-        }
-        shadow.style.backgroundImage = `url('${heroImg.image_layer_3.url}')`;
-        image.setAttribute(
-          'style',
-          `background-image: url('${heroImg.image_layer_1.url}'); -webkit-mask-image: url('${heroImg.image_layer_2.url}'); mask-image: url('${heroImg.image_layer_2.url}');`
-        );
+    md.addEventListener('change', (e) => {
+      if (e.matches) {
+        console.log('should update to large images');
+        this.setBackgroundImage(imageSet.image, currentHero.image_layer_1.url);
+        this.setImageMask(imageSet.image, currentHero.image_layer_2.url);
+        this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.url);
+      } else {
+        console.log('should update to small images');
+        this.setBackgroundImage(imageSet.image, currentHero.image_layer_1.small.url);
+        this.setImageMask(imageSet.image, currentHero.image_layer_2.small.url);
+        this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.small.url);
       }
     });
-    hero.heroImage?.appendChild(shadow);
-    hero.heroImage?.appendChild(image);
+    this.heroImage?.appendChild(imageSet.shadow);
+    this.heroImage?.appendChild(imageSet.image);
   },
-  randomize: (min: number, max: number) => {
+  randomize: function (min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
 };

@@ -53,10 +53,12 @@ function createElement(element: string, classes: string | null = null) {
 
 function accessData(data: any) {
   console.log(data);
+  const heroId = hero.heroContainer?.getAttribute('data-hero');
   const heroImages = data.body.filter((content: any) => content.slice_type === 'hero_image')[0];
   const heroContent = data.body.filter((content: any) => content.slice_type === 'hero_content')[0];
   const pricingContent = data.body.filter((content: any) => content.slice_type === 'pricing')[0];
-  hero.attachHeroImage(heroImages.items, hero.heroContainer?.getAttribute('data-hero'));
+  const currentHero = heroImages.items.filter((hero: any) => hero.hero_id === heroId)[0];
+  hero.attachHeroImage(currentHero);
   const valuePropContainers = heroContentParent?.querySelectorAll('[data-target="value-prop"]');
   const valuePropH2 = heroContentParent?.querySelector('[data-target="value-prop-title"]');
   const pricingContainers = pricingContentParent?.querySelectorAll('[data-target="hero-price"]');
