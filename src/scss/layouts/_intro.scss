@@ -14,13 +14,12 @@
     height: 715px;
     top: 0;
     left: 0;
-    background-size: 419px 715px;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_watch_shadow.png');
     @include breakpoint(md) {
       width: 634px;
       height: 1082px;
-      background-size: 634px 1082px;
     }
   }
   &__render {
@@ -28,16 +27,12 @@
     z-index: 2;
     height: inherit;
     width: inherit;
-    background-size: 295px 503px;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_watch.jpg');
-    mask-size: 295px 503px;
+    mask-size: contain;
     mask-image: url('../assets/intro_watch_mask.png');
     mask-repeat: no-repeat;
-    @include breakpoint(md) {
-      background-size: 446px 762px;
-      mask-size: 446px 762px;
-    }
   }
 }
 
@@ -63,10 +58,7 @@
     left: 0;
     width: inherit;
     height: inherit;
-    background-size: 217px 264px;
-    @include breakpoint(md) {
-      background-size: 332px 404px;
-    }
+    background-size: contain;
     background-repeat: no-repeat;
   }
   &__start {
@@ -91,16 +83,24 @@
 // iPad
 .intro-ipad {
   position: relative;
-  width: 791px;
-  height: 572px;
+  width: 580px;
+  height: 420px;
+  @include breakpoint(md) {
+    width: 791px;
+    height: 572px;
+  }
   &:before {
     position: absolute;
     content: '';
-    width: 908px;
-    height: 704px;
+    width: 668px;
+    height: 518px;
+    @include breakpoint(md) {
+      width: 908px;
+      height: 704px;
+    }
     top: 0;
     left: 0;
-    background-size: 908px 704px;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_ipad_shadow.png');
   }
@@ -109,10 +109,10 @@
     z-index: 2;
     height: inherit;
     width: inherit;
-    background-size: 791px 572px;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_ipad.jpg');
-    mask-size: 791px 572px;
+    mask-size: contain;
     mask-image: url('../assets/intro_ipad_mask.png');
     mask-repeat: no-repeat;
   }
@@ -121,16 +121,24 @@
 // TV
 .intro-tv {
   position: relative;
-  width: 1261px;
-  height: 718px;
+  width: 1063px;
+  height: 605px;
+  @include breakpoint(md) {
+    width: 1261px;
+    height: 718px;
+  }
   &:before {
     position: absolute;
     content: '';
-    width: 1425px;
-    height: 805px;
+    width: 1201px;
+    height: 678px;
+    @include breakpoint(md) {
+      width: 1425px;
+      height: 805px;
+    }
     top: 0;
     left: 0;
-    background-size: 1425px 805px;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_tv_shadow.png');
   }
@@ -139,10 +147,10 @@
     z-index: 2;
     height: inherit;
     width: inherit;
-    background-size: 1261px 718px;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_tv.jpg');
-    mask-size: 1261px 718px;
+    mask-size: contain;
     mask-image: url('../assets/intro_tv_mask.png');
     mask-repeat: no-repeat;
   }
@@ -151,16 +159,24 @@
 // iPhone
 .intro-iphone {
   position: relative;
-  width: 235px;
-  height: 457px;
+  width: 187px;
+  height: 366px;
+  @include breakpoint(md) {
+    width: 235px;
+    height: 457px;
+  }
   &:before {
     position: absolute;
     content: '';
-    width: 366px;
-    height: 541px;
+    width: 293px;
+    height: 433px;
+    @include breakpoint(md) {
+      width: 366px;
+      height: 541px;
+    }
     top: 0;
     left: 0;
-    background-size: 366px 541px;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_iphone_shadow.png');
   }
@@ -169,10 +185,10 @@
     z-index: 2;
     height: inherit;
     width: inherit;
-    background-size: 235px 457px;
+    background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_iphone.jpg');
-    mask-size: 235px 457px;
+    mask-size: contain;
     mask-image: url('../assets/intro_iphone_mask.png');
     mask-repeat: no-repeat;
   }
@@ -182,7 +198,12 @@
   position: relative;
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(2, 480px);
+  height: 100vh;
+  max-height: 668px;
+  @include breakpoint(md) {
+    max-height: 968px;
+  }
+  //grid-template-rows: repeat(2, 480px);
   grid-template-columns: 1fr 300px 1fr;
   grid-gap: 0 $spacing--lg;
 }
@@ -194,23 +215,35 @@
 }
 
 .iphone-item {
-  position: relative;
+  position: absolute;
   grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  align-self: start;
+  // align-self: start;
   justify-self: center;
+  z-index: 1;
+  top: 90%;
+  transform: translateY(-90%);
 }
 
 .tv-item {
   position: absolute;
-  top: 0;
-  left: 0;
+  z-index: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -68px;
   grid-column: 3 / 4;
+  @include breakpoint(md) {
+    left: 0;
+  }
 }
 
 .ipad-item {
   position: absolute;
-  top: 0;
-  right: 0;
+  z-index: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -68px;
   grid-column: 1 / 2;
+  @include breakpoint(md) {
+    right: 0;
+  }
 }

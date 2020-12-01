@@ -3,11 +3,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: $layout--lg;
+  padding-top: $layout--lg;
 
   &-image-container {
     --image-w: 768px;
     --image-h: 625px;
+    @include breakpoint(md) {
+      --image-w: 1068px;
+      --image-h: 870px;
+    }
     position: relative;
     display: flex;
     align-items: center;
@@ -15,14 +19,7 @@
     z-index: 1;
     width: var(--image-w);
     height: var(--image-h);
-    @include breakpoint(md) {
-      --image-w: 998px;
-      --image-h: 813px;
-    }
-    @include breakpoint(lg) {
-      --image-w: 1068px;
-      --image-h: 870px;
-    }
+
     &:after {
       opacity: 0;
       content: '';
@@ -52,7 +49,6 @@
   margin-right: auto;
   width: inherit;
   height: inherit;
-  transition: background-image 0.3s ease;
   background-size: contain;
   background-repeat: no-repeat;
   mask-size: contain;
@@ -68,10 +64,6 @@
 .hero-title {
   --logo-w: 320px;
   --logo-h: 58px;
-  position: absolute;
-  width: var(--logo-w);
-  height: var(--logo-h);
-  white-space: nowrap;
   @include breakpoint(sm) {
     --logo-w: 464px;
     --logo-h: 84px;
@@ -84,6 +76,10 @@
     --logo-w: 855px;
     --logo-h: 151px;
   }
+  position: absolute;
+  width: var(--logo-w);
+  height: var(--logo-h);
+  white-space: nowrap;
 }
 
 .logo-container {
@@ -150,13 +146,6 @@
 }
 
 .hero[data-hero='hero-01'] {
-  // .hero-image {
-  //   background-image: url('../assets/hero_01.jpg');
-  //   mask-image: url('../assets/hero_01_mask.png');
-  // }
-  // .hero-image-shadow {
-  //   background-image: url('../assets/hero_01_shadow.png');
-  // }
   .logo-container {
     @include breakpoint(md) {
       &--i,
@@ -172,13 +161,6 @@
   .hero-image-shadow {
     left: 0;
   }
-  // .hero-image {
-  //   background-image: url('../assets/hero_02.jpg');
-  //   mask-image: url('../assets/hero_02_mask.png');
-  // }
-  // .hero-image-shadow {
-  //   background-image: url('../assets/hero_02_shadow.png');
-  // }
   .logo-container {
     &--e {
       z-index: auto;
@@ -194,13 +176,6 @@
 }
 
 .hero[data-hero='hero-03'] {
-  // .hero-image {
-  //   background-image: url('../assets/hero_03.jpg');
-  //   mask-image: url('../assets/hero_03_mask.png');
-  // }
-  // .hero-image-shadow {
-  //   background-image: url('../assets/hero_03_shadow.png');
-  // }
   .logo-container {
     &--s1,
     &--s2 {
@@ -219,13 +194,6 @@
 }
 
 .hero[data-hero='hero-04'] {
-  // .hero-image {
-  //   background-image: url('../assets/hero_04.jpg');
-  //   mask-image: url('../assets/hero_04_mask.png');
-  // }
-  // .hero-image-shadow {
-  //   background-image: url('../assets/hero_04_shadow.png');
-  // }
   .logo-container {
     @include breakpoint(md) {
       &--apple,
@@ -243,18 +211,15 @@
 .hero-content {
   position: relative;
   width: 100%;
-  max-width: 768px;
+  max-width: 992px;
   margin: auto;
   @include container-padding;
 
   .extra-huge--title {
     position: relative;
-    color: color('dark');
-    @supports (--css: variables) {
-      background: linear-gradient(45deg, rgba(250, 19, 82, 1) 16%, rgba(28, 26, 26, 1) 80%);
-      background-clip: text;
-      color: transparent;
-    }
+    background: linear-gradient(45deg, rgba(250, 19, 82, 1) 16%, rgba(28, 26, 26, 1) 80%);
+    background-clip: text;
+    color: transparent;
 
     &:empty {
       min-height: $huge--title * 1.65;
@@ -324,6 +289,11 @@
 }
 
 .hero-pricing {
+  position: relative;
+  width: 100%;
+  max-width: 992px;
+  margin: auto;
+  @include container-padding;
   margin-top: $layout--lg;
   margin-bottom: $layout--lg;
   display: grid;
@@ -331,7 +301,7 @@
   grid-gap: $spacing--lg 0;
   @include breakpoint(md) {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 0 $spacing--lg;
+    grid-gap: 0 $spacing--xl;
     margin-top: $layout--xl;
     margin-bottom: $layout--xl;
   }
