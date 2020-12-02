@@ -53,9 +53,17 @@ const scrollTrigger = {
     });
   },
   introSection: () => {
-    const video = document.querySelector<HTMLMediaElement>('.js-intro-video');
+    const video = document.querySelector<HTMLMediaElement>('[data-target="intro-video"]');
+    const videoEl = '[data-target="intro-video"]';
+    const triggerPoint = '[data-trigger="intro"]';
+    const fitnessStart = '[data-target="intro-start"]';
+    const appleWatch = '[data-target="apple-watch"]';
+    const iPad = '[data-target="ipad"]';
+    const appleTv = '[data-target="apple-tv"]';
+    const iPhone = '[data-target="iphone"]';
+
     function hideVideo(ev: any) {
-      gsap.to('.js-intro-video', {
+      gsap.to(videoEl, {
         ease: 'ease',
         opacity: 0,
       });
@@ -65,12 +73,12 @@ const scrollTrigger = {
     const playVideo = gsap.timeline({
       scrollTrigger: {
         markers: false,
-        trigger: '.js-intro',
+        trigger: triggerPoint,
         start: '-=100 center',
         end: 'bottom center',
         toggleActions: 'play pause resume reverse',
         onToggle: (self) => {
-          gsap.to('.js-intro-video', {
+          gsap.to(videoEl, {
             ease: 'ease',
             opacity: 1,
           });
@@ -78,7 +86,7 @@ const scrollTrigger = {
         },
       },
     });
-    playVideo.to('.js-intro-start', {
+    playVideo.to(fitnessStart, {
       opacity: 0,
       ease: 'ease',
     });
@@ -89,7 +97,7 @@ const scrollTrigger = {
       },
       scrollTrigger: {
         markers: false,
-        trigger: '.js-items',
+        trigger: triggerPoint,
         start: 'top center',
         end: '+=400 center',
         scrub: 0.75,
@@ -97,18 +105,18 @@ const scrollTrigger = {
     });
 
     introItems
-      .to('.js-intro-watch', {
+      .to(appleWatch, {
         scale: 0.35,
       })
       .to(
-        '.js-intro-watch',
+        appleWatch,
         {
           yPercent: -20,
         },
         0
       )
       .from(
-        '.js-intro-ipad',
+        iPad,
         {
           xPercent: -20,
           opacity: 0,
@@ -116,7 +124,7 @@ const scrollTrigger = {
         0
       )
       .from(
-        '.js-intro-tv',
+        appleTv,
         {
           xPercent: 20,
           opacity: 0,
@@ -124,7 +132,7 @@ const scrollTrigger = {
         0
       )
       .from(
-        '.js-intro-iphone',
+        iPhone,
         {
           yPercent: 40,
           opacity: 0,

@@ -60,36 +60,37 @@
         </div>
       </section>
       <section class="section section--overflow">
-        <div class="js-intro section__container-fullwidth">
-          <div class="js-items grid-container">
+        <div class="ection__container-fullwidth" data-trigger="intro">
+          <div class="grid-container">
             <div class="watch-item">
-              <div class="js-intro-watch intro-watch">
+              <div class="intro-watch" data-target="apple-watch">
                 <figure class="intro-watch__render"></figure>
-                <div class="intro-watch-video">
-                  <figure class="js-intro-start intro-watch-video__start"></figure>
+                <div class="intro-watch-video" data-target="apple-watch-video">
+                  <figure class="intro-watch-video__start" data-target="intro-start"></figure>
                   <video
-                    class="js-intro-video intro-watch-video__video"
+                    class="intro-watch-video__video"
                     muted
                     playsinline="true"
                     aria-hidden="true"
                     src="assets/intro_watch_vid.mp4"
+                    data-target="intro-video"
                   ></video>
                   <figure class="intro-watch-video__end"></figure>
                 </div>
               </div>
             </div>
             <div class="iphone-item">
-              <div class="js-intro-iphone intro-iphone">
+              <div class="intro-iphone" data-target="iphone">
                 <figure class="intro-iphone__render"></figure>
               </div>
             </div>
             <div class="ipad-item">
-              <div class="js-intro-ipad intro-ipad">
+              <div class="intro-ipad" data-target="ipad">
                 <figure class="intro-ipad__render"></figure>
               </div>
             </div>
             <div class="tv-item">
-              <div class="js-intro-tv intro-tv">
+              <div class="intro-tv" data-target="apple-tv">
                 <figure class="intro-tv__render"></figure>
               </div>
             </div>

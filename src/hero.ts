@@ -33,16 +33,13 @@ const hero = {
       this.setImageMask(imageSet.image, currentHero.image_layer_2.small.url);
       this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.small.url);
     }
-    console.log(currentHero);
 
     md.addEventListener('change', (e) => {
       if (e.matches) {
-        console.log('should update to large images');
         this.setBackgroundImage(imageSet.image, currentHero.image_layer_1.url);
         this.setImageMask(imageSet.image, currentHero.image_layer_2.url);
         this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.url);
       } else {
-        console.log('should update to small images');
         this.setBackgroundImage(imageSet.image, currentHero.image_layer_1.small.url);
         this.setImageMask(imageSet.image, currentHero.image_layer_2.small.url);
         this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.small.url);
