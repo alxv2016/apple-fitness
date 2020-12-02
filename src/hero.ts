@@ -1,55 +1,25 @@
+import util from './utility';
+
 const hero = {
   heroImage: document.querySelector('[data-target="hero-image"]'),
   heroContainer: document.querySelector('[data-target="hero"]'),
-  heroImages: ['hero-01', 'hero-02', 'hero-03', 'hero-04'],
   randomizeHero: function () {
-    const index = this.randomize(0, 3);
-    this.heroContainer?.setAttribute('data-hero', hero.heroImages[index]);
+    const heroImages = ['hero-01', 'hero-02', 'hero-03', 'hero-04'];
+    const index = util.randomize(0, 3);
+    this.heroContainer?.setAttribute('data-hero', heroImages[index]);
   },
-  setBackgroundImage: function (element: HTMLElement, url: string) {
-    element.style.backgroundImage = `url('${url}')`;
-  },
-  setImageMask: function (element: HTMLElement, url: string) {
-    element.style.webkitMaskImage = `url('${url}')`;
-    element.style.maskImage = `url('${url}')`;
-  },
-  createHeroElement: function (element: string, className: string) {
-    const el = document.createElement(element);
-    el.className = className;
-    return el;
-  },
-  attachHeroImage: function (currentHero: any) {
+  renderHeroImage: function (currentHero: any) {
     const imageSet = {
-      shadow: this.createHeroElement('figure', 'hero-image-shadow'),
-      image: this.createHeroElement('figure', 'hero-image'),
+      shadow: util.createElement('figure', 'hero-image-shadow'),
+      image: util.createElement('figure', 'hero-image'),
     };
-    const md = window.matchMedia('(min-width: 768px)');
-    if (md.matches) {
-      this.setBackgroundImage(imageSet.image, currentHero.image_layer_1.url);
-      this.setImageMask(imageSet.image, currentHero.image_layer_2.url);
-      this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.url);
-    } else {
-      this.setBackgroundImage(imageSet.image, currentHero.image_layer_1.small.url);
-      this.setImageMask(imageSet.image, currentHero.image_layer_2.small.url);
-      this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.small.url);
+    util.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.url);
+    util.setImageMask(imageSet.image, currentHero.image_layer_2.url);
+    util.setBackgroundImage(imageSet.image, currentHero.image_layer_1);
+    if (this.heroImage) {
+      this.heroImage.appendChild(imageSet.shadow);
+      this.heroImage.appendChild(imageSet.image);
     }
-
-    md.addEventListener('change', (e) => {
-      if (e.matches) {
-        this.setBackgroundImage(imageSet.image, currentHero.image_layer_1.url);
-        this.setImageMask(imageSet.image, currentHero.image_layer_2.url);
-        this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.url);
-      } else {
-        this.setBackgroundImage(imageSet.image, currentHero.image_layer_1.small.url);
-        this.setImageMask(imageSet.image, currentHero.image_layer_2.small.url);
-        this.setBackgroundImage(imageSet.shadow, currentHero.image_layer_3.small.url);
-      }
-    });
-    this.heroImage?.appendChild(imageSet.shadow);
-    this.heroImage?.appendChild(imageSet.image);
-  },
-  randomize: function (min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   },
 };
 export default hero;

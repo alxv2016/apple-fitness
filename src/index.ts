@@ -52,7 +52,7 @@ function createElement(element: string, classes: string | null = null) {
 }
 
 function accessData(data: any) {
-  //console.log(data);
+  console.log(data);
   const heroId = hero.heroContainer?.getAttribute('data-hero');
   const heroImages = data.filter((content: any) => content.slice_type === 'hero_image')[0];
   const heroContent = data.filter((content: any) => content.slice_type === 'hero_content')[0];
