@@ -48,8 +48,10 @@ function accessData(data: any) {
   const heroData = data.filter((content: any) => content.slice_type === 'hero_section')[0];
   const valuePropData = data.filter((content: any) => content.slice_type === 'value_prop')[0];
   const pricingData = data.filter((content: any) => content.slice_type === 'pricing')[0];
+  const introData = data.filter((content: any) => content.slice_type === 'service_intro')[0];
+  console.log(introData);
   hero.renderHeroImage(heroData);
   hero.renderValueProp(valuePropData);
   hero.renderPricing(pricingData);
-  intro.renderWatchImages(pricingData);
+  intro.renderWatchImages(introData);
 }

@@ -7,7 +7,7 @@ const util = {
     element.style.maskImage = `url('${url}')`;
   },
   createElement: function (element: string, className: string | null = null) {
-    const el = document.createElement(element);
+    const el: any = document.createElement(element);
     className ? (el.className = className) : el;
     return el;
   },

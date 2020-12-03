@@ -63,10 +63,6 @@ const scrollTrigger = {
     const iPhone = '[data-target="iphone"]';
 
     function hideVideo(ev: any) {
-      gsap.to(videoEl, {
-        ease: 'ease',
-        opacity: 1,
-      });
       ev.target.removeEventListener('ended', hideVideo);
     }
     video?.addEventListener('ended', hideVideo);

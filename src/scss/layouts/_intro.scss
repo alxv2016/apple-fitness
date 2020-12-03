@@ -16,7 +16,7 @@
     left: 0;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../assets/intro_watch_shadow.png');
+    //background-image: url('../assets/intro_watch_shadow.png');
     @include breakpoint(md) {
       width: 634px;
       height: 1082px;
@@ -29,9 +29,9 @@
     width: inherit;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../assets/intro_watch.jpg');
+    //background-image: url('../assets/intro_watch.jpg');
     mask-size: contain;
-    mask-image: url('../assets/intro_watch_mask.png');
+    //mask-image: url('../assets/intro_watch_mask.png');
     mask-repeat: no-repeat;
   }
 }
@@ -63,20 +63,19 @@
   }
   &__start {
     z-index: auto;
-    background-image: url('../assets/intro_watch_start.jpg');
+    //background-image: url('../assets/intro_watch_start.jpg');
     opacity: 1;
   }
   &__end {
     z-index: -1;
-    background-image: url('../assets/intro_watch_end.jpg');
+    //background-image: url('../assets/intro_watch_end.jpg');
   }
   &__video {
     position: relative;
-    height: 404px;
-    width: 332px;
+    height: inherit;
+    width: inherit;
     object-fit: contain;
     display: none;
-    opacity: 1;
     @include breakpoint(md) {
       display: block;
     }
