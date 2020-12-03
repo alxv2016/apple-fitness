@@ -145,7 +145,7 @@
   }
 }
 
-.hero[data-hero='hero-01'] {
+.hero-image-container[data-hero='hero-01'] {
   .logo-container {
     @include breakpoint(md) {
       &--i,
@@ -156,7 +156,7 @@
   }
 }
 
-.hero[data-hero='hero-02'] {
+.hero-image-container[data-hero='hero-02'] {
   .hero-image,
   .hero-image-shadow {
     left: 0;
@@ -175,7 +175,7 @@
   }
 }
 
-.hero[data-hero='hero-03'] {
+.hero-image-container[data-hero='hero-03'] {
   .logo-container {
     &--s1,
     &--s2 {
@@ -193,7 +193,7 @@
   }
 }
 
-.hero[data-hero='hero-04'] {
+.hero-image-container[data-hero='hero-04'] {
   .logo-container {
     @include breakpoint(md) {
       &--apple,
@@ -279,11 +279,11 @@
 
 .hero-content[data-state='loading'],
 .hero-pricing[data-state='loading'],
-.hero[data-state='loading'] {
+.hero-image-container[data-state='loading'] {
   .extra-huge--title:after,
   .hero-content__value-prop:after,
   .hero-pricing__container:after,
-  .hero-image-container:after {
+  &:after {
     opacity: 1;
   }
 }

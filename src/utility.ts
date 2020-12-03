@@ -6,9 +6,9 @@ const util = {
     element.style.webkitMaskImage = `url('${url}')`;
     element.style.maskImage = `url('${url}')`;
   },
-  createElement: function (element: string, className: string) {
+  createElement: function (element: string, className: string | null = null) {
     const el = document.createElement(element);
-    el.className = className;
+    className ? (el.className = className) : el;
     return el;
   },
   randomize: function (min: number, max: number) {

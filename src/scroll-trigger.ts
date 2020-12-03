@@ -65,7 +65,7 @@ const scrollTrigger = {
     function hideVideo(ev: any) {
       gsap.to(videoEl, {
         ease: 'ease',
-        opacity: 0,
+        opacity: 1,
       });
       ev.target.removeEventListener('ended', hideVideo);
     }

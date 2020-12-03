@@ -8,9 +8,8 @@
     width: 446px;
     height: 762px;
   }
-  &:before {
+  &__shadow {
     position: absolute;
-    content: '';
     width: 419px;
     height: 715px;
     top: 0;
@@ -73,8 +72,11 @@
   }
   &__video {
     position: relative;
+    height: 404px;
+    width: 332px;
     object-fit: contain;
     display: none;
+    opacity: 1;
     @include breakpoint(md) {
       display: block;
     }
