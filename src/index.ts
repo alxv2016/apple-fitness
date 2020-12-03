@@ -53,5 +53,5 @@ function accessData(data: any) {
   hero.renderHeroImage(heroData);
   hero.renderValueProp(valuePropData);
   hero.renderPricing(pricingData);
-  intro.renderWatchImages(introData);
+  intro.processData(introData);
 }

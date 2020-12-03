@@ -1,15 +1,19 @@
 import util from './utility';
 
 const intro = {
+  processData: function (introData: any) {
+    this.renderWatchImages(introData.primary);
+  },
+  renderIphoneImages: function (introData: any) {},
   renderWatchImages: function (introData: any) {
     const appleWatch = document.querySelector<HTMLElement>('[data-target="apple-watch"]');
     const imageSet = {
       shadow: util.createElement('figure', 'intro-watch__shadow'),
       image: util.createElement('figure', 'intro-watch__render'),
     };
-    util.setBackgroundImage(imageSet.shadow, introData.primary.apple_watch_render.shadow.url);
-    util.setBackgroundImage(imageSet.image, introData.primary.apple_watch_render.url);
-    util.setImageMask(imageSet.image, introData.primary.apple_watch_render.mask.url);
+    util.setBackgroundImage(imageSet.shadow, introData.apple_watch_render.shadow.url);
+    util.setBackgroundImage(imageSet.image, introData.apple_watch_render.url);
+    util.setImageMask(imageSet.image, introData.apple_watch_render.mask.url);
 
     const watchVideo = {
       cover: util.createElement('figure', 'intro-watch-video__start'),
@@ -18,8 +22,8 @@ const intro = {
       container: util.createElement('div', 'intro-watch-video'),
     };
 
-    util.setBackgroundImage(watchVideo.cover, introData.primary.apple_watch_render.cover.url);
-    util.setBackgroundImage(watchVideo.endCover, introData.primary.apple_watch_render.end_cover.url);
+    util.setBackgroundImage(watchVideo.cover, introData.apple_watch_render.cover.url);
+    util.setBackgroundImage(watchVideo.endCover, introData.apple_watch_render.end_cover.url);
 
     watchVideo.cover.setAttribute('data-target', 'intro-start');
     watchVideo.container.setAttribute('data-target', 'apple-watch-video');
