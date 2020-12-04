@@ -5,8 +5,8 @@ $base-font-size: 1rem !default;
 $headline-line-height: 1.15 !default;
 $heading-line-height: 1.25 !default;
 $body-line-height: 1.65 !default;
-$max-screen-size: 1024px !default;
-$max-content-size: 768px !default;
+$max-width: 1024px !default;
+$max-content-width: 992px !default;
 $font-families: (
   roboto: 'Roboto',
 ) !default;
@@ -57,6 +57,9 @@ $title--2: 2.074rem; //(1.728 * 1.2) 33px
 $title--1: 2.488rem; //(2.074 * 1.2) 39px
 $large--title: 2.986rem; //(2.489 * 1.2) 47px
 $huge--title: 3.58rem; // (2.968 * 1.2) 57px
+$headliner--1: 4.3rem; //68px;
+$headliner--2: 5.16rem; //82.56px
+$headliner--3: 6.192rem; //99px
 // Spacing scale
 $spacing--2xs: 0.125rem; // 2px
 $spacing--xs: 0.25rem; // 4px

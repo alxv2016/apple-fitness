@@ -84,7 +84,7 @@
     padding: 0 $spacing--3xl;
   }
   @include breakpoint(xl) {
-    max-width: $max-screen-size;
+    max-width: $max-content-width;
     margin: auto;
   }
 }

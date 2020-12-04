@@ -3,8 +3,52 @@ import util from './utility';
 const intro = {
   processData: function (introData: any) {
     this.renderWatchImages(introData.primary);
+    this.renderIpadImages(introData.primary);
+    this.renderAppleTvImages(introData.primary);
+    this.renderIphoneImages(introData.primary);
   },
-  renderIphoneImages: function (introData: any) {},
+  renderIphoneImages: function (introData: any) {
+    const iPhone = document.querySelector<HTMLElement>('[data-target="iphone"]');
+    const imageSet = {
+      shadow: util.createElement('figure', 'intro-iphone__shadow'),
+      image: util.createElement('figure', 'intro-iphone__render'),
+    };
+    util.setBackgroundImage(imageSet.shadow, introData.iphone_render.shadow.url);
+    util.setBackgroundImage(imageSet.image, introData.iphone_render.url);
+    util.setImageMask(imageSet.image, introData.iphone_render.mask.url);
+    if (iPhone) {
+      iPhone.appendChild(imageSet.shadow);
+      iPhone.appendChild(imageSet.image);
+    }
+  },
+  renderAppleTvImages: function (introData: any) {
+    const appleTv = document.querySelector<HTMLElement>('[data-target="apple-tv"]');
+    const imageSet = {
+      shadow: util.createElement('figure', 'intro-tv__shadow'),
+      image: util.createElement('figure', 'intro-tv__render'),
+    };
+    util.setBackgroundImage(imageSet.shadow, introData.apple_tv_render.shadow.url);
+    util.setBackgroundImage(imageSet.image, introData.apple_tv_render.url);
+    util.setImageMask(imageSet.image, introData.apple_tv_render.mask.url);
+    if (appleTv) {
+      appleTv.appendChild(imageSet.shadow);
+      appleTv.appendChild(imageSet.image);
+    }
+  },
+  renderIpadImages: function (introData: any) {
+    const iPad = document.querySelector<HTMLElement>('[data-target="ipad"]');
+    const imageSet = {
+      shadow: util.createElement('figure', 'intro-ipad__shadow'),
+      image: util.createElement('figure', 'intro-ipad__render'),
+    };
+    util.setBackgroundImage(imageSet.shadow, introData.ipad_render.shadow.url);
+    util.setBackgroundImage(imageSet.image, introData.ipad_render.url);
+    util.setImageMask(imageSet.image, introData.ipad_render.mask.url);
+    if (iPad) {
+      iPad.appendChild(imageSet.shadow);
+      iPad.appendChild(imageSet.image);
+    }
+  },
   renderWatchImages: function (introData: any) {
     const appleWatch = document.querySelector<HTMLElement>('[data-target="apple-watch"]');
     const imageSet = {

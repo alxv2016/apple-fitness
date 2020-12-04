@@ -19,18 +19,22 @@ form legend {
 }
 
 .extra-huge--title {
-  font-size: $huge--title;
+  font-size: $headliner--1;
   font-weight: font-weight('bold');
   line-height: $headline-line-height;
   margin-bottom: $spacing--4xl;
   @include breakpoint(md) {
-    font-size: $huge--title * 1.65;
+    font-size: $headliner--2;
+  }
+  @include breakpoint(lg) {
+    font-size: $headliner--3;
   }
 }
 
 .huge--title {
   font-size: $large--title;
   line-height: $headline-line-height;
+  font-weight: font-weight('bold');
   @include breakpoint(md) {
     font-size: $huge--title;
   }

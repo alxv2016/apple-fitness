@@ -16,7 +16,6 @@
     left: 0;
     background-size: contain;
     background-repeat: no-repeat;
-    //background-image: url('../assets/intro_watch_shadow.png');
     @include breakpoint(md) {
       width: 634px;
       height: 1082px;
@@ -29,9 +28,7 @@
     width: inherit;
     background-size: contain;
     background-repeat: no-repeat;
-    //background-image: url('../assets/intro_watch.jpg');
     mask-size: contain;
-    //mask-image: url('../assets/intro_watch_mask.png');
     mask-repeat: no-repeat;
   }
 }
@@ -63,12 +60,10 @@
   }
   &__start {
     z-index: auto;
-    //background-image: url('../assets/intro_watch_start.jpg');
     opacity: 1;
   }
   &__end {
     z-index: -1;
-    //background-image: url('../assets/intro_watch_end.jpg');
   }
   &__video {
     position: relative;
@@ -91,9 +86,8 @@
     width: 791px;
     height: 572px;
   }
-  &:before {
+  &__shadow {
     position: absolute;
-    content: '';
     width: 668px;
     height: 518px;
     @include breakpoint(md) {
@@ -104,7 +98,6 @@
     left: 0;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../assets/intro_ipad_shadow.png');
   }
   &__render {
     position: absolute;
@@ -113,9 +106,7 @@
     width: inherit;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../assets/intro_ipad.jpg');
     mask-size: contain;
-    mask-image: url('../assets/intro_ipad_mask.png');
     mask-repeat: no-repeat;
   }
 }
@@ -129,9 +120,8 @@
     width: 1261px;
     height: 718px;
   }
-  &:before {
+  &__shadow {
     position: absolute;
-    content: '';
     width: 1201px;
     height: 678px;
     @include breakpoint(md) {
@@ -142,7 +132,6 @@
     left: 0;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../assets/intro_tv_shadow.png');
   }
   &__render {
     position: absolute;
@@ -151,9 +140,7 @@
     width: inherit;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../assets/intro_tv.jpg');
     mask-size: contain;
-    mask-image: url('../assets/intro_tv_mask.png');
     mask-repeat: no-repeat;
   }
 }
@@ -167,9 +154,8 @@
     width: 235px;
     height: 457px;
   }
-  &:before {
+  &__shadow {
     position: absolute;
-    content: '';
     width: 293px;
     height: 433px;
     @include breakpoint(md) {
@@ -180,7 +166,6 @@
     left: 0;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../assets/intro_iphone_shadow.png');
   }
   &__render {
     position: absolute;
@@ -189,9 +174,7 @@
     width: inherit;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../assets/intro_iphone.jpg');
     mask-size: contain;
-    mask-image: url('../assets/intro_iphone_mask.png');
     mask-repeat: no-repeat;
   }
 }
@@ -247,5 +230,52 @@
   grid-column: 1 / 2;
   @include breakpoint(md) {
     right: 0;
+  }
+}
+
+.fitness-experience {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.apple-fitness-app {
+  height: 120px;
+  width: 120px;
+}
+
+.device-group {
+  position: relative;
+  width: 598px;
+  height: 510px;
+  border: 1px solid red;
+  @include breakpoint(md) {
+    width: 598px;
+    height: 510px;
+  }
+  &__shadow {
+    position: absolute;
+    width: 686px;
+    height: 576px;
+    @include breakpoint(md) {
+      width: 686px;
+      height: 576px;
+    }
+    top: 0;
+    left: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__render {
+    position: absolute;
+    z-index: 2;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
   }
 }

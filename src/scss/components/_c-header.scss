@@ -15,7 +15,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: $max-screen-size;
+    max-width: $max-width;
     margin: auto;
     @include container-padding;
   }
