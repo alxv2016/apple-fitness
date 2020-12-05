@@ -36,8 +36,7 @@ async function proccessData() {
     hero.heroContent?.removeAttribute('data-state');
     hero.heroPricing?.removeAttribute('data-state');
     hero.heroImage?.removeAttribute('data-state');
-    scrollTrigger.heroSection();
-    scrollTrigger.introSection();
+    scrollTrigger.initScrollTrigger();
   } catch (error) {
     console.log(error.message);
   }

@@ -48,25 +48,16 @@
     height: 404px;
   }
 
-  &__start,
-  &__end {
+  &__static {
     position: absolute;
-    top: 0;
-    left: 0;
     width: inherit;
     height: inherit;
     background-size: contain;
     background-repeat: no-repeat;
   }
-  &__start {
-    z-index: auto;
-    opacity: 1;
-  }
-  &__end {
-    z-index: -1;
-  }
   &__video {
-    position: relative;
+    position: absolute;
+    z-index: 1;
     height: inherit;
     width: inherit;
     object-fit: contain;
@@ -266,7 +257,6 @@
     left: 0;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../assets/intro_lockup_shadow.png');
   }
   &__render {
     position: absolute;
@@ -277,8 +267,6 @@
     background-repeat: no-repeat;
     mask-size: contain;
     mask-repeat: no-repeat;
-    background-image: url('../assets/intro_lockup.jpg');
-    mask-image: url('../assets/intro_lockup_mask.png');
   }
 
   &__video {
@@ -287,28 +275,25 @@
     width: inherit;
     mask-size: contain;
     mask-repeat: no-repeat;
-    mask-image: url('../assets/intro_lockup_video-mask.png');
 
-    &-cover {
+    &-static {
       position: absolute;
-      top: 0;
-      left: 0;
       height: inherit;
       width: inherit;
       background-size: contain;
       background-repeat: no-repeat;
-      background-image: url('../assets/intro_lockup_cover.jpg');
     }
 
-    &-endcover {
+    &-vid {
       position: absolute;
-      top: 0;
-      left: 0;
+      z-index: 1;
       height: inherit;
       width: inherit;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-image: url('../assets/intro_lockup_endcover.jpg');
+      object-fit: contain;
+      display: none;
+      @include breakpoint(md) {
+        display: block;
+      }
     }
   }
 }

@@ -4,7 +4,15 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const scrollTrigger = {
-  stickyHeader: () => {
+  initScrollTrigger: function () {
+    this.heroSection();
+    this.introSection();
+  },
+  hideVideo: function (ev: any) {
+    ev.target.setAttribute('style', 'display: none');
+    ev.target.removeEventListener('ended', this.hideVideo);
+  },
+  stickyHeader: function () {
     // Header on scroll animation
     ScrollTrigger.create({
       onUpdate: (self: any) => {
@@ -21,7 +29,7 @@ const scrollTrigger = {
       },
     });
   },
-  heroSection: () => {
+  heroSection: function () {
     gsap.to('[data-target="logo"]', {
       yPercent: -40,
       scrollTrigger: {
@@ -52,46 +60,55 @@ const scrollTrigger = {
       yPercent: 200,
     });
   },
-  introSection: () => {
+  introSection: function () {
     const video = document.querySelector<HTMLMediaElement>('[data-target="intro-video"]');
-    const videoEl = '[data-target="intro-video"]';
+    const lockupVideo = document.querySelector<HTMLMediaElement>('[data-target="device-lockup-video"]');
     const triggerPoint = '[data-trigger="intro"]';
-    const fitnessStart = '[data-target="intro-start"]';
+    const triggerPoint2 = '[data-trigger="device-lockup"]';
+
     const appleWatch = '[data-target="apple-watch"]';
     const iPad = '[data-target="ipad"]';
     const appleTv = '[data-target="apple-tv"]';
     const iPhone = '[data-target="iphone"]';
 
-    function hideVideo(ev: any) {
-      ev.target.removeEventListener('ended', hideVideo);
-    }
-    video?.addEventListener('ended', hideVideo);
-    const playVideo = gsap.timeline({
-      scrollTrigger: {
-        markers: false,
-        trigger: triggerPoint,
-        start: '-=100 center',
-        end: 'bottom center',
-        toggleActions: 'play pause resume reverse',
-        onToggle: (self) => {
-          gsap.to(videoEl, {
-            ease: 'ease',
-            opacity: 1,
-          });
-          if (self.isActive && video) {
-            video.muted = true;
-            video.play();
-          } else {
-            if (video) {
-              video.pause();
-            }
+    ScrollTrigger.create({
+      markers: false,
+      trigger: triggerPoint,
+      start: '-=100 center',
+      end: 'bottom center',
+      toggleActions: 'play pause resume reverse',
+      onToggle: (self) => {
+        if (self.isActive && video) {
+          video.setAttribute('style', 'display: block');
+          video.muted = true;
+          video.play();
+          video.addEventListener('ended', this.hideVideo);
+        } else {
+          if (video) {
+            video.pause();
           }
-        },
+        }
       },
     });
-    playVideo.to(fitnessStart, {
-      opacity: 0,
-      ease: 'ease',
+
+    ScrollTrigger.create({
+      markers: false,
+      trigger: triggerPoint2,
+      start: '-=100 center',
+      end: 'bottom center',
+      toggleActions: 'play pause resume reverse',
+      onToggle: (self) => {
+        if (self.isActive && lockupVideo) {
+          lockupVideo.setAttribute('style', 'display: block');
+          lockupVideo.muted = true;
+          lockupVideo.play();
+          lockupVideo.addEventListener('ended', this.hideVideo);
+        } else {
+          if (lockupVideo) {
+            lockupVideo.pause();
+          }
+        }
+      },
     });
 
     const introItems = gsap.timeline({

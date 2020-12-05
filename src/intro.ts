@@ -9,9 +9,47 @@ const intro = {
     this.renderServiceIntro(introData.primary);
   },
   renderServiceIntro: function (introData: any) {
-    const appIcon = document.querySelector<HTMLMediaElement>('[data-target="fitness-app"]');
-    if (appIcon) {
-      appIcon.src = introData.fitness_app_icon.url;
+    const container = document.querySelector('[data-target="fitness-experience"]');
+    if (container) {
+      const children = container.children;
+      const imageSet = {
+        shadow: util.createElement('figure', 'device-lockup__shadow'),
+        image: util.createElement('figure', 'device-lockup__render'),
+      };
+      const videoSet = {
+        container: util.createElement('div', 'device-lockup__video'),
+        static: util.createElement('figure', 'device-lockup__video-static'),
+        video: util.createVideoElement('video', 'device-lockup__video-vid', 'device-lockup-video'),
+      };
+      util.setBackgroundImage(imageSet.shadow, introData.lock_up.shadow.url);
+      util.setBackgroundImage(imageSet.image, introData.lock_up.url);
+      util.setImageMask(imageSet.image, introData.lock_up.mask.url);
+      util.setBackgroundImage(videoSet.static, introData.lock_up.static.url);
+      util.setImageMask(videoSet.container, introData.lock_up.video_mask.url);
+      videoSet.video.src = require('./assets/intro_lockup.mp4');
+      videoSet.container.appendChild(videoSet.video);
+      videoSet.container.appendChild(videoSet.static);
+
+      Array.from(children).forEach((child: any) => {
+        const data = child.getAttribute('data-target');
+        switch (true) {
+          case data === 'fitness-app':
+            child.src = introData.fitness_app_icon.url;
+            break;
+          case data === 'fitness-heading':
+            child.textContent = introData.title[0].text;
+            break;
+          case data === 'fitness-intro':
+            child.textContent = introData.fitness_intro[0].text;
+            break;
+          case data === 'device-lockup':
+            console.log(child);
+            child.appendChild(imageSet.shadow);
+            child.appendChild(imageSet.image);
+            child.appendChild(videoSet.container);
+            break;
+        }
+      });
     }
   },
   renderIphoneImages: function (introData: any) {
@@ -67,27 +105,19 @@ const intro = {
     util.setImageMask(imageSet.image, introData.apple_watch_render.mask.url);
 
     const watchVideo = {
-      cover: util.createElement('figure', 'intro-watch-video__start'),
-      endCover: util.createElement('figure', 'intro-watch-video__end'),
-      video: util.createElement('video', 'intro-watch-video__video'),
+      static: util.createElement('figure', 'intro-watch-video__static'),
+      video: util.createVideoElement('video', 'intro-watch-video__video'),
       container: util.createElement('div', 'intro-watch-video'),
     };
+    util.setBackgroundImage(watchVideo.static, introData.apple_watch_render.static.url);
 
-    util.setBackgroundImage(watchVideo.cover, introData.apple_watch_render.cover.url);
-    util.setBackgroundImage(watchVideo.endCover, introData.apple_watch_render.end_cover.url);
-
-    watchVideo.cover.setAttribute('data-target', 'intro-start');
     watchVideo.container.setAttribute('data-target', 'apple-watch-video');
-    watchVideo.video.setAttribute('muted', '');
-    watchVideo.video.setAttribute('playsinline', 'true');
-    watchVideo.video.setAttribute('aria-hidden', 'true');
     watchVideo.video.setAttribute('data-target', 'intro-video');
     if (watchVideo.video) {
       watchVideo.video.src = require('./assets/intro_watch_vid.mp4');
     }
     watchVideo.container.appendChild(watchVideo.video);
-    watchVideo.container.appendChild(watchVideo.cover);
-    watchVideo.container.appendChild(watchVideo.endCover);
+    watchVideo.container.appendChild(watchVideo.static);
     appleWatch?.appendChild(imageSet.shadow);
     appleWatch?.appendChild(imageSet.image);
     appleWatch?.appendChild(watchVideo.container);
