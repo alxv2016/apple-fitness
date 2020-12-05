@@ -9,14 +9,14 @@
     <!-- Header -->
     <header class="header" data-target="header">
       <div class="header__container">
-        <div class="header__brand"><img class="brand-logo" src="assets/rings.png" /></div>
+        <img class="header__brand" src="assets/apple_logo.svg" />
       </div>
     </header>
     <main>
       <section class="section section--overflow">
         <div class="hero">
-          <div class="hero-image-container" data-target="hero-image"></div>
-          <h1 class="hero-title">
+          <div class="hero-container" data-target="hero-image"></div>
+          <h1 class="hero-heading">
             <span class="visually-hidden">Apple Fitness plus</span>
             <div class="logo-container logo-container--apple" data-target="logo">
               <figure class="logo"></figure>
@@ -48,46 +48,48 @@
           </h1>
         </div>
         <div class="hero-content" data-target="hero-content">
-          <h2 class="extra-huge--title" data-target="value-prop-title"></h2>
-          <div class="hero-content__value-prop" data-target="value-prop"></div>
-          <div class="hero-content__value-prop" data-target="value-prop"></div>
-          <div class="hero-content__value-prop" data-target="value-prop"></div>
-          <div class="hero-content__value-prop" data-target="value-prop"></div>
-        </div>
-        <div class="hero-pricing" data-target="hero-pricing">
-          <div class="hero-pricing__container" data-target="hero-price"></div>
-          <div class="hero-pricing__container" data-target="hero-price"></div>
+          <h2 class="extra-huge--title move-title" data-target="value-prop-title"></h2>
+          <div class="value-prop" data-target="value-prop"></div>
+          <div class="value-prop" data-target="value-prop"></div>
+          <div class="value-prop" data-target="value-prop"></div>
+          <div class="value-prop" data-target="value-prop"></div>
+          <div class="hero-content__pricing" data-target="hero-pricing">
+            <div class="pricing-item" data-target="hero-price"></div>
+            <div class="pricing-item" data-target="hero-price"></div>
+          </div>
         </div>
       </section>
-      <section class="section section--overflow">
-        <div class="section__container-fullwidth" data-trigger="intro">
-          <div class="grid-container">
-            <div class="watch-item">
-              <div class="intro-watch" data-target="apple-watch"></div>
-            </div>
-            <div class="ipad-item">
-              <div class="intro-ipad" data-target="ipad"></div>
-            </div>
-            <div class="tv-item">
-              <div class="intro-tv" data-target="apple-tv"></div>
-            </div>
-            <div class="iphone-item">
-              <div class="intro-iphone" data-target="iphone"></div>
+      <section class="section section--overflow" data-trigger="intro">
+        <div class="device-grid">
+          <div class="intro-watch" data-target="apple-watch"></div>
+          <div class="intro-iphone" data-target="iphone"></div>
+          <div class="intro-tv" data-target="apple-tv"></div>
+          <div class="intro-ipad" data-target="ipad"></div>
+        </div>
+        <div class="fitness-experience">
+          <img class="apple-fitness-app" src="assets/apple_fitness_app.png" />
+          <h2 class="large--title text--center">Find it inside the Fitness app on iPhone, iPad and Apple TV.</h2>
+          <div class="device-lockup">
+            <figure class="device-lockup__shadow"></figure>
+            <figure class="device-lockup__render"></figure>
+            <div class="device-lockup__video">
+              <figure class="device-lockup__video-cover"></figure>
+              <figure class="device-lockup__video-endcover"></figure>
+              <video
+                class="device-lockup-vid"
+                muted
+                playsinline="true"
+                aria-hidden="true"
+                data-target="device-lockup-video"
+                src="assets/intro_lockup.mp4"
+              ></video>
             </div>
           </div>
-          <div class="fitness-experience section__container">
-            <img class="apple-fitness-app" src="assets/apple_fitness_app.png" />
-            <h2 class="large--title">Find it inside the Fitness app on iPhone, iPad and Apple TV.</h2>
-            <div class="device-group">
-              <figure class="device-group__shadow"></figure>
-              <figure class="device-group__render"></figure>
-            </div>
-            <p class="title--3">
-              Introducing a new kind of fitness experience. One that dynamically integrates your personal metrics from
-              Apple Watch, along with the best of Apple Music to inspire like no other workout in the world. A better
-              day is on the way.
-            </p>
-          </div>
+          <p class="title--3 text--medium fitness-content">
+            Introducing a new kind of fitness experience. One that dynamically integrates your personal metrics from
+            Apple Watch, along with the best of Apple Music to inspire like no other workout in the world. A better day
+            is on the way.
+          </p>
         </div>
       </section>
       <section style="height: 10000px"></section>

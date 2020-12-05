@@ -11,9 +11,10 @@
 @import './components/c-header';
 @import './components/c-carousel';
 @import './components/c-accordion';
+@import './components/c-hero';
 // Layouts
 @import './layout';
-@import './layouts/hero';
-@import './layouts/intro';
+@import './layouts/hero-content';
+@import './layouts/intro-content';
 // Vendors
 @import '../../node_modules/@splidejs/splide/dist/css/splide-core.min.css';

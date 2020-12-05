@@ -1,7 +1,6 @@
 .header {
   position: fixed;
   z-index: 4;
-  top: 0;
   display: flex;
   align-items: center;
   width: 100%;
@@ -13,28 +12,17 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
-    max-width: $max-width;
-    margin: auto;
     @include container-padding;
   }
   &__brand {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 44px;
-    width: 44px;
-    background-color: color('dark');
-    border-radius: 90px;
+    height: 28px;
+    width: 28px;
   }
   &[data-state='hidden'] {
     transform: translateY(-80px);
   }
-}
-
-.brand-logo {
-  display: block;
-  height: auto;
-  width: 100%;
 }
