@@ -78,7 +78,14 @@ const scrollTrigger = {
             ease: 'ease',
             opacity: 1,
           });
-          self.isActive ? video?.play() : video?.pause();
+          if (self.isActive && video) {
+            video.muted = true;
+            video.play();
+          } else {
+            if (video) {
+              video.pause();
+            }
+          }
         },
       },
     });
