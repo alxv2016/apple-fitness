@@ -6,6 +6,13 @@ const intro = {
     this.renderIpadImages(introData.primary);
     this.renderAppleTvImages(introData.primary);
     this.renderIphoneImages(introData.primary);
+    this.renderServiceIntro(introData.primary);
+  },
+  renderServiceIntro: function (introData: any) {
+    const appIcon = document.querySelector<HTMLMediaElement>('[data-target="fitness-app"]');
+    if (appIcon) {
+      appIcon.src = introData.fitness_app_icon.url;
+    }
   },
   renderIphoneImages: function (introData: any) {
     const iPhone = document.querySelector<HTMLElement>('[data-target="iphone"]');
