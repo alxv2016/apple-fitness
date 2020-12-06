@@ -6,16 +6,13 @@ const util = {
     element.style.webkitMaskImage = `url('${url}')`;
     element.style.maskImage = `url('${url}')`;
   },
-  createElement: function (element: string, className: string | null = null): HTMLElement {
+  createElement: function (element: string, className: string | null = null, dataTarget: string | null = null) {
     const el = document.createElement(element) as HTMLElement;
     className ? (el.className = className) : el;
+    dataTarget ? el.setAttribute('data-target', dataTarget) : el;
     return el;
   },
-  createVideoElement: function (
-    element: string,
-    className: string | null = null,
-    dataTarget: string | null = null
-  ): HTMLMediaElement {
+  createVideoElement: function (element: string, className: string | null = null, dataTarget: string | null = null) {
     const el = document.createElement(element) as HTMLMediaElement;
     className ? (el.className = className) : el;
     el.muted = true;

@@ -13,7 +13,6 @@ const scrollTrigger = {
     ev.target.removeEventListener('ended', this.hideVideo);
   },
   stickyHeader: function () {
-    // Header on scroll animation
     ScrollTrigger.create({
       onUpdate: (self: any) => {
         const scrollDirection = self.direction;
@@ -21,10 +20,11 @@ const scrollTrigger = {
         let scrollingDown = false;
         scrollDirection === 1 ? (scrollingDown = true) : (scrollingDown = false);
         const headerNav = document.querySelector('[data-target="header"]');
-        const headerHeight = headerNav?.getBoundingClientRect().height;
-
-        if (headerHeight && scrollPos >= headerHeight) {
-          scrollingDown ? headerNav?.setAttribute('data-state', 'hidden') : headerNav?.removeAttribute('data-state');
+        if (headerNav) {
+          const headerHeight = headerNav.getBoundingClientRect().height;
+          if (scrollPos >= headerHeight) {
+            scrollingDown ? headerNav.setAttribute('data-state', 'hidden') : headerNav.removeAttribute('data-state');
+          }
         }
       },
     });
@@ -34,109 +34,110 @@ const scrollTrigger = {
       yPercent: -40,
       scrollTrigger: {
         markers: false,
-        trigger: '[data-target="hero"]',
+        trigger: '[data-trigger="hero"]',
         start: 'top top',
-        end: 'center top',
+        end: 'bottom top',
         scrub: 0.45,
       },
     });
 
-    const valueProp = gsap.timeline({
+    const heroContent = gsap.timeline({
       defaults: {
-        ease: 'power3',
+        ease: 'ease',
         opacity: 0,
-        stagger: 0.25,
       },
       scrollTrigger: {
         markers: false,
-        trigger: '[data-target="hero-content"]',
+        trigger: '[data-trigger="hero-content"]',
         start: '-=620 center',
         end: 'bottom center',
         scrub: 0.45,
       },
     });
 
-    valueProp.from('[data-target="value-prop"]', {
-      yPercent: 200,
-    });
+    heroContent
+      .from('[data-target="value-prop"]', {
+        yPercent: 200,
+        stagger: 0.25,
+      })
+      .from('[data-target="pricing-grid"]', {
+        yPercent: 40,
+      });
   },
   introSection: function () {
-    const video = document.querySelector<HTMLMediaElement>('[data-target="intro-video"]');
-    const lockupVideo = document.querySelector<HTMLMediaElement>('[data-target="device-lockup-video"]');
-    const triggerPoint = '[data-trigger="intro"]';
-    const triggerPoint2 = '[data-trigger="device-lockup"]';
+    const watchScreen = document.querySelector<HTMLMediaElement>('[data-target="intro-watch-video"]');
+    const syncingScreen = document.querySelector<HTMLMediaElement>('[data-target="device-syncing-video"]');
 
-    const appleWatch = '[data-target="apple-watch"]';
-    const iPad = '[data-target="ipad"]';
-    const appleTv = '[data-target="apple-tv"]';
-    const iPhone = '[data-target="iphone"]';
-
-    ScrollTrigger.create({
-      markers: false,
-      trigger: triggerPoint,
-      start: '-=100 center',
-      end: 'bottom center',
-      toggleActions: 'play pause resume reverse',
-      onToggle: (self) => {
-        if (self.isActive && video) {
-          video.setAttribute('style', 'display: block');
-          video.muted = true;
-          video.play();
-          video.addEventListener('ended', this.hideVideo);
-        } else {
-          if (video) {
-            video.pause();
+    if (watchScreen) {
+      watchScreen.muted = true;
+      ScrollTrigger.create({
+        markers: false,
+        trigger: '[data-trigger="device-grid"]',
+        start: '-=100 center',
+        end: 'bottom center',
+        toggleActions: 'play pause resume reverse',
+        onToggle: (self) => {
+          if (self.isActive) {
+            watchScreen.setAttribute('style', 'display: block');
+            watchScreen.play();
+            watchScreen.addEventListener('ended', this.hideVideo);
+          } else {
+            watchScreen.pause();
           }
-        }
-      },
-    });
+        },
+      });
+    }
 
-    ScrollTrigger.create({
-      markers: false,
-      trigger: triggerPoint2,
-      start: '-=100 center',
-      end: 'bottom center',
-      toggleActions: 'play pause resume reverse',
-      onToggle: (self) => {
-        if (self.isActive && lockupVideo) {
-          lockupVideo.setAttribute('style', 'display: block');
-          lockupVideo.muted = true;
-          lockupVideo.play();
-          lockupVideo.addEventListener('ended', this.hideVideo);
-        } else {
-          if (lockupVideo) {
-            lockupVideo.pause();
+    if (syncingScreen) {
+      syncingScreen.muted = true;
+      ScrollTrigger.create({
+        markers: false,
+        trigger: '[data-trigger="device-sync-intro"]',
+        start: '-=100 center',
+        end: 'bottom center',
+        toggleActions: 'play pause resume reverse',
+        onToggle: (self) => {
+          if (self.isActive) {
+            syncingScreen.setAttribute('style', 'display: block');
+            syncingScreen.play();
+            syncingScreen.addEventListener('ended', this.hideVideo);
+          } else {
+            syncingScreen.pause();
           }
-        }
-      },
-    });
+        },
+      });
 
-    const introItems = gsap.timeline({
+      gsap.from('[data-target="device-sync-intro-heading"]', {
+        yPercent: -60,
+        opacity: 0,
+        scrollTrigger: {
+          markers: true,
+          trigger: '[data-trigger="device-sync-intro"]',
+          start: '+=200 center',
+          end: 'center center',
+          scrub: 0.45,
+        },
+      });
+    }
+    const deviceGrid = gsap.timeline({
       defaults: {
         ease: 'none',
       },
       scrollTrigger: {
         markers: false,
-        trigger: triggerPoint,
+        trigger: '[data-trigger="device-grid"]',
         start: 'top center',
         end: '+=400 center',
         scrub: 0.75,
       },
     });
-
-    introItems
-      .to(appleWatch, {
+    deviceGrid
+      .to('[data-target="intro-watch"]', {
         scale: 0.35,
+        yPercent: -20,
       })
-      .to(
-        appleWatch,
-        {
-          yPercent: -20,
-        },
-        0
-      )
       .from(
-        iPad,
+        '[data-target="intro-ipad"]',
         {
           xPercent: -20,
           opacity: 0,
@@ -144,7 +145,7 @@ const scrollTrigger = {
         0
       )
       .from(
-        appleTv,
+        '[data-target="intro-tv"]',
         {
           xPercent: 20,
           opacity: 0,
@@ -152,7 +153,7 @@ const scrollTrigger = {
         0
       )
       .from(
-        iPhone,
+        '[data-target="intro-iphone"]',
         {
           yPercent: 40,
           opacity: 0,

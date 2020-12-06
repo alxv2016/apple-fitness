@@ -1,3 +1,48 @@
+.device-grid {
+  position: relative;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  max-height: 668px;
+  @include breakpoint(md) {
+    max-height: 968px;
+  }
+  grid-template-columns: 1fr 300px 1fr;
+  grid-gap: 0 $spacing--lg;
+
+  &__item.intro-iphone {
+    position: absolute;
+    grid-column: 2 / 3;
+    align-self: end;
+    justify-self: center;
+  }
+
+  &__item.intro-watch {
+    grid-column: 2 / 3;
+    justify-self: center;
+  }
+
+  &__item.intro-ipad {
+    position: absolute;
+    right: -68px;
+    grid-column: 1 / 2;
+    align-self: center;
+    @include breakpoint(md) {
+      right: 0;
+    }
+  }
+
+  &__item.intro-tv {
+    position: absolute;
+    align-self: center;
+    left: -68px;
+    grid-column: 3 / 4;
+    @include breakpoint(md) {
+      left: 0;
+    }
+  }
+}
+
 // Watch render
 .intro-watch {
   position: relative;
@@ -34,7 +79,7 @@
 }
 
 // Video
-.intro-watch-video {
+.intro-watch-screen {
   position: absolute;
   z-index: 1;
   top: 119px;
@@ -167,79 +212,42 @@
   }
 }
 
-.device-grid {
-  position: relative;
-  display: grid;
-  width: 100vw;
-  height: 100vh;
-  max-height: 668px;
-  @include breakpoint(md) {
-    max-height: 968px;
-  }
-  grid-template-columns: 1fr 300px 1fr;
-  grid-gap: 0 $spacing--lg;
-
-  .intro-iphone {
-    position: absolute;
-    grid-column: 2 / 3;
-    align-self: end;
-    justify-self: center;
-  }
-
-  .intro-watch {
-    grid-column: 2 / 3;
-    justify-self: center;
-  }
-
-  .intro-ipad {
-    position: absolute;
-    right: -68px;
-    grid-column: 1 / 2;
-    align-self: center;
-    @include breakpoint(md) {
-      right: 0;
-    }
-  }
-
-  .intro-tv {
-    position: absolute;
-    align-self: center;
-    left: -68px;
-    grid-column: 3 / 4;
-    @include breakpoint(md) {
-      left: 0;
-    }
-  }
-}
-
-.fitness-experience {
+.app-intro {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   @include container-padding;
+  max-width: 568px;
   margin-top: $layout--lg;
+  margin-bottom: $layout--lg;
 }
 
-.fitness-content {
-  max-width: 100%;
-  margin-right: auto;
-  @include breakpoint(md) {
-    max-width: 70%;
-  }
-}
-
-.apple-fitness-app {
+.apple-fitness {
   height: 120px;
   width: 120px;
 }
 
-.device-lockup {
+.device-sync-intro {
+  position: relative;
+  @include container-padding;
+
+  &-heading {
+    line-height: 1.5;
+    max-width: 100%;
+    margin-right: auto;
+    @include breakpoint(md) {
+      max-width: 70%;
+    }
+  }
+}
+
+.device-syncing {
   position: relative;
   width: 598px;
   height: 510px;
-  margin-bottom: $layout--sm;
-  margin-top: $layout--lg;
+  margin: auto;
   @include breakpoint(md) {
     width: 792px;
     height: 676px;
@@ -268,32 +276,31 @@
     mask-size: contain;
     mask-repeat: no-repeat;
   }
+}
 
-  &__video {
-    position: relative;
+.device-syncing-screen {
+  position: relative;
+  height: inherit;
+  width: inherit;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  &__static {
+    position: absolute;
     height: inherit;
     width: inherit;
-    mask-size: contain;
-    mask-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 
-    &-static {
-      position: absolute;
-      height: inherit;
-      width: inherit;
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
-
-    &-vid {
-      position: absolute;
-      z-index: 1;
-      height: inherit;
-      width: inherit;
-      object-fit: contain;
-      display: none;
-      @include breakpoint(md) {
-        display: block;
-      }
+  &__vid {
+    position: absolute;
+    z-index: 1;
+    height: inherit;
+    width: inherit;
+    object-fit: contain;
+    display: none;
+    @include breakpoint(md) {
+      display: block;
     }
   }
 }

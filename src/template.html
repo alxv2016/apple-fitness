@@ -12,65 +12,41 @@
         <img class="header__brand" src="assets/apple_logo.svg" />
       </div>
     </header>
+    <!-- Main -->
     <main>
+      <!-- Hero Section -->
       <section class="section section--overflow">
-        <div class="hero">
-          <div class="hero-container" data-target="hero-image"></div>
-          <h1 class="hero-heading">
-            <span class="visually-hidden">Apple Fitness plus</span>
-            <div class="logo-container logo-container--apple" data-target="logo">
-              <figure class="logo"></figure>
-            </div>
-            <div class="logo-container logo-container--f" data-target="logo">
-              <figure class="logo"></figure>
-            </div>
-            <div class="logo-container logo-container--i" data-target="logo">
-              <figure class="logo"></figure>
-            </div>
-            <div class="logo-container logo-container--t" data-target="logo">
-              <figure class="logo"></figure>
-            </div>
-            <div class="logo-container logo-container--n" data-target="logo">
-              <figure class="logo"></figure>
-            </div>
-            <div class="logo-container logo-container--e" data-target="logo">
-              <figure class="logo"></figure>
-            </div>
-            <div class="logo-container logo-container--s1" data-target="logo">
-              <figure class="logo"></figure>
-            </div>
-            <div class="logo-container logo-container--s2" data-target="logo">
-              <figure class="logo"></figure>
-            </div>
-            <div class="logo-container logo-container--plus" data-target="logo">
-              <figure class="logo"></figure>
-            </div>
-          </h1>
+        <div class="hero" data-trigger="hero">
+          <div class="hero-container" data-target="hero-container"></div>
+          <h1 class="hero-heading" data-target="hero-heading"></h1>
         </div>
-        <div class="hero-content" data-target="hero-content">
-          <h2 class="extra-huge--title move-title" data-target="value-prop-title"></h2>
+        <div class="hero-content" data-target="hero-content" data-trigger="hero-content">
+          <h2 class="extra-huge--title move-title" data-target="move-title"></h2>
           <div class="value-prop" data-target="value-prop"></div>
           <div class="value-prop" data-target="value-prop"></div>
           <div class="value-prop" data-target="value-prop"></div>
           <div class="value-prop" data-target="value-prop"></div>
-          <div class="hero-content__pricing" data-target="hero-pricing">
-            <div class="pricing-item" data-target="hero-price"></div>
-            <div class="pricing-item" data-target="hero-price"></div>
+          <div class="pricing-grid" data-target="pricing-grid">
+            <div class="pricing-grid__item" data-target="pricing-grid-item"></div>
+            <div class="pricing-grid__item" data-target="pricing-grid-item"></div>
           </div>
         </div>
       </section>
-      <section class="section section--overflow" data-trigger="intro">
-        <div class="device-grid">
-          <div class="intro-watch" data-target="apple-watch"></div>
-          <div class="intro-iphone" data-target="iphone"></div>
-          <div class="intro-tv" data-target="apple-tv"></div>
-          <div class="intro-ipad" data-target="ipad"></div>
+      <!-- Intro section -->
+      <section class="section section--overflow">
+        <div class="device-grid" data-trigger="device-grid">
+          <div class="device-grid__item intro-watch" data-target="intro-watch"></div>
+          <div class="device-grid__item intro-iphone" data-target="intro-iphone"></div>
+          <div class="device-grid__item intro-tv" data-target="intro-tv"></div>
+          <div class="device-grid__item intro-ipad" data-target="intro-ipad"></div>
         </div>
-        <div class="fitness-experience" data-target="fitness-experience" data-trigger="device-lockup">
-          <img class="apple-fitness-app" data-target="fitness-app" />
-          <h2 class="large--title text--center" data-target="fitness-heading"></h2>
-          <div class="device-lockup" data-target="device-lockup"></div>
-          <p class="title--3 text--medium fitness-content" data-target="fitness-intro"></p>
+        <div class="app-intro" data-target="app-intro">
+          <img class="apple-fitness" data-target="apple-fitness" />
+          <h2 class="large--title text--center" data-target="app-intro-heading"></h2>
+        </div>
+        <div class="device-sync-intro" data-target="device-sync-intro" data-trigger="device-sync-intro">
+          <div class="device-syncing" data-target="device-syncing"></div>
+          <p class="title--3 text--medium device-sync-intro-heading" data-target="device-sync-intro-heading"></p>
         </div>
       </section>
       <section style="height: 10000px"></section>

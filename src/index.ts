@@ -17,7 +17,7 @@ async function masterRef(): Promise<string> {
 }
 
 async function getData(ref: string) {
-  hero.heroImage?.setAttribute('data-state', 'loading');
+  hero.heroContainer?.setAttribute('data-state', 'loading');
   hero.heroContent?.setAttribute('data-state', 'loading');
   hero.heroPricing?.setAttribute('data-state', 'loading');
   const query = '[[at(document.type, "apple_fitness_plus")]]';
@@ -35,7 +35,7 @@ async function proccessData() {
     accessData(appleFitnessData);
     hero.heroContent?.removeAttribute('data-state');
     hero.heroPricing?.removeAttribute('data-state');
-    hero.heroImage?.removeAttribute('data-state');
+    hero.heroContainer?.removeAttribute('data-state');
     scrollTrigger.initScrollTrigger();
   } catch (error) {
     console.log(error.message);
@@ -49,8 +49,6 @@ function accessData(data: any) {
   const pricingData = data.filter((content: any) => content.slice_type === 'pricing')[0];
   const introData = data.filter((content: any) => content.slice_type === 'service_intro')[0];
   console.log(introData);
-  hero.renderHeroImage(heroData);
-  hero.renderValueProp(valuePropData);
-  hero.renderPricing(pricingData);
+  hero.processData(heroData, valuePropData, pricingData);
   intro.processData(introData);
 }

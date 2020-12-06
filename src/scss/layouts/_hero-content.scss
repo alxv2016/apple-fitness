@@ -2,26 +2,32 @@
   position: relative;
   @include container-padding;
   max-width: $max-content-width;
-  &__pricing {
+}
+
+.pricing-grid {
+  position: relative;
+  margin-top: $layout--lg;
+  margin-bottom: $layout--lg;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: $spacing--lg 0;
+  @include breakpoint(md) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0 $spacing--xl;
+    margin-top: $layout--xl;
+    margin-bottom: $layout--xl;
+  }
+
+  &__item {
     position: relative;
-    margin-top: $layout--lg;
-    margin-bottom: $layout--lg;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: $spacing--lg 0;
-    @include breakpoint(md) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 0 $spacing--xl;
-      margin-top: $layout--xl;
-      margin-bottom: $layout--xl;
-    }
-    .title--3 {
-      color: color('dark-offset');
-      font-weight: font-weight('medium');
-    }
-    .large--title {
-      margin-top: 0;
-    }
+  }
+
+  .title--3 {
+    color: color('dark-offset');
+    font-weight: font-weight('medium');
+  }
+  .large--title {
+    margin-top: 0;
   }
 }
 
@@ -38,10 +44,6 @@
   color: transparent;
 }
 
-.pricing-item {
-  position: relative;
-}
-
 @keyframes placeHolderShimmer {
   0% {
     background-position: -468px 0;
@@ -52,6 +54,7 @@
   }
 }
 
+// TODO
 .loading {
   &:after {
     opacity: 0;
