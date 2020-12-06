@@ -111,7 +111,7 @@ const scrollTrigger = {
         yPercent: -60,
         opacity: 0,
         scrollTrigger: {
-          markers: true,
+          markers: false,
           trigger: '[data-trigger="device-sync-intro"]',
           start: '+=200 center',
           end: 'center center',
