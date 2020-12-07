@@ -7,6 +7,7 @@ const scrollTrigger = {
   initScrollTrigger: function () {
     this.heroSection();
     this.introSection();
+    this.metricsSection();
   },
   hideVideo: function (ev: any) {
     ev.target.setAttribute('style', 'display: none');
@@ -157,6 +158,39 @@ const scrollTrigger = {
         {
           yPercent: 40,
           opacity: 0,
+        },
+        0
+      );
+  },
+  metricsSection: function () {
+    const fitnessMetric = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="metrics-hero"]',
+        start: 'top center',
+        end: 'bottom center',
+        scrub: 0.75,
+      },
+    });
+
+    fitnessMetric
+      .to('[data-target="metrics-time-metric"]', {
+        yPercent: -150,
+      })
+      .to(
+        '[data-target="metrics-bpm-metric"]',
+        {
+          yPercent: -100,
+        },
+        0
+      )
+      .to(
+        '[data-target="metrics-calories-metric"]',
+        {
+          yPercent: -50,
         },
         0
       );

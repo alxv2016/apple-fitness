@@ -2,6 +2,7 @@ import './scss/app.scss';
 import Axios from 'axios';
 import hero from './hero';
 import intro from './intro';
+import metrics from './metrics';
 import util from './utility';
 // import accordion from './accordion';
 // import slider from './slider';
@@ -48,7 +49,9 @@ function accessData(data: any) {
   const valuePropData = data.filter((content: any) => content.slice_type === 'value_prop')[0];
   const pricingData = data.filter((content: any) => content.slice_type === 'pricing')[0];
   const introData = data.filter((content: any) => content.slice_type === 'service_intro')[0];
-  console.log(introData);
+  const metricsData = data.filter((content: any) => content.slice_type === 'metrics')[0];
+  console.log(metricsData);
   hero.processData(heroData, valuePropData, pricingData);
   intro.processData(introData);
+  metrics.processData(metricsData);
 }

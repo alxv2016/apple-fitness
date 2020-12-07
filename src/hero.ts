@@ -29,8 +29,7 @@ const hero = {
       util.setBackgroundImage(imageSet.shadow, image.shadow.url);
       util.setImageMask(imageSet.image, image.mask.url);
       util.setBackgroundImage(imageSet.image, image.url);
-      this.heroContainer.appendChild(imageSet.shadow);
-      this.heroContainer.appendChild(imageSet.image);
+      this.heroContainer.append(imageSet.shadow, imageSet.image);
     }
   },
   renderHeroHeading: function (heroData: any) {
@@ -51,9 +50,8 @@ const hero = {
       this.heroHeading.appendChild(ay11Title);
       logoClasses.forEach((logoClass) => {
         if (this.heroHeading) {
-          const div = util.createElement('div', `logo-container ${logoClass}`);
+          const div = util.createElement('div', `logo-container ${logoClass}`, 'logo');
           const fig = util.createElement('figure', 'logo');
-          div.setAttribute('data-target', 'logo');
           div.appendChild(fig);
           this.heroHeading.appendChild(div);
         }
@@ -87,9 +85,7 @@ const hero = {
         h3.innerHTML = item.price[0].text;
         p.textContent = item.description[0].text;
         if (pricing) {
-          pricing[i].appendChild(h2);
-          pricing[i].appendChild(h3);
-          pricing[i].appendChild(p);
+          pricing[i].append(h2, h3, p);
         }
       });
     }

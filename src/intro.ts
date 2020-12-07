@@ -43,15 +43,12 @@ const intro = {
       util.setBackgroundImage(deviceScreen.static, introData.lock_up.static.url);
       util.setImageMask(deviceScreen.container, introData.lock_up.video_mask.url);
       deviceScreen.video.src = require('./assets/intro_lockup.mp4');
-      deviceScreen.container.appendChild(deviceScreen.video);
-      deviceScreen.container.appendChild(deviceScreen.static);
+      deviceScreen.container.append(deviceScreen.video, deviceScreen.static);
 
       Array.from(elements).forEach((el: any) => {
         const data = el.getAttribute('data-target');
         if (data === 'device-syncing') {
-          el.appendChild(imageSet.shadow);
-          el.appendChild(imageSet.image);
-          el.appendChild(deviceScreen.container);
+          el.append(imageSet.shadow, imageSet.image, deviceScreen.container);
         }
         if (data === 'device-sync-intro-heading') {
           el.textContent = introData.fitness_intro[0].text;
@@ -69,8 +66,7 @@ const intro = {
       util.setBackgroundImage(imageSet.shadow, introData.iphone_render.shadow.url);
       util.setBackgroundImage(imageSet.image, introData.iphone_render.url);
       util.setImageMask(imageSet.image, introData.iphone_render.mask.url);
-      iphone.appendChild(imageSet.shadow);
-      iphone.appendChild(imageSet.image);
+      iphone.append(imageSet.shadow, imageSet.image);
     }
   },
   renderTv: function (introData: any) {
@@ -83,8 +79,7 @@ const intro = {
       util.setBackgroundImage(imageSet.shadow, introData.apple_tv_render.shadow.url);
       util.setBackgroundImage(imageSet.image, introData.apple_tv_render.url);
       util.setImageMask(imageSet.image, introData.apple_tv_render.mask.url);
-      appleTv.appendChild(imageSet.shadow);
-      appleTv.appendChild(imageSet.image);
+      appleTv.append(imageSet.shadow, imageSet.image);
     }
   },
   renderIpad: function (introData: any) {
@@ -97,8 +92,7 @@ const intro = {
       util.setBackgroundImage(imageSet.shadow, introData.ipad_render.shadow.url);
       util.setBackgroundImage(imageSet.image, introData.ipad_render.url);
       util.setImageMask(imageSet.image, introData.ipad_render.mask.url);
-      ipad.appendChild(imageSet.shadow);
-      ipad.appendChild(imageSet.image);
+      ipad.append(imageSet.shadow, imageSet.image);
     }
   },
   renderWatch: function (introData: any) {
@@ -121,11 +115,8 @@ const intro = {
       util.setBackgroundImage(watchScreen.static, introData.apple_watch_render.static.url);
 
       watchScreen.video.src = require('./assets/intro_watch_vid.mp4');
-      watchScreen.container.appendChild(watchScreen.video);
-      watchScreen.container.appendChild(watchScreen.static);
-      appleWatch.appendChild(imageSet.shadow);
-      appleWatch.appendChild(imageSet.image);
-      appleWatch.appendChild(watchScreen.container);
+      watchScreen.container.append(watchScreen.video, watchScreen.static);
+      appleWatch.append(imageSet.shadow, imageSet.image, watchScreen.container);
     }
   },
 };
