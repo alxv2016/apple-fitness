@@ -219,7 +219,6 @@
   align-items: center;
   justify-content: center;
   @include container-padding;
-  max-width: 568px;
   margin-top: $layout--lg;
   margin-bottom: $layout--lg;
 }
@@ -234,12 +233,7 @@
   @include container-padding;
 
   &-heading {
-    line-height: 1.5;
-    max-width: 100%;
     margin-right: auto;
-    @include breakpoint(md) {
-      max-width: 70%;
-    }
   }
 }
 

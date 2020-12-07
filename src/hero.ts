@@ -66,7 +66,7 @@ const hero = {
         heading.textContent = heroData.primary.value_headline[0].text;
       }
       heroData.items.forEach((value: any, i: number) => {
-        const p = util.createElement('p', 'large--title');
+        const p = util.createElement('p', 'title-headline title--contained');
         p.textContent = value.value_prop[0].text;
         if (valueProps) {
           valueProps[i].appendChild(p);
@@ -78,9 +78,9 @@ const hero = {
     if (this.heroPricing) {
       const pricing = this.heroPricing.querySelectorAll('[data-target="pricing-grid-item"]');
       pricingData.items.forEach((item: any, i: number) => {
-        const h2 = util.createElement('h2', 'title--3');
-        const h3 = util.createElement('h3', 'large--title');
-        const p = util.createElement('p', 'subtitle');
+        const h2 = util.createElement('h2', 'title-overline title--muted');
+        const h3 = util.createElement('h3', 'title-headline');
+        const p = util.createElement('p', 'small-print');
         h2.textContent = item.subheading[0].text;
         h3.innerHTML = item.price[0].text;
         p.textContent = item.description[0].text;

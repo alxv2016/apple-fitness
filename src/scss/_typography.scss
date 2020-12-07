@@ -18,17 +18,88 @@ form legend {
   margin: $spacing--xl 0 $spacing--sm;
 }
 
-.extra-huge--title {
+// Apple titles
+.title-display {
   font-size: $headliner--1;
   font-weight: font-weight('bold');
   line-height: $headline-line-height;
-  margin-bottom: $spacing--4xl;
+  margin: 0;
   @include breakpoint(md) {
     font-size: $headliner--2;
   }
   @include breakpoint(lg) {
     font-size: $headliner--3;
   }
+}
+
+.title-headline {
+  font-size: $title--1;
+  line-height: $heading-line-height;
+  font-weight: font-weight('bold');
+  @include breakpoint(md) {
+    font-size: $large--title;
+  }
+}
+
+.title-overline {
+  font-size: $subtitle--2;
+  font-weight: font-weight('bold');
+  margin: 0;
+  @include breakpoint(md) {
+    font-size: $title--3;
+  }
+  & ~ h1,
+  & ~ h2,
+  & ~ h3,
+  & ~ h4 {
+    margin-top: $spacing--sm;
+  }
+}
+
+.large-print {
+  font-size: $subtitle--2;
+  font-weight: font-weight('medium');
+  line-height: 1.25;
+  @include breakpoint(md) {
+    font-size: $title--3;
+  }
+}
+
+.small-print {
+  font-size: $body--1;
+  @include breakpoint(md) {
+    font-size: $subtitle;
+  }
+}
+
+// modifiers
+.title--centered {
+  text-align: center;
+}
+
+.title--compact {
+  width: 100%;
+  max-width: 768px;
+}
+
+.title--contained {
+  width: 100%;
+  max-width: 768px;
+}
+
+.title--gradient {
+  position: relative;
+  background: linear-gradient(45deg, rgba(color('move'), 1) 16%, rgba(color('dark'), 1) 80%);
+  background-clip: text;
+  color: transparent;
+}
+
+.title--medium {
+  font-weight: font-weight('medium');
+}
+
+.title--muted {
+  color: color('dark-offset');
 }
 
 .huge--title {
@@ -115,16 +186,4 @@ small {
 b,
 strong {
   font-weight: 500;
-}
-
-.text--center {
-  text-align: center;
-}
-
-.text--medium {
-  font-weight: font-weight('medium');
-}
-
-.text--bold {
-  font-weight: font-weight('bold');
 }
