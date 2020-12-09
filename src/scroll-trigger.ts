@@ -166,6 +166,7 @@ const scrollTrigger = {
     const fitnessMetric = gsap.timeline({
       defaults: {
         ease: 'none',
+        stagger: 0.25,
       },
       scrollTrigger: {
         markers: false,
@@ -194,6 +195,20 @@ const scrollTrigger = {
         },
         0
       );
+
+    gsap.from('[data-target="metrics-intro"]', {
+      stagger: 0.25,
+      ease: 'none',
+      opacity: 0,
+      y: 50,
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="metrics-intro"]',
+        scrub: 0.45,
+        start: '-=400 center',
+        end: 'center center',
+      },
+    });
   },
 };
 

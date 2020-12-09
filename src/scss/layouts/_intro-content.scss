@@ -231,10 +231,6 @@
 .device-sync-intro {
   position: relative;
   @include container-padding;
-
-  &-heading {
-    margin-right: auto;
-  }
 }
 
 .device-syncing {
