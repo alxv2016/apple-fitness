@@ -130,20 +130,8 @@
     position: relative;
     display: flex;
     align-items: center;
+    transform: scale(1);
   }
-  // grid-template-columns: 1fr 1fr;
-  // grid-gap: 0 $spacing--lg;
-
-  // &__item.metrics-watch {
-  //   grid-column: 1 / 2;
-  //   align-self: center;
-  //   justify-self: center;
-  // }
-  // &__item.metrics-iphone {
-  //   grid-column: 2 / 3;
-  //   align-self: center;
-  //   justify-self: center;
-  // }
 }
 
 // Watch render
@@ -220,8 +208,9 @@
 }
 
 .metrics-iphone {
-  position: relative;
+  position: absolute;
   z-index: 1;
+  left: 120%;
   // width: 717px;
   // height: 366px;
   width: 1434px;
