@@ -113,3 +113,186 @@
     }
   }
 }
+
+.metrics-device-grid {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  max-height: 668px;
+  @include breakpoint(md) {
+    max-height: 968px;
+  }
+
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  // grid-template-columns: 1fr 1fr;
+  // grid-gap: 0 $spacing--lg;
+
+  // &__item.metrics-watch {
+  //   grid-column: 1 / 2;
+  //   align-self: center;
+  //   justify-self: center;
+  // }
+  // &__item.metrics-iphone {
+  //   grid-column: 2 / 3;
+  //   align-self: center;
+  //   justify-self: center;
+  // }
+}
+
+// Watch render
+.metrics-watch {
+  position: relative;
+  z-index: 2;
+  width: 295px;
+  height: 503px;
+  @include breakpoint(md) {
+    width: 446px;
+    height: 762px;
+  }
+  &__shadow {
+    position: absolute;
+    width: 419px;
+    height: 715px;
+    top: 0;
+    left: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../assets/intro_watch_shadow.png');
+    @include breakpoint(md) {
+      width: 634px;
+      height: 1082px;
+    }
+  }
+  &__render {
+    position: absolute;
+    z-index: 2;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    background-image: url('../assets/intro_watch.jpg');
+    mask-image: url('../assets/intro_watch_mask.png');
+  }
+}
+
+// Video
+.metrics-watch-screen {
+  position: absolute;
+  z-index: 1;
+  top: 119px;
+  left: 33px;
+  width: 217px;
+  height: 264px;
+  @include breakpoint(md) {
+    top: 178px;
+    left: 47px;
+    width: 332px;
+    height: 404px;
+  }
+
+  &__static {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__video {
+    position: absolute;
+    z-index: 1;
+    height: inherit;
+    width: inherit;
+    object-fit: contain;
+    display: none;
+    @include breakpoint(md) {
+      display: block;
+    }
+  }
+}
+
+.metrics-iphone {
+  position: relative;
+  z-index: 1;
+  // width: 717px;
+  // height: 366px;
+  width: 1434px;
+  height: 732px;
+  // @include breakpoint(md) {
+  //   width: 446px;
+  //   height: 762px;
+  // }
+  &__shadow {
+    position: absolute;
+    // width: 852px;
+    // height: 578px;
+    width: 1704px;
+    height: 1156px;
+    top: -40px;
+    left: -24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../assets/metrics_iphone_shadow.png');
+    // @include breakpoint(md) {
+    //   width: 634px;
+    //   height: 1082px;
+    // }
+  }
+  &__render {
+    position: absolute;
+    z-index: 2;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    background-image: url('../assets/metrics_iphone.jpg');
+    mask-image: url('../assets/metrics_iphone_mask.png');
+  }
+}
+
+// Video
+.metrics-iphone-screen {
+  position: absolute;
+  z-index: 1;
+  top: 54px;
+  left: 46px;
+  // width: 670px;
+  // height: 312px;
+  width: 1340px;
+  height: 624px;
+  // @include breakpoint(md) {
+  //   top: 178px;
+  //   left: 47px;
+  //   width: 332px;
+  //   height: 404px;
+  // }
+
+  &__static {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__video {
+    position: absolute;
+    z-index: 1;
+    height: inherit;
+    width: inherit;
+    object-fit: contain;
+    display: none;
+    @include breakpoint(md) {
+      display: block;
+    }
+  }
+}
