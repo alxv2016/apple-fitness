@@ -117,20 +117,24 @@
 .metrics-device-grid {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   max-height: 668px;
+  margin-top: $layout--lg;
   @include breakpoint(md) {
     max-height: 968px;
   }
+  border: 1px solid red;
 
   &__container {
     position: relative;
     display: flex;
     align-items: center;
-    transform: scale(1);
+    justify-content: center;
+    height: 568px;
+    width: 100%;
+    //transform: scale(2.45);
   }
 }
 
@@ -138,25 +142,29 @@
 .metrics-watch {
   position: relative;
   z-index: 2;
-  width: 295px;
-  height: 503px;
-  @include breakpoint(md) {
-    width: 446px;
-    height: 762px;
-  }
+  width: 200px;
+  height: 343px;
+  // width: 295px;
+  // height: 503px;
+  // @include breakpoint(md) {
+  //   width: 446px;
+  //   height: 762px;
+  // }
   &__shadow {
     position: absolute;
-    width: 419px;
-    height: 715px;
+    width: 285px;
+    height: 487px;
+    // width: 419px;
+    // height: 715px;
     top: 0;
     left: 0;
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../assets/intro_watch_shadow.png');
-    @include breakpoint(md) {
-      width: 634px;
-      height: 1082px;
-    }
+    // @include breakpoint(md) {
+    //   width: 634px;
+    //   height: 1082px;
+    // }
   }
   &__render {
     position: absolute;
@@ -176,16 +184,18 @@
 .metrics-watch-screen {
   position: absolute;
   z-index: 1;
-  top: 119px;
-  left: 33px;
-  width: 217px;
-  height: 264px;
-  @include breakpoint(md) {
-    top: 178px;
-    left: 47px;
-    width: 332px;
-    height: 404px;
-  }
+  top: 80px;
+  left: 21px;
+  width: 149px;
+  height: 182px;
+  // width: 217px;
+  // height: 264px;
+  // @include breakpoint(md) {
+  //   top: 178px;
+  //   left: 47px;
+  //   width: 332px;
+  //   height: 404px;
+  // }
 
   &__static {
     position: absolute;
@@ -210,11 +220,13 @@
 .metrics-iphone {
   position: absolute;
   z-index: 1;
-  left: 120%;
+  left: calc(90% - 200px);
   // width: 717px;
   // height: 366px;
-  width: 1434px;
-  height: 732px;
+  // width: 1434px;
+  // height: 732px;
+  width: 645px;
+  height: 329px;
   // @include breakpoint(md) {
   //   width: 446px;
   //   height: 762px;
@@ -223,10 +235,12 @@
     position: absolute;
     // width: 852px;
     // height: 578px;
-    width: 1704px;
-    height: 1156px;
-    top: -40px;
-    left: -24px;
+    width: 767px;
+    height: 520px;
+    // width: 1704px;
+    // height: 1156px;
+    top: -20px;
+    left: -16px;
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../assets/metrics_iphone_shadow.png');
@@ -253,12 +267,14 @@
 .metrics-iphone-screen {
   position: absolute;
   z-index: 1;
-  top: 54px;
-  left: 46px;
+  top: 24px;
+  left: 20px;
   // width: 670px;
   // height: 312px;
-  width: 1340px;
-  height: 624px;
+  width: 603px;
+  height: 281px;
+  // width: 1340px;
+  // height: 624px;
   // @include breakpoint(md) {
   //   top: 178px;
   //   left: 47px;

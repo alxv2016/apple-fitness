@@ -209,6 +209,39 @@ const scrollTrigger = {
         end: 'center center',
       },
     });
+
+    const metricDevices = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="metrics-device-grid"]',
+        scrub: 0.45,
+        start: 'top center',
+        end: 'center center',
+      },
+    });
+
+    metricDevices
+      .from('[data-target="metrics-devices"]', {
+        scale: 1.75,
+      })
+      .from(
+        '[data-target="metrics-iphone"]',
+        {
+          xPercent: 25,
+          opacity: 0,
+        },
+        0
+      )
+      .to(
+        '[data-target="metrics-devices"]',
+        {
+          xPercent: -38,
+        },
+        0
+      );
   },
 };
 
