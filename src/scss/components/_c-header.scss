@@ -7,7 +7,7 @@
   min-height: 68px;
   transform: translateY(0);
   transition: transform 0.3s ease-out;
-  @include frosted-glass(color('light'), 0.72);
+  @include frosted-glass(color('dark'), 0.72);
   &__container {
     position: relative;
     display: flex;

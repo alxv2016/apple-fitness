@@ -42,6 +42,23 @@ const scrollTrigger = {
       },
     });
 
+    ScrollTrigger.create({
+      markers: false,
+      trigger: '[data-trigger="hero"]',
+      start: 'top top',
+      end: '+=600 top',
+      scrub: 0.45,
+      onUpdate: (self: any) => {
+        const progress = Math.floor(self.progress * 100);
+        const opacity = Math.round(self.progress * 100) / 100;
+        const gradient = document.querySelector<HTMLElement>('[data-target="hero"]');
+        if (gradient) {
+          gradient.style.setProperty('--hero-gradient-start', `${progress}%`);
+          gradient.style.setProperty('--hero-gradient-opacity', `${opacity}`);
+        }
+      },
+    });
+
     const heroContent = gsap.timeline({
       defaults: {
         ease: 'ease',
@@ -53,6 +70,16 @@ const scrollTrigger = {
         start: '-=620 center',
         end: 'bottom center',
         scrub: 0.45,
+        onUpdate: (self: any) => {
+          const progress = Math.floor(self.progress * 100);
+          const opacity = Math.round(self.progress * 100) / 100;
+          console.log(progress, opacity);
+          const gradient = document.querySelector<HTMLElement>('[data-target="pricing-grid"]');
+          if (gradient) {
+            gradient.style.setProperty('--hero-content-start', `${-Math.abs(progress)}%`);
+            gradient.style.setProperty('--hero-content-opacity', `${opacity}`);
+          }
+        },
       },
     });
 
