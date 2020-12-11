@@ -5,8 +5,8 @@
 }
 
 .pricing-grid {
-  --hero-content-start: 100%;
-  --hero-content-opacity: 0;
+  --progress-start: 0%;
+  --progess-end: 0%;
   position: relative;
   margin-top: $layout--lg;
   margin-bottom: $layout--lg;
@@ -32,9 +32,9 @@
     height: 100%;
     width: 100%;
     background: linear-gradient(
-      0deg,
-      rgba(color('darker'), var(--hero-content-opacity)) var(--hero-content-start),
-      rgba(color('darker'), 0) 100%
+      180deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
     );
     transform-origin: bottom center;
   }

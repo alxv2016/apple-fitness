@@ -1,6 +1,6 @@
 .hero {
-  --hero-gradient-start: 0%;
-  --hero-gradient-opacity: 0;
+  --progress-start: 0%;
+  --progress-end: 0%;
   position: relative;
   display: flex;
   align-items: center;
@@ -32,10 +32,9 @@
     width: 100%;
     background: linear-gradient(
       0deg,
-      rgba(color('darker'), var(--hero-gradient-opacity)) var(--hero-gradient-start),
-      rgba(color('darker'), 0) 100%
+      rgba(color('darker'), 1) var(--progress-start),
+      rgba(color('darker'), 0) var(--progress-end)
     );
-    transform-origin: bottom center;
   }
 }
 
