@@ -45,6 +45,8 @@
 
 // Watch render
 .intro-watch {
+  --progress-start: 0%;
+  --progress-end: 0%;
   position: relative;
   z-index: 2;
   width: 295px;
@@ -75,6 +77,21 @@
     background-repeat: no-repeat;
     mask-size: contain;
     mask-repeat: no-repeat;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
   }
 }
 

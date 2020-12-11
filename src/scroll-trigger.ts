@@ -113,6 +113,16 @@ const scrollTrigger = {
         start: '-=100 center',
         end: 'bottom center',
         toggleActions: 'play pause resume reverse',
+        onUpdate: (self) => {
+          const progress = Math.floor(self.progress * 100);
+          const gradient = document.querySelector<HTMLElement>('[data-target="intro-watch"]');
+          if (gradient) {
+            let endProgress = progress * 5;
+            endProgress > 100 ? (endProgress = 100) : endProgress;
+            gradient.style.setProperty('--progress-start', `${progress}%`);
+            gradient.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+        },
         onToggle: (self) => {
           if (self.isActive) {
             watchScreen.setAttribute('style', 'display: block');
