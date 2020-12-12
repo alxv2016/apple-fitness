@@ -266,7 +266,7 @@ const scrollTrigger = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="metrics-hero"]',
-        start: 'top center',
+        start: '-=200 center',
         end: 'bottom center',
         scrub: 0.75,
         onUpdate: (self) => {

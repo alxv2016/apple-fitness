@@ -261,6 +261,9 @@
 .device-sync-intro {
   position: relative;
   @include container-padding;
+  p {
+    margin: 0;
+  }
 }
 
 .device-syncing {

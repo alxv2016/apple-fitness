@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: $layout--2xl;
 }
 .metrics-hero {
   --progress-start: 0%;
@@ -144,11 +143,10 @@
   width: 100vw;
   height: 100vh;
   max-height: 668px;
-  margin-top: $layout--lg;
   @include breakpoint(md) {
     max-height: 968px;
   }
-  border: 1px solid red;
+  //border: 1px solid red;
 
   &__container {
     position: relative;

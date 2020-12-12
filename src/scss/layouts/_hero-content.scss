@@ -9,7 +9,6 @@
   --progess-end: 0%;
   position: relative;
   margin-top: $layout--lg;
-  margin-bottom: $layout--lg;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: $spacing--lg 0;
@@ -17,7 +16,6 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 0 $spacing--xl;
     margin-top: $layout--xl;
-    margin-bottom: $layout--xl;
   }
 
   &__item {
