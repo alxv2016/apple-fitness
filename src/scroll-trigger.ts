@@ -115,12 +115,33 @@ const scrollTrigger = {
         toggleActions: 'play pause resume reverse',
         onUpdate: (self) => {
           const progress = Math.floor(self.progress * 100);
-          const gradient = document.querySelector<HTMLElement>('[data-target="intro-watch"]');
-          if (gradient) {
-            let endProgress = progress * 5;
+          const watchReveal = document.querySelector<HTMLElement>('[data-target="intro-watch"]');
+          const ipadReveal = document.querySelector<HTMLElement>('[data-target="intro-ipad"]');
+          const tvReveal = document.querySelector<HTMLElement>('[data-target="intro-tv"]');
+          const iphoneReveal = document.querySelector<HTMLElement>('[data-target="intro-iphone"]');
+          if (iphoneReveal) {
+            let endProgress = progress * 6;
             endProgress > 100 ? (endProgress = 100) : endProgress;
-            gradient.style.setProperty('--progress-start', `${progress}%`);
-            gradient.style.setProperty('--progress-end', `${endProgress}%`);
+            iphoneReveal.style.setProperty('--progress-start', `${progress}%`);
+            iphoneReveal.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+          if (tvReveal) {
+            let endProgress = progress * 6;
+            endProgress > 100 ? (endProgress = 100) : endProgress;
+            tvReveal.style.setProperty('--progress-start', `${progress}%`);
+            tvReveal.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+          if (ipadReveal) {
+            let endProgress = progress * 6;
+            endProgress > 100 ? (endProgress = 100) : endProgress;
+            ipadReveal.style.setProperty('--progress-start', `${progress}%`);
+            ipadReveal.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+          if (watchReveal) {
+            let endProgress = progress * 6;
+            endProgress > 100 ? (endProgress = 100) : endProgress;
+            watchReveal.style.setProperty('--progress-start', `${progress}%`);
+            watchReveal.style.setProperty('--progress-end', `${endProgress}%`);
           }
         },
         onToggle: (self) => {
@@ -143,6 +164,16 @@ const scrollTrigger = {
         start: '-=100 center',
         end: 'bottom center',
         toggleActions: 'play pause resume reverse',
+        onUpdate: (self) => {
+          const progress = Math.floor(self.progress * 100);
+          const devicesReveal = document.querySelector<HTMLElement>('[data-target="device-syncing"]');
+          if (devicesReveal) {
+            let endProgress = progress * 6;
+            endProgress > 100 ? (endProgress = 100) : endProgress;
+            devicesReveal.style.setProperty('--progress-start', `${progress}%`);
+            devicesReveal.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+        },
         onToggle: (self) => {
           if (self.isActive) {
             syncingScreen.setAttribute('style', 'display: block');
@@ -151,6 +182,17 @@ const scrollTrigger = {
           } else {
             syncingScreen.pause();
           }
+        },
+      });
+
+      gsap.to('[data-target="device-syncing-reveal"]', {
+        opacity: 0,
+        scrollTrigger: {
+          markers: false,
+          trigger: '[data-trigger="device-sync-intro"]',
+          start: 'top center',
+          end: 'bottom center',
+          scrub: 0.45,
         },
       });
 
@@ -183,6 +225,13 @@ const scrollTrigger = {
         scale: 0.35,
         yPercent: -20,
       })
+      .to(
+        '[data-target="intro-watch-reveal"]',
+        {
+          opacity: 0,
+        },
+        0.75
+      )
       .from(
         '[data-target="intro-ipad"]',
         {
@@ -220,6 +269,16 @@ const scrollTrigger = {
         start: 'top center',
         end: 'bottom center',
         scrub: 0.75,
+        onUpdate: (self) => {
+          const progress = Math.floor(self.progress * 100);
+          const heroReveal = document.querySelector<HTMLElement>('[data-target="metrics-hero"]');
+          if (heroReveal) {
+            let endProgress = progress * 6;
+            endProgress > 100 ? (endProgress = 100) : endProgress;
+            heroReveal.style.setProperty('--progress-start', `${progress}%`);
+            heroReveal.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+        },
       },
     });
 

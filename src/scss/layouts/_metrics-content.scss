@@ -5,6 +5,8 @@
   margin-top: $layout--2xl;
 }
 .metrics-hero {
+  --progress-start: 0%;
+  --progress-end: 0%;
   position: relative;
   display: flex;
   align-items: center;
@@ -15,6 +17,27 @@
   @include breakpoint(md) {
     width: 700px;
     height: 1100px;
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle, rgba(23, 22, 55, 0.95) 5%, rgba(0, 0, 27, 0) 40%);
+  }
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
   }
   &__shadow {
     position: absolute;
@@ -150,22 +173,6 @@
   //   width: 446px;
   //   height: 762px;
   // }
-  &__shadow {
-    position: absolute;
-    width: 285px;
-    height: 487px;
-    // width: 419px;
-    // height: 715px;
-    top: 0;
-    left: 0;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url('../assets/intro_watch_shadow.png');
-    // @include breakpoint(md) {
-    //   width: 634px;
-    //   height: 1082px;
-    // }
-  }
   &__render {
     position: absolute;
     z-index: 2;
@@ -231,24 +238,6 @@
   //   width: 446px;
   //   height: 762px;
   // }
-  &__shadow {
-    position: absolute;
-    // width: 852px;
-    // height: 578px;
-    width: 767px;
-    height: 520px;
-    // width: 1704px;
-    // height: 1156px;
-    top: -20px;
-    left: -16px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url('../assets/metrics_iphone_shadow.png');
-    // @include breakpoint(md) {
-    //   width: 634px;
-    //   height: 1082px;
-    // }
-  }
   &__render {
     position: absolute;
     z-index: 2;

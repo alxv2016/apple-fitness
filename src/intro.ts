@@ -29,7 +29,7 @@ const intro = {
     if (deviceSync) {
       const elements = deviceSync.children;
       const imageSet = {
-        shadow: util.createElement('figure', 'device-syncing__shadow'),
+        reveal: util.createElement('figure', 'device-syncing__reveal', 'device-syncing-reveal'),
         image: util.createElement('figure', 'device-syncing__render'),
       };
       const deviceScreen = {
@@ -37,8 +37,9 @@ const intro = {
         static: util.createElement('figure', 'device-syncing-screen__static'),
         video: util.createVideoElement('video', 'device-syncing-screen__video', 'device-syncing-video'),
       };
-      util.setBackgroundImage(imageSet.shadow, introData.lock_up.shadow.url);
+      util.setBackgroundImage(imageSet.reveal, introData.lock_up.reveal.url);
       util.setBackgroundImage(imageSet.image, introData.lock_up.url);
+      util.setImageMask(imageSet.reveal, introData.lock_up.mask.url);
       util.setImageMask(imageSet.image, introData.lock_up.mask.url);
       util.setBackgroundImage(deviceScreen.static, introData.lock_up.static.url);
       util.setImageMask(deviceScreen.container, introData.lock_up.video_mask.url);
@@ -48,7 +49,7 @@ const intro = {
       Array.from(elements).forEach((el: any) => {
         const data = el.getAttribute('data-target');
         if (data === 'device-syncing') {
-          el.append(imageSet.shadow, imageSet.image, deviceScreen.container);
+          el.append(imageSet.reveal, imageSet.image, deviceScreen.container);
         }
         if (data === 'device-sync-intro-heading') {
           el.textContent = introData.fitness_intro[0].text;
@@ -59,47 +60,35 @@ const intro = {
   renderIphone: function (introData: any) {
     const iphone = document.querySelector<HTMLElement>('[data-target="intro-iphone"]');
     if (iphone) {
-      const imageSet = {
-        shadow: util.createElement('figure', 'intro-iphone__shadow'),
-        image: util.createElement('figure', 'intro-iphone__render'),
-      };
-      util.setBackgroundImage(imageSet.shadow, introData.iphone_render.shadow.url);
-      util.setBackgroundImage(imageSet.image, introData.iphone_render.url);
-      util.setImageMask(imageSet.image, introData.iphone_render.mask.url);
-      iphone.append(imageSet.shadow, imageSet.image);
+      const image = util.createElement('figure', 'intro-iphone__render');
+      util.setBackgroundImage(image, introData.iphone_render.url);
+      util.setImageMask(image, introData.iphone_render.mask.url);
+      iphone.append(image);
     }
   },
   renderTv: function (introData: any) {
     const appleTv = document.querySelector<HTMLElement>('[data-target="intro-tv"]');
     if (appleTv) {
-      const imageSet = {
-        shadow: util.createElement('figure', 'intro-tv__shadow'),
-        image: util.createElement('figure', 'intro-tv__render'),
-      };
-      util.setBackgroundImage(imageSet.shadow, introData.apple_tv_render.shadow.url);
-      util.setBackgroundImage(imageSet.image, introData.apple_tv_render.url);
-      util.setImageMask(imageSet.image, introData.apple_tv_render.mask.url);
-      appleTv.append(imageSet.shadow, imageSet.image);
+      const image = util.createElement('figure', 'intro-tv__render');
+      util.setBackgroundImage(image, introData.apple_tv_render.url);
+      util.setImageMask(image, introData.apple_tv_render.mask.url);
+      appleTv.append(image);
     }
   },
   renderIpad: function (introData: any) {
     const ipad = document.querySelector<HTMLElement>('[data-target="intro-ipad"]');
     if (ipad) {
-      const imageSet = {
-        shadow: util.createElement('figure', 'intro-ipad__shadow'),
-        image: util.createElement('figure', 'intro-ipad__render'),
-      };
-      util.setBackgroundImage(imageSet.shadow, introData.ipad_render.shadow.url);
-      util.setBackgroundImage(imageSet.image, introData.ipad_render.url);
-      util.setImageMask(imageSet.image, introData.ipad_render.mask.url);
-      ipad.append(imageSet.shadow, imageSet.image);
+      const image = util.createElement('figure', 'intro-ipad__render');
+      util.setBackgroundImage(image, introData.ipad_render.url);
+      util.setImageMask(image, introData.ipad_render.mask.url);
+      ipad.append(image);
     }
   },
   renderWatch: function (introData: any) {
     const appleWatch = document.querySelector<HTMLElement>('[data-target="intro-watch"]');
     if (appleWatch) {
       const imageSet = {
-        shadow: util.createElement('figure', 'intro-watch__shadow'),
+        reveal: util.createElement('figure', 'intro-watch__reveal', 'intro-watch-reveal'),
         image: util.createElement('figure', 'intro-watch__render'),
       };
       const watchScreen = {
@@ -108,15 +97,16 @@ const intro = {
         video: util.createVideoElement('video', 'intro-watch-screen__video', 'intro-watch-video'),
       };
 
-      util.setBackgroundImage(imageSet.shadow, introData.apple_watch_render.shadow.url);
+      util.setBackgroundImage(imageSet.reveal, introData.apple_watch_render.reveal.url);
       util.setBackgroundImage(imageSet.image, introData.apple_watch_render.url);
+      util.setImageMask(imageSet.reveal, introData.apple_watch_render.mask.url);
       util.setImageMask(imageSet.image, introData.apple_watch_render.mask.url);
 
       util.setBackgroundImage(watchScreen.static, introData.apple_watch_render.static.url);
 
       watchScreen.video.src = require('./assets/intro_watch_vid.mp4');
       watchScreen.container.append(watchScreen.video, watchScreen.static);
-      appleWatch.append(imageSet.shadow, imageSet.image, watchScreen.container);
+      appleWatch.append(imageSet.reveal, imageSet.image, watchScreen.container);
     }
   },
 };

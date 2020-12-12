@@ -22,7 +22,7 @@
     content: '';
     height: 100%;
     width: 100%;
-    background: radial-gradient(circle, rgba(23, 22, 55, 0.75) 5%, rgba(0, 0, 27, 0) 40%);
+    background: radial-gradient(circle, rgba(23, 22, 55, 0.95) 5%, rgba(0, 0, 27, 0) 40%);
   }
   &::after {
     position: absolute;
@@ -31,7 +31,7 @@
     height: 100%;
     width: 100%;
     background: linear-gradient(
-      0deg,
+      345deg,
       rgba(color('darker'), 1) var(--progress-start),
       rgba(color('darker'), 0) var(--progress-end)
     );
