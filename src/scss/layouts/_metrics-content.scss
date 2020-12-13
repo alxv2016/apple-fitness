@@ -57,6 +57,12 @@
   }
 }
 
+.metrics-content {
+  position: relative;
+  z-index: 3;
+  top: -88px;
+}
+
 .fitness-metrics {
   position: absolute;
   display: flex;
@@ -136,13 +142,13 @@
   }
 }
 
-.metrics-device-grid {
+.metrics-devices {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  max-height: 668px;
+  max-height: 768px;
   @include breakpoint(md) {
     max-height: 968px;
   }
@@ -153,9 +159,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 568px;
+    flex-shrink: 0;
     width: 100%;
-    //transform: scale(2.45);
+    margin-top: $layout--md;
+    margin-bottom: $layout--lg;
   }
 }
 
@@ -163,14 +170,16 @@
 .metrics-watch {
   position: relative;
   z-index: 2;
-  width: 200px;
-  height: 343px;
-  // width: 295px;
-  // height: 503px;
-  // @include breakpoint(md) {
-  //   width: 446px;
-  //   height: 762px;
-  // }
+  width: 120px;
+  height: 206px;
+  @include breakpoint(md) {
+    width: 160px;
+    height: 274px;
+  }
+  @include breakpoint(lg) {
+    width: 200px;
+    height: 343px;
+  }
   &__render {
     position: absolute;
     z-index: 2;
@@ -189,18 +198,22 @@
 .metrics-watch-screen {
   position: absolute;
   z-index: 1;
-  top: 80px;
-  left: 21px;
-  width: 149px;
-  height: 182px;
-  // width: 217px;
-  // height: 264px;
-  // @include breakpoint(md) {
-  //   top: 178px;
-  //   left: 47px;
-  //   width: 332px;
-  //   height: 404px;
-  // }
+  top: 40px;
+  left: 12px;
+  width: 90px;
+  height: 122px;
+  @include breakpoint(md) {
+    top: 64px;
+    left: 12px;
+    width: 132px;
+    height: 140px;
+  }
+  @include breakpoint(lg) {
+    top: 80px;
+    left: 21px;
+    width: 149px;
+    height: 182px;
+  }
 
   &__static {
     position: absolute;
@@ -215,7 +228,7 @@
     height: inherit;
     width: inherit;
     object-fit: contain;
-    display: none;
+    display: block;
     @include breakpoint(md) {
       display: block;
     }
@@ -225,17 +238,18 @@
 .metrics-iphone {
   position: absolute;
   z-index: 1;
-  left: calc(90% - 200px);
-  // width: 717px;
-  // height: 366px;
-  // width: 1434px;
-  // height: 732px;
-  width: 645px;
-  height: 329px;
-  // @include breakpoint(md) {
-  //   width: 446px;
-  //   height: 762px;
-  // }
+  left: calc(100% - 140px);
+  width: 503px;
+  height: 257px;
+  @include breakpoint(md) {
+    left: calc(100% - 340px);
+    width: 645px;
+    height: 329px;
+  }
+  @include breakpoint(lg) {
+    width: 834px;
+    height: 428px;
+  }
   &__render {
     position: absolute;
     z-index: 2;
@@ -254,20 +268,23 @@
 .metrics-iphone-screen {
   position: absolute;
   z-index: 1;
-  top: 24px;
-  left: 20px;
-  // width: 670px;
-  // height: 312px;
-  width: 603px;
-  height: 281px;
-  // width: 1340px;
-  // height: 624px;
-  // @include breakpoint(md) {
-  //   top: 178px;
-  //   left: 47px;
-  //   width: 332px;
-  //   height: 404px;
-  // }
+  top: 18px;
+  left: 18px;
+  width: 490px;
+  height: 228px;
+
+  @include breakpoint(md) {
+    top: 20px;
+    left: 20px;
+    width: 606px;
+    height: 290px;
+  }
+  @include breakpoint(lg) {
+    top: 30px;
+    left: 30px;
+    width: 773px;
+    height: 362px;
+  }
 
   &__static {
     position: absolute;
@@ -282,7 +299,7 @@
     height: inherit;
     width: inherit;
     object-fit: contain;
-    display: none;
+    display: block;
     @include breakpoint(md) {
       display: block;
     }

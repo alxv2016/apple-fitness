@@ -7,11 +7,12 @@
   justify-content: center;
   &-container {
     position: relative;
-    top: 68px;
+    top: 28px;
     z-index: 1;
     width: 768px;
     height: 625px;
     @include breakpoint(md) {
+      top: 68px;
       width: 1068px;
       height: 870px;
     }
@@ -53,6 +54,20 @@
   }
 }
 
+.hero-container[data-hero='hero-02'] {
+  .hero-image,
+  .hero-image-shadow {
+    left: 0;
+  }
+}
+
+.hero-container[data-hero='hero-01'] {
+  .hero-image,
+  .hero-image-shadow {
+    left: -48px;
+  }
+}
+
 .hero-image-shadow {
   position: absolute;
   opacity: 0.75;
@@ -60,6 +75,7 @@
 
 .hero-heading {
   position: absolute;
+  margin-top: 48px;
   width: 320px;
   height: 58px;
   @include breakpoint(sm) {
@@ -139,26 +155,24 @@
   }
 }
 
-.hero-container[data-hero='hero-01'] {
+.hero-heading[data-hero='hero-01'] {
   .logo-container {
+    &--apple {
+      z-index: auto;
+    }
+    &--s1 {
+      z-index: 2;
+    }
     @include breakpoint(md) {
-      &--i,
-      &--t {
+      &--i {
         z-index: auto;
       }
     }
   }
 }
 
-.hero-container[data-hero='hero-02'] {
-  .hero-image,
-  .hero-image-shadow {
-    left: 0;
-  }
+.hero-heading[data-hero='hero-02'] {
   .logo-container {
-    &--e {
-      z-index: auto;
-    }
     @include breakpoint(md) {
       &--i,
       &--t,
@@ -169,7 +183,7 @@
   }
 }
 
-.hero-container[data-hero='hero-03'] {
+.hero-heading[data-hero='hero-03'] {
   .logo-container {
     &--s1,
     &--s2 {
@@ -180,15 +194,15 @@
       &--t {
         z-index: auto;
       }
-      &--s2 {
-        z-index: 2;
-      }
     }
   }
 }
 
-.hero-container[data-hero='hero-04'] {
+.hero-heading[data-hero='hero-04'] {
   .logo-container {
+    &--s1 {
+      z-index: 2;
+    }
     @include breakpoint(md) {
       &--apple,
       &--f,

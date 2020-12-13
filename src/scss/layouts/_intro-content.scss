@@ -157,6 +157,7 @@
     z-index: 3;
     height: 100%;
     width: 100%;
+    border-radius: 44px;
     background: linear-gradient(
       175deg,
       rgba(color('darker'), 0) var(--progress-start),
@@ -233,6 +234,7 @@
     z-index: 3;
     height: 100%;
     width: 100%;
+    border-radius: 46px;
     background: linear-gradient(
       175deg,
       rgba(color('darker'), 0) var(--progress-start),
@@ -254,12 +256,19 @@
 }
 
 .apple-fitness {
-  height: 120px;
-  width: 120px;
+  height: 90px;
+  width: 90px;
+  @include breakpoint(sm) {
+    height: 120px;
+    width: 120px;
+  }
 }
 
 .device-sync-intro {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   @include container-padding;
   p {
     margin: 0;
@@ -270,14 +279,17 @@
   --progress-start: 0%;
   --progress-end: 0%;
   position: relative;
-  width: 598px;
-  height: 510px;
-  margin: auto;
+  width: 419px;
+  height: 357px;
   z-index: -1;
+  margin-bottom: $spacing--lg;
   @include breakpoint(md) {
+    width: 598px;
+    height: 510px;
+  }
+  @include breakpoint(lg) {
     width: 792px;
     height: 676px;
-    margin-bottom: 0;
   }
   &__reveal {
     position: absolute;
@@ -329,8 +341,7 @@
     background-size: contain;
     background-repeat: no-repeat;
   }
-
-  &__vid {
+  &__video {
     position: absolute;
     z-index: 1;
     height: inherit;

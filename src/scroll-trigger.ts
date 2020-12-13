@@ -10,7 +10,6 @@ const scrollTrigger = {
     this.metricsSection();
   },
   hideVideo: function (ev: any) {
-    ev.target.setAttribute('style', 'display: none');
     ev.target.removeEventListener('ended', this.hideVideo);
   },
   stickyHeader: function () {
@@ -106,7 +105,6 @@ const scrollTrigger = {
     const syncingScreen = document.querySelector<HTMLMediaElement>('[data-target="device-syncing-video"]');
 
     if (watchScreen) {
-      watchScreen.muted = true;
       ScrollTrigger.create({
         markers: false,
         trigger: '[data-trigger="device-grid"]',
@@ -146,7 +144,7 @@ const scrollTrigger = {
         },
         onToggle: (self) => {
           if (self.isActive) {
-            watchScreen.setAttribute('style', 'display: block');
+            watchScreen.muted = true;
             watchScreen.play();
             watchScreen.addEventListener('ended', this.hideVideo);
           } else {
@@ -157,7 +155,6 @@ const scrollTrigger = {
     }
 
     if (syncingScreen) {
-      syncingScreen.muted = true;
       ScrollTrigger.create({
         markers: false,
         trigger: '[data-trigger="device-sync-intro"]',
@@ -176,7 +173,7 @@ const scrollTrigger = {
         },
         onToggle: (self) => {
           if (self.isActive) {
-            syncingScreen.setAttribute('style', 'display: block');
+            syncingScreen.muted = true;
             syncingScreen.play();
             syncingScreen.addEventListener('ended', this.hideVideo);
           } else {

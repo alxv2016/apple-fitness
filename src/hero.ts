@@ -17,6 +17,9 @@ const hero = {
     if (this.heroContainer) {
       this.heroContainer.setAttribute('data-hero', heroImages[index]);
     }
+    if (this.heroHeading) {
+      this.heroHeading.setAttribute('data-hero', heroImages[index]);
+    }
   },
   renderHeroImage: function (heroData: any) {
     if (this.heroContainer) {
