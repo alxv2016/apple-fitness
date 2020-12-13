@@ -49,9 +49,14 @@
   --progress-end: 0%;
   position: relative;
   z-index: 2;
-  width: 295px;
-  height: 503px;
+  width: 248px;
+  height: 426px;
+
   @include breakpoint(md) {
+    width: 360px;
+    height: 618px;
+  }
+  @include breakpoint(lg) {
     width: 446px;
     height: 762px;
   }
@@ -134,9 +139,13 @@
   --progress-end: 0%;
   position: relative;
   z-index: 0;
-  width: 580px;
-  height: 420px;
+  width: 544px;
+  height: 394px;
   @include breakpoint(md) {
+    width: 699px;
+    height: 505px;
+  }
+  @include breakpoint(lg) {
     width: 791px;
     height: 572px;
   }
@@ -173,9 +182,14 @@
   --progress-end: 0%;
   position: absolute;
   z-index: 0;
-  width: 1063px;
-  height: 605px;
+  width: 867px;
+  height: 495px;
+
   @include breakpoint(md) {
+    width: 1113px;
+    height: 634px;
+  }
+  @include breakpoint(lg) {
     width: 1261px;
     height: 718px;
   }
@@ -211,9 +225,13 @@
   --progress-end: 0%;
   position: relative;
   z-index: 1;
-  width: 187px;
-  height: 366px;
+  width: 163px;
+  height: 314px;
   @include breakpoint(md) {
+    width: 208px;
+    height: 403px;
+  }
+  @include breakpoint(lg) {
     width: 235px;
     height: 457px;
   }
@@ -279,13 +297,13 @@
   --progress-start: 0%;
   --progress-end: 0%;
   position: relative;
-  width: 419px;
-  height: 357px;
+  width: 342px;
+  height: 292px;
   z-index: -1;
   margin-bottom: $spacing--lg;
   @include breakpoint(md) {
-    width: 598px;
-    height: 510px;
+    width: 718px;
+    height: 611px;
   }
   @include breakpoint(lg) {
     width: 792px;

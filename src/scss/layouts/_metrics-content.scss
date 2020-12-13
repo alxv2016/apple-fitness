@@ -11,9 +11,14 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
-  width: 450px;
-  height: 775px;
+  width: 375px;
+  height: 589px;
+
   @include breakpoint(md) {
+    width: 628px;
+    height: 968px;
+  }
+  @include breakpoint(lg) {
     width: 700px;
     height: 1100px;
   }
@@ -84,60 +89,84 @@
 
 .metrics-time {
   &__icon {
-    height: 66px;
-    width: 66px;
+    height: 46px;
+    width: 46px;
     @include breakpoint(md) {
-      width: 110px;
-      height: 110px;
+      width: 100px;
+      height: 100px;
+    }
+    @include breakpoint(lg) {
+      width: 106px;
+      height: 106px;
     }
   }
   &__metric {
     z-index: 2;
-    width: 204px;
-    height: 82px;
+    width: 139px;
+    height: 56px;
     @include breakpoint(md) {
-      width: 355px;
-      height: 142px;
+      width: 307px;
+      height: 124px;
+    }
+    @include breakpoint(lg) {
+      width: 323px;
+      height: 132px;
     }
   }
 }
 
 .metrics-bpm {
   &__icon {
-    height: 66px;
-    width: 66px;
+    height: 46px;
+    width: 43px;
     @include breakpoint(md) {
-      width: 110px;
-      height: 110px;
+      width: 100px;
+      height: 93px;
+    }
+    @include breakpoint(lg) {
+      width: 106px;
+      height: 99px;
     }
   }
   &__metric {
     z-index: 2;
-    width: 204px;
-    height: 82px;
+    width: 118px;
+    height: 57px;
     @include breakpoint(md) {
-      width: 355px;
-      height: 142px;
+      width: 260px;
+      height: 126px;
+    }
+    @include breakpoint(lg) {
+      width: 274px;
+      height: 131px;
     }
   }
 }
 
 .metrics-calories {
   &__icon {
-    height: 66px;
-    width: 156px;
+    width: 84px;
+    height: 35px;
     @include breakpoint(md) {
-      width: 266px;
-      height: 110px;
+      width: 185px;
+      height: 76px;
+    }
+    @include breakpoint(lg) {
+      width: 195px;
+      height: 80px;
     }
   }
   &__metric {
     z-index: 2;
-    width: 204px;
-    height: 82px;
+    width: 84px;
+    height: 56px;
     @include breakpoint(md) {
-      width: 355px;
-      height: 142px;
+      width: 185px;
+      height: 123px;
+    }
+    @include breakpoint(lg) {
+      width: 194px;
+      height: 131px;
     }
   }
 }
@@ -170,15 +199,15 @@
 .metrics-watch {
   position: relative;
   z-index: 2;
-  width: 120px;
-  height: 206px;
+  width: 97px;
+  height: 165px;
   @include breakpoint(md) {
-    width: 160px;
-    height: 274px;
+    width: 154px;
+    height: 262px;
   }
   @include breakpoint(lg) {
-    width: 200px;
-    height: 343px;
+    width: 187px;
+    height: 317px;
   }
   &__render {
     position: absolute;
@@ -239,16 +268,16 @@
   position: absolute;
   z-index: 1;
   left: calc(100% - 140px);
-  width: 503px;
-  height: 257px;
+  width: 367px;
+  height: 187px;
   @include breakpoint(md) {
     left: calc(100% - 340px);
-    width: 645px;
-    height: 329px;
+    width: 581px;
+    height: 296px;
   }
   @include breakpoint(lg) {
-    width: 834px;
-    height: 428px;
+    width: 703px;
+    height: 358px;
   }
   &__render {
     position: absolute;

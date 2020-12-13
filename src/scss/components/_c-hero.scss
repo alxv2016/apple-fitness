@@ -9,10 +9,14 @@
     position: relative;
     top: 28px;
     z-index: 1;
-    width: 768px;
-    height: 625px;
+    width: 682px;
+    height: 556px;
     @include breakpoint(md) {
       top: 68px;
+      width: 948px;
+      height: 772px;
+    }
+    @include breakpoint(lg) {
       width: 1068px;
       height: 870px;
     }
@@ -76,18 +80,14 @@
 .hero-heading {
   position: absolute;
   margin-top: 48px;
-  width: 320px;
-  height: 58px;
-  @include breakpoint(sm) {
-    width: 464px;
-    height: 84px;
-  }
+  width: 327px;
+  height: 60px;
   @include breakpoint(md) {
-    width: 680px;
-    height: 124px;
+    width: 638px;
+    height: 117px;
   }
   @include breakpoint(lg) {
-    width: 855px;
+    width: 822px;
     height: 151px;
   }
 }
