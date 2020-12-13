@@ -48,6 +48,9 @@
   --progress-start: 0%;
   --progress-end: 0%;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 2;
   width: 248px;
   height: 426px;
@@ -102,13 +105,13 @@
 .intro-watch-screen {
   position: absolute;
   z-index: 1;
-  top: 119px;
-  left: 33px;
-  width: 217px;
-  height: 264px;
+  width: 184px;
+  height: 224px;
   @include breakpoint(md) {
-    top: 178px;
-    left: 47px;
+    width: 268px;
+    height: 326px;
+  }
+  @include breakpoint(lg) {
     width: 332px;
     height: 404px;
   }

@@ -198,6 +198,9 @@
 // Watch render
 .metrics-watch {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 2;
   width: 97px;
   height: 165px;
@@ -227,21 +230,15 @@
 .metrics-watch-screen {
   position: absolute;
   z-index: 1;
-  top: 40px;
-  left: 12px;
-  width: 90px;
-  height: 122px;
+  width: 72px;
+  height: 87px;
   @include breakpoint(md) {
-    top: 64px;
-    left: 12px;
-    width: 132px;
-    height: 140px;
+    width: 114px;
+    height: 139px;
   }
   @include breakpoint(lg) {
-    top: 80px;
-    left: 21px;
-    width: 149px;
-    height: 182px;
+    width: 138px;
+    height: 168px;
   }
 
   &__static {
@@ -266,6 +263,9 @@
 
 .metrics-iphone {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1;
   left: calc(100% - 140px);
   width: 367px;
@@ -297,22 +297,16 @@
 .metrics-iphone-screen {
   position: absolute;
   z-index: 1;
-  top: 18px;
-  left: 18px;
-  width: 490px;
-  height: 228px;
+  width: 340px;
+  height: 159px;
 
   @include breakpoint(md) {
-    top: 20px;
-    left: 20px;
-    width: 606px;
-    height: 290px;
+    width: 534px;
+    height: 251px;
   }
   @include breakpoint(lg) {
-    top: 30px;
-    left: 30px;
-    width: 773px;
-    height: 362px;
+    width: 652px;
+    height: 304px;
   }
 
   &__static {
