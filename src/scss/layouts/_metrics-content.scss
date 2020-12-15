@@ -171,20 +171,15 @@
   }
 }
 
-.metrics-devices {
+.metrics-heart-rate {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  max-height: 768px;
-  @include breakpoint(md) {
-    max-height: 968px;
-  }
-  //border: 1px solid red;
+  width: 100%;
 
-  &__container {
+  &__renders {
     position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -197,6 +192,8 @@
 
 // Watch render
 .metrics-watch {
+  --progress-start: 0%;
+  --progress-end: 0%;
   position: relative;
   display: flex;
   align-items: center;
@@ -212,6 +209,17 @@
     width: 187px;
     height: 317px;
   }
+  &__reveal {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    z-index: 3;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    opacity: 1;
+  }
   &__render {
     position: absolute;
     z-index: 2;
@@ -221,8 +229,20 @@
     background-repeat: no-repeat;
     mask-size: contain;
     mask-repeat: no-repeat;
-    background-image: url('../assets/intro_watch.jpg');
-    mask-image: url('../assets/intro_watch_mask.png');
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
   }
 }
 
@@ -262,6 +282,8 @@
 }
 
 .metrics-iphone {
+  --progress-start: 0%;
+  --progress-end: 0%;
   position: absolute;
   display: flex;
   align-items: center;
@@ -279,6 +301,17 @@
     width: 703px;
     height: 358px;
   }
+  &__reveal {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    z-index: 3;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    opacity: 1;
+  }
   &__render {
     position: absolute;
     z-index: 2;
@@ -288,8 +321,20 @@
     background-repeat: no-repeat;
     mask-size: contain;
     mask-repeat: no-repeat;
-    background-image: url('../assets/metrics_iphone.jpg');
-    mask-image: url('../assets/metrics_iphone_mask.png');
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
   }
 }
 
@@ -323,6 +368,160 @@
     width: inherit;
     object-fit: contain;
     display: block;
+    @include breakpoint(md) {
+      display: block;
+    }
+  }
+}
+
+// ipad
+.metrics-mile-stone,
+.metrics-competition {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include container-padding;
+  p {
+    margin: 0;
+  }
+}
+
+.metrics-ipad {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  position: relative;
+  width: 342px;
+  height: 246px;
+  z-index: 1;
+  margin-bottom: $spacing--lg;
+  @include breakpoint(md) {
+    width: 718px;
+    height: 518px;
+  }
+  @include breakpoint(lg) {
+    width: 983px;
+    height: 710px;
+  }
+  &__reveal {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    z-index: 3;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    opacity: 1;
+  }
+  &__render {
+    position: absolute;
+    z-index: 2;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
+  }
+}
+
+.metrics-tv {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 342px;
+  height: 195px;
+  z-index: 1;
+  margin-bottom: $spacing--lg;
+  @include breakpoint(md) {
+    width: 718px;
+    height: 409px;
+  }
+  @include breakpoint(lg) {
+    width: 982px;
+    height: 560px;
+  }
+  &__reveal {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    z-index: 3;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    opacity: 1;
+  }
+  &__render {
+    position: absolute;
+    z-index: 2;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
+  }
+}
+
+.metrics-tv-screen {
+  position: absolute;
+  width: 338px;
+  height: 190px;
+  @include breakpoint(md) {
+    width: 709px;
+    height: 399px;
+  }
+  @include breakpoint(lg) {
+    width: 970px;
+    height: 546px;
+  }
+  &__static {
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__video {
+    position: absolute;
+    z-index: 1;
+    height: inherit;
+    width: inherit;
+    object-fit: contain;
+    display: none;
     @include breakpoint(md) {
       display: block;
     }

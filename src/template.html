@@ -61,56 +61,30 @@
             </div>
           </div>
         </div>
-        <div class="metrics-content section__container" data-trigger="metrics-intro">
-          <h2 class="title-overline" data-target="metrics-intro">Metrics</h2>
-          <h3 class="title-display title--contained" data-target="metrics-intro">Leave it all on the screen.</h3>
-          <p class="large-print compact--print" data-target="metrics-intro">
-            Your Apple Watch is equipped with sensors that, combined with advanced algorithms, give you all the metrics
-            you need to track your workout.
-          </p>
+        <div class="metrics-content section__container" data-target="metrics-content" data-trigger="metrics-content">
+          <h2 class="title-overline" data-target="metrics-intro"></h2>
+          <h3 class="title-display title--contained" data-target="metrics-intro"></h3>
+          <p class="large-print compact--print" data-target="metrics-intro"></p>
         </div>
-        <div class="metrics-devices section__container" data-trigger="metrics-device-grid">
-          <h2 class="large-print compact--print">
-            With the creation of Apple Fitness+, that information is now transported to your iPhone, iPad or Apple TV in
-            real time to keep you motivated and engaged.
-          </h2>
-          <div class="metrics-devices__container" data-target="metrics-devices">
-            <div class="metrics-watch" data-target="metrics-watch">
-              <figure class="metrics-watch__shadow"></figure>
-              <figure class="metrics-watch__render"></figure>
-              <div class="metrics-watch-screen">
-                <video
-                  class="metrics-watch-screen__video"
-                  playsinline="true"
-                  aria-hidden="true"
-                  muted="true"
-                  data-target="intro-watch-video"
-                  src="./assets/metrics_watch.mp4"
-                ></video>
-                <figure class="metrics-watch-screen__static"></figure>
-              </div>
-            </div>
-            <div class="metrics-iphone" data-target="metrics-iphone">
-              <figure class="metrics-iphone__shadow"></figure>
-              <figure class="metrics-iphone__render"></figure>
-              <div class="metrics-iphone-screen">
-                <video
-                  class="metrics-iphone-screen__video"
-                  playsinline="true"
-                  aria-hidden="true"
-                  muted="true"
-                  data-target="intro-watch-video"
-                  src="./assets/metrics.mp4"
-                ></video>
-                <figure class="metrics-iphonescreen__static"></figure>
-              </div>
-            </div>
-          </div>
-          <p class="small-print compact--print">
-            <strong>Put your heart into it. Literally.</strong> What's your heart rate? Is your Exercise ring about to
-            close? The answers are right there, so you'll always know exactly how you're doing without looking down at
-            your wrist. Eyes forward. Progress follows.
-          </p>
+        <div
+          class="metrics-heart-rate section__container"
+          data-target="metrics-heart-rate"
+          data-trigger="metrics-heart-rate"
+        >
+          <div class="metrics-heart-rate__renders" data-target="metrics-heart-rate-renders"></div>
+          <p class="small-print compact--print" data-target="metrics-heart-rate-intro"></p>
+        </div>
+        <div
+          class="metrics-milestone section__container"
+          data-target="metrics-milestone"
+          data-trigger="metrics-milestone"
+        >
+          <div class="metrics-ipad" data-target="metrics-ipad"></div>
+          <p class="large-print compact--print" data-target="metrics-milestone-intro"></p>
+        </div>
+        <div class="metrics-competition" data-target="metrics-competition" data-trigger="metrics-competition">
+          <div class="metrics-tv" data-target="metrics-tv"></div>
+          <p class="large-print compact--print" data-target="metrics-competition-intro"></p>
         </div>
       </section>
       <section style="height: 10000px"></section>

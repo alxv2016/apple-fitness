@@ -255,6 +255,150 @@ const scrollTrigger = {
       );
   },
   metricsSection: function () {
+    const watchScreen = document.querySelector<HTMLMediaElement>('[data-target="metrics-watch-video"]');
+    const iphoneScreen = document.querySelector<HTMLMediaElement>('[data-target="metrics-iphone-video"]');
+    const tvScreen = document.querySelector<HTMLMediaElement>('[data-target="metrics-tv-video"]');
+
+    if (watchScreen && iphoneScreen) {
+      ScrollTrigger.create({
+        markers: false,
+        trigger: '[data-trigger="metrics-heart-rate"]',
+        start: '-=100 center',
+        end: 'bottom center',
+        toggleActions: 'play pause resume reverse',
+        onUpdate: (self) => {
+          const progress = Math.floor(self.progress * 100);
+          const watchReveal = document.querySelector<HTMLElement>('[data-target="metrics-watch"]');
+          const iphoneReveal = document.querySelector<HTMLElement>('[data-target="metrics-iphone"]');
+          if (watchReveal && iphoneReveal) {
+            let endProgress = progress * 6;
+            endProgress > 100 ? (endProgress = 100) : endProgress;
+            watchReveal.style.setProperty('--progress-start', `${progress}%`);
+            watchReveal.style.setProperty('--progress-end', `${endProgress}%`);
+            iphoneReveal.style.setProperty('--progress-start', `${progress}%`);
+            iphoneReveal.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+        },
+        onToggle: (self) => {
+          if (self.isActive) {
+            watchScreen.muted = true;
+            iphoneScreen.muted = true;
+            watchScreen.play();
+            iphoneScreen.play();
+            watchScreen.addEventListener('ended', this.hideVideo);
+            iphoneScreen.addEventListener('ended', this.hideVideo);
+          } else {
+            watchScreen.pause();
+            iphoneScreen.pause();
+          }
+        },
+      });
+
+      const devicesReveal = gsap.timeline({
+        scrollTrigger: {
+          markers: false,
+          trigger: '[data-trigger="metrics-heart-rate"]',
+          start: 'top center',
+          end: 'center center',
+          scrub: 0.45,
+        },
+      });
+
+      devicesReveal
+        .to('[data-target="metrics-watch-reveal"]', {
+          opacity: 0,
+        })
+        .to(
+          '[data-target="metrics-iphone-reveal"]',
+          {
+            opacity: 0,
+          },
+          0
+        )
+        .from('[data-target="metrics-heart-rate-intro"]', {
+          y: 48,
+          opacity: 0,
+        });
+    }
+
+    const ipadReveal = gsap.timeline({
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="metrics-milestone"]',
+        start: '-=100 center',
+        end: 'bottom center',
+        scrub: 0.45,
+        onUpdate: (self) => {
+          const progress = Math.floor(self.progress * 100);
+          const ipadReveal = document.querySelector<HTMLElement>('[data-target="metrics-ipad"]');
+          if (ipadReveal) {
+            let endProgress = progress * 6;
+            endProgress > 100 ? (endProgress = 100) : endProgress;
+            ipadReveal.style.setProperty('--progress-start', `${progress}%`);
+            ipadReveal.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+        },
+      },
+    });
+
+    ipadReveal
+      .to('[data-target="metrics-ipad-reveal"]', {
+        opacity: 0,
+      })
+      .from(
+        '[data-target="metrics-milestone-intro"]',
+        {
+          opacity: 0,
+          y: -48,
+        },
+        0.45
+      );
+
+    const tvReveal = gsap.timeline({
+      scrollTrigger: {
+        markers: true,
+        trigger: '[data-trigger="metrics-competition"]',
+        start: '-=100 center',
+        end: 'bottom center',
+        toggleActions: 'play pause resume reverse',
+        scrub: 0.45,
+        onUpdate: (self) => {
+          const progress = Math.floor(self.progress * 100);
+          const tvReveal = document.querySelector<HTMLElement>('[data-target="metrics-tv"]');
+          if (tvReveal) {
+            let endProgress = progress * 6;
+            endProgress > 100 ? (endProgress = 100) : endProgress;
+            tvReveal.style.setProperty('--progress-start', `${progress}%`);
+            tvReveal.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+        },
+        onToggle: (self) => {
+          if (tvScreen) {
+            if (self.isActive) {
+              tvScreen.muted = true;
+              tvScreen.play();
+              tvScreen.addEventListener('ended', this.hideVideo);
+            } else {
+              tvScreen.pause();
+            }
+          }
+        },
+      },
+    });
+
+    tvReveal
+      .to('[data-target="metrics-tv-reveal"]', {
+        opacity: 0,
+      })
+      .from(
+        '[data-target="metrics-competition-intro"]',
+        {
+          opacity: 0,
+          y: -48,
+        },
+        0.45
+      );
+
     const fitnessMetric = gsap.timeline({
       defaults: {
         ease: 'none',
@@ -305,7 +449,7 @@ const scrollTrigger = {
       y: 50,
       scrollTrigger: {
         markers: false,
-        trigger: '[data-trigger="metrics-intro"]',
+        trigger: '[data-trigger="metrics-content"]',
         scrub: 0.45,
         start: '-=400 center',
         end: 'center center',
@@ -318,7 +462,7 @@ const scrollTrigger = {
       },
       scrollTrigger: {
         markers: false,
-        trigger: '[data-trigger="metrics-device-grid"]',
+        trigger: '[data-trigger="metrics-heart-rate"]',
         scrub: 0.45,
         start: 'top center',
         end: 'center center',
@@ -326,7 +470,7 @@ const scrollTrigger = {
     });
 
     metricDevices
-      .from('[data-target="metrics-devices"]', {
+      .from('[data-target="metrics-heart-rate-renders"]', {
         scale: 1.75,
       })
       .from(
@@ -338,7 +482,7 @@ const scrollTrigger = {
         0
       )
       .to(
-        '[data-target="metrics-devices"]',
+        '[data-target="metrics-heart-rate-renders"]',
         {
           xPercent: -38,
         },
