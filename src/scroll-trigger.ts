@@ -215,6 +215,17 @@ const scrollTrigger = {
         },
       });
 
+      gsap.from('[data-target="device-syncing"]', {
+        scale: 0.94,
+        scrollTrigger: {
+          markers: false,
+          trigger: '[data-trigger="device-sync-intro"]',
+          start: 'top center',
+          end: 'bottom center',
+          scrub: 0.45,
+        },
+      });
+
       gsap.to('[data-target="device-syncing-reveal"]', {
         opacity: 0,
         scrollTrigger: {
@@ -379,6 +390,9 @@ const scrollTrigger = {
     });
 
     ipadReveal
+      .from('[data-target="metrics-ipad"]', {
+        scale: 0.94,
+      })
       .to('[data-target="metrics-ipad-reveal"]', {
         opacity: 0,
       })
@@ -424,6 +438,9 @@ const scrollTrigger = {
     });
 
     tvReveal
+      .from('[data-target="metrics-tv"]', {
+        scale: 0.94,
+      })
       .to('[data-target="metrics-tv-reveal"]', {
         opacity: 0,
       })
