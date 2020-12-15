@@ -58,17 +58,21 @@ const metrics = {
     }
   },
   renderHeroContent: function (metricsData: any) {
-    const content = document.querySelector('[data-target="metrics-content"]');
-    const contentSet = {
-      h2: util.createElement('h2', 'title-overline', 'metrics-intro'),
-      h3: util.createElement('h3', 'title-display title--contained', 'metrics-intro'),
-      p: util.createElement('p', 'large-print compact--print', 'metrics-intro'),
-    };
-    contentSet.h2.textContent = metricsData.overline[0].text;
-    contentSet.h3.textContent = metricsData.title[0].text;
-    contentSet.p.textContent = metricsData.intro_copy[0].text;
+    const content = document.querySelector<HTMLElement>('[data-target="metrics-content"]');
     if (content) {
-      content.append(contentSet.h2, contentSet.h3, contentSet.p);
+      Array.from(content.children).forEach((item) => {
+        switch (true) {
+          case item.localName === 'h2':
+            item.textContent = metricsData.overline[0].text;
+            break;
+          case item.localName === 'h3':
+            item.textContent = metricsData.title[0].text;
+            break;
+          case item.localName === 'p':
+            item.textContent = metricsData.intro_copy[0].text;
+            break;
+        }
+      });
     }
   },
   renderValueContent: function (metricsData: any) {

@@ -15,6 +15,13 @@
     grid-column: 2 / 3;
     align-self: end;
     justify-self: center;
+    bottom: 88px;
+    @include breakpoint(md) {
+      bottom: 120px;
+    }
+    @include breakpoint(lg) {
+      bottom: 0;
+    }
   }
 
   &__item.intro-watch {
@@ -28,6 +35,9 @@
     grid-column: 1 / 2;
     align-self: center;
     @include breakpoint(md) {
+      right: -38px;
+    }
+    @include breakpoint(lg) {
       right: 0;
     }
   }
@@ -38,6 +48,9 @@
     left: -68px;
     grid-column: 3 / 4;
     @include breakpoint(md) {
+      left: -38px;
+    }
+    @include breakpoint(lg) {
       left: 0;
     }
   }

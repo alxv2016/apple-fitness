@@ -65,7 +65,10 @@
 .metrics-content {
   position: relative;
   z-index: 3;
-  top: -88px;
+  margin-bottom: $layout--xl;
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .fitness-metrics {
@@ -185,8 +188,8 @@
     justify-content: center;
     flex-shrink: 0;
     width: 100%;
-    margin-top: $layout--md;
     margin-bottom: $layout--lg;
+    transform-origin: top center;
   }
 }
 
@@ -274,7 +277,7 @@
     height: inherit;
     width: inherit;
     object-fit: contain;
-    display: block;
+    display: none;
     @include breakpoint(md) {
       display: block;
     }
@@ -329,6 +332,7 @@
     z-index: 4;
     height: 100%;
     width: 100%;
+    border-radius: 70px;
     background: linear-gradient(
       175deg,
       rgba(color('darker'), 0) var(--progress-start),
@@ -367,7 +371,7 @@
     height: inherit;
     width: inherit;
     object-fit: contain;
-    display: block;
+    display: none;
     @include breakpoint(md) {
       display: block;
     }
@@ -375,12 +379,13 @@
 }
 
 // ipad
-.metrics-mile-stone,
+.metrics-milestone,
 .metrics-competition {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   @include container-padding;
   p {
     margin: 0;
@@ -391,13 +396,16 @@
   --progress-start: 0%;
   --progress-end: 0%;
   position: relative;
-  width: 342px;
-  height: 246px;
+  width: 470px;
+  height: 338px;
+  left: calc(100% - 470px);
   z-index: 1;
-  margin-bottom: $spacing--lg;
+  margin-bottom: $layout--sm;
   @include breakpoint(md) {
     width: 718px;
     height: 518px;
+    left: 0;
+    margin-bottom: $layout--lg;
   }
   @include breakpoint(lg) {
     width: 983px;
@@ -447,13 +455,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 342px;
-  height: 195px;
+  width: 470px;
+  height: 268px;
+  right: calc(100% - 470px);
   z-index: 1;
-  margin-bottom: $spacing--lg;
+  margin-bottom: $layout--sm;
   @include breakpoint(md) {
     width: 718px;
     height: 409px;
+    right: 0;
+    margin-bottom: $layout--lg;
   }
   @include breakpoint(lg) {
     width: 982px;
@@ -498,8 +509,8 @@
 
 .metrics-tv-screen {
   position: absolute;
-  width: 338px;
-  height: 190px;
+  width: 464px;
+  height: 261px;
   @include breakpoint(md) {
     width: 709px;
     height: 399px;

@@ -41,9 +41,12 @@
           <div class="device-grid__item intro-tv" data-target="intro-tv"></div>
           <div class="device-grid__item intro-ipad" data-target="intro-ipad"></div>
         </div>
-        <div class="app-intro" data-target="app-intro">
+        <div class="app-intro" data-target="app-intro" data-trigger="app-intro">
           <img class="apple-fitness" data-target="apple-fitness" />
-          <h2 class="title-headline title--centered title--contained" data-target="app-intro-heading"></h2>
+          <h2
+            class="title-headline title--centered title--reveal title--contained"
+            data-target="app-intro-heading"
+          ></h2>
         </div>
         <div class="device-sync-intro" data-target="device-sync-intro" data-trigger="device-sync-intro">
           <div class="device-syncing" data-target="device-syncing"></div>
@@ -51,7 +54,7 @@
         </div>
       </section>
       <!-- Metrics -->
-      <section class="section section--overflow">
+      <section class="section section--margin-top section--overflow">
         <div class="metrics-media">
           <div class="metrics-hero" data-target="metrics-hero" data-trigger="metrics-hero">
             <div class="fitness-metrics" data-target="fitness-metrics">
@@ -75,14 +78,18 @@
           <p class="small-print compact--print" data-target="metrics-heart-rate-intro"></p>
         </div>
         <div
-          class="metrics-milestone section__container"
+          class="metrics-milestone l--margin-top section__container"
           data-target="metrics-milestone"
           data-trigger="metrics-milestone"
         >
           <div class="metrics-ipad" data-target="metrics-ipad"></div>
           <p class="large-print compact--print" data-target="metrics-milestone-intro"></p>
         </div>
-        <div class="metrics-competition" data-target="metrics-competition" data-trigger="metrics-competition">
+        <div
+          class="metrics-competition l--margin-top section__container"
+          data-target="metrics-competition"
+          data-trigger="metrics-competition"
+        >
           <div class="metrics-tv" data-target="metrics-tv"></div>
           <p class="large-print compact--print" data-target="metrics-competition-intro"></p>
         </div>

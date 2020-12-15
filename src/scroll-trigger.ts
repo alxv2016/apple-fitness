@@ -154,6 +154,39 @@ const scrollTrigger = {
       });
     }
 
+    const appIntro = gsap.timeline({
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="app-intro"]',
+        start: '-=100 center',
+        end: 'bottom center',
+        scrub: 0.45,
+        onUpdate: (self) => {
+          const progress = Math.floor(self.progress * 100);
+          const titleReveal = document.querySelector<HTMLElement>('[data-target="app-intro-heading"]');
+          if (titleReveal) {
+            let endProgress = progress * 6;
+            endProgress > 100 ? (endProgress = 100) : endProgress;
+            titleReveal.style.setProperty('--progress-start', `${progress}%`);
+            titleReveal.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+        },
+      },
+    });
+
+    appIntro
+      .from('[data-target="app-intro-heading"]', {
+        y: 48,
+      })
+      .from(
+        '[data-target="apple-fitness"]',
+        {
+          y: 88,
+          opacity: 0,
+        },
+        0.125
+      );
+
     if (syncingScreen) {
       ScrollTrigger.create({
         markers: false,
@@ -220,7 +253,7 @@ const scrollTrigger = {
     deviceGrid
       .to('[data-target="intro-watch"]', {
         scale: 0.35,
-        yPercent: -20,
+        y: -50,
       })
       .to(
         '[data-target="intro-watch-reveal"]',
@@ -315,10 +348,14 @@ const scrollTrigger = {
           },
           0
         )
-        .from('[data-target="metrics-heart-rate-intro"]', {
-          y: 48,
-          opacity: 0,
-        });
+        .from(
+          '[data-target="metrics-heart-rate-intro"]',
+          {
+            y: 48,
+            opacity: 0,
+          },
+          0.75
+        );
     }
 
     const ipadReveal = gsap.timeline({
@@ -356,7 +393,7 @@ const scrollTrigger = {
 
     const tvReveal = gsap.timeline({
       scrollTrigger: {
-        markers: true,
+        markers: false,
         trigger: '[data-trigger="metrics-competition"]',
         start: '-=100 center',
         end: 'bottom center',

@@ -21,4 +21,15 @@
   &--overflow {
     overflow: hidden;
   }
+
+  &--margin-top,
+  .l--margin-top {
+    margin-top: $layout--md;
+    @include breakpoint(md) {
+      margin-top: $layout--lg;
+    }
+    @include breakpoint(lg) {
+      margin-top: $layout--xl;
+    }
+  }
 }

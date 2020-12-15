@@ -52,7 +52,7 @@ const intro = {
           el.append(imageSet.reveal, imageSet.image, deviceScreen.container);
         }
         if (data === 'device-sync-intro-heading') {
-          el.textContent = introData.fitness_intro[0].text;
+          el.innerHTML = introData.fitness_intro[0].text;
         }
       });
     }
