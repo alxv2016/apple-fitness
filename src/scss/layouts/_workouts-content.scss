@@ -136,13 +136,26 @@
 .workouts-grid {
   position: relative;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 980px;
+  margin: auto;
   &__container {
     position: relative;
-    width: 100%;
-    max-width: 768px;
+    width: 345px;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(8, 66px);
+    column-gap: 0;
+    row-gap: 0;
+    @include breakpoint(md) {
+      grid-template-columns: repeat(16, 1fr);
+      column-gap: 60px;
+      row-gap: 34px;
+    }
   }
   &-item {
     align-self: center;
@@ -150,11 +163,101 @@
   }
 }
 
+.workout--walk {
+  grid-row-start: 2;
+  grid-column: 1 / span 1;
+  @include breakpoint(md) {
+    grid-row-start: 1;
+    grid-column: 3 / span 4;
+  }
+}
+
+.workout--hiit {
+  grid-row-start: 1;
+  grid-column: 1 / span 3;
+  @include breakpoint(md) {
+    grid-row-start: 1;
+    grid-column: 7 / span 4;
+  }
+}
+
+.workout--treadmill {
+  grid-row-start: 2;
+  grid-column: 3 / span 1;
+  @include breakpoint(md) {
+    grid-row-start: 1;
+    grid-column: 11 / span 4;
+  }
+}
+
+.workoout--rowing {
+  grid-row-start: 4;
+  grid-column: 1 / span 1;
+}
+
+.workoout--dancing {
+  grid-row-start: 3;
+  grid-column: 1 / span 3;
+}
+
+.workoout--yoga {
+  grid-row-start: 5;
+  grid-column: 1 / span 3;
+}
+
+.workoout--core {
+  grid-row-start: 6;
+  grid-column: 1 / span 1;
+}
+
+.workoout--training {
+  grid-row-start: 7;
+  grid-column: 1 / span 3;
+}
+
+.workoout--cool-down {
+  grid-row-start: 6;
+  grid-column: 3 / span 1;
+}
+
+.workoout--dancing {
+  grid-row-start: 4;
+  grid-column: 3 / span 1;
+}
+
+.workout--rowing,
+.workout--dancing,
+.workout--cycling,
+.workout--yoga {
+  @include breakpoint(md) {
+    grid-column: span 4;
+  }
+}
+
+.workout--core {
+  @include breakpoint(md) {
+    grid-row-start: 3;
+    grid-column: 3 / span 4;
+  }
+}
+
+.workout--training {
+  @include breakpoint(md) {
+    grid-row-start: 3;
+    grid-column: 7 / span 4;
+  }
+}
+
+.workout--cool-down {
+  @include breakpoint(md) {
+    grid-row-start: 3;
+    grid-column: 11 / span 4;
+  }
+}
+
 .workout {
   position: relative;
   display: flex;
-  width: 164px;
-  height: auto;
   flex-direction: column;
   align-items: center;
   &__icon {
@@ -162,8 +265,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 164px;
-    width: 164px;
+    width: 95px;
+    height: 95px;
+    @include breakpoint(md) {
+      height: 116px;
+      width: 116px;
+    }
+    @include breakpoint(lg) {
+      height: 164px;
+      width: 164px;
+    }
     overflow: hidden;
     border-radius: 50%;
     background-color: color('volt');
