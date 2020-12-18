@@ -152,13 +152,15 @@
     column-gap: 0;
     row-gap: 0;
     @include breakpoint(md) {
+      width: 900px;
       grid-template-columns: repeat(16, 1fr);
-      column-gap: 60px;
+      grid-template-rows: repeat(3, 1fr);
+      //column-gap: 60px;
       row-gap: 34px;
     }
   }
   &-item {
-    align-self: center;
+    align-self: start;
     justify-self: center;
   }
 }
@@ -190,51 +192,36 @@
   }
 }
 
-.workoout--rowing {
+.workout--rowing {
   grid-row-start: 4;
   grid-column: 1 / span 1;
+  @include breakpoint(md) {
+    grid-row-start: 2;
+    grid-column: span 4;
+  }
 }
 
-.workoout--dancing {
+.workout--cycling {
   grid-row-start: 3;
   grid-column: 1 / span 3;
+  @include breakpoint(md) {
+    grid-row-start: 2;
+    grid-column: span 4;
+  }
 }
 
-.workoout--yoga {
+.workout--yoga {
   grid-row-start: 5;
   grid-column: 1 / span 3;
-}
-
-.workoout--core {
-  grid-row-start: 6;
-  grid-column: 1 / span 1;
-}
-
-.workoout--training {
-  grid-row-start: 7;
-  grid-column: 1 / span 3;
-}
-
-.workoout--cool-down {
-  grid-row-start: 6;
-  grid-column: 3 / span 1;
-}
-
-.workoout--dancing {
-  grid-row-start: 4;
-  grid-column: 3 / span 1;
-}
-
-.workout--rowing,
-.workout--dancing,
-.workout--cycling,
-.workout--yoga {
   @include breakpoint(md) {
+    grid-row-start: 2;
     grid-column: span 4;
   }
 }
 
 .workout--core {
+  grid-row-start: 6;
+  grid-column: 1 / span 1;
   @include breakpoint(md) {
     grid-row-start: 3;
     grid-column: 3 / span 4;
@@ -242,6 +229,8 @@
 }
 
 .workout--training {
+  grid-row-start: 7;
+  grid-column: 1 / span 3;
   @include breakpoint(md) {
     grid-row-start: 3;
     grid-column: 7 / span 4;
@@ -249,20 +238,63 @@
 }
 
 .workout--cool-down {
+  grid-row-start: 4;
+  grid-column: 3 / span 1;
   @include breakpoint(md) {
     grid-row-start: 3;
     grid-column: 11 / span 4;
   }
 }
 
+.workout--dancing {
+  grid-row-start: 6;
+  grid-column: 3 / span 1;
+  @include breakpoint(md) {
+    grid-row-start: 2;
+    grid-column: span 4;
+  }
+}
+
+// .workout--rowing,
+// .workout--dancing,
+// .workout--cycling,
+// .workout--yoga {
+//   @include breakpoint(md) {
+//     grid-column: span 4;
+//   }
+// }
+
+// .workout--core {
+//   @include breakpoint(md) {
+//     grid-row-start: 3;
+//     grid-column: 3 / span 4;
+//   }
+// }
+
+// .workout--training {
+//   @include breakpoint(md) {
+//     grid-row-start: 3;
+//     grid-column: 7 / span 4;
+//   }
+// }
+
+// .workout--cool-down {
+//   @include breakpoint(md) {
+//     grid-row-start: 3;
+//     grid-column: 11 / span 4;
+//   }
+// }
+
 .workout {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   &__icon {
     position: relative;
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     width: 95px;
@@ -299,10 +331,16 @@
     }
   }
   &__label {
-    font-size: $subtitle--2;
+    text-align: center;
+    flex-shrink: 0;
     color: color('light');
     font-weight: font-weight('bold');
     margin: 0;
-    padding-top: $spacing--lg;
+    font-size: $body--2;
+    margin-top: $spacing--sm;
+    @include breakpoint(md) {
+      margin-top: $spacing--lg;
+      font-size: $subtitle--2;
+    }
   }
 }
