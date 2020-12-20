@@ -1,0 +1,99 @@
+.c-apple-tv {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 867px;
+  height: 495px;
+  @include breakpoint(md) {
+    width: 1113px;
+    height: 634px;
+  }
+  @include breakpoint(lg) {
+    width: 1261px;
+    height: 718px;
+  }
+
+  &--small {
+    width: 470px;
+    height: 268px;
+    @include breakpoint(md) {
+      width: 718px;
+      height: 409px;
+    }
+    @include breakpoint(lg) {
+      width: 982px;
+      height: 560px;
+    }
+  }
+
+  &__mock-dimmed,
+  &__mock {
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+
+  &__mock-dimmed {
+    z-index: 3;
+    opacity: 1;
+  }
+  &__mock {
+    z-index: 2;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
+  }
+}
+
+.apple-tv-screen {
+  position: absolute;
+  width: 464px;
+  height: 261px;
+  @include breakpoint(md) {
+    width: 709px;
+    height: 399px;
+  }
+  @include breakpoint(lg) {
+    width: 970px;
+    height: 546px;
+  }
+
+  &__static,
+  &__video {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
+
+  &__static {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__video {
+    z-index: 1;
+    object-fit: contain;
+    display: none;
+    @include breakpoint(md) {
+      display: block;
+    }
+  }
+}

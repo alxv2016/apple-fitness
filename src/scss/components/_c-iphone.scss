@@ -1,0 +1,100 @@
+.intro-iphone {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 163px;
+  height: 314px;
+  @include breakpoint(md) {
+    width: 208px;
+    height: 403px;
+  }
+  @include breakpoint(lg) {
+    width: 235px;
+    height: 457px;
+  }
+
+  &--landscape {
+    width: 367px;
+    height: 187px;
+    @include breakpoint(md) {
+      width: 581px;
+      height: 296px;
+    }
+    @include breakpoint(lg) {
+      width: 703px;
+      height: 358px;
+    }
+  }
+
+  &__mock-dimmed,
+  &__mock {
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+  &__mock-dimmed {
+    z-index: 3;
+    opacity: 1;
+  }
+  &__mock {
+    z-index: 2;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    border-radius: 46px;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
+  }
+}
+
+.c-iphone-screen {
+  position: absolute;
+  width: 340px;
+  height: 159px;
+
+  @include breakpoint(md) {
+    width: 534px;
+    height: 251px;
+  }
+  @include breakpoint(lg) {
+    width: 652px;
+    height: 304px;
+  }
+
+  &__static,
+  &__video {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
+
+  &__static {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__video {
+    z-index: 1;
+    object-fit: contain;
+    display: none;
+    @include breakpoint(md) {
+      display: block;
+    }
+  }
+}

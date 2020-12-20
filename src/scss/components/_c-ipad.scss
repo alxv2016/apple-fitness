@@ -1,0 +1,62 @@
+.c-ipad {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  position: relative;
+  width: 470px;
+  height: 338px;
+  @include breakpoint(md) {
+    width: 718px;
+    height: 518px;
+  }
+  @include breakpoint(lg) {
+    width: 983px;
+    height: 710px;
+  }
+
+  &--small {
+    @include breakpoint(lg) {
+      width: 791px;
+      height: 572px;
+    }
+  }
+
+  &--offset {
+    left: calc(100% - 470px);
+    @include breakpoint(md) {
+      left: 0;
+    }
+  }
+
+  &__mock-dimmed,
+  &__mock {
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+
+  &__mock-dimmed {
+    z-index: 3;
+    opacity: 1;
+  }
+  &__mock {
+    z-index: 2;
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
+  }
+}

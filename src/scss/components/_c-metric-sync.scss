@@ -1,0 +1,18 @@
+.c-metric-sync {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__devices {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: $layout--lg;
+    transform-origin: top center;
+  }
+}

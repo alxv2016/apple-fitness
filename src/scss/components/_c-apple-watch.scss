@@ -1,0 +1,114 @@
+.c-apple-watch {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 248px;
+  height: 426px;
+  @include breakpoint(md) {
+    width: 360px;
+    height: 618px;
+  }
+  @include breakpoint(lg) {
+    // width: 446px;
+    // height: 762px;
+    width: 327px;
+    height: 555px;
+  }
+
+  &--inverse {
+    width: 97px;
+    height: 165px;
+    @include breakpoint(md) {
+      width: 154px;
+      height: 262px;
+    }
+    @include breakpoint(lg) {
+      width: 187px;
+      height: 317px;
+    }
+  }
+
+  &__mock-dimmed,
+  &__mock {
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+  &__mock-dimmed {
+    z-index: 3;
+    opacity: 1;
+  }
+  &__mock {
+    z-index: 2;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
+  }
+}
+
+// Video
+.c-apple-watch-screen {
+  position: absolute;
+  width: 184px;
+  height: 224px;
+  @include breakpoint(md) {
+    width: 268px;
+    height: 326px;
+  }
+  @include breakpoint(lg) {
+    width: 332px;
+    height: 404px;
+  }
+
+  &--inverse {
+    width: 72px;
+    height: 87px;
+    @include breakpoint(md) {
+      width: 114px;
+      height: 139px;
+    }
+    @include breakpoint(lg) {
+      width: 138px;
+      height: 168px;
+    }
+  }
+
+  &__static,
+  &__video {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
+
+  &__static {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__video {
+    z-index: 1;
+    object-fit: contain;
+    display: none;
+    @include breakpoint(md) {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,215 @@
+.c-section-hero {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--metrics {
+    width: 375px;
+    height: 589px;
+    @include breakpoint(md) {
+      width: 628px;
+      height: 968px;
+    }
+    @include breakpoint(lg) {
+      width: 700px;
+      height: 1100px;
+    }
+  }
+
+  &--workouts {
+    width: 375px;
+    height: 444px;
+    @include breakpoint(md) {
+      width: 628px;
+      height: 744px;
+    }
+    @include breakpoint(lg) {
+      width: 860px;
+      height: 1020px;
+    }
+  }
+
+  &__shadow,
+  &__image {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &__image {
+    z-index: 2;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle, rgba(23, 22, 55, 0.95) 5%, rgba(0, 0, 27, 0) 40%);
+  }
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
+  }
+}
+
+.c-hero-metrics {
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-hero-metrics-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-metric {
+  position: relative;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  &--time {
+    z-index: 2;
+    width: 139px;
+    height: 56px;
+    @include breakpoint(md) {
+      width: 307px;
+      height: 124px;
+    }
+    @include breakpoint(lg) {
+      width: 323px;
+      height: 132px;
+    }
+  }
+  &--time-icon {
+    height: 46px;
+    width: 46px;
+    @include breakpoint(md) {
+      width: 100px;
+      height: 100px;
+    }
+    @include breakpoint(lg) {
+      width: 106px;
+      height: 106px;
+    }
+  }
+
+  &--bpm {
+    z-index: 2;
+    width: 118px;
+    height: 57px;
+    @include breakpoint(md) {
+      width: 260px;
+      height: 126px;
+    }
+    @include breakpoint(lg) {
+      width: 274px;
+      height: 131px;
+    }
+  }
+
+  &--bpm-icon {
+    height: 46px;
+    width: 43px;
+    @include breakpoint(md) {
+      width: 100px;
+      height: 93px;
+    }
+    @include breakpoint(lg) {
+      width: 106px;
+      height: 99px;
+    }
+  }
+
+  &--calories {
+    z-index: 2;
+    width: 84px;
+    height: 56px;
+    @include breakpoint(md) {
+      width: 185px;
+      height: 123px;
+    }
+    @include breakpoint(lg) {
+      width: 194px;
+      height: 131px;
+    }
+  }
+  &--calories-icon {
+    width: 84px;
+    height: 35px;
+    @include breakpoint(md) {
+      width: 185px;
+      height: 76px;
+    }
+    @include breakpoint(lg) {
+      width: 195px;
+      height: 80px;
+    }
+  }
+
+  &--clock {
+    width: 280px;
+    height: 280px;
+    @include breakpoint(md) {
+      width: 474px;
+      height: 474px;
+    }
+    @include breakpoint(lg) {
+      width: 617px;
+      height: 617px;
+    }
+  }
+
+  &--yoga {
+    width: 158px;
+    height: 45px;
+    margin-left: 0;
+    @include breakpoint(md) {
+      width: 265px;
+      height: 75px;
+    }
+    @include breakpoint(lg) {
+      width: 363px;
+      height: 103px;
+    }
+  }
+
+  &--music {
+    width: 215px;
+    height: 45px;
+    margin-right: 0;
+    @include breakpoint(md) {
+      width: 360px;
+      height: 75px;
+    }
+    @include breakpoint(lg) {
+      width: 493px;
+      height: 103px;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+.c-ipad-watch {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  position: relative;
+  width: 342px;
+  height: 292px;
+  @include breakpoint(md) {
+    width: 718px;
+    height: 611px;
+  }
+  @include breakpoint(lg) {
+    width: 792px;
+    height: 676px;
+  }
+  &__mock-dimmed,
+  &__mock {
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+  &__mock-dimmed {
+    z-index: 3;
+    opacity: 1;
+  }
+  &__mock {
+    z-index: 2;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
+  }
+}
+
+.ipad-watch-screens {
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+
+  &__static,
+  &__video {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
+
+  &__static {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__video {
+    z-index: 1;
+    object-fit: contain;
+    display: none;
+    @include breakpoint(md) {
+      display: block;
+    }
+  }
+}
