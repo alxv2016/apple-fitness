@@ -5,30 +5,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 248px;
-  height: 426px;
+  transform-origin: top center;
+  width: 97px;
+  height: 165px;
   @include breakpoint(md) {
-    width: 360px;
-    height: 618px;
+    width: 154px;
+    height: 262px;
   }
   @include breakpoint(lg) {
-    // width: 446px;
-    // height: 762px;
-    width: 327px;
-    height: 555px;
-  }
-
-  &--inverse {
-    width: 97px;
-    height: 165px;
-    @include breakpoint(md) {
-      width: 154px;
-      height: 262px;
-    }
-    @include breakpoint(lg) {
-      width: 187px;
-      height: 317px;
-    }
+    width: 187px;
+    height: 317px;
   }
 
   &__mock-dimmed,
@@ -68,28 +54,16 @@
 // Video
 .c-apple-watch-screen {
   position: absolute;
-  width: 184px;
-  height: 224px;
+  width: 72px;
+  height: 87px;
+  margin-right: 10px;
   @include breakpoint(md) {
-    width: 268px;
-    height: 326px;
+    width: 114px;
+    height: 139px;
   }
   @include breakpoint(lg) {
-    width: 332px;
-    height: 404px;
-  }
-
-  &--inverse {
-    width: 72px;
-    height: 87px;
-    @include breakpoint(md) {
-      width: 114px;
-      height: 139px;
-    }
-    @include breakpoint(lg) {
-      width: 138px;
-      height: 168px;
-    }
+    width: 138px;
+    height: 168px;
   }
 
   &__static,

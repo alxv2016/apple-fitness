@@ -14,5 +14,12 @@
     width: 100%;
     margin-bottom: $layout--lg;
     transform-origin: top center;
+
+    .c-apple-watch {
+      z-index: 2;
+    }
+    .c-iphone {
+      z-index: 1;
+    }
   }
 }

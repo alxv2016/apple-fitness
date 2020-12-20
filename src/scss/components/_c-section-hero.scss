@@ -72,17 +72,25 @@
 
 .c-hero-metrics {
   position: absolute;
-  height: inherit;
-  width: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  &--metrics {
+    width: 100%;
+    height: calc(100% / 2);
+    justify-content: space-around;
+  }
+  &--workouts {
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+  }
 }
 
 .c-hero-metrics-group {
   position: relative;
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
 }

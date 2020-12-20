@@ -263,10 +263,15 @@ const scrollTrigger = {
       },
     });
     deviceGrid
-      .to('[data-target="intro-watch"]', {
-        scale: 0.35,
-        y: -50,
-      })
+      .fromTo(
+        '[data-target="intro-watch"]',
+        {
+          scale: 1.75,
+        },
+        {
+          scale: 0.7,
+        }
+      )
       .to(
         '[data-target="intro-watch-reveal"]',
         {
@@ -525,21 +530,21 @@ const scrollTrigger = {
     });
 
     metricDevices
-      .from('[data-target="metrics-heart-rate-renders"]', {
-        scale: 1.75,
+      .to('[data-target="metrics-heart-rate-renders"]', {
+        xPercent: -35,
       })
+      .from(
+        '[data-target="metrics-heart-rate-renders"]',
+        {
+          scale: 1.75,
+        },
+        0
+      )
       .from(
         '[data-target="metrics-iphone"]',
         {
           xPercent: 25,
           opacity: 0,
-        },
-        0
-      )
-      .to(
-        '[data-target="metrics-heart-rate-renders"]',
-        {
-          xPercent: -38,
         },
         0
       );

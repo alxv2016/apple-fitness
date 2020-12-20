@@ -9,15 +9,8 @@
     height: 518px;
   }
   @include breakpoint(lg) {
-    width: 983px;
-    height: 710px;
-  }
-
-  &--small {
-    @include breakpoint(lg) {
-      width: 791px;
-      height: 572px;
-    }
+    width: 791px;
+    height: 572px;
   }
 
   &--offset {

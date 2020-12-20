@@ -2,6 +2,9 @@
   --progress-start: 0%;
   --progress-end: 0%;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-self: center;
   width: 342px;
   height: 292px;
   @include breakpoint(md) {
@@ -46,7 +49,7 @@
   }
 }
 
-.ipad-watch-screens {
+.c-ipad-watch-screens {
   position: absolute;
   height: inherit;
   width: inherit;

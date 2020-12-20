@@ -17,9 +17,9 @@
     <main>
       <!-- Hero Section -->
       <section class="section section--overflow">
-        <div class="hero" data-trigger="hero" data-target="hero">
-          <div class="hero-container" data-target="hero-container"></div>
-          <h1 class="hero-heading" data-target="hero-heading"></h1>
+        <div class="c-hero" data-trigger="hero" data-target="hero">
+          <div class="c-hero__container" data-target="hero-container"></div>
+          <h1 class="c-hero-logo" data-target="hero-heading"></h1>
         </div>
         <div class="hero-content" data-target="hero-content" data-trigger="hero-content">
           <h2 class="title-display title--gradient" data-target="move-title"></h2>
@@ -36,10 +36,10 @@
       <!-- Intro section -->
       <section class="section section--overflow">
         <div class="device-grid" data-trigger="device-grid">
-          <div class="device-grid__item intro-watch" data-target="intro-watch"></div>
-          <div class="device-grid__item intro-iphone" data-target="intro-iphone"></div>
-          <div class="device-grid__item intro-tv" data-target="intro-tv"></div>
-          <div class="device-grid__item intro-ipad" data-target="intro-ipad"></div>
+          <div class="device-grid__item c-apple-watch" data-target="intro-watch"></div>
+          <div class="device-grid__item c-apple-tv" data-target="intro-tv"></div>
+          <div class="device-grid__item c-iphone" data-target="intro-iphone"></div>
+          <div class="device-grid__item c-ipad" data-target="intro-ipad"></div>
         </div>
         <div class="app-intro" data-target="app-intro" data-trigger="app-intro">
           <img class="apple-fitness" data-target="apple-fitness" />
@@ -48,49 +48,45 @@
             data-target="app-intro-heading"
           ></h2>
         </div>
-        <div class="device-sync-intro" data-target="device-sync-intro" data-trigger="device-sync-intro">
-          <div class="device-syncing" data-target="device-syncing"></div>
+        <div class="l-service-value-prop" data-target="device-sync-intro" data-trigger="device-sync-intro">
+          <div class="c-ipad-watch" data-target="device-syncing"></div>
           <p class="large-print compact--print" data-target="device-sync-intro-heading"></p>
         </div>
       </section>
       <!-- Metrics -->
       <section class="section section--margin-top section--overflow">
-        <div class="metrics-media">
-          <div class="metrics-hero" data-target="metrics-hero" data-trigger="metrics-hero">
-            <div class="fitness-metrics" data-target="fitness-metrics">
-              <div class="metrics metrics-time" data-target="metrics-time"></div>
-              <div class="metrics metrics-bpm" data-target="metrics-bpm"></div>
-              <div class="metrics metrics-calories" data-target="metrics-calories"></div>
+        <div class="l-service-media">
+          <div class="c-section-hero c-section-hero--metrics" data-target="metrics-hero" data-trigger="metrics-hero">
+            <div class="c-hero-metrics c-hero-metrics--metrics" data-target="fitness-metrics">
+              <div class="c-hero-metrics-group" data-target="metrics-time"></div>
+              <div class="c-hero-metrics-group" data-target="metrics-bpm"></div>
+              <div class="c-hero-metrics-group" data-target="metrics-calories"></div>
             </div>
           </div>
         </div>
-        <div class="metrics-content section__container" data-target="metrics-content" data-trigger="metrics-content">
-          <h2 class="title-overline" data-target="metrics-intro"></h2>
-          <h3 class="title-display title--contained" data-target="metrics-intro"></h3>
-          <p class="large-print compact--print" data-target="metrics-intro"></p>
+
+        <div class="l-service-intro" data-trigger="metrics-content">
+          <div class="l-service-intro__container" data-target="metrics-content">
+            <h2 class="title-overline" data-target="metrics-intro"></h2>
+            <h3 class="title-display" data-target="metrics-intro"></h3>
+            <p class="large-print compact--print" data-target="metrics-intro"></p>
+          </div>
         </div>
-        <div
-          class="metrics-heart-rate section__container"
-          data-target="metrics-heart-rate"
-          data-trigger="metrics-heart-rate"
-        >
-          <div class="metrics-heart-rate__renders" data-target="metrics-heart-rate-renders"></div>
-          <p class="small-print compact--print" data-target="metrics-heart-rate-intro"></p>
+
+        <div class="l-service-media l-metric-media">
+          <div class="c-metric-sync" data-target="metrics-heart-rate" data-trigger="metrics-heart-rate">
+            <div class="c-metric-sync__devices" data-target="metrics-heart-rate-renders"></div>
+            <p class="small-print compact--print" data-target="metrics-heart-rate-intro"></p>
+          </div>
         </div>
-        <div
-          class="metrics-milestone l--margin-top section__container"
-          data-target="metrics-milestone"
-          data-trigger="metrics-milestone"
-        >
-          <div class="metrics-ipad" data-target="metrics-ipad"></div>
+
+        <div class="l-service-value-prop" data-target="metrics-milestone" data-trigger="metrics-milestone">
+          <div class="c-ipad" data-target="metrics-ipad"></div>
           <p class="large-print compact--print" data-target="metrics-milestone-intro"></p>
         </div>
-        <div
-          class="metrics-competition l--margin-top section__container"
-          data-target="metrics-competition"
-          data-trigger="metrics-competition"
-        >
-          <div class="metrics-tv" data-target="metrics-tv"></div>
+
+        <div class="l-service-value-prop" data-target="metrics-competition" data-trigger="metrics-competition">
+          <div class="c-apple-tv c-apple-tv--small" data-target="metrics-tv"></div>
           <p class="large-print compact--print" data-target="metrics-competition-intro"></p>
         </div>
       </section>

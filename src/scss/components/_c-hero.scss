@@ -1,11 +1,11 @@
-.hero {
+.c-hero {
   --progress-start: 0%;
   --progress-end: 0%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  &-container {
+  &__container {
     position: relative;
     top: 28px;
     z-index: 1;
@@ -41,43 +41,43 @@
       rgba(color('darker'), 0) var(--progress-end)
     );
   }
+
+  &-image,
+  &-shadow {
+    position: relative;
+    left: -90px;
+    margin-right: auto;
+    width: inherit;
+    height: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mask-size: contain;
+    @include breakpoint(md) {
+      left: 0;
+    }
+  }
+
+  &-shadow {
+    position: absolute;
+    opacity: 0.75;
+  }
 }
 
-.hero-image,
-.hero-image-shadow {
-  position: relative;
-  left: -90px;
-  margin-right: auto;
-  width: inherit;
-  height: inherit;
-  background-size: contain;
-  background-repeat: no-repeat;
-  mask-size: contain;
-  @include breakpoint(md) {
+.c-hero__container[data-hero='hero-02'] {
+  .c-hero-image,
+  .c-hero-shadow {
     left: 0;
   }
 }
 
-.hero-container[data-hero='hero-02'] {
-  .hero-image,
-  .hero-image-shadow {
-    left: 0;
-  }
-}
-
-.hero-container[data-hero='hero-01'] {
-  .hero-image,
-  .hero-image-shadow {
+.c-hero__container[data-hero='hero-01'] {
+  .c-hero-image,
+  .c-hero-shadow {
     left: -48px;
   }
 }
 
-.hero-image-shadow {
-  position: absolute;
-  opacity: 0.75;
-}
-
-.hero-heading {
+.c-hero-logo {
   position: absolute;
   margin-top: 48px;
   width: 327px;
@@ -90,18 +90,21 @@
     width: 822px;
     height: 151px;
   }
+  &__container {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
 }
 
-.logo-container {
-  position: absolute;
-  width: inherit;
+.c-logo {
+  background-repeat: no-repeat;
+  background-size: contain;
   height: inherit;
-  .logo {
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: inherit;
-    width: inherit;
-  }
+  width: inherit;
+}
+
+.c-hero-logo__container {
   &--apple,
   &--f,
   &--i,
@@ -126,37 +129,37 @@
     }
   }
 
-  &--apple .logo {
+  &--apple .c-logo {
     background-image: url('../assets/logo_fitness_apple.svg');
   }
-  &--f .logo {
+  &--f .c-logo {
     background-image: url('../assets/logo_fitness_f.svg');
   }
-  &--i .logo {
+  &--i .c-logo {
     background-image: url('../assets/logo_fitness_i.svg');
   }
-  &--t .logo {
+  &--t .c-logo {
     background-image: url('../assets/logo_fitness_t.svg');
   }
-  &--n .logo {
+  &--n .c-logo {
     background-image: url('../assets/logo_fitness_n.svg');
   }
-  &--e .logo {
+  &--e .c-logo {
     background-image: url('../assets/logo_fitness_e.svg');
   }
-  &--s1 .logo {
+  &--s1 .c-logo {
     background-image: url('../assets/logo_fitness_s1.svg');
   }
-  &--s2 .logo {
+  &--s2 .c-logo {
     background-image: url('../assets/logo_fitness_s2.svg');
   }
-  &--plus .logo {
+  &--plus .c-logo {
     background-image: url('../assets/logo_fitness_plus.svg');
   }
 }
 
-.hero-heading[data-hero='hero-01'] {
-  .logo-container {
+.c-hero-logo[data-hero='hero-01'] {
+  .c-hero-logo__container {
     &--apple {
       z-index: auto;
     }
@@ -171,8 +174,8 @@
   }
 }
 
-.hero-heading[data-hero='hero-02'] {
-  .logo-container {
+.c-hero-logo[data-hero='hero-02'] {
+  .c-hero-logo__container {
     @include breakpoint(md) {
       &--i,
       &--t,
@@ -183,8 +186,8 @@
   }
 }
 
-.hero-heading[data-hero='hero-03'] {
-  .logo-container {
+.c-hero-logo[data-hero='hero-03'] {
+  .c-hero-logo__container {
     &--s1,
     &--s2 {
       z-index: 2;
@@ -198,8 +201,8 @@
   }
 }
 
-.hero-heading[data-hero='hero-04'] {
-  .logo-container {
+.c-hero-logo[data-hero='hero-04'] {
+  .c-hero-logo__container {
     &--s1 {
       z-index: 2;
     }

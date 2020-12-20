@@ -29,13 +29,13 @@ const intro = {
     if (deviceSync) {
       const elements = deviceSync.children;
       const imageSet = {
-        reveal: util.createElement('figure', 'device-syncing__reveal', 'device-syncing-reveal'),
-        image: util.createElement('figure', 'device-syncing__render'),
+        reveal: util.createElement('figure', 'c-ipad-watch__mock-dimmed', 'device-syncing-reveal'),
+        image: util.createElement('figure', 'c-ipad-watch__mock'),
       };
       const deviceScreen = {
-        container: util.createElement('div', 'device-syncing-screen'),
-        static: util.createElement('figure', 'device-syncing-screen__static'),
-        video: util.createVideoElement('video', 'device-syncing-screen__video', 'device-syncing-video'),
+        container: util.createElement('div', 'c-ipad-watch-screens'),
+        static: util.createElement('figure', 'c-ipad-watch-screens__static'),
+        video: util.createVideoElement('video', 'c-ipad-watch-screens__video', 'device-syncing-video'),
       };
       util.setBackgroundImage(imageSet.reveal, introData.lock_up.reveal.url);
       util.setBackgroundImage(imageSet.image, introData.lock_up.url);
@@ -57,10 +57,19 @@ const intro = {
       });
     }
   },
+  renderIpad: function (introData: any) {
+    const ipad = document.querySelector<HTMLElement>('[data-target="intro-ipad"]');
+    if (ipad) {
+      const image = util.createElement('figure', 'c-ipad__mock');
+      util.setBackgroundImage(image, introData.ipad_render.url);
+      util.setImageMask(image, introData.ipad_render.mask.url);
+      ipad.append(image);
+    }
+  },
   renderIphone: function (introData: any) {
     const iphone = document.querySelector<HTMLElement>('[data-target="intro-iphone"]');
     if (iphone) {
-      const image = util.createElement('figure', 'intro-iphone__render');
+      const image = util.createElement('figure', 'c-iphone__mock');
       util.setBackgroundImage(image, introData.iphone_render.url);
       util.setImageMask(image, introData.iphone_render.mask.url);
       iphone.append(image);
@@ -69,32 +78,23 @@ const intro = {
   renderTv: function (introData: any) {
     const appleTv = document.querySelector<HTMLElement>('[data-target="intro-tv"]');
     if (appleTv) {
-      const image = util.createElement('figure', 'intro-tv__render');
+      const image = util.createElement('figure', 'c-apple-tv__mock');
       util.setBackgroundImage(image, introData.apple_tv_render.url);
       util.setImageMask(image, introData.apple_tv_render.mask.url);
       appleTv.append(image);
-    }
-  },
-  renderIpad: function (introData: any) {
-    const ipad = document.querySelector<HTMLElement>('[data-target="intro-ipad"]');
-    if (ipad) {
-      const image = util.createElement('figure', 'intro-ipad__render');
-      util.setBackgroundImage(image, introData.ipad_render.url);
-      util.setImageMask(image, introData.ipad_render.mask.url);
-      ipad.append(image);
     }
   },
   renderWatch: function (introData: any) {
     const appleWatch = document.querySelector<HTMLElement>('[data-target="intro-watch"]');
     if (appleWatch) {
       const imageSet = {
-        reveal: util.createElement('figure', 'intro-watch__reveal', 'intro-watch-reveal'),
-        image: util.createElement('figure', 'intro-watch__render'),
+        reveal: util.createElement('figure', 'c-apple-watch__mock-dimmed', 'intro-watch-reveal'),
+        image: util.createElement('figure', 'c-apple-watch__mock'),
       };
       const watchScreen = {
-        container: util.createElement('div', 'intro-watch-screen', 'intro-watch-screen'),
-        static: util.createElement('figure', 'intro-watch-screen__static'),
-        video: util.createVideoElement('video', 'intro-watch-screen__video', 'intro-watch-video'),
+        container: util.createElement('div', 'c-apple-watch-screen', 'intro-watch-screen'),
+        static: util.createElement('figure', 'c-apple-watch-screen__static'),
+        video: util.createVideoElement('video', 'c-apple-watch-screen__video', 'intro-watch-video'),
       };
 
       util.setBackgroundImage(imageSet.reveal, introData.apple_watch_render.reveal.url);

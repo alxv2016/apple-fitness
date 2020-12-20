@@ -9,8 +9,8 @@ const metrics = {
   },
   createMetric: function (metricClass: string, iconClass: string, dataName: string) {
     const imageSet = {
-      metric: util.createElement('figure', `metrics-figure ${metricClass}`, dataName),
-      metric_icon: util.createElement('figure', `metrics-figure ${iconClass}`, dataName),
+      metric: util.createElement('figure', `c-metric ${metricClass}`, dataName),
+      metric_icon: util.createElement('figure', `c-metric ${iconClass}`, dataName),
     };
     return imageSet;
   },
@@ -18,8 +18,8 @@ const metrics = {
     const hero = document.querySelector('[data-target="metrics-hero"]');
     if (hero) {
       const imageSet = {
-        shadow: util.createElement('figure', 'metrics-hero__shadow'),
-        image: util.createElement('figure', 'metrics-hero__image'),
+        shadow: util.createElement('figure', 'c-section-hero__shadow'),
+        image: util.createElement('figure', 'c-section-hero__image'),
       };
       util.setBackgroundImage(imageSet.shadow, metricsData.metrics_hero.shadow.url);
       util.setBackgroundImage(imageSet.image, metricsData.metrics_hero.url);
@@ -31,21 +31,21 @@ const metrics = {
           const data = metric.getAttribute('data-target');
           switch (true) {
             case data === 'metrics-time':
-              const timeMetric = this.createMetric('metrics-time__metric', 'metrics-time__icon', 'metrics-time-metric');
+              const timeMetric = this.createMetric('c-metric--time', 'c-metric--time-icon', 'metrics-time-metric');
               util.setBackgroundImage(timeMetric.metric, metricsData.time_metric.url);
               util.setBackgroundImage(timeMetric.metric_icon, metricsData.time_metric.icon.url);
               metric.append(timeMetric.metric, timeMetric.metric_icon);
               break;
             case data === 'metrics-bpm':
-              const bpmMetric = this.createMetric('metrics-bpm__metric', 'metrics-bpm__icon', 'metrics-bpm-metric');
+              const bpmMetric = this.createMetric('c-metric--bpm', 'c-metric--bpm-icon', 'metrics-bpm-metric');
               util.setBackgroundImage(bpmMetric.metric, metricsData.bpm_metric.url);
               util.setBackgroundImage(bpmMetric.metric_icon, metricsData.bpm_metric.metric_icon.url);
               metric.append(bpmMetric.metric, bpmMetric.metric_icon);
               break;
             case data === 'metrics-calories':
               const caloriesMetric = this.createMetric(
-                'metrics-calories__metric',
-                'metrics-calories__icon',
+                'c-metric--calories',
+                'c-metric--calories-icon',
                 'metrics-calories-metric'
               );
               util.setBackgroundImage(caloriesMetric.metric, metricsData.calories_metric.url);
@@ -82,15 +82,15 @@ const metrics = {
 
     const renders = {
       ipad: {
-        reveal: util.createElement('figure', 'metrics-ipad__reveal', 'metrics-ipad-reveal'),
-        render: util.createElement('figure', 'metrics-ipad__render'),
+        reveal: util.createElement('figure', 'c-ipad__mock-dimmed', 'metrics-ipad-reveal'),
+        render: util.createElement('figure', 'c-ipad__mock'),
       },
       tv: {
         screen: util.createElement('div', 'metrics-tv-screen'),
-        reveal: util.createElement('figure', 'metrics-tv__reveal', 'metrics-tv-reveal'),
-        render: util.createElement('figure', 'metrics-tv__render'),
-        static: util.createElement('figure', 'metrics-tv-screen__static'),
-        video: util.createVideoElement('video', 'metrics-tv-screen__video', 'metrics-tv-video'),
+        reveal: util.createElement('figure', 'c-apple-tv__mock-dimmed', 'metrics-tv-reveal'),
+        render: util.createElement('figure', 'c-apple-tv__mock'),
+        static: util.createElement('figure', 'c-apple-tv-screen__static'),
+        video: util.createVideoElement('video', 'c-apple-tv-screen__video', 'metrics-tv-video'),
       },
     };
     util.setBackgroundImage(renders.ipad.reveal, metricsData.metrics_ipad.reveal.url);
@@ -122,20 +122,20 @@ const metrics = {
     const heartRateContent = document.querySelector('[data-target="metrics-heart-rate"]');
     const imageRenders = {
       watch: {
-        container: util.createElement('div', 'metrics-watch', 'metrics-watch'),
-        screen: util.createElement('div', 'metrics-watch-screen'),
-        reveal: util.createElement('figure', 'metrics-watch__reveal', 'metrics-watch-reveal'),
-        render: util.createElement('figure', 'metrics-watch__render'),
-        static: util.createElement('figure', 'metrics-watch-screen__static'),
-        video: util.createVideoElement('video', 'metrics-watch-screen__video', 'metrics-watch-video'),
+        container: util.createElement('div', 'c-apple-watch', 'metrics-watch'),
+        screen: util.createElement('div', 'c-apple-watch-screen'),
+        reveal: util.createElement('figure', 'c-apple-watch__mock-dimmed', 'metrics-watch-reveal'),
+        render: util.createElement('figure', 'c-apple-watch__mock'),
+        static: util.createElement('figure', 'c-apple-watch-screen__static'),
+        video: util.createVideoElement('video', 'c-apple-watch-screen__video', 'metrics-watch-video'),
       },
       iphone: {
-        container: util.createElement('div', 'metrics-iphone', 'metrics-iphone'),
-        screen: util.createElement('div', 'metrics-iphone-screen'),
-        reveal: util.createElement('figure', 'metrics-iphone__reveal', 'metrics-iphone-reveal'),
-        render: util.createElement('figure', 'metrics-iphone__render'),
-        static: util.createElement('figure', 'metrics-iphone-screen__static'),
-        video: util.createVideoElement('video', 'metrics-iphone-screen__video', 'metrics-iphone-video'),
+        container: util.createElement('div', 'c-iphone c-iphone--landscape', 'metrics-iphone'),
+        screen: util.createElement('div', 'c-iphone-screen'),
+        reveal: util.createElement('figure', 'c-iphone__mock-dimed', 'metrics-iphone-reveal'),
+        render: util.createElement('figure', 'c-iphone__mock'),
+        static: util.createElement('figure', 'c-iphone-screen__static'),
+        video: util.createVideoElement('video', 'c-iphone-screen__video', 'metrics-iphone-video'),
       },
     };
 

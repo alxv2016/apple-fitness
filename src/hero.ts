@@ -26,8 +26,8 @@ const hero = {
       const heroId = this.heroContainer.getAttribute('data-hero');
       const image = heroData.filter((hero: any) => hero.hero_id === heroId)[0].hero_image;
       const imageSet = {
-        shadow: util.createElement('figure', 'hero-image-shadow'),
-        image: util.createElement('figure', 'hero-image'),
+        shadow: util.createElement('figure', 'c-hero-shadow'),
+        image: util.createElement('figure', 'c-hero-image'),
       };
       util.setBackgroundImage(imageSet.shadow, image.shadow.url);
       util.setImageMask(imageSet.image, image.mask.url);
@@ -37,15 +37,15 @@ const hero = {
   },
   renderHeroHeading: function (heroData: any) {
     const logoClasses = [
-      'logo-container--apple',
-      'logo-container--f',
-      'logo-container--i',
-      'logo-container--t',
-      'logo-container--n',
-      'logo-container--e',
-      'logo-container--s1',
-      'logo-container--s2',
-      'logo-container--plus',
+      'c-hero-logo__container--apple',
+      'c-hero-logo__container--f',
+      'c-hero-logo__container--i',
+      'c-hero-logo__container--t',
+      'c-hero-logo__container--n',
+      'c-hero-logo__container--e',
+      'c-hero-logo__container--s1',
+      'c-hero-logo__container--s2',
+      'c-hero-logo__container--plus',
     ];
     const ay11Title = util.createElement('span', 'visually-hidden');
     ay11Title.textContent = heroData.headline[0].text;
@@ -53,8 +53,8 @@ const hero = {
       this.heroHeading.appendChild(ay11Title);
       logoClasses.forEach((logoClass) => {
         if (this.heroHeading) {
-          const div = util.createElement('div', `logo-container ${logoClass}`, 'logo');
-          const fig = util.createElement('figure', 'logo');
+          const div = util.createElement('div', `c-hero-logo__container ${logoClass}`, 'logo');
+          const fig = util.createElement('figure', 'c-logo');
           div.appendChild(fig);
           this.heroHeading.appendChild(div);
         }
