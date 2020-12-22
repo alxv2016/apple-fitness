@@ -1,18 +1,25 @@
 const util = {
-  setBackgroundImage: function (element: HTMLElement, url: string) {
+  backgroundImage(element: HTMLElement, url: string) {
     element.style.backgroundImage = `url('${url}')`;
   },
-  setImageMask: function (element: HTMLElement, url: string) {
+  maskImage(element: HTMLElement, url: string) {
     element.style.webkitMaskImage = `url('${url}')`;
     element.style.maskImage = `url('${url}')`;
   },
-  createElement: function (element: string, className: string | null = null, dataTarget: string | null = null) {
-    const el = document.createElement(element) as HTMLElement;
+  createElement(tag: string, className: string | null = null, data: string | null = null) {
+    const el = document.createElement(tag) as HTMLElement;
     className ? (el.className = className) : el;
-    dataTarget ? el.setAttribute('data-target', dataTarget) : el;
+    data ? el.setAttribute('data-target', data) : el;
     return el;
   },
-  createVideoElement: function (element: string, className: string | null = null, dataTarget: string | null = null) {
+  createMetric(metricClass: string, iconClass: string, dataName: string) {
+    const renders = {
+      metric: util.createElement('figure', `c-metric ${metricClass}`, dataName),
+      metric_icon: util.createElement('figure', `c-metric ${iconClass}`, dataName),
+    };
+    return renders;
+  },
+  createVideoElement(element: string, className: string | null = null, dataTarget: string | null = null) {
     const el = document.createElement(element) as HTMLMediaElement;
     className ? (el.className = className) : el;
     el.muted = true;
@@ -22,8 +29,18 @@ const util = {
     dataTarget ? el.setAttribute('data-target', dataTarget) : el;
     return el;
   },
-  randomize: function (min: number, max: number) {
+  randomize(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+  renderImage(el: HTMLElement, url: string, maskUrl: string | null = null) {
+    this.backgroundImage(el, url);
+    if (maskUrl) {
+      this.maskImage(el, maskUrl);
+    }
+  },
+  renderVideo(image: HTMLElement, video: HTMLMediaElement, url: string, vidSrc: any) {
+    this.backgroundImage(image, url);
+    video.src = vidSrc;
   },
 };
 export default util;

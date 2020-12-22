@@ -1,12 +1,41 @@
 .hero-content {
+  --progress-start: 0%;
+  --progess-end: 0%;
+  --end-progress-start: 0%;
+  --end-progess-end: 0%;
   position: relative;
   @include container-padding;
   max-width: $max-content-width;
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    transform-origin: bottom center;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+  }
+  &::before {
+    position: absolute;
+    content: '';
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    transform-origin: bottom center;
+    background: linear-gradient(
+      355deg,
+      rgba(color('darker'), 1) var(--end-progress-start),
+      rgba(color('darker'), 0) var(--end-progress-end)
+    );
+  }
 }
 
 .pricing-grid {
-  --progress-start: 0%;
-  --progess-end: 0%;
   position: relative;
   margin-top: $layout--lg;
   display: grid;
@@ -20,21 +49,6 @@
 
   &__item {
     position: relative;
-  }
-
-  &::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    z-index: 2;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(
-      175deg,
-      rgba(color('darker'), 0) var(--progress-start),
-      rgba(color('darker'), 1) var(--progress-end)
-    );
-    transform-origin: bottom center;
   }
 }
 

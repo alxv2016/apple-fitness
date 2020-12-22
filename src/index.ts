@@ -3,13 +3,13 @@ import Axios from 'axios';
 import hero from './hero';
 import intro from './intro';
 import metrics from './metrics';
-import util from './utility';
+import header from './header';
 // import accordion from './accordion';
 // import slider from './slider';
-import scrollTrigger from './scroll-trigger';
+// import scrollTrigger from './scroll-trigger';
 // accordion.initAccordion();
 // slider.initSlider();
-scrollTrigger.stickyHeader();
+header.init();
 hero.randomizeHero();
 proccessData();
 
@@ -18,9 +18,6 @@ async function masterRef(): Promise<string> {
 }
 
 async function getData(ref: string) {
-  hero.heroContainer?.setAttribute('data-state', 'loading');
-  hero.heroContent?.setAttribute('data-state', 'loading');
-  hero.heroPricing?.setAttribute('data-state', 'loading');
   const query = '[[at(document.type, "apple_fitness_plus")]]';
   return await Axios.get(`${process.env.API_URL}/documents/search`, {
     params: {ref: ref, access_token: process.env.ACCESS_TOKEN, q: query},
@@ -34,10 +31,8 @@ async function proccessData() {
     const appleFitnessData = data[0].data.body;
     // throw new Error('uh oh');
     accessData(appleFitnessData);
-    hero.heroContent?.removeAttribute('data-state');
-    hero.heroPricing?.removeAttribute('data-state');
-    hero.heroContainer?.removeAttribute('data-state');
-    scrollTrigger.initScrollTrigger();
+    // adde loading skeleton
+    // scrollTrigger.initScrollTrigger();
   } catch (error) {
     console.log(error.message);
   }

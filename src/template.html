@@ -19,7 +19,7 @@
       <section class="section section--overflow">
         <div class="c-hero" data-trigger="hero" data-target="hero">
           <div class="c-hero__container" data-target="hero-container"></div>
-          <h1 class="c-hero-logo" data-target="hero-heading"></h1>
+          <h1 class="c-hero-logo" data-target="hero-logo"></h1>
         </div>
         <div class="hero-content" data-target="hero-content" data-trigger="hero-content">
           <h2 class="title-display title--gradient" data-target="move-title"></h2>
@@ -92,17 +92,18 @@
       </section>
       <!-- Workouts -->
       <section class="section section--margin-top section--overflow">
-        <div class="workouts-media">
-          <div class="workouts-hero" data-target="workouts-hero" data-trigger="workouts-hero">
-            <figure class="workouts-hero__shadow"></figure>
-            <figure class="workouts-hero__image"></figure>
-            <div class="workouts-hero-metrics" data-target="workouts-hero-metrics">
-              <figure class="workouts-metric-yoga" data-target="workouts-metric-yoga"></figure>
-              <figure class="workouts-metric-clock" data-target="workouts-metric-clock"></figure>
-              <figure class="workouts-metric-music" data-target="workouts-metric-music"></figure>
+        <div class="l-service-media">
+          <div class="c-section-hero c-section-hero--workouts" data-target="workouts-hero" data-trigger="workouts-hero">
+            <figure class="c-section-hero__shadow"></figure>
+            <figure class="c-section-hero__image"></figure>
+            <div class="c-hero-metrics c-hero-metrics--workouts" data-target="workouts-hero-metrics">
+              <figure class="c-metric c-metric--yoga" data-target="workouts-metric-yoga"></figure>
+              <figure class="c-metric c-metric--clock" data-target="workouts-metric-clock"></figure>
+              <figure class="c-metric c-metric--music" data-target="workouts-metric-music"></figure>
             </div>
           </div>
         </div>
+
         <div class="workouts-content section__container" data-target="workouts-content" data-trigger="workouts-content">
           <h2 class="title-overline" data-target="workouts-intro">Workouts</h2>
           <h3 class="title-display title--contained" data-target="workouts-intro">An exercise in simplicity.</h3>
@@ -274,14 +275,10 @@
             </p>
           </div>
         </div>
-        <div
-          class="workout-suggestions l--margin-top section__container"
-          data-target="workouts-suggestions"
-          data-trigger="workouts-suggestions"
-        >
-          <div class="workout-suggestions-ipad">
-            <figure class="workout-suggestions-ipad__render"></figure>
-            <figure class="workout-suggestions-ipad__reveal"></figure>
+        <div class="l-service-value-prop" data-target="workouts-suggestions" data-trigger="workouts-suggestions">
+          <div class="c-ipad">
+            <figure class="c-ipad__mock-dimmed"></figure>
+            <figure class="c-ipad__mock"></figure>
           </div>
           <p class="large-print compact--print">
             <strong>Smart suggestions do the heavy lifting for you.</strong>
