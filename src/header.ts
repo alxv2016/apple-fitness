@@ -6,7 +6,7 @@ const header = {
   init() {
     ScrollTrigger.create({
       onUpdate: (self: any) => {
-        const headerNav = document.querySelector('[data-target="header"]');
+        const headerNav = document.querySelector<HTMLElement>('[data-target="header"]');
         const scrollDirection = self.direction;
         const scrollPos = self.scroller.pageYOffset;
         let scrollingDown = false;

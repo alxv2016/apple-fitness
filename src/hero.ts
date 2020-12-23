@@ -54,7 +54,7 @@ const hero = {
       ay11Title.textContent = heroData.headline[0].text;
       this.heroLogo.appendChild(ay11Title);
       logoClasses.forEach((logoClass) => {
-        const div = util.createElement('div', `c-hero-logo__container ${logoClass}`, 'logo');
+        const div = util.createElement('div', `c-hero-logo__container ${logoClass}`);
         const fig = util.createElement('figure', 'c-logo');
         div.appendChild(fig);
         if (this.heroLogo) {
@@ -92,20 +92,20 @@ const hero = {
     }
   },
   renderAnimations() {
-    gsap.to('[data-target="logo"]', {
-      yPercent: -40,
+    gsap.to('[data-target="hero-container"]', {
+      y: -40,
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="hero"]',
         start: 'top top',
         end: 'bottom top',
-        scrub: 1,
-        onUpdate: (self: any) => {
-          const progress = Math.floor(self.progress * 100);
-          let endProgress = progress * 2;
+        scrub: 0.65,
+        onUpdate: ({progress}) => {
+          const scrollProgress = Math.floor(progress * 100);
+          let endProgress = scrollProgress * 2;
           endProgress > 100 ? (endProgress = 100) : endProgress;
           if (this.hero) {
-            this.hero.style.setProperty('--progress-start', `${progress}%`);
+            this.hero.style.setProperty('--progress-start', `${scrollProgress}%`);
             this.hero.style.setProperty('--progress-end', `${endProgress}%`);
           }
         },
@@ -122,13 +122,13 @@ const hero = {
         trigger: '[data-trigger="hero-content"]',
         start: '-=620 center',
         end: 'bottom center',
-        scrub: 1,
-        onUpdate: (self: any) => {
-          const progress = Math.floor(self.progress * 100);
-          let endProgress = Math.round(progress * 1.5);
+        scrub: 0.65,
+        onUpdate: ({progress}) => {
+          const scrollProgress = Math.floor(progress * 100);
+          let endProgress = Math.round(scrollProgress * 1.5);
           endProgress > 100 ? (endProgress = 100) : endProgress;
           if (this.heroContent) {
-            this.heroContent.style.setProperty('--progress-start', `${progress}%`);
+            this.heroContent.style.setProperty('--progress-start', `${scrollProgress}%`);
             this.heroContent.style.setProperty('--progress-end', `${endProgress}%`);
           }
         },

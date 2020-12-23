@@ -15,22 +15,15 @@
     width: 792px;
     height: 676px;
   }
-  &__mock-dimmed,
   &__mock {
     position: absolute;
+    z-index: 2;
     height: inherit;
     width: inherit;
     background-size: contain;
     background-repeat: no-repeat;
     mask-size: contain;
     mask-repeat: no-repeat;
-  }
-  &__mock-dimmed {
-    z-index: 3;
-    opacity: 1;
-  }
-  &__mock {
-    z-index: 2;
   }
 
   &::after {

@@ -1,10 +1,8 @@
 import gsap from 'gsap';
 import util from './utility';
-import {ScrollTrigger} from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const metrics = {
+  deviceSyncUp: document.querySelector<HTMLElement>('[data-target="device-sync-up"]'),
   hero: document.querySelector<HTMLElement>('[data-target="metrics-hero"]'),
   heroContent: document.querySelector<HTMLElement>('[data-target="metrics-content"]'),
   heroMetrics: document.querySelector<HTMLElement>('[data-target="fitness-metrics"]'),
@@ -23,7 +21,7 @@ const metrics = {
       image: util.createElement('figure', 'c-section-hero__image'),
     };
     if (this.hero) {
-      util.renderImage(renders.shadow, metricsData.metric_hero.shadow.url);
+      util.renderImage(renders.shadow, metricsData.metrics_hero.shadow.url);
       util.renderImage(renders.image, metricsData.metrics_hero.url, metricsData.metrics_hero.mask.url);
       this.hero.prepend(renders.shadow, renders.image);
       if (this.heroMetrics) {
@@ -76,24 +74,22 @@ const metrics = {
     const renders = {
       appleWatch: {
         container: util.createElement('div', 'c-apple-watch', 'metrics-watch'),
-        reveal: util.createElement('figure', 'c-apple-watch__mock-dimmed', 'metrics-watch-reveal'),
         image: util.createElement('figure', 'c-apple-watch__mock'),
         screen: {
           container: util.createElement('div', 'c-apple-watch-screen'),
           static: util.createElement('figure', 'c-apple-watch-screen__static'),
           video: util.createVideoElement('video', 'c-apple-watch-screen__video', 'metrics-watch-video'),
-          videoSrc: './assets/metrics_watch.mp4',
+          videoSrc: require('./assets/metrics_watch.mp4'),
         },
       },
       iphone: {
         container: util.createElement('div', 'c-iphone c-iphone--landscape', 'metrics-iphone'),
-        reveal: util.createElement('figure', 'c-iphone__mock-dimed', 'metrics-iphone-reveal'),
         image: util.createElement('figure', 'c-iphone__mock'),
         screen: {
           container: util.createElement('div', 'c-iphone-screen'),
           static: util.createElement('figure', 'c-iphone-screen__static'),
           video: util.createVideoElement('video', 'c-iphone-screen__video', 'metrics-iphone-video'),
-          videoSrc: './assets/metrics_iphone.mp4',
+          videoSrc: require('./assets/metrics_iphone.mp4'),
         },
       },
     };
@@ -107,11 +103,6 @@ const metrics = {
             break;
           case data === 'metrics-heart-rate-renders':
             // watch
-            util.renderImage(
-              renders.appleWatch.reveal,
-              metricsData.metrics_watch.reveal.url,
-              metricsData.metrics_watch.mask.url
-            );
             util.renderImage(
               renders.appleWatch.image,
               metricsData.metrics_watch.url,
@@ -128,17 +119,8 @@ const metrics = {
               renders.appleWatch.screen.static,
               renders.appleWatch.screen.video
             );
-            renders.appleWatch.container.append(
-              renders.appleWatch.image,
-              renders.appleWatch.reveal,
-              renders.appleWatch.screen.container
-            );
+            renders.appleWatch.container.append(renders.appleWatch.image, renders.appleWatch.screen.container);
             // iphone
-            util.renderImage(
-              renders.iphone.reveal,
-              metricsData.metrics_iphone.reveal.url,
-              metricsData.metrics_iphone.mask.url
-            );
             util.renderImage(renders.iphone.image, metricsData.metrics_iphone.url, metricsData.metrics_iphone.mask.url);
             util.renderVideo(
               renders.iphone.screen.static,
@@ -148,11 +130,7 @@ const metrics = {
             );
 
             renders.iphone.screen.container.append(renders.iphone.screen.static, renders.iphone.screen.video);
-            renders.iphone.container.append(
-              renders.iphone.image,
-              renders.iphone.reveal,
-              renders.iphone.screen.container
-            );
+            renders.iphone.container.append(renders.iphone.image, renders.iphone.screen.container);
 
             metric.append(renders.appleWatch.container, renders.iphone.container);
             break;
@@ -173,7 +151,7 @@ const metrics = {
           container: util.createElement('div', 'c-apple-tv-screen'),
           static: util.createElement('figure', 'c-apple-tv-screen__static'),
           video: util.createVideoElement('video', 'c-apple-tv-screen__video', 'metrics-tv-video'),
-          videoSrc: './assets/metrics_tv.mp4',
+          videoSrc: require('./assets/metrics_tv.mp4'),
         },
       },
     };
@@ -216,9 +194,9 @@ const metrics = {
     const iphone = document.querySelector<HTMLElement>('[data-target="metrics-iphone"]');
     const ipad = document.querySelector<HTMLElement>('[data-target="metrics-ipad"]');
     const appleTv = document.querySelector<HTMLElement>('[data-target="metrics-tv"]');
-    const watchScreen = document.querySelector<HTMLMediaElement>('[data-target="metrics-watch-video"]');
-    const iphoneScreen = document.querySelector<HTMLMediaElement>('[data-target="metrics-iphone-video"]');
-    const tvScreen = document.querySelector<HTMLMediaElement>('[data-target="metrics-tv-video"]');
+    const appleWatchVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-watch-video"]');
+    const iphoneVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-iphone-video"]');
+    const appleTvVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-tv-video"]');
 
     const heroMetrics = gsap.timeline({
       defaults: {
@@ -228,17 +206,20 @@ const metrics = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="metrics-hero"]',
-        start: '-=200 center',
+        start: 'top center',
         end: 'bottom center',
-        scrub: 0.75,
-        onUpdate: (self) => {
-          const progress = Math.floor(self.progress * 100);
-          const heroReveal = document.querySelector<HTMLElement>('[data-target="metrics-hero"]');
-          if (heroReveal) {
-            let endProgress = progress * 6;
-            endProgress > 100 ? (endProgress = 100) : endProgress;
-            heroReveal.style.setProperty('--progress-start', `${progress}%`);
-            heroReveal.style.setProperty('--progress-end', `${endProgress}%`);
+        scrub: 0.65,
+        onUpdate: ({progress}) => {
+          const scrollProgress = Math.floor(progress * 100);
+          let endProgress = scrollProgress * 2;
+          endProgress > 100 ? (endProgress = 100) : endProgress;
+          if (this.deviceSyncUp) {
+            this.deviceSyncUp.style.setProperty('--progress-start', `${scrollProgress}%`);
+            this.deviceSyncUp.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+          if (this.hero) {
+            this.hero.style.setProperty('--progress-start', `${scrollProgress}%`);
+            this.hero.style.setProperty('--progress-end', `${endProgress}%`);
           }
         },
       },
@@ -271,7 +252,7 @@ const metrics = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="metrics-content"]',
-        scrub: 0.45,
+        scrub: 0.65,
         start: '-=400 center',
         end: 'center center',
       },
@@ -284,49 +265,47 @@ const metrics = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="metrics-heart-rate"]',
-        toggleActions: 'play pause resume reverse',
-        scrub: 0.45,
-        start: 'top center',
-        end: 'center center',
-        onUpdate: (self) => {
-          const progress = Math.floor(self.progress * 100);
+        scrub: 0.75,
+        start: '-=300 center',
+        end: 'bottom center',
+        onUpdate: ({progress}) => {
+          const scrollProgress = Math.floor(progress * 100);
+          let endProgress = scrollProgress * 2;
+          endProgress > 100 ? (endProgress = 100) : endProgress;
           if (appleWatch && iphone) {
-            let endProgress = progress * 2;
-            endProgress > 100 ? (endProgress = 100) : endProgress;
-            appleWatch.style.setProperty('--progress-start', `${progress}%`);
+            appleWatch.style.setProperty('--progress-start', `${scrollProgress}%`);
             appleWatch.style.setProperty('--progress-end', `${endProgress}%`);
-            iphone.style.setProperty('--progress-start', `${progress}%`);
+            iphone.style.setProperty('--progress-start', `${scrollProgress}%`);
             iphone.style.setProperty('--progress-end', `${endProgress}%`);
           }
         },
-        onToggle: (self) => {
-          if (self.isActive && watchScreen && iphoneScreen) {
-            watchScreen.muted = true;
-            iphoneScreen.muted = true;
-            watchScreen.play();
-            iphoneScreen.play();
-            watchScreen.addEventListener('ended', this.hideVideo);
-            iphoneScreen.addEventListener('ended', this.hideVideo);
-          } else {
-            if (watchScreen && iphoneScreen) {
-              watchScreen.pause();
-              iphoneScreen.pause();
-            }
+        onEnter: ({isActive}) => {
+          if (isActive && appleWatchVideo) {
+            appleWatchVideo.muted = true;
+            appleWatchVideo.play();
+            appleWatchVideo.addEventListener('ended', this.hideVideo);
+          }
+          if (isActive && iphoneVideo) {
+            iphoneVideo.muted = true;
+            iphoneVideo.play();
+            iphoneVideo.addEventListener('ended', this.hideVideo);
           }
         },
       },
     });
 
     metricSync
-      .to('[data-target="metrics-heart-rate-renders"]', {
-        xPercent: -35,
-      })
-      .from(
+      .fromTo(
         '[data-target="metrics-heart-rate-renders"]',
         {
-          scale: 1.75,
+          scale: 2.45,
+          opacity: 0.25,
         },
-        0
+        {
+          xPercent: -35,
+          scale: 1,
+          opacity: 1,
+        }
       )
       .from(
         '[data-target="metrics-iphone"]',
@@ -334,17 +313,7 @@ const metrics = {
           xPercent: 25,
           opacity: 0,
         },
-        0
-      )
-      .to('[data-target="metrics-watch-reveal"]', {
-        opacity: 0,
-      })
-      .to(
-        '[data-target="metrics-iphone-reveal"]',
-        {
-          opacity: 0,
-        },
-        0
+        0.125
       )
       .from(
         '[data-target="metrics-heart-rate-intro"]',
@@ -361,13 +330,13 @@ const metrics = {
         trigger: '[data-trigger="metrics-milestone"]',
         start: '-=100 center',
         end: 'bottom center',
-        scrub: 0.45,
-        onUpdate: (self) => {
-          const progress = Math.floor(self.progress * 100);
+        scrub: 0.65,
+        onUpdate: ({progress}) => {
+          const scrollProgress = Math.floor(progress * 100);
+          let endProgress = scrollProgress * 2;
+          endProgress > 100 ? (endProgress = 100) : endProgress;
           if (ipad) {
-            let endProgress = progress * 2;
-            endProgress > 100 ? (endProgress = 100) : endProgress;
-            ipad.style.setProperty('--progress-start', `${progress}%`);
+            ipad.style.setProperty('--progress-start', `${scrollProgress}%`);
             ipad.style.setProperty('--progress-end', `${endProgress}%`);
           }
         },
@@ -375,17 +344,22 @@ const metrics = {
     });
 
     milestone
-      .from('[data-target="metrics-ipad"]', {
-        scale: 0.94,
-      })
-      .to('[data-target="metrics-ipad-reveal"]', {
-        opacity: 0,
-      })
+      .fromTo(
+        '[data-target="metrics-ipad"]',
+        {
+          scale: 0.94,
+          opacity: 0.25,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+        }
+      )
       .from(
         '[data-target="metrics-milestone-intro"]',
         {
           opacity: 0,
-          y: -48,
+          y: -60,
         },
         0.45
       );
@@ -397,42 +371,43 @@ const metrics = {
         start: '-=100 center',
         end: 'bottom center',
         toggleActions: 'play pause resume reverse',
-        scrub: 0.45,
-        onUpdate: (self) => {
-          const progress = Math.floor(self.progress * 100);
+        scrub: 0.65,
+        onUpdate: ({progress}) => {
+          const scrollProgress = Math.floor(progress * 100);
+          let endProgress = scrollProgress * 2;
+          endProgress > 100 ? (endProgress = 100) : endProgress;
           if (appleTv) {
-            let endProgress = progress * 2;
-            endProgress > 100 ? (endProgress = 100) : endProgress;
-            appleTv.style.setProperty('--progress-start', `${progress}%`);
+            appleTv.style.setProperty('--progress-start', `${scrollProgress}%`);
             appleTv.style.setProperty('--progress-end', `${endProgress}%`);
           }
         },
-        onToggle: (self) => {
-          if (self.isActive && tvScreen) {
-            tvScreen.muted = true;
-            tvScreen.play();
-            tvScreen.addEventListener('ended', this.hideVideo);
-          } else {
-            if (tvScreen) {
-              tvScreen.pause();
-            }
+        onEnter: ({isActive}) => {
+          if (isActive && appleTvVideo) {
+            appleTvVideo.muted = true;
+            appleTvVideo.play();
+            appleTvVideo.addEventListener('ended', this.hideVideo);
           }
         },
       },
     });
 
     competition
-      .from('[data-target="metrics-tv"]', {
-        scale: 0.94,
-      })
-      .to('[data-target="metrics-tv-reveal"]', {
-        opacity: 0,
-      })
+      .fromTo(
+        '[data-target="metrics-tv"]',
+        {
+          scale: 0.94,
+          opacity: 0.25,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+        }
+      )
       .from(
         '[data-target="metrics-competition-intro"]',
         {
           opacity: 0,
-          y: -48,
+          y: -60,
         },
         0.45
       );
