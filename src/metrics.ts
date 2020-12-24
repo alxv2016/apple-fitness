@@ -19,11 +19,13 @@ const metrics = {
     const renders = {
       shadow: util.createElement('figure', 'c-section-hero__shadow'),
       image: util.createElement('figure', 'c-section-hero__image'),
+      duoTone: util.createElement('figure', 'c-section-hero__duo-tone', 'metrics-hero-duo-tone'),
     };
     if (this.hero) {
       util.renderImage(renders.shadow, metricsData.metrics_hero.shadow.url);
       util.renderImage(renders.image, metricsData.metrics_hero.url, metricsData.metrics_hero.mask.url);
-      this.hero.prepend(renders.shadow, renders.image);
+      util.renderImage(renders.duoTone, metricsData.metrics_hero.duo_tone.url, metricsData.metrics_hero.mask.url);
+      this.hero.prepend(renders.shadow, renders.image, renders.duoTone);
       if (this.heroMetrics) {
         Array.from(this.heroMetrics.children).forEach((metric) => {
           const data = metric.getAttribute('data-target');
@@ -141,11 +143,9 @@ const metrics = {
   renderValueContent(metricsData: any) {
     const renders = {
       ipad: {
-        reveal: util.createElement('figure', 'c-ipad__mock-dimmed', 'metrics-ipad-reveal'),
         image: util.createElement('figure', 'c-ipad__mock'),
       },
       tv: {
-        reveal: util.createElement('figure', 'c-apple-tv__mock-dimmed', 'metrics-tv-reveal'),
         image: util.createElement('figure', 'c-apple-tv__mock'),
         screen: {
           container: util.createElement('div', 'c-apple-tv-screen'),
@@ -155,15 +155,13 @@ const metrics = {
         },
       },
     };
-    util.renderImage(renders.ipad.reveal, metricsData.metrics_ipad.reveal.url, metricsData.metrics_ipad.mask.url);
     util.renderImage(renders.ipad.image, metricsData.metrics_ipad.url, metricsData.metrics_ipad.mask.url);
 
     if (this.milestoneContent && this.milestoneContent.firstElementChild && this.milestoneContent.lastElementChild) {
-      this.milestoneContent.firstElementChild.append(renders.ipad.image, renders.ipad.reveal);
+      this.milestoneContent.firstElementChild.append(renders.ipad.image);
       this.milestoneContent.lastElementChild.innerHTML = metricsData.milestone_intro[0].text;
     }
 
-    util.renderImage(renders.tv.reveal, metricsData.metrics_tv.reveal.url, metricsData.metrics_tv.mask.url);
     util.renderImage(renders.tv.image, metricsData.metrics_tv.url, metricsData.metrics_tv.mask.url);
     util.renderVideo(
       renders.tv.screen.static,
@@ -178,11 +176,7 @@ const metrics = {
       this.competitionContent.firstElementChild &&
       this.competitionContent.lastElementChild
     ) {
-      this.competitionContent.firstElementChild.append(
-        renders.tv.image,
-        renders.tv.reveal,
-        renders.tv.screen.container
-      );
+      this.competitionContent.firstElementChild.append(renders.tv.image, renders.tv.screen.container);
       this.competitionContent.lastElementChild.innerHTML = metricsData.competition_intro[0].text;
     }
   },
@@ -197,6 +191,18 @@ const metrics = {
     const appleWatchVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-watch-video"]');
     const iphoneVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-iphone-video"]');
     const appleTvVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-tv-video"]');
+
+    gsap.to('[data-target="metrics-hero-duo-tone"]', {
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="metrics-hero"]',
+        start: '+=300 center',
+        end: 'center center',
+        scrub: 0.65,
+      },
+    });
 
     const heroMetrics = gsap.timeline({
       defaults: {
@@ -325,6 +331,9 @@ const metrics = {
       );
 
     const milestone = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="metrics-milestone"]',
@@ -365,6 +374,9 @@ const metrics = {
       );
 
     const competition = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="metrics-competition"]',

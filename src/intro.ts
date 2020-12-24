@@ -210,6 +210,9 @@ const intro = {
       );
 
     const appIntro = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="app-intro"]',
@@ -242,6 +245,9 @@ const intro = {
       );
 
     const ipadWatch = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="device-sync-up"]',

@@ -2,23 +2,32 @@ import gsap from 'gsap';
 import util from './utility';
 
 const workouts = {
+  metricsCompetition: document.querySelector<HTMLElement>('[data-target="metrics-competition"]'),
   hero: document.querySelector<HTMLElement>('[data-target="workouts-hero"]'),
   workoutsHeroMetrics: document.querySelector<HTMLElement>('[data-target="workouts-hero-metrics"]'),
   workoutsContent: document.querySelector<HTMLElement>('[data-target="workouts-content"]'),
   workoutIcons: document.querySelector<HTMLElement>('[data-target="workout-icons"]'),
   popularWorkoutsIntro: document.querySelector<HTMLElement>('[data-target="popular-workouts-intro"]'),
   backgroundHero: document.querySelector<HTMLElement>('[data-target="background-hero"]'),
+  workoutsAnywhereHeadline: document.querySelector<HTMLElement>('[data-target="workouts-anywhere-headline"]'),
+  workoutsAnywhereIntro: document.querySelector<HTMLElement>('[data-target="workouts-anywhere-intro"]'),
+  workoutsSmartSuggestions: document.querySelector<HTMLElement>('[data-target="workouts-smart-suggestions"]'),
+  workoutsSearch: document.querySelector<HTMLElement>('[data-target="workouts-search"]'),
+  ipadSmartSuggestion: document.querySelector<HTMLElement>('[data-target="smart-suggestions-ipad"]'),
+  ipadSearch: document.querySelector<HTMLElement>('[data-target="search-ipad"]'),
   processData(workoutsData: any) {
     console.log(workoutsData);
     this.renderHero(workoutsData.primary);
     this.renderWorkouts(workoutsData.items);
     this.renderWorkoutAnywhere(workoutsData.primary);
+    this.renderValueContent(workoutsData.primary);
     this.renderAnimations();
   },
   renderHero(workoutsData: any) {
     const renders = {
       shadow: util.createElement('figure', 'c-section-hero__shadow'),
       image: util.createElement('figure', 'c-section-hero__image'),
+      duoTone: util.createElement('figure', 'c-section-hero__duo-tone', 'workouts-hero-duo-tone'),
       metrics: {
         yoga: util.createElement('figure', 'c-metric c-metric--yoga', 'workouts-metric-yoga'),
         clock: util.createElement('figure', 'c-metric c-metric--clock', 'workouts-metric-clock'),
@@ -28,7 +37,8 @@ const workouts = {
     if (this.hero) {
       util.renderImage(renders.shadow, workoutsData.hero.shadow.url);
       util.renderImage(renders.image, workoutsData.hero.url, workoutsData.hero.mask.url);
-      this.hero.prepend(renders.shadow, renders.image);
+      util.renderImage(renders.duoTone, workoutsData.hero.duo_tone.url, workoutsData.hero.mask.url);
+      this.hero.prepend(renders.shadow, renders.image, renders.duoTone);
     }
     if (this.workoutsHeroMetrics) {
       util.renderImage(renders.metrics.yoga, workoutsData.metric_yoga.url);
@@ -96,6 +106,50 @@ const workouts = {
     if (this.backgroundHero) {
       this.backgroundHero.append(renders.container);
     }
+    if (this.workoutsAnywhereHeadline) {
+      this.workoutsAnywhereHeadline.textContent = workoutsData.anywhere_headling[0].text;
+    }
+    if (this.workoutsAnywhereIntro) {
+      this.workoutsAnywhereIntro.textContent = workoutsData.anywhere_intro[0].text;
+    }
+  },
+  renderValueContent(workoutsData: any) {
+    const renders = {
+      ipadSmartSuggestions: {
+        image: util.createElement('figure', 'c-ipad__mock'),
+      },
+      ipadSearch: {
+        image: util.createElement('figure', 'c-ipad__mock'),
+      },
+    };
+    util.renderImage(
+      renders.ipadSmartSuggestions.image,
+      workoutsData.smart_suggestions.url,
+      workoutsData.smart_suggestions.mask.url
+    );
+    util.renderImage(renders.ipadSearch.image, workoutsData.search.url, workoutsData.search.mask.url);
+    if (this.workoutsSmartSuggestions) {
+      Array.from(this.workoutsSmartSuggestions.children).forEach((item) => {
+        const data = item.getAttribute('data-target');
+        if (data === 'smart-suggestions-ipad') {
+          item.append(renders.ipadSmartSuggestions.image);
+        }
+        if (data === 'smart-suggestions-intro') {
+          item.innerHTML = workoutsData.suggestions_intro[0].text;
+        }
+      });
+    }
+    if (this.workoutsSearch) {
+      Array.from(this.workoutsSearch.children).forEach((item) => {
+        const data = item.getAttribute('data-target');
+        if (data === 'search-ipad') {
+          item.append(renders.ipadSearch.image);
+        }
+        if (data === 'search-intro') {
+          item.innerHTML = workoutsData.search_intro[0].text;
+        }
+      });
+    }
   },
   hideVideo(ev: any) {
     ev.target.removeEventListener('ended', this.hideVideo);
@@ -105,6 +159,9 @@ const workouts = {
     const backgroundHeroVideo = document.querySelector<HTMLMediaElement>('[data-target="background-hero-video"]');
 
     const backgroundHero = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="workouts-anywhere"]',
@@ -139,7 +196,22 @@ const workouts = {
       opacity: 0,
     });
 
+    gsap.to('[data-target="workouts-hero-duo-tone"]', {
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="workouts-hero"]',
+        start: '+=300 center',
+        end: 'center center',
+        scrub: 0.65,
+      },
+    });
+
     const workoutsHero = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="workouts-hero"]',
@@ -153,6 +225,10 @@ const workouts = {
           if (this.hero) {
             this.hero.style.setProperty('--progress-start', `${scrollProgress}%`);
             this.hero.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+          if (this.metricsCompetition) {
+            this.metricsCompetition.style.setProperty('--progress-start', `${scrollProgress}%`);
+            this.metricsCompetition.style.setProperty('--progress-end', `${endProgress}%`);
           }
         },
       },
@@ -192,6 +268,9 @@ const workouts = {
     });
 
     const workoutIcons = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="popular-workouts"]',
@@ -234,6 +313,92 @@ const workouts = {
           opacity: 0,
         },
         0.095
+      );
+
+    const smartSuggestions = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="workouts-smart-suggestions"]',
+        start: '-=100 center',
+        end: 'bottom center',
+        scrub: 0.65,
+        onUpdate: ({progress}) => {
+          const scrollProgress = Math.floor(progress * 100);
+          let endProgress = scrollProgress * 2;
+          endProgress > 100 ? (endProgress = 100) : endProgress;
+          if (this.ipadSmartSuggestion) {
+            this.ipadSmartSuggestion.style.setProperty('--progress-start', `${scrollProgress}%`);
+            this.ipadSmartSuggestion.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+        },
+      },
+    });
+
+    smartSuggestions
+      .fromTo(
+        '[data-target="smart-suggestions-ipad"]',
+        {
+          scale: 0.94,
+          opacity: 0.25,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+        }
+      )
+      .from(
+        '[data-target="smart-suggestions-intro"]',
+        {
+          opacity: 0,
+          y: -60,
+        },
+        0.45
+      );
+
+    const workoutsSearch = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="workouts-search"]',
+        start: '-=100 center',
+        end: 'bottom center',
+        scrub: 0.65,
+        onUpdate: ({progress}) => {
+          const scrollProgress = Math.floor(progress * 100);
+          let endProgress = scrollProgress * 2;
+          endProgress > 100 ? (endProgress = 100) : endProgress;
+          if (this.ipadSearch) {
+            this.ipadSearch.style.setProperty('--progress-start', `${scrollProgress}%`);
+            this.ipadSearch.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+        },
+      },
+    });
+
+    workoutsSearch
+      .fromTo(
+        '[data-target="search-ipad"]',
+        {
+          scale: 0.94,
+          opacity: 0.25,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+        }
+      )
+      .from(
+        '[data-target="search-intro"]',
+        {
+          opacity: 0,
+          y: -60,
+        },
+        0.45
       );
   },
 };

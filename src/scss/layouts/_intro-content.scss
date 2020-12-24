@@ -97,20 +97,3 @@
     width: 120px;
   }
 }
-
-.device-sync-up {
-  --progress-start: 0%;
-  --progress-end: 0%;
-  &::after {
-    position: absolute;
-    content: '';
-    z-index: 2;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(
-      355deg,
-      rgba(color('darker'), 1) var(--progress-start),
-      rgba(color('darker'), 0) var(--progress-end)
-    );
-  }
-}
