@@ -4,9 +4,9 @@ import hero from './hero';
 import intro from './intro';
 import metrics from './metrics';
 import header from './header';
+import workouts from './workouts';
 // import accordion from './accordion';
 // import slider from './slider';
-// import scrollTrigger from './scroll-trigger';
 // accordion.initAccordion();
 // slider.initSlider();
 header.init();
@@ -39,14 +39,15 @@ async function proccessData() {
 }
 
 function accessData(data: any) {
-  console.log('data', data);
+  console.log(data);
   const heroData = data.filter((content: any) => content.slice_type === 'hero_section')[0];
   const valuePropData = data.filter((content: any) => content.slice_type === 'value_prop')[0];
   const pricingData = data.filter((content: any) => content.slice_type === 'pricing')[0];
   const introData = data.filter((content: any) => content.slice_type === 'service_intro')[0];
   const metricsData = data.filter((content: any) => content.slice_type === 'metrics')[0];
-  console.log(metricsData);
+  const workoutsData = data.filter((content: any) => content.slice_type === 'workouts')[0];
   hero.processData(heroData, valuePropData, pricingData);
   intro.processData(introData);
   metrics.processData(metricsData);
+  workouts.processData(workoutsData);
 }

@@ -9,13 +9,13 @@ const metrics = {
   metricSync: document.querySelector<HTMLElement>('[data-target="metrics-heart-rate"]'),
   milestoneContent: document.querySelector<HTMLElement>('[data-target="metrics-milestone"]'),
   competitionContent: document.querySelector<HTMLElement>('[data-target="metrics-competition"]'),
-  processData: function (metricsData: any) {
+  processData(metricsData: any) {
     this.renderHero(metricsData.primary);
     this.renderMetricSync(metricsData.primary);
     this.renderValueContent(metricsData.primary);
     this.renderAnimations();
   },
-  renderHero: function (metricsData: any) {
+  renderHero(metricsData: any) {
     const renders = {
       shadow: util.createElement('figure', 'c-section-hero__shadow'),
       image: util.createElement('figure', 'c-section-hero__image'),
@@ -70,7 +70,7 @@ const metrics = {
       });
     }
   },
-  renderMetricSync: function (metricsData: any) {
+  renderMetricSync(metricsData: any) {
     const renders = {
       appleWatch: {
         container: util.createElement('div', 'c-apple-watch', 'metrics-watch'),
@@ -138,7 +138,7 @@ const metrics = {
       });
     }
   },
-  renderValueContent: function (metricsData: any) {
+  renderValueContent(metricsData: any) {
     const renders = {
       ipad: {
         reveal: util.createElement('figure', 'c-ipad__mock-dimmed', 'metrics-ipad-reveal'),
