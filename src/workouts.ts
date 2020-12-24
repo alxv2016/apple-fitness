@@ -272,11 +272,11 @@ const workouts = {
         ease: 'none',
       },
       scrollTrigger: {
-        markers: false,
+        markers: true,
         trigger: '[data-trigger="popular-workouts"]',
         scrub: 0.65,
-        start: 'top center',
-        end: 'bottom center',
+        start: '-=200 center',
+        end: 'center center',
         // onUpdate: ({progress}) => {
         //   const scrollProgress = Math.floor(progress * 100);
         //   let endProgress = scrollProgress * 2;
@@ -308,11 +308,10 @@ const workouts = {
       .from(
         '[data-target="workout"]',
         {
-          //stagger: 0.25,
           scale: 0.75,
           opacity: 0,
         },
-        0.095
+        0.4
       );
 
     const smartSuggestions = gsap.timeline({

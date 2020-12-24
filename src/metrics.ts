@@ -273,7 +273,7 @@ const metrics = {
         trigger: '[data-trigger="metrics-heart-rate"]',
         scrub: 0.75,
         start: '-=300 center',
-        end: 'bottom center',
+        end: 'center center',
         onUpdate: ({progress}) => {
           const scrollProgress = Math.floor(progress * 100);
           let endProgress = scrollProgress * 2;
@@ -302,24 +302,26 @@ const metrics = {
 
     metricSync
       .fromTo(
-        '[data-target="metrics-heart-rate-renders"]',
+        '[data-target="metrics-watch"]',
         {
           scale: 2.45,
           opacity: 0.25,
         },
         {
-          xPercent: -35,
           scale: 1,
           opacity: 1,
         }
       )
+      .to('[data-target="metrics-heart-rate-renders"]', {
+        xPercent: -35,
+      })
       .from(
         '[data-target="metrics-iphone"]',
         {
-          xPercent: 25,
+          x: 80,
           opacity: 0,
         },
-        0.125
+        0.45
       )
       .from(
         '[data-target="metrics-heart-rate-intro"]',
