@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 1.2rem;
 
   &--metrics {
     width: 375px;
@@ -95,16 +96,6 @@
       rgba(color('darker'), 1) var(--progress-end)
     );
     transform-origin: bottom center;
-  }
-}
-
-.c-section-hero.c-section-hero--workouts {
-  .c-section-hero__shadow {
-    background-image: url('../assets/workout_hero_shadow.png');
-  }
-  .c-section-hero__image {
-    background-image: url('../assets/workout_hero.jpg');
-    mask-image: url('../assets/workout_hero_mask.png');
   }
 }
 
@@ -222,7 +213,6 @@
     z-index: -1;
     width: 280px;
     height: 280px;
-    background-image: url('../assets/workout_hero_clock.svg');
     @include breakpoint(md) {
       width: 474px;
       height: 474px;
@@ -237,7 +227,6 @@
     width: 158px;
     height: 45px;
     margin-left: auto;
-    background-image: url('../assets/workout_hero_pill_yoga.svg');
     @include breakpoint(md) {
       width: 265px;
       height: 75px;
@@ -252,7 +241,6 @@
     width: 215px;
     height: 45px;
     margin-right: auto;
-    background-image: url('../assets/workout_hero_pill_music.svg');
     @include breakpoint(md) {
       width: 360px;
       height: 75px;
@@ -264,10 +252,10 @@
   }
 }
 
-.c-section-hero-clipper {
-  --clip-progress: 0;
-  clip-path: inset(
-    calc(var(--clip-progress) / 10) calc(var(--clip-progress) / 2) calc(var(--clip-progress) * 1.1)
-      calc(var(--clip-progress) / 2) round 20px
-  );
-}
+// .c-section-hero-clipper {
+//   --clip-progress: 0;
+//   clip-path: inset(
+//     calc(var(--clip-progress) / 10) calc(var(--clip-progress) / 2) calc(var(--clip-progress) * 1.1)
+//       calc(var(--clip-progress) / 2) round 20px
+//   );
+// }

@@ -40,18 +40,6 @@ const trainers = {
     }
   },
   renderAnimation() {
-    gsap.to('[data-target="trainers-hero-duo-tone"]', {
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: {
-        markers: false,
-        trigger: '[data-trigger="trainers-hero"]',
-        start: '+=200 +=200',
-        end: 'center +=200',
-        scrub: 0.65,
-      },
-    });
-
     const trainersHero = gsap.timeline({
       defaults: {
         ease: 'none',
@@ -59,36 +47,49 @@ const trainers = {
       scrollTrigger: {
         markers: true,
         trigger: '[data-trigger="trainers-hero"]',
-        start: 'top top',
-        end: 'center top',
+        start: 'top +=20',
+        end: 'center +=20',
         pin: true,
         pinSpacing: false,
-        scrub: 0.175,
+        scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
+          let scrollProgress = Math.floor(progress * 100);
           let endProgress = scrollProgress * 2;
           let clipProgress = scrollProgress;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          scrollProgress > 20 ? (scrollProgress = 20) : scrollProgress;
+          endProgress > 60 ? (endProgress = 60) : endProgress;
           clipProgress > 50 ? (clipProgress = 50) : clipProgress;
           if (this.hero) {
             this.hero.style.setProperty('--progress-start', `${scrollProgress}%`);
             this.hero.style.setProperty('--progress-end', `${endProgress}%`);
-            this.hero.style.setProperty('--clip-progress', `${clipProgress}%`);
+            // this.hero.style.setProperty('--clip-progress', `${clipProgress}%`);
           }
         },
       },
     });
 
     trainersHero
-      .to('[data-target="trainers-hero"]', {
-        scale: 1.45,
-      })
-      .to('[data-target="trainers-hero"]', {
-        backgroundColor: '#131331',
+      .to('[data-target="trainers-hero-duo-tone"]', {
+        opacity: 0,
+        delay: 0.45,
       })
       .to('[data-target="trainers-hero-bw"]', {
         opacity: 1,
       })
+      .from(
+        '[data-target="trainers-hero"]',
+        {
+          scale: 1.45,
+        },
+        0.25
+      )
+      .to(
+        '[data-target="trainers-hero"]',
+        {
+          backgroundColor: '#131331',
+        },
+        0.45
+      )
       .from('[data-target="trainers-intro"]', {
         stagger: 0.25,
         ease: 'none',
