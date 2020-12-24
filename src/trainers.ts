@@ -4,6 +4,7 @@ import util from './utility';
 const trainers = {
   hero: document.querySelector<HTMLElement>('[data-target="trainers-hero"]'),
   trainersContent: document.querySelector<HTMLElement>('[data-target="trainers-content"]'),
+  trainersTitle: document.querySelector<HTMLElement>('[data-group="trainers-title"]'),
   processData(trainersData: any) {
     console.log(trainersData);
     this.renderHero(trainersData.primary);
@@ -45,24 +46,24 @@ const trainers = {
         ease: 'none',
       },
       scrollTrigger: {
-        markers: true,
+        markers: false,
         trigger: '[data-trigger="trainers-hero"]',
         start: 'top +=20',
         end: 'center +=20',
         pin: true,
-        pinSpacing: false,
         scrub: 0.65,
         onUpdate: ({progress}) => {
           let scrollProgress = Math.floor(progress * 100);
           let endProgress = scrollProgress * 2;
-          let clipProgress = scrollProgress;
           scrollProgress > 20 ? (scrollProgress = 20) : scrollProgress;
-          endProgress > 60 ? (endProgress = 60) : endProgress;
-          clipProgress > 50 ? (clipProgress = 50) : clipProgress;
+          endProgress > 70 ? (endProgress = 70) : endProgress;
           if (this.hero) {
             this.hero.style.setProperty('--progress-start', `${scrollProgress}%`);
             this.hero.style.setProperty('--progress-end', `${endProgress}%`);
-            // this.hero.style.setProperty('--clip-progress', `${clipProgress}%`);
+          }
+          if (this.trainersTitle) {
+            this.trainersTitle.style.setProperty('--progress-start', `${scrollProgress}%`);
+            this.trainersTitle.style.setProperty('--progress-end', `${endProgress}%`);
           }
         },
       },
@@ -75,6 +76,7 @@ const trainers = {
       })
       .to('[data-target="trainers-hero-bw"]', {
         opacity: 1,
+        delay: 0.25,
       })
       .from(
         '[data-target="trainers-hero"]',

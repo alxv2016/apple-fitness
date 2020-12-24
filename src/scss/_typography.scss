@@ -94,8 +94,14 @@ form legend {
 }
 
 .title--gradient {
+  --progress-start: 0%;
+  --progress-end: 0%;
   position: relative;
-  background: linear-gradient(45deg, rgba(color('move'), 1) 16%, rgba(color('exercise'), 1) 70%);
+  background: linear-gradient(
+    145deg,
+    rgba(color('exercise'), 1) var(--progress-start),
+    rgba(color('move'), 1) var(--progress-end)
+  );
   background-clip: text;
   color: transparent;
 }

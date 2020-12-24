@@ -7,6 +7,7 @@ const hero = {
   heroLogo: document.querySelector<HTMLElement>('[data-target="hero-logo"]'),
   heroContent: document.querySelector<HTMLElement>('[data-target="hero-content"]'),
   pricingGrid: document.querySelector<HTMLElement>('[data-target="pricing-grid"]'),
+  heroTitle: document.querySelector<HTMLElement>('[data-target="move-title"]'),
   processData(heroData: any, valueData: any, pricingData: any) {
     this.renderHero(heroData.items);
     this.renderHeroLogo(heroData.primary);
@@ -120,7 +121,7 @@ const hero = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="hero-content"]',
-        start: '-=620 center',
+        start: '-=600 center',
         end: 'bottom center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
@@ -130,6 +131,10 @@ const hero = {
           if (this.heroContent) {
             this.heroContent.style.setProperty('--progress-start', `${scrollProgress}%`);
             this.heroContent.style.setProperty('--progress-end', `${endProgress}%`);
+          }
+          if (this.heroTitle) {
+            this.heroTitle.style.setProperty('--progress-start', `${scrollProgress}%`);
+            this.heroTitle.style.setProperty('--progress-end', `${endProgress}%`);
           }
         },
       },
