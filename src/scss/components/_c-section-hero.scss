@@ -267,7 +267,7 @@
 .c-section-hero-clipper {
   --clip-progress: 0;
   clip-path: inset(
-    calc(var(--clip-progress) / 10) calc(var(--clip-progress) / 2) calc(var(--clip-progress) * 1.12)
+    calc(var(--clip-progress) / 10) calc(var(--clip-progress) / 2) calc(var(--clip-progress) * 1.1)
       calc(var(--clip-progress) / 2) round 20px
   );
 }

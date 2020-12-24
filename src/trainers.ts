@@ -83,6 +83,9 @@ const trainers = {
       .to('[data-target="trainers-hero"]', {
         scale: 1.45,
       })
+      .to('[data-target="trainers-hero"]', {
+        backgroundColor: '#131331',
+      })
       .to('[data-target="trainers-hero-bw"]', {
         opacity: 1,
       })
