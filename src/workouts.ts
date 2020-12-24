@@ -272,22 +272,11 @@ const workouts = {
         ease: 'none',
       },
       scrollTrigger: {
-        markers: true,
+        markers: false,
         trigger: '[data-trigger="popular-workouts"]',
         scrub: 0.65,
         start: '-=200 center',
         end: 'center center',
-        // onUpdate: ({progress}) => {
-        //   const scrollProgress = Math.floor(progress * 100);
-        //   let endProgress = scrollProgress * 2;
-        //   endProgress > 100 ? (endProgress = 100) : endProgress;
-        //   if (appleWatch && iphone) {
-        //     appleWatch.style.setProperty('--progress-start', `${scrollProgress}%`);
-        //     appleWatch.style.setProperty('--progress-end', `${endProgress}%`);
-        //     iphone.style.setProperty('--progress-start', `${scrollProgress}%`);
-        //     iphone.style.setProperty('--progress-end', `${endProgress}%`);
-        //   }
-        // },
         onEnter: ({isActive}) => {
           if (isActive) {
             Array.from(workoutIconVideos).forEach((video: any) => {

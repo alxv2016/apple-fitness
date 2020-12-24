@@ -32,9 +32,24 @@
     }
   }
 
+  &--trainers {
+    width: 375px;
+    height: 531px;
+    transform-origin: top center;
+    @include breakpoint(md) {
+      width: 628px;
+      height: 890px;
+    }
+    @include breakpoint(lg) {
+      width: 860px;
+      height: 1218px;
+    }
+  }
+
   &__shadow,
   &__image,
-  &__duo-tone {
+  &__duo-tone,
+  &__bw {
     position: absolute;
     width: inherit;
     height: inherit;
@@ -43,7 +58,8 @@
   }
 
   &__image,
-  &__duo-tone {
+  &__duo-tone,
+  &__bw {
     z-index: 1;
     mask-size: contain;
     mask-repeat: no-repeat;
@@ -52,6 +68,11 @@
   &__duo-tone {
     z-index: 2;
     opacity: 1;
+  }
+
+  &__bw {
+    z-index: 1;
+    opacity: 0;
   }
 
   &::after {
@@ -241,4 +262,12 @@
       height: 103px;
     }
   }
+}
+
+.c-section-hero-clipper {
+  --clip-progress: 0;
+  clip-path: inset(
+    calc(var(--clip-progress) / 10) calc(var(--clip-progress) / 2) calc(var(--clip-progress) * 1.12)
+      calc(var(--clip-progress) / 2) round 20px
+  );
 }

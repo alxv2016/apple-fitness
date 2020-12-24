@@ -5,6 +5,7 @@ import intro from './intro';
 import metrics from './metrics';
 import header from './header';
 import workouts from './workouts';
+import trainers from './trainers';
 // import accordion from './accordion';
 // import slider from './slider';
 // accordion.initAccordion();
@@ -46,8 +47,10 @@ function accessData(data: any) {
   const introData = data.filter((content: any) => content.slice_type === 'service_intro')[0];
   const metricsData = data.filter((content: any) => content.slice_type === 'metrics')[0];
   const workoutsData = data.filter((content: any) => content.slice_type === 'workouts')[0];
+  const trainersData = data.filter((content: any) => content.slice_type === 'trainers')[0];
   hero.processData(heroData, valuePropData, pricingData);
   intro.processData(introData);
   metrics.processData(metricsData);
   workouts.processData(workoutsData);
+  trainers.processData(trainersData);
 }
