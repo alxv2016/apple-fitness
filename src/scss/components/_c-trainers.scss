@@ -1,0 +1,60 @@
+.c-trainers {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  overflow: hidden;
+  &__group-a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+  }
+}
+
+.c-trainer-card {
+  position: relative;
+  width: 334px;
+  height: 425px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 1rem;
+  padding: $spacing--lg;
+  overflow: hidden;
+  &__image {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      z-index: 1;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(175deg, rgba(color('darker'), 0) 40%, rgba(color('darker'), 0.75) 80%);
+      transform-origin: bottom center;
+    }
+  }
+  &__label {
+    position: relative;
+    z-index: 2;
+    align-self: flex-end;
+    margin-right: auto;
+    font-size: $subtitle--2;
+    font-weight: font-weight('medium');
+    color: color('offwhite');
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  & ~ .c-trainer-card {
+    margin-left: $spacing--lg;
+  }
+}

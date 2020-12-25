@@ -5,9 +5,11 @@ const trainers = {
   hero: document.querySelector<HTMLElement>('[data-target="trainers-hero"]'),
   trainersContent: document.querySelector<HTMLElement>('[data-target="trainers-content"]'),
   trainersTitle: document.querySelector<HTMLElement>('[data-group="trainers-title"]'),
+  trainersGroupA: document.querySelector<HTMLElement>('[data-target="trainers-group-a"]'),
   processData(trainersData: any) {
     console.log(trainersData);
     this.renderHero(trainersData.primary);
+    this.renderTrainers(trainersData.items);
     this.renderAnimation();
   },
   renderHero(trainersData: any) {
@@ -39,6 +41,38 @@ const trainers = {
         }
       });
     }
+  },
+  renderTrainers(trainersData: any) {
+    const trainersGroupA = trainersData
+      .filter((trainers: any) => trainers.group_id === 'group_a')
+      .map((trainer: any) => {
+        const renders = {
+          image: util.createElement('figure', 'c-trainer-card__image'),
+          label: util.createElement('span', 'c-trainer-card__label'),
+        };
+        util.renderImage(renders.image, trainer.trainer_image.url);
+        renders.label.textContent = trainer.trainer_name;
+        return renders;
+      });
+    const trainersGroupB = trainersData
+      .filter((trainers: any) => trainers.group_id === 'group_b')
+      .map((trainer: any) => {
+        const renders = {
+          image: util.createElement('figure', 'c-trainer-card__image'),
+          label: util.createElement('span', 'c-trainer-card__label'),
+        };
+        util.renderImage(renders.image, trainer.trainer_image);
+        renders.label.textContent = trainer.trainer_name;
+        return renders;
+      });
+
+    if (this.trainersGroupA) {
+      Array.from(this.trainersGroupA.children).forEach((item, i) => {
+        item.append(trainersGroupA[i].image, trainersGroupA[i].label);
+      });
+    }
+    console.log(this.trainersGroupA);
+    console.log(trainersGroupA, trainersGroupB);
   },
   renderAnimation() {
     const trainersHero = gsap.timeline({
