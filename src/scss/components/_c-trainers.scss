@@ -1,11 +1,10 @@
 .c-trainers {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
   width: 100%;
   overflow: hidden;
-  &__group-a {
+  &__group-a,
+  &__group-b {
+    will-change: transform;
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -16,21 +15,35 @@
 
 .c-trainer-card {
   position: relative;
-  width: 334px;
-  height: 425px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 216px;
+  height: 275px;
   flex-shrink: 0;
-  border-radius: 1rem;
-  padding: $spacing--lg;
-  overflow: hidden;
-  &__image {
+  padding: 0 $spacing--sm;
+  @include breakpoint(md) {
+    width: 334px;
+    height: 425px;
+  }
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing--lg;
+    border-radius: 1rem;
+    overflow: hidden;
+    @include breakpoint(md) {
+      padding: $spacing--xl;
+    }
+  }
+  &-image {
     position: absolute;
-    width: inherit;
-    height: inherit;
-    background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
+    border-radius: inherit;
     &::before {
       position: absolute;
       content: '';
@@ -38,23 +51,34 @@
       z-index: 1;
       height: 100%;
       width: 100%;
-      background: linear-gradient(175deg, rgba(color('darker'), 0) 40%, rgba(color('darker'), 0.75) 80%);
+      background: linear-gradient(175deg, rgba(color('darker'), 0) 50%, rgba(color('darker'), 0.88) 90%);
       transform-origin: bottom center;
+      border-radius: inherit;
     }
   }
-  &__label {
+  &-label {
     position: relative;
     z-index: 2;
+    line-height: 1.25;
     align-self: flex-end;
     margin-right: auto;
-    font-size: $subtitle--2;
+    font-size: $subtitle;
     font-weight: font-weight('medium');
     color: color('offwhite');
     user-select: none;
     white-space: nowrap;
-  }
-
-  & ~ .c-trainer-card {
-    margin-left: $spacing--lg;
+    @include breakpoint(sm) {
+      font-size: $subtitle--2;
+    }
   }
 }
+
+// .c-trainers--animate {
+//   animation: moveSlideshow 60s linear infinite;
+// }
+
+// @keyframes moveSlideshow {
+//   100% {
+//     -webkit-transform: translateX(-50%);
+//   }
+// }

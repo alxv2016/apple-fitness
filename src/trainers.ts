@@ -6,6 +6,7 @@ const trainers = {
   trainersContent: document.querySelector<HTMLElement>('[data-target="trainers-content"]'),
   trainersTitle: document.querySelector<HTMLElement>('[data-group="trainers-title"]'),
   trainersGroupA: document.querySelector<HTMLElement>('[data-target="trainers-group-a"]'),
+  trainersGroupB: document.querySelector<HTMLElement>('[data-target="trainers-group-b"]'),
   processData(trainersData: any) {
     console.log(trainersData);
     this.renderHero(trainersData.primary);
@@ -47,34 +48,94 @@ const trainers = {
       .filter((trainers: any) => trainers.group_id === 'group_a')
       .map((trainer: any) => {
         const renders = {
-          image: util.createElement('figure', 'c-trainer-card__image'),
-          label: util.createElement('span', 'c-trainer-card__label'),
+          trainerCard: util.createElement('div', 'c-trainer-card'),
+          container: util.createElement('div', 'c-trainer-card__container'),
+          image: util.createElement('figure', 'c-trainer-card-image'),
+          label: util.createElement('span', 'c-trainer-card-label'),
         };
         util.renderImage(renders.image, trainer.trainer_image.url);
         renders.label.textContent = trainer.trainer_name;
-        return renders;
+        renders.container.append(renders.image, renders.label);
+        renders.trainerCard.append(renders.container);
+        return renders.trainerCard;
       });
+
+    const trainersGroupAClone = trainersGroupA.map((item: any) => {
+      const clone = item.cloneNode(true);
+      return clone;
+    });
+
+    const trainersGroupAMerged = trainersGroupA.concat(trainersGroupAClone);
+
     const trainersGroupB = trainersData
       .filter((trainers: any) => trainers.group_id === 'group_b')
       .map((trainer: any) => {
         const renders = {
-          image: util.createElement('figure', 'c-trainer-card__image'),
-          label: util.createElement('span', 'c-trainer-card__label'),
+          trainerCard: util.createElement('div', 'c-trainer-card'),
+          container: util.createElement('div', 'c-trainer-card__container'),
+          image: util.createElement('figure', 'c-trainer-card-image'),
+          label: util.createElement('span', 'c-trainer-card-label'),
         };
-        util.renderImage(renders.image, trainer.trainer_image);
+        util.renderImage(renders.image, trainer.trainer_image.url);
         renders.label.textContent = trainer.trainer_name;
-        return renders;
+        renders.container.append(renders.image, renders.label);
+        renders.trainerCard.append(renders.container);
+        return renders.trainerCard;
       });
 
-    if (this.trainersGroupA) {
-      Array.from(this.trainersGroupA.children).forEach((item, i) => {
-        item.append(trainersGroupA[i].image, trainersGroupA[i].label);
-      });
-    }
-    console.log(this.trainersGroupA);
-    console.log(trainersGroupA, trainersGroupB);
+    const trainersGroupBClone = trainersGroupB.map((item: any) => {
+      const clone = item.cloneNode(true);
+      return clone;
+    });
+
+    const trainersGroupBMerged = trainersGroupB.concat(trainersGroupBClone);
+
+    trainersGroupAMerged.forEach((trainer: any) => {
+      if (this.trainersGroupA) {
+        this.trainersGroupA.append(trainer);
+      }
+    });
+    trainersGroupBMerged.forEach((trainer: any) => {
+      if (this.trainersGroupB) {
+        this.trainersGroupB.append(trainer);
+      }
+    });
   },
   renderAnimation() {
+    const trainers = gsap.timeline({
+      defaults: {
+        duration: 25,
+        ease: 'none',
+        repeat: -1,
+      },
+    });
+
+    trainers
+      .to('[data-target="trainers-group-a"]', {
+        xPercent: -50,
+      })
+      .to(
+        '[data-target="trainers-group-b"]',
+        {
+          xPercent: -50,
+        },
+        0
+      );
+
+    // gsap.to('[data-target="trainers-group-a"]', {
+    //   duration: 25,
+    //   ease: 'none',
+    //   xPercent: -50,
+    //   repeat: -1,
+    // });
+
+    // gsap.to('[data-target="trainers-group-b"]', {
+    //   duration: 25,
+    //   ease: 'none',
+    //   xPercent: -50,
+    //   repeat: -1,
+    // });
+
     const trainersHero = gsap.timeline({
       defaults: {
         ease: 'none',
