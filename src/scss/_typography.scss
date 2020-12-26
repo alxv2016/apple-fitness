@@ -23,10 +23,13 @@ form legend {
 
 // Apple titles
 .title-display {
-  font-size: $headliner--1;
+  font-size: $huge--title;
   font-weight: font-weight('bold');
   line-height: 1.15;
   margin: 0;
+  @include breakpoint(sm) {
+    font-size: $headliner--1;
+  }
   @include breakpoint(md) {
     font-size: $headliner--2;
   }
@@ -39,9 +42,12 @@ form legend {
 }
 
 .title-headline {
-  font-size: $title--1;
+  font-size: $title--2;
   line-height: $heading-line-height;
   font-weight: font-weight('bold');
+  @include breakpoint(sm) {
+    font-size: $title--1;
+  }
   @include breakpoint(md) {
     font-size: $large--title;
   }

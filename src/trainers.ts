@@ -122,20 +122,6 @@ const trainers = {
         0
       );
 
-    // gsap.to('[data-target="trainers-group-a"]', {
-    //   duration: 25,
-    //   ease: 'none',
-    //   xPercent: -50,
-    //   repeat: -1,
-    // });
-
-    // gsap.to('[data-target="trainers-group-b"]', {
-    //   duration: 25,
-    //   ease: 'none',
-    //   xPercent: -50,
-    //   repeat: -1,
-    // });
-
     const trainersHero = gsap.timeline({
       defaults: {
         ease: 'none',

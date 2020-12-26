@@ -55,7 +55,10 @@
 .value-prop {
   position: relative;
   width: 100%;
-  margin-top: $layout--md;
+  margin-top: $layout--sm;
+  @include breakpoint(sm) {
+    margin-top: $layout--md;
+  }
 }
 
 @keyframes placeHolderShimmer {

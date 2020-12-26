@@ -138,28 +138,28 @@ const intro = {
         end: '+=600 center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const heroContentHide = util.calculateScroll(progress, 3, 50);
+          const appleWatchReveal = util.calculateScroll(progress, 2);
+          const devicesReveal = util.calculateScroll(progress, 3, 10);
           if (this.heroContent) {
-            this.heroContent.style.setProperty('--end-progress-start', `${scrollProgress}%`);
-            this.heroContent.style.setProperty('--end-progress-end', `${endProgress}%`);
+            this.heroContent.style.setProperty('--end-progress-start', `${heroContentHide.start}%`);
+            this.heroContent.style.setProperty('--end-progress-end', `${heroContentHide.end}%`);
           }
           if (this.iphone) {
-            this.iphone.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.iphone.style.setProperty('--progress-end', `${endProgress}%`);
+            this.iphone.style.setProperty('--progress-start', `${devicesReveal.start}%`);
+            this.iphone.style.setProperty('--progress-end', `${devicesReveal.end}%`);
           }
           if (this.appleTv) {
-            this.appleTv.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.appleTv.style.setProperty('--progress-end', `${endProgress}%`);
+            this.appleTv.style.setProperty('--progress-start', `${devicesReveal.start}%`);
+            this.appleTv.style.setProperty('--progress-end', `${devicesReveal.end}%`);
           }
           if (this.ipad) {
-            this.ipad.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.ipad.style.setProperty('--progress-end', `${endProgress}%`);
+            this.ipad.style.setProperty('--progress-start', `${devicesReveal.start}%`);
+            this.ipad.style.setProperty('--progress-end', `${devicesReveal.end}%`);
           }
           if (this.appleWatch) {
-            this.appleWatch.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.appleWatch.style.setProperty('--progress-end', `${endProgress}%`);
+            this.appleWatch.style.setProperty('--progress-start', `${appleWatchReveal.start}%`);
+            this.appleWatch.style.setProperty('--progress-end', `${appleWatchReveal.end}%`);
           }
         },
         onEnter: ({isActive}) => {

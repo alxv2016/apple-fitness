@@ -7,7 +7,7 @@ const hero = {
   heroLogo: document.querySelector<HTMLElement>('[data-target="hero-logo"]'),
   heroContent: document.querySelector<HTMLElement>('[data-target="hero-content"]'),
   pricingGrid: document.querySelector<HTMLElement>('[data-target="pricing-grid"]'),
-  heroTitle: document.querySelector<HTMLElement>('[data-target="move-title"]'),
+  heroTitle: document.querySelector<HTMLElement>('[data-target="hero-title"]'),
   processData(heroData: any, valueData: any, pricingData: any) {
     this.renderHero(heroData.items);
     this.renderHeroLogo(heroData.primary);
@@ -66,7 +66,7 @@ const hero = {
   },
   renderValueProp: function (heroData: any) {
     if (this.heroContent) {
-      const heading = this.heroContent.querySelector('[data-target="move-title"]');
+      const heading = this.heroContent.querySelector('[data-target="hero-title"]');
       const valueProps = this.heroContent.querySelectorAll('[data-target="value-prop"]');
       if (heading) {
         heading.textContent = heroData.primary.value_headline[0].text;
@@ -102,12 +102,10 @@ const hero = {
         end: 'bottom top',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const heroHide = util.calculateScroll(progress, 3, 20);
           if (this.hero) {
-            this.hero.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.hero.style.setProperty('--progress-end', `${endProgress}%`);
+            this.hero.style.setProperty('--progress-start', `${heroHide.start}%`);
+            this.hero.style.setProperty('--progress-end', `${heroHide.end}%`);
           }
         },
       },
@@ -125,16 +123,15 @@ const hero = {
         end: 'bottom center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = Math.round(scrollProgress * 1.5);
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const contentReveal = util.calculateScroll(progress, 1.6, 0);
+          const titleReveal = util.calculateScroll(progress, 3, 20);
           if (this.heroContent) {
-            this.heroContent.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.heroContent.style.setProperty('--progress-end', `${endProgress}%`);
+            this.heroContent.style.setProperty('--progress-start', `${contentReveal.start}%`);
+            this.heroContent.style.setProperty('--progress-end', `${contentReveal.end}%`);
           }
           if (this.heroTitle) {
-            this.heroTitle.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.heroTitle.style.setProperty('--progress-end', `${endProgress}%`);
+            this.heroTitle.style.setProperty('--progress-start', `${titleReveal.start}%`);
+            this.heroTitle.style.setProperty('--progress-end', `${titleReveal.end}%`);
           }
         },
       },
