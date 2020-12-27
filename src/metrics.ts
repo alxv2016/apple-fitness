@@ -31,23 +31,19 @@ const metrics = {
           const data = metric.getAttribute('data-target');
           switch (true) {
             case data === 'metrics-time':
-              const timeMetric = util.createMetric('c-metric--time', 'c-metric--time-icon', 'metrics-time-metric');
+              const timeMetric = util.createMetric('c-metric--time', 'c-metric--time-icon', 'metric');
               util.renderImage(timeMetric.metric, metricsData.time_metric.url);
               util.renderImage(timeMetric.metric_icon, metricsData.time_metric.icon.url);
               metric.append(timeMetric.metric, timeMetric.metric_icon);
               break;
             case data === 'metrics-bpm':
-              const bpmMetric = util.createMetric('c-metric--bpm', 'c-metric--bpm-icon', 'metrics-bpm-metric');
+              const bpmMetric = util.createMetric('c-metric--bpm', 'c-metric--bpm-icon', 'metric');
               util.renderImage(bpmMetric.metric, metricsData.bpm_metric.url);
               util.renderImage(bpmMetric.metric_icon, metricsData.bpm_metric.metric_icon.url);
               metric.append(bpmMetric.metric, bpmMetric.metric_icon);
               break;
             case data === 'metrics-calories':
-              const caloriesMetric = util.createMetric(
-                'c-metric--calories',
-                'c-metric--calories-icon',
-                'metrics-calories-metric'
-              );
+              const caloriesMetric = util.createMetric('c-metric--calories', 'c-metric--calories-icon', 'metric');
               util.renderImage(caloriesMetric.metric, metricsData.calories_metric.url);
               util.renderImage(caloriesMetric.metric_icon, metricsData.calories_metric.metric_icon.url);
               metric.append(caloriesMetric.metric, caloriesMetric.metric_icon);
@@ -192,75 +188,52 @@ const metrics = {
     const iphoneVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-iphone-video"]');
     const appleTvVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-tv-video"]');
 
-    gsap.to('[data-target="metrics-hero-duo-tone"]', {
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: {
-        markers: false,
-        trigger: '[data-trigger="metrics-hero"]',
-        start: '+=300 center',
-        end: 'center center',
-        scrub: 0.65,
-      },
-    });
-
-    const heroMetrics = gsap.timeline({
+    const hero = gsap.timeline({
       defaults: {
         ease: 'none',
-        stagger: 0.25,
       },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="metrics-hero"]',
-        start: 'top center',
+        start: '-=100 center',
         end: 'bottom center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const ipadWatchHide = util.calculateScroll(progress, 3, 20);
+          const heroReveal = util.calculateScroll(progress, 4);
           if (this.deviceSyncUp) {
-            this.deviceSyncUp.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.deviceSyncUp.style.setProperty('--progress-end', `${endProgress}%`);
+            this.deviceSyncUp.style.setProperty('--progress-start', `${ipadWatchHide.start}%`);
+            this.deviceSyncUp.style.setProperty('--progress-end', `${ipadWatchHide.end}%`);
           }
           if (this.hero) {
-            this.hero.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.hero.style.setProperty('--progress-end', `${endProgress}%`);
+            this.hero.style.setProperty('--progress-start', `${heroReveal.start}%`);
+            this.hero.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
         },
       },
     });
 
-    heroMetrics
-      .to('[data-target="metrics-time-metric"]', {
-        yPercent: -150,
+    hero
+      .to('[data-target="metrics-hero-duo-tone"]', {
+        opacity: 0,
+        delay: 0.075,
       })
-      .to(
-        '[data-target="metrics-bpm-metric"]',
-        {
-          yPercent: -100,
-        },
-        0
-      )
-      .to(
-        '[data-target="metrics-calories-metric"]',
-        {
-          yPercent: -50,
-        },
-        0
-      );
+      .from('[data-target="metrics-intro"]', {
+        stagger: 0.25,
+        opacity: 0,
+        y: 50,
+      });
 
-    gsap.from('[data-target="metrics-intro"]', {
-      stagger: 0.25,
+    gsap.to('[data-target="metric"]', {
       ease: 'none',
-      opacity: 0,
-      y: 50,
+      yPercent: -100,
+      duration: 6,
       scrollTrigger: {
         markers: false,
-        trigger: '[data-trigger="metrics-content"]',
+        trigger: '[data-trigger="metrics-hero"]',
         scrub: 0.65,
-        start: '-=400 center',
-        end: 'center center',
+        start: 'top center',
+        end: 'bottom center',
       },
     });
 
@@ -273,16 +246,15 @@ const metrics = {
         trigger: '[data-trigger="metrics-heart-rate"]',
         scrub: 0.75,
         start: '-=300 center',
-        end: 'center center',
+        end: 'bottom center',
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const appleWatchReveal = util.calculateScroll(progress);
+          const iphoneReveal = util.calculateScroll(progress, 3, 30);
           if (appleWatch && iphone) {
-            appleWatch.style.setProperty('--progress-start', `${scrollProgress}%`);
-            appleWatch.style.setProperty('--progress-end', `${endProgress}%`);
-            iphone.style.setProperty('--progress-start', `${scrollProgress}%`);
-            iphone.style.setProperty('--progress-end', `${endProgress}%`);
+            appleWatch.style.setProperty('--progress-start', `${appleWatchReveal.start}%`);
+            appleWatch.style.setProperty('--progress-end', `${appleWatchReveal.end}%`);
+            iphone.style.setProperty('--progress-start', `${iphoneReveal.start}%`);
+            iphone.style.setProperty('--progress-end', `${iphoneReveal.end}%`);
           }
         },
         onEnter: ({isActive}) => {
@@ -340,15 +312,19 @@ const metrics = {
         markers: false,
         trigger: '[data-trigger="metrics-milestone"]',
         start: '-=100 center',
-        end: 'bottom center',
+        end: 'center center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const milestone = document.querySelector<HTMLElement>('[data-target="metrics-milestone-intro"]');
+          const ipadReveal = util.calculateScroll(progress);
+          const milestoneReveal = util.calculateScroll(progress, 2, 4);
           if (ipad) {
-            ipad.style.setProperty('--progress-start', `${scrollProgress}%`);
-            ipad.style.setProperty('--progress-end', `${endProgress}%`);
+            ipad.style.setProperty('--progress-start', `${ipadReveal.start}%`);
+            ipad.style.setProperty('--progress-end', `${ipadReveal.end}%`);
+          }
+          if (milestone) {
+            milestone.style.setProperty('--progress-start', `${milestoneReveal.start}%`);
+            milestone.style.setProperty('--progress-end', `${milestoneReveal.end}%`);
           }
         },
       },
@@ -370,7 +346,7 @@ const metrics = {
         '[data-target="metrics-milestone-intro"]',
         {
           opacity: 0,
-          y: -60,
+          y: -80,
         },
         0.45
       );
@@ -383,16 +359,20 @@ const metrics = {
         markers: false,
         trigger: '[data-trigger="metrics-competition"]',
         start: '-=100 center',
-        end: 'bottom center',
+        end: 'center center',
         toggleActions: 'play pause resume reverse',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const competition = document.querySelector<HTMLElement>('[data-target="metrics-competition-intro"]');
+          const appleTvReveal = util.calculateScroll(progress);
+          const competitionReveal = util.calculateScroll(progress, 2, 4);
           if (appleTv) {
-            appleTv.style.setProperty('--progress-start', `${scrollProgress}%`);
-            appleTv.style.setProperty('--progress-end', `${endProgress}%`);
+            appleTv.style.setProperty('--progress-start', `${appleTvReveal.start}%`);
+            appleTv.style.setProperty('--progress-end', `${appleTvReveal.end}%`);
+          }
+          if (competition) {
+            competition.style.setProperty('--progress-start', `${competitionReveal.start}%`);
+            competition.style.setProperty('--progress-end', `${competitionReveal.end}%`);
           }
         },
         onEnter: ({isActive}) => {

@@ -1,16 +1,13 @@
 .device-grid {
   position: relative;
   display: grid;
-  width: 100vw;
-  height: 100vh;
-  max-height: 668px;
-  @include breakpoint(md) {
-    max-height: 968px;
-  }
+  width: 100%;
+  margin-top: $layout--xs;
   grid-gap: 0 $spacing--lg;
   grid-template-rows: repeat(6, 80px);
   grid-template-columns: repeat(8, 1fr);
   @include breakpoint(md) {
+    margin-top: 0;
     grid-template-rows: repeat(12, 55px);
     grid-template-columns: repeat(12, 1fr);
   }
@@ -39,11 +36,11 @@
     grid-row-start: 1;
     grid-column: 6 / span 3;
     @include breakpoint(md) {
+      align-self: center;
+      grid-row: 1 / span 12;
       grid-column: 9 / span 4;
     }
     @include breakpoint(lg) {
-      align-self: center;
-      grid-row: 1 / span 12;
       grid-column: 11 / span 6;
     }
   }
@@ -81,18 +78,28 @@
 .app-intro {
   position: relative;
   display: flex;
+  z-index: -1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 375px;
   @include container-padding;
   margin-top: $layout--lg;
-  margin-bottom: $layout--lg;
+  margin-bottom: $layout--sm;
+  @include breakpoint(md) {
+    max-width: 568px;
+  }
+  @include breakpoint(lg) {
+    margin-top: 0;
+    max-width: 768px;
+  }
 }
 
 .apple-fitness {
   height: 90px;
   width: 90px;
-  @include breakpoint(sm) {
+  @include breakpoint(md) {
     height: 120px;
     width: 120px;
   }

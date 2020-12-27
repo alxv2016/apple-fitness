@@ -53,6 +53,18 @@ form legend {
   }
 }
 
+.title-headline-2 {
+  font-size: $subtitle--2;
+  line-height: $heading-line-height;
+  font-weight: font-weight('bold');
+  @include breakpoint(md) {
+    font-size: $title--2;
+  }
+  @include breakpoint(lg) {
+    font-size: $title--1;
+  }
+}
+
 .title-overline {
   font-size: $subtitle--2;
   font-weight: font-weight('bold');
@@ -69,11 +81,11 @@ form legend {
 }
 
 .large-print {
-  font-size: $subtitle--2;
+  font-size: $subtitle;
   font-weight: font-weight('medium');
   line-height: 1.25;
   @include breakpoint(md) {
-    font-size: $title--3;
+    font-size: $subtitle--2;
   }
 }
 
@@ -134,7 +146,7 @@ form legend {
 }
 
 .compact--print {
-  max-width: 620px;
+  max-width: 568px;
 }
 
 h1,

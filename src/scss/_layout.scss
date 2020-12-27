@@ -21,22 +21,9 @@
   &--overflow {
     overflow: hidden;
   }
-
-  &--margin-top,
-  .l--margin-top {
-    margin-top: $layout--md;
-    @include breakpoint(md) {
-      margin-top: $layout--lg;
-    }
-    @include breakpoint(lg) {
-      margin-top: $layout--xl;
-    }
-  }
 }
 
 .l-service-value-prop {
-  --progress-start: 0%;
-  --progress-end: 0%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -46,10 +33,36 @@
     margin: 0;
     margin-top: $spacing--lg;
   }
+}
+
+.l-section--reveal {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  position: relative;
   &::after {
     position: absolute;
     content: '';
-    z-index: 2;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      175deg,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
+    );
+    transform-origin: bottom center;
+  }
+}
+
+.l-section--shadow-out {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  &::after {
+    position: absolute;
+    content: '';
+    z-index: 1;
     height: 100%;
     width: 100%;
     background: linear-gradient(
@@ -82,4 +95,18 @@
     }
   }
   margin-bottom: $layout--xl;
+}
+
+.l-margin--top {
+  margin-top: $layout--md;
+  @include breakpoint(md) {
+    margin-top: $layout--lg;
+  }
+}
+
+.l-margin--top-xl {
+  margin-top: $layout--xl;
+  @include breakpoint(md) {
+    margin-top: $layout--2xl;
+  }
 }

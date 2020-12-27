@@ -8,9 +8,9 @@ const intro = {
   iphone: document.querySelector<HTMLElement>('[data-target="intro-iphone"]'),
   ipad: document.querySelector<HTMLElement>('[data-target="intro-ipad"]'),
   ipadWatch: document.querySelector<HTMLElement>('[data-target="ipad-watch"]'),
-  appIntro: document.querySelector('[data-target="app-intro"]'),
+  appIntro: document.querySelector<HTMLElement>('[data-target="app-intro"]'),
   appIntroHeading: document.querySelector<HTMLElement>('[data-target="app-intro-heading"]'),
-  deviceSyncUp: document.querySelector('[data-target="device-sync-up"]'),
+  deviceSyncUp: document.querySelector<HTMLElement>('[data-target="device-sync-up"]'),
 
   processData(introData: any) {
     this.renderDeviceGrid(introData.primary);
@@ -135,10 +135,10 @@ const intro = {
         markers: false,
         trigger: '[data-trigger="device-grid"]',
         start: 'top center',
-        end: '+=600 center',
-        scrub: 0.65,
+        end: 'center center',
+        scrub: 0.725,
         onUpdate: ({progress}) => {
-          const heroContentHide = util.calculateScroll(progress, 3, 50);
+          const heroContentHide = util.calculateScroll(progress, 3, 60);
           const appleWatchReveal = util.calculateScroll(progress, 2);
           const devicesReveal = util.calculateScroll(progress, 3, 10);
           if (this.heroContent) {
@@ -189,6 +189,7 @@ const intro = {
         {
           xPercent: 20,
           opacity: 0,
+          scale: 0.95,
         },
         0.25
       )
@@ -197,6 +198,7 @@ const intro = {
         {
           yPercent: 40,
           opacity: 0,
+          scale: 0.95,
         },
         0.25
       )
@@ -205,44 +207,29 @@ const intro = {
         {
           xPercent: -20,
           opacity: 0,
+          scale: 0.95,
         },
         0.25
       );
 
-    const appIntro = gsap.timeline({
-      defaults: {
-        ease: 'none',
-      },
+    gsap.from('[data-target="app-intro"]', {
+      ease: 'none',
+      opacity: 0,
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="app-intro"]',
         start: '-=400 center',
-        end: 'bottom center',
+        end: 'center center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const appReveal = util.calculateScroll(progress, 3.5);
           if (this.appIntroHeading) {
-            this.appIntroHeading.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.appIntroHeading.style.setProperty('--progress-end', `${endProgress}%`);
+            this.appIntroHeading.style.setProperty('--progress-start', `${appReveal.start}%`);
+            this.appIntroHeading.style.setProperty('--progress-end', `${appReveal.end}%`);
           }
         },
       },
     });
-
-    appIntro
-      .from('[data-target="apple-fitness"]', {
-        y: 88,
-        opacity: 0,
-      })
-      .from(
-        '[data-target="app-intro-heading"]',
-        {
-          y: 48,
-        },
-        0.125
-      );
 
     const ipadWatch = gsap.timeline({
       defaults: {
@@ -251,16 +238,19 @@ const intro = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="device-sync-up"]',
-        start: '-=100 center',
-        end: 'bottom center',
-        scrub: 0.75,
+        start: '-=200 center',
+        end: '350 center',
+        scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const ipadWatchReveal = util.calculateScroll(progress);
+          const appIntroHide = util.calculateScroll(progress, 3, 60);
+          if (this.appIntro) {
+            this.appIntro.style.setProperty('--progress-start', `${appIntroHide.start}%`);
+            this.appIntro.style.setProperty('--progress-end', `${appIntroHide.end}%`);
+          }
           if (this.ipadWatch) {
-            this.ipadWatch.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.ipadWatch.style.setProperty('--progress-end', `${endProgress}%`);
+            this.ipadWatch.style.setProperty('--progress-start', `${ipadWatchReveal.start}%`);
+            this.ipadWatch.style.setProperty('--progress-end', `${ipadWatchReveal.end}%`);
           }
         },
         onEnter: ({isActive}) => {
@@ -285,10 +275,21 @@ const intro = {
           opacity: 1,
         }
       )
-      .from('[data-target="device-sync-intro-heading"]', {
-        y: -60,
-        opacity: 0,
-      });
+      .from(
+        '[data-target="device-sync-intro-heading"]',
+        {
+          y: -60,
+          opacity: 0,
+        },
+        0.45
+      )
+      .to(
+        '[data-target="app-intro"]',
+        {
+          y: 60,
+        },
+        0.25
+      );
   },
 };
 

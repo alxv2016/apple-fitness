@@ -2,6 +2,7 @@
   --progress-start: 0%;
   --progress-end: 0%;
   position: relative;
+  z-index: 1;
   width: 470px;
   height: 338px;
   @include breakpoint(md) {

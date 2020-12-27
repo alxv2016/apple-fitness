@@ -120,8 +120,12 @@
   position: relative;
   display: flex;
   width: 100%;
+  max-width: 288px;
   align-items: center;
   justify-content: space-between;
+  @include breakpoint(md) {
+    max-width: 588px;
+  }
 }
 
 .c-metric {
