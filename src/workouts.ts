@@ -7,6 +7,7 @@ const workouts = {
   workoutsHeroMetrics: document.querySelector<HTMLElement>('[data-target="workouts-hero-metrics"]'),
   workoutsContent: document.querySelector<HTMLElement>('[data-target="workouts-content"]'),
   workoutIcons: document.querySelector<HTMLElement>('[data-target="workout-icons"]'),
+  popularWorkouts: document.querySelector<HTMLElement>('[data-target="popular-workouts"]'),
   popularWorkoutsIntro: document.querySelector<HTMLElement>('[data-target="popular-workouts-intro"]'),
   backgroundHero: document.querySelector<HTMLElement>('[data-target="background-hero"]'),
   workoutsAnywhereHeadline: document.querySelector<HTMLElement>('[data-target="workouts-anywhere-headline"]'),
@@ -158,56 +159,6 @@ const workouts = {
     const workoutIconVideos = document.querySelectorAll('[data-target="workout-icon-video"]');
     const backgroundHeroVideo = document.querySelector<HTMLMediaElement>('[data-target="background-hero-video"]');
 
-    const backgroundHero = gsap.timeline({
-      defaults: {
-        ease: 'none',
-      },
-      scrollTrigger: {
-        markers: false,
-        trigger: '[data-trigger="workouts-anywhere"]',
-        start: 'top center',
-        end: 'center center',
-        scrub: 0.65,
-        onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
-          if (this.backgroundHero) {
-            this.backgroundHero.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.backgroundHero.style.setProperty('--progress-end', `${endProgress}%`);
-          }
-        },
-        onEnter: ({isActive}) => {
-          if (isActive && backgroundHeroVideo) {
-            backgroundHeroVideo.muted = true;
-            backgroundHeroVideo.loop = true;
-            backgroundHeroVideo.play();
-            backgroundHeroVideo.addEventListener('ended', this.hideVideo);
-          } else {
-            if (backgroundHeroVideo) {
-              backgroundHeroVideo.pause();
-            }
-          }
-        },
-      },
-    });
-
-    backgroundHero.from('[data-target="workouts-anywhere"]', {
-      opacity: 0,
-    });
-
-    gsap.to('[data-target="workouts-hero-duo-tone"]', {
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: {
-        markers: false,
-        trigger: '[data-trigger="workouts-hero"]',
-        start: '+=300 center',
-        end: 'center center',
-        scrub: 0.65,
-      },
-    });
-
     const workoutsHero = gsap.timeline({
       defaults: {
         ease: 'none',
@@ -219,25 +170,32 @@ const workouts = {
         end: 'bottom center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const competitionHide = util.calculateScroll(progress, 3, 20);
+          const heroReveal = util.calculateScroll(progress, 4);
           if (this.hero) {
-            this.hero.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.hero.style.setProperty('--progress-end', `${endProgress}%`);
+            this.hero.style.setProperty('--progress-start', `${heroReveal.start}%`);
+            this.hero.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
           if (this.metricsCompetition) {
-            this.metricsCompetition.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.metricsCompetition.style.setProperty('--progress-end', `${endProgress}%`);
+            this.metricsCompetition.style.setProperty('--progress-start', `${competitionHide.start}%`);
+            this.metricsCompetition.style.setProperty('--progress-end', `${competitionHide.end}%`);
           }
         },
       },
     });
 
     workoutsHero
-      .to('[data-target="workouts-metric-music"]', {
-        yPercent: -160,
+      .to('[data-target="workouts-hero-duo-tone"]', {
+        opacity: 0,
+        delay: 0.025,
       })
+      .to(
+        '[data-target="workouts-metric-music"]',
+        {
+          yPercent: -160,
+        },
+        0
+      )
       .from(
         '[data-target="workouts-metric-clock"]',
         {
@@ -261,7 +219,7 @@ const workouts = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="workouts-content"]',
-        scrub: 0.45,
+        scrub: 0.65,
         start: '-=400 center',
         end: 'center center',
       },
@@ -301,7 +259,11 @@ const workouts = {
           opacity: 0,
         },
         0.4
-      );
+      )
+      .from('[data-target="popular-workouts-intro"]', {
+        opacity: 0,
+        y: 40,
+      });
 
     const smartSuggestions = gsap.timeline({
       defaults: {
@@ -323,6 +285,47 @@ const workouts = {
           }
         },
       },
+    });
+
+    const backgroundHero = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="workouts-anywhere"]',
+        start: '-=100 center',
+        end: 'bottom center',
+        scrub: 0.65,
+        onUpdate: ({progress}) => {
+          const workoutsIconsHide = util.calculateScroll(progress, 4, 30);
+          const backgroundHeroReveal = util.calculateScroll(progress);
+          if (this.popularWorkouts) {
+            this.popularWorkouts.style.setProperty('--progress-start', `${workoutsIconsHide.start}%`);
+            this.popularWorkouts.style.setProperty('--progress-end', `${workoutsIconsHide.end}%`);
+          }
+          if (this.backgroundHero) {
+            this.backgroundHero.style.setProperty('--progress-start', `${backgroundHeroReveal.start}%`);
+            this.backgroundHero.style.setProperty('--progress-end', `${backgroundHeroReveal.end}%`);
+          }
+        },
+        onEnter: ({isActive}) => {
+          if (isActive && backgroundHeroVideo) {
+            backgroundHeroVideo.muted = true;
+            backgroundHeroVideo.loop = true;
+            backgroundHeroVideo.play();
+            backgroundHeroVideo.addEventListener('ended', this.hideVideo);
+          } else {
+            if (backgroundHeroVideo) {
+              backgroundHeroVideo.pause();
+            }
+          }
+        },
+      },
+    });
+
+    backgroundHero.from('[data-target="workouts-anywhere"]', {
+      opacity: 0,
     });
 
     smartSuggestions

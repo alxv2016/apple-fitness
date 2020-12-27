@@ -63,6 +63,9 @@ form legend {
   @include breakpoint(lg) {
     font-size: $title--1;
   }
+  & ~ p {
+    margin-top: $spacing--xl;
+  }
 }
 
 .title-overline {
@@ -76,7 +79,7 @@ form legend {
   & ~ h2,
   & ~ h3,
   & ~ h4 {
-    margin-top: $spacing--sm;
+    margin-top: $spacing--xs;
   }
 }
 
