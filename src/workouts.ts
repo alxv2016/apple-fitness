@@ -98,12 +98,14 @@ const workouts = {
   renderWorkoutAnywhere(workoutsData: any) {
     const renders = {
       container: util.createElement('div', 'c-background-hero__container'),
-      image: util.createElement('figure', 'c-background-hero-static'),
-      video: util.createVideoElement('video', 'c-background-hero-video', 'background-hero-video'),
+      media: util.createElement('div', 'c-background-hero-media'),
+      image: util.createElement('figure', 'c-background-hero-media__static'),
+      video: util.createVideoElement('video', 'c-background-hero-media__video', 'background-hero-video'),
       videoSrc: require('./assets/workout_anywhere.mp4'),
     };
     util.renderVideo(renders.image, renders.video, workoutsData.anywhere_anytime.url, renders.videoSrc);
-    renders.container.append(renders.image, renders.video);
+    renders.media.append(renders.image, renders.video);
+    renders.container.append(renders.media);
     if (this.backgroundHero) {
       this.backgroundHero.append(renders.container);
     }
@@ -265,28 +267,6 @@ const workouts = {
         y: 40,
       });
 
-    const smartSuggestions = gsap.timeline({
-      defaults: {
-        ease: 'none',
-      },
-      scrollTrigger: {
-        markers: false,
-        trigger: '[data-trigger="workouts-smart-suggestions"]',
-        start: '-=100 center',
-        end: 'bottom center',
-        scrub: 0.65,
-        onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
-          if (this.ipadSmartSuggestion) {
-            this.ipadSmartSuggestion.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.ipadSmartSuggestion.style.setProperty('--progress-end', `${endProgress}%`);
-          }
-        },
-      },
-    });
-
     const backgroundHero = gsap.timeline({
       defaults: {
         ease: 'none',
@@ -294,11 +274,11 @@ const workouts = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="workouts-anywhere"]',
-        start: '-=100 center',
+        start: '-=200 center',
         end: 'bottom center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const workoutsIconsHide = util.calculateScroll(progress, 4, 30);
+          const workoutsIconsHide = util.calculateScroll(progress, 4, 20);
           const backgroundHeroReveal = util.calculateScroll(progress);
           if (this.popularWorkouts) {
             this.popularWorkouts.style.setProperty('--progress-start', `${workoutsIconsHide.start}%`);
@@ -324,8 +304,44 @@ const workouts = {
       },
     });
 
-    backgroundHero.from('[data-target="workouts-anywhere"]', {
-      opacity: 0,
+    backgroundHero
+      .from('[data-target="workouts-anywhere-headline"]', {
+        opacity: 0,
+        y: 80,
+      })
+      .from(
+        '[data-target="workouts-anywhere-intro"]',
+        {
+          opacity: 0,
+          y: 80,
+        },
+        0.45
+      );
+
+    const smartSuggestions = gsap.timeline({
+      defaults: {
+        ease: 'none',
+      },
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="workouts-smart-suggestions"]',
+        start: '-=100 center',
+        end: 'center center',
+        scrub: 0.65,
+        onUpdate: ({progress}) => {
+          const smartSuggestions = document.querySelector<HTMLElement>('[data-target="smart-suggestions-intro"]');
+          const ipadReveal = util.calculateScroll(progress);
+          const smartSuggestionsReveal = util.calculateScroll(progress, 2, 4);
+          if (this.ipadSmartSuggestion) {
+            this.ipadSmartSuggestion.style.setProperty('--progress-start', `${ipadReveal.start}%`);
+            this.ipadSmartSuggestion.style.setProperty('--progress-end', `${ipadReveal.end}%`);
+          }
+          if (smartSuggestions) {
+            smartSuggestions.style.setProperty('--progress-start', `${smartSuggestionsReveal.start}%`);
+            smartSuggestions.style.setProperty('--progress-end', `${smartSuggestionsReveal.end}%`);
+          }
+        },
+      },
     });
 
     smartSuggestions
@@ -344,7 +360,7 @@ const workouts = {
         '[data-target="smart-suggestions-intro"]',
         {
           opacity: 0,
-          y: -60,
+          y: -80,
         },
         0.45
       );
@@ -357,15 +373,19 @@ const workouts = {
         markers: false,
         trigger: '[data-trigger="workouts-search"]',
         start: '-=100 center',
-        end: 'bottom center',
+        end: 'center center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          endProgress > 100 ? (endProgress = 100) : endProgress;
+          const searchIntro = document.querySelector<HTMLElement>('[data-target="search-intro"]');
+          const ipadReveal = util.calculateScroll(progress);
+          const searchIntroReveal = util.calculateScroll(progress, 2, 4);
           if (this.ipadSearch) {
-            this.ipadSearch.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.ipadSearch.style.setProperty('--progress-end', `${endProgress}%`);
+            this.ipadSearch.style.setProperty('--progress-start', `${ipadReveal.start}%`);
+            this.ipadSearch.style.setProperty('--progress-end', `${ipadReveal.end}%`);
+          }
+          if (searchIntro) {
+            searchIntro.style.setProperty('--progress-start', `${searchIntroReveal.start}%`);
+            searchIntro.style.setProperty('--progress-end', `${searchIntroReveal.end}%`);
           }
         },
       },
@@ -387,7 +407,7 @@ const workouts = {
         '[data-target="search-intro"]',
         {
           opacity: 0,
-          y: -60,
+          y: -80,
         },
         0.45
       );

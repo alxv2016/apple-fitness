@@ -24,8 +24,8 @@
     width: 375px;
     height: 444px;
     @include breakpoint(md) {
-      width: 628px;
-      height: 744px;
+      width: 768px;
+      height: 1088px;
     }
     @include breakpoint(lg) {
       width: 860px;
@@ -34,8 +34,8 @@
   }
 
   &--trainers {
-    width: 375px;
-    height: 531px;
+    width: 420px;
+    height: 595px;
     transform-origin: top center;
     @include breakpoint(md) {
       width: 628px;

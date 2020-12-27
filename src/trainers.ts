@@ -1,5 +1,7 @@
 import gsap from 'gsap';
 import util from './utility';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const trainers = {
   hero: document.querySelector<HTMLElement>('[data-target="trainers-hero"]'),
@@ -7,6 +9,7 @@ const trainers = {
   trainersTitle: document.querySelector<HTMLElement>('[data-group="trainers-title"]'),
   trainersGroupA: document.querySelector<HTMLElement>('[data-target="trainers-group-a"]'),
   trainersGroupB: document.querySelector<HTMLElement>('[data-target="trainers-group-b"]'),
+  trainers: document.querySelector<HTMLElement>('[data-target="trainers"]'),
   processData(trainersData: any) {
     console.log(trainersData);
     this.renderHero(trainersData.primary);
@@ -102,25 +105,37 @@ const trainers = {
     });
   },
   renderAnimation() {
-    const trainers = gsap.timeline({
-      defaults: {
-        duration: 25,
-        ease: 'none',
-        repeat: -1,
+    ScrollTrigger.create({
+      markers: false,
+      trigger: '[data-trigger="trainers"]',
+      start: '-=200 top',
+      end: 'center top',
+      scrub: 0.65,
+      onUpdate: ({progress}) => {
+        const trainersReveal = util.calculateScroll(progress, 3, 10);
+        if (this.trainers) {
+          this.trainers.style.setProperty('--progress-start', `${trainersReveal.start}%`);
+          this.trainers.style.setProperty('--progress-end', `${trainersReveal.end}%`);
+        }
       },
     });
 
-    trainers
-      .to('[data-target="trainers-group-a"]', {
-        xPercent: -50,
-      })
-      .to(
-        '[data-target="trainers-group-b"]',
-        {
-          xPercent: -50,
-        },
-        0
-      );
+    gsap.to('[data-group="trainer-profiles"]', {
+      duration: 95,
+      ease: 'none',
+      xPercent: -50,
+      repeat: -1,
+    });
+
+    ScrollTrigger.create({
+      markers: false,
+      trigger: '[data-trigger="pinned-content"]',
+      start: 'top top',
+      end: 'center top',
+      pin: true,
+      pinSpacing: true,
+      scrub: 0.75,
+    });
 
     const trainersHero = gsap.timeline({
       defaults: {
@@ -128,23 +143,20 @@ const trainers = {
       },
       scrollTrigger: {
         markers: false,
-        trigger: '[data-trigger="trainers-hero"]',
-        start: 'top +=20',
-        end: 'center +=20',
-        pin: true,
+        trigger: '[data-trigger="workouts-search"]',
+        start: 'center top',
+        end: '+=120% top',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          let scrollProgress = Math.floor(progress * 100);
-          let endProgress = scrollProgress * 2;
-          scrollProgress > 20 ? (scrollProgress = 20) : scrollProgress;
-          endProgress > 70 ? (endProgress = 70) : endProgress;
+          const heroReveal = util.calculateScroll(progress, 3, 10);
+          const titleReveal = util.calculateScroll(progress);
           if (this.hero) {
-            this.hero.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.hero.style.setProperty('--progress-end', `${endProgress}%`);
+            this.hero.style.setProperty('--progress-start', `${heroReveal.start}%`);
+            this.hero.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
           if (this.trainersTitle) {
-            this.trainersTitle.style.setProperty('--progress-start', `${scrollProgress}%`);
-            this.trainersTitle.style.setProperty('--progress-end', `${endProgress}%`);
+            this.trainersTitle.style.setProperty('--progress-start', `${titleReveal.start}%`);
+            this.trainersTitle.style.setProperty('--progress-end', `${titleReveal.end}%`);
           }
         },
       },
@@ -163,8 +175,9 @@ const trainers = {
         '[data-target="trainers-hero"]',
         {
           scale: 1.45,
+          y: 120,
         },
-        0.25
+        0
       )
       .to(
         '[data-target="trainers-hero"]',
@@ -173,12 +186,16 @@ const trainers = {
         },
         0.45
       )
-      .from('[data-target="trainers-intro"]', {
-        stagger: 0.25,
-        ease: 'none',
-        opacity: 0,
-        y: 50,
-      });
+      .from(
+        '[data-target="trainers-intro"]',
+        {
+          stagger: 0.25,
+          ease: 'none',
+          opacity: 0,
+          y: 50,
+        },
+        0.45
+      );
   },
 };
 

@@ -1,0 +1,81 @@
+.c-background-hero {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  position: relative;
+  z-index: -1;
+  height: 375px;
+  width: 100vw;
+  @include breakpoint(sm) {
+    height: 568px;
+  }
+  @include breakpoint(md) {
+    height: 768px;
+  }
+  @include breakpoint(lg) {
+    height: 968px;
+  }
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    &:before {
+      position: absolute;
+      z-index: 2;
+      content: '';
+      height: 100%;
+      width: 100%;
+      background: radial-gradient(
+        circle,
+        rgba(color('darker'), 0) var(--progress-start),
+        rgba(color('darker'), 1) var(--progress-end)
+      );
+    }
+  }
+
+  &-media {
+    position: relative;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    &:before {
+      position: absolute;
+      z-index: 3;
+      content: '';
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(180deg, rgba(color('darker'), 0) 60%, rgba(color('darker'), 1) 100%);
+    }
+    &:after {
+      position: absolute;
+      z-index: 3;
+      content: '';
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(0deg, rgba(color('darker'), 0) 60%, rgba(color('darker'), 1) 100%);
+    }
+    &__static {
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    &__video {
+      display: none;
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      object-fit: cover;
+      @include breakpoint(md) {
+        display: block;
+      }
+    }
+  }
+}

@@ -51,6 +51,9 @@ form legend {
   @include breakpoint(md) {
     font-size: $large--title;
   }
+  & ~ p {
+    margin-top: $spacing--xl;
+  }
 }
 
 .title-headline-2 {

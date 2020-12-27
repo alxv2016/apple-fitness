@@ -1,0 +1,45 @@
+.trainer-hero-intro {
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+
+  &__container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 568px;
+    height: 480px;
+    overflow: hidden;
+    background-color: transparent;
+    border-radius: 1.25rem;
+    @include breakpoint(md) {
+      height: 680px;
+    }
+    @include breakpoint(lg) {
+      max-width: 768px;
+      height: 880px;
+    }
+
+    .c-section-hero {
+      top: 48px;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      z-index: 3;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(175deg, rgba(color('darker'), 0) 50%, rgba(color('darker'), 1) 90%);
+      transform-origin: bottom center;
+    }
+  }
+
+  @include breakpoint(md) {
+    .l-service-intro {
+      top: -88px;
+    }
+  }
+}
