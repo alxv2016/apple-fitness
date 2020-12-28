@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
-
+// Systems
 @import './functions';
 @import './mixins';
 @import './normalize';
@@ -22,7 +22,6 @@
 @import './components/c-background-hero';
 @import './components/c-metric-sync';
 @import './components/c-trainers';
-
 // Layouts
 @import './layout';
 @import './layouts/hero-content';
@@ -30,5 +29,6 @@
 @import './layouts/metrics-content';
 @import './layouts/workouts-content';
 @import './layouts/trainers';
+@import './layouts/apple-music';
 // Vendors
 @import '../../node_modules/@splidejs/splide/dist/css/splide-core.min.css';
