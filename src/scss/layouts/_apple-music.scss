@@ -44,30 +44,6 @@
   align-self: center;
 }
 
-.local-image {
-  .c-iphone__mock {
-    background-image: url('../assets/trainers_iphone.jpg');
-    mask-image: url('../assets/trainers_iphone_mask.png');
-  }
-  &::after {
-    opacity: 0;
-  }
-}
-
-.c-apple-music-playlist__song {
-  background-image: url('../assets/song_01.png');
-}
-
-.c-airpods__left {
-  background-image: url('../assets/trainers_airpods_left.jpg');
-  mask-image: url('../assets/trainers_airpods_left_mask.png');
-}
-
-.c-airpods__right {
-  background-image: url('../assets/trainers_airpods_right.jpg');
-  mask-image: url('../assets/trainers_airpods_right_mask.png');
-}
-
 .album-covers {
   position: relative;
   width: 100%;
@@ -81,7 +57,6 @@
 
 .c-album-cover--01 {
   position: absolute;
-  background-image: url('../assets/trainers_album_01.jpg');
 }
 
 .c-album-cover--02 {
@@ -91,7 +66,6 @@
   @include breakpoint(md) {
     top: 128px;
   }
-  background-image: url('../assets/trainers_album_02.jpg');
 }
 
 .c-album-cover--03 {
@@ -102,7 +76,6 @@
     top: 0;
     left: 477px;
   }
-  background-image: url('../assets/trainers_album_03.jpg');
 }
 
 .c-album-cover--04 {
@@ -113,7 +86,6 @@
     top: 334px;
     left: 768px;
   }
-  background-image: url('../assets/trainers_album_04.jpg');
 }
 
 .c-album-cover--05 {
@@ -124,5 +96,4 @@
     top: 668px;
     left: 788px;
   }
-  background-image: url('../assets/trainers_album_05.jpg');
 }

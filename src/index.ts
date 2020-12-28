@@ -6,6 +6,7 @@ import metrics from './metrics';
 import header from './header';
 import workouts from './workouts';
 import trainers from './trainers';
+import appleMusic from './music';
 // import accordion from './accordion';
 // accordion.initAccordion();
 header.init();
@@ -46,9 +47,12 @@ function accessData(data: any) {
   const metricsData = data.filter((content: any) => content.slice_type === 'metrics')[0];
   const workoutsData = data.filter((content: any) => content.slice_type === 'workouts')[0];
   const trainersData = data.filter((content: any) => content.slice_type === 'trainers')[0];
+  const songsData = data.filter((content: any) => content.slice_type === 'apple_music_songs')[0];
+  const albumData = data.filter((content: any) => content.slice_type === 'apple_music_albums')[0];
   hero.processData(heroData, valuePropData, pricingData);
   intro.processData(introData);
   metrics.processData(metricsData);
   workouts.processData(workoutsData);
   trainers.processData(trainersData);
+  appleMusic.processData(trainersData, songsData, albumData);
 }

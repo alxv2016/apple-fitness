@@ -17,7 +17,6 @@ const workouts = {
   ipadSmartSuggestion: document.querySelector<HTMLElement>('[data-target="smart-suggestions-ipad"]'),
   ipadSearch: document.querySelector<HTMLElement>('[data-target="search-ipad"]'),
   processData(workoutsData: any) {
-    console.log(workoutsData);
     this.renderHero(workoutsData.primary);
     this.renderWorkouts(workoutsData.items);
     this.renderWorkoutAnywhere(workoutsData.primary);
@@ -67,7 +66,6 @@ const workouts = {
     }
   },
   renderWorkouts(workoutsData: any) {
-    console.log(workoutsData);
     const workouts = workoutsData.map((item: any) => {
       const workoutType = {
         id: item.workout_id,

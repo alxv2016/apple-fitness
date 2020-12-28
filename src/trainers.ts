@@ -11,7 +11,6 @@ const trainers = {
   trainersGroupB: document.querySelector<HTMLElement>('[data-target="trainers-group-b"]'),
   trainers: document.querySelector<HTMLElement>('[data-target="trainers"]'),
   processData(trainersData: any) {
-    console.log(trainersData);
     this.renderHero(trainersData.primary);
     this.renderTrainers(trainersData.items);
     this.renderAnimation();
