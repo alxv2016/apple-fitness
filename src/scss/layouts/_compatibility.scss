@@ -2,8 +2,10 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: $spacing--xl 0;
   @include container-padding;
   @include breakpoint(md) {
+    gap: 0 0;
     grid-template-columns: repeat(4, 1fr);
   }
 
@@ -16,7 +18,7 @@
 .compatibility-intro {
   position: relative;
   @include container-padding;
-  margin-bottom: $spacing--2xl;
+  margin-bottom: $layout--lg;
 }
 
 .c-device-icon {
@@ -39,14 +41,19 @@
     line-height: 1.25;
     color: color('offwhite');
   }
+  &__icon ~ &__label {
+    margin-top: $spacing--lg;
+  }
 }
 
-.more-info {
-  display: block;
-  width: 100%;
-  min-height: 80px;
-  border: 1px solid red;
+.service-info {
   position: relative;
+  width: 100%;
   @include container-padding;
-  padding-bottom: $layout--2xl !important;
+  &__heading {
+    margin-bottom: $spacing--4xl;
+  }
+  &__content {
+    padding-bottom: $layout--2xl;
+  }
 }

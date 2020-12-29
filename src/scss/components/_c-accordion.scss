@@ -16,17 +16,24 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: $spacing--lg;
-      white-space: nowrap;
+      padding: $spacing--lg 0;
       transition: all 0.3s ease;
       cursor: pointer;
       border: 1px solid transparent;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+      border-bottom: 1px solid rgba(color('offwhite'), 0.125);
+      line-height: 1.25;
       &:focus {
-        outline: -webkit-focus-ring-color auto 5px;
+        color: color('exercise');
       }
       @include breakpoint(lg) {
-        padding: $spacing--xl;
+        padding: $spacing--xl 0;
+      }
+    }
+
+    button:focus {
+      .accordion-icon::after,
+      .accordion-icon::before {
+        background-color: color('exercise');
       }
     }
 
@@ -49,6 +56,7 @@
     pointer-events: none;
     &:after,
     &:before {
+      transition: background 225ms ease;
       position: absolute;
       content: '';
       background-color: #444857;
@@ -76,7 +84,8 @@
     &-container {
       position: relative;
       width: 100%;
-      padding: $spacing--2xl $spacing--xl;
+      padding: $spacing--2xl 0;
+      padding-right: $spacing--2xl;
       border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     }
   }

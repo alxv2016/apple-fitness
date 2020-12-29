@@ -8,6 +8,8 @@ import workouts from './workouts';
 import trainers from './trainers';
 import appleMusic from './music';
 import accordion from './accordion';
+import compatibility from './compatibility';
+import serviceInfo from './service-info';
 header.init();
 hero.randomizeHero();
 proccessData();
@@ -48,11 +50,15 @@ function accessData(data: any) {
   const trainersData = data.filter((content: any) => content.slice_type === 'trainers')[0];
   const songsData = data.filter((content: any) => content.slice_type === 'apple_music_songs')[0];
   const albumData = data.filter((content: any) => content.slice_type === 'apple_music_albums')[0];
+  const compatibilityData = data.filter((content: any) => content.slice_type === 'compatibility')[0];
+  const serviceData = data.filter((content: any) => content.slice_type === 'more_info')[0];
   hero.processData(heroData, valuePropData, pricingData);
   intro.processData(introData);
   metrics.processData(metricsData);
   workouts.processData(workoutsData);
   trainers.processData(trainersData);
   appleMusic.processData(trainersData, songsData, albumData);
+  compatibility.processData(compatibilityData);
+  serviceInfo.processData(serviceData);
   accordion.initAccordion();
 }
