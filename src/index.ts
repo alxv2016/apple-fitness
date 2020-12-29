@@ -7,8 +7,7 @@ import header from './header';
 import workouts from './workouts';
 import trainers from './trainers';
 import appleMusic from './music';
-// import accordion from './accordion';
-// accordion.initAccordion();
+import accordion from './accordion';
 header.init();
 hero.randomizeHero();
 proccessData();
@@ -55,4 +54,5 @@ function accessData(data: any) {
   workouts.processData(workoutsData);
   trainers.processData(trainersData);
   appleMusic.processData(trainersData, songsData, albumData);
+  accordion.initAccordion();
 }

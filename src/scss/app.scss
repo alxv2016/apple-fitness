@@ -23,12 +23,13 @@
 @import './components/c-metric-sync';
 @import './components/c-trainers';
 // Layouts
-@import './layout';
 @import './layouts/hero-content';
 @import './layouts/intro-content';
 @import './layouts/metrics-content';
 @import './layouts/workouts-content';
 @import './layouts/trainers';
 @import './layouts/apple-music';
+@import './layouts/compatibility';
+@import './layout';
 // Vendors
 @import '../../node_modules/@splidejs/splide/dist/css/splide-core.min.css';
