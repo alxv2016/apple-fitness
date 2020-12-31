@@ -2,17 +2,17 @@ import gsap from 'gsap';
 import util from './utility';
 
 const metrics = {
-  previous: document.querySelector<HTMLElement>('[data-target="device-sync-up"]'),
-  hero: document.querySelector<HTMLElement>('[data-target="metrics-hero"]'),
-  heroMetrics: document.querySelector<HTMLElement>('[data-target="hero-metrics"]'),
-  metricsContent: document.querySelector<HTMLElement>('[data-target="metrics-content"]'),
-  metricsAppleWatch: document.querySelector<HTMLElement>('[data-target="metrics-apple-watch"]'),
-  metricsIphone: document.querySelector<HTMLElement>('[data-target="metrics-iphone"]'),
-  metricsSyncIntro: document.querySelector<HTMLElement>('[data-target="metrics-sync-intro"]'),
-  metricsIpad: document.querySelector<HTMLElement>('[data-target="metrics-ipad"]'),
-  metricsAppleTv: document.querySelector<HTMLElement>('[data-target="metrics-apple-tv"]'),
-  milestoneIntro: document.querySelector<HTMLElement>('[data-target="metrics-milestone-intro"]'),
-  competitionIntro: document.querySelector<HTMLElement>('[data-target="metrics-competition-intro"]'),
+  previous: util.selectElement('[data-target="device-sync-up"]'),
+  hero: util.selectElement('[data-target="metrics-hero"]'),
+  heroMetrics: util.selectElement('[data-target="hero-metrics"]'),
+  metricsContent: util.selectElement('[data-target="metrics-content"]'),
+  metricsAppleWatch: util.selectElement('[data-target="metrics-apple-watch"]'),
+  metricsIphone: util.selectElement('[data-target="metrics-iphone"]'),
+  metricsSyncIntro: util.selectElement('[data-target="metrics-sync-intro"]'),
+  metricsIpad: util.selectElement('[data-target="metrics-ipad"]'),
+  metricsAppleTv: util.selectElement('[data-target="metrics-apple-tv"]'),
+  milestoneIntro: util.selectElement('[data-target="metrics-milestone-intro"]'),
+  competitionIntro: util.selectElement('[data-target="metrics-competition-intro"]'),
   processData(metricsData: any) {
     this.renderHero(metricsData.primary);
     this.renderMetricSync(metricsData.primary);
@@ -110,7 +110,6 @@ const metrics = {
     }
   },
   renderValueContent(metricsData: any) {
-    //videoSrc: require('./assets/metrics_tv.mp4'),
     if (this.metricsIpad) {
       const el = util.renderImage(this.metricsIpad.firstElementChild as HTMLElement)(
         metricsData.metrics_ipad.url,
@@ -147,9 +146,9 @@ const metrics = {
     ev.target.removeEventListener('ended', this.hideVideo);
   },
   renderAnimations() {
-    const appleWatchVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-watch-video"]');
-    const iphoneVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-iphone-video"]');
-    const appleTvVideo = document.querySelector<HTMLMediaElement>('[data-target="metrics-apple-tv-video"]');
+    const appleWatchVideo = util.selectElement('[data-target="metrics-watch-video"]');
+    const iphoneVideo = util.selectElement('[data-target="metrics-iphone-video"]');
+    const appleTvVideo = util.selectElement('[data-target="metrics-apple-tv-video"]');
 
     const hero = gsap.timeline({
       defaults: {
@@ -231,14 +230,16 @@ const metrics = {
         },
         onEnter: ({isActive}) => {
           if (isActive && appleWatchVideo) {
-            appleWatchVideo.muted = true;
-            appleWatchVideo.play();
-            appleWatchVideo.addEventListener('ended', this.hideVideo);
+            let video = appleWatchVideo as HTMLMediaElement;
+            video.muted = true;
+            video.play();
+            video.addEventListener('ended', this.hideVideo);
           }
           if (isActive && iphoneVideo) {
-            iphoneVideo.muted = true;
-            iphoneVideo.play();
-            iphoneVideo.addEventListener('ended', this.hideVideo);
+            let video = iphoneVideo as HTMLMediaElement;
+            video.muted = true;
+            video.play();
+            video.addEventListener('ended', this.hideVideo);
           }
         },
       },
@@ -351,9 +352,10 @@ const metrics = {
         },
         onEnter: ({isActive}) => {
           if (isActive && appleTvVideo) {
-            appleTvVideo.muted = true;
-            appleTvVideo.play();
-            appleTvVideo.addEventListener('ended', this.hideVideo);
+            let video = appleTvVideo as HTMLMediaElement;
+            video.muted = true;
+            video.play();
+            video.addEventListener('ended', this.hideVideo);
           }
         },
       },

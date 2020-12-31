@@ -1,6 +1,7 @@
 const util = {
   selectElement(tag: string) {
-    return document.querySelector<HTMLElement>(tag);
+    let el = document.querySelector(tag);
+    return el as HTMLElement | HTMLMediaElement;
   },
   selectElements(tag: string) {
     return document.querySelectorAll<Element>(tag);

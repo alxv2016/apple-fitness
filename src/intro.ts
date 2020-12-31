@@ -1,4 +1,5 @@
 import gsap from 'gsap';
+import appleMusic from './music';
 import util from './utility';
 
 const intro = {
@@ -18,37 +19,26 @@ const intro = {
     this.renderAnimations();
   },
   renderDeviceGrid(introData: any) {
-    const renders = {
-      ipad: {
-        image: util.renderImage(util.createElement('figure')('c-ipad__mock'))(
-          introData.ipad_render.url,
-          introData.ipad_render.mask.url
-        ),
-      },
-      iphone: {
-        image: util.renderImage(util.createElement('figure')('c-iphone__mock'))(
-          introData.iphone_render.url,
-          introData.iphone_render.mask.url
-        ),
-      },
-      appleTv: {
-        image: util.renderImage(util.createElement('figure')('c-apple-tv__mock'))(
-          introData.apple_tv.url,
-          introData.apple_tv.mask.url
-        ),
-      },
-    };
     if (this.ipad) {
-      this.ipad.append(renders.ipad.image);
+      const ipadRender = util.renderImage(this.ipad.firstElementChild as HTMLElement)(
+        introData.ipad_render.url,
+        introData.ipad_render.mask.url
+      );
+      this.ipad.append(ipadRender);
     }
     if (this.iphone) {
-      this.iphone.append(renders.iphone.image);
+      const iphoneRender = util.renderImage(this.iphone.firstElementChild as HTMLElement)(
+        introData.iphone_render.url,
+        introData.iphone_render.mask.url
+      );
+      this.iphone.append(iphoneRender);
     }
     if (this.appleTv) {
-      util.renderImage(this.appleTv.firstElementChild as HTMLElement)(
+      const appleTvRender = util.renderImage(this.appleTv.firstElementChild as HTMLElement)(
         introData.apple_tv.url,
         introData.apple_tv.mask.url
       );
+      this.appleTv.append(appleTvRender);
     }
     if (this.appleWatch) {
       const el = util.renderImage(this.appleWatch.firstElementChild as HTMLElement)(
@@ -108,8 +98,8 @@ const intro = {
     ev.target.removeEventListener('ended', this.hideVideo);
   },
   renderAnimations() {
-    const appleWatchVideo = document.querySelector<HTMLMediaElement>('[data-target="intro-apple-watch-video"]');
-    const ipadWatchVideo = document.querySelector<HTMLMediaElement>('[data-target="ipad-watch-video"]');
+    const appleWatchVideo = util.selectElement('[data-target="intro-apple-watch-video"]');
+    const ipadWatchVideo = util.selectElement('[data-target="ipad-watch-video"]');
 
     const deviceGrid = gsap.timeline({
       defaults: {
@@ -148,9 +138,10 @@ const intro = {
         },
         onEnter: ({isActive}) => {
           if (isActive && appleWatchVideo) {
-            appleWatchVideo.muted = true;
-            appleWatchVideo.play();
-            appleWatchVideo.addEventListener('ended', this.hideVideo);
+            let video = appleWatchVideo as HTMLMediaElement;
+            video.muted = true;
+            video.play();
+            video.addEventListener('ended', this.hideVideo);
           }
         },
       },
@@ -243,9 +234,10 @@ const intro = {
         },
         onEnter: ({isActive}) => {
           if (isActive && ipadWatchVideo) {
-            ipadWatchVideo.muted = true;
-            ipadWatchVideo.play();
-            ipadWatchVideo.addEventListener('ended', this.hideVideo);
+            let video = ipadWatchVideo as HTMLMediaElement;
+            video.muted = true;
+            video.play();
+            video.addEventListener('ended', this.hideVideo);
           }
         },
       },
