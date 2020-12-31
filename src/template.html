@@ -107,10 +107,22 @@
       <section class="section section--overflow">
         <div class="l-service-media l-margin--top">
           <div class="c-section-hero c-section-hero--metrics" data-target="metrics-hero" data-trigger="metrics-hero">
-            <div class="c-hero-metrics c-hero-metrics--metrics" data-target="fitness-metrics">
-              <div class="c-hero-metrics-group" data-target="metrics-time"></div>
-              <div class="c-hero-metrics-group" data-target="metrics-bpm"></div>
-              <div class="c-hero-metrics-group" data-target="metrics-calories"></div>
+            <figure class="c-section-hero__shadow"></figure>
+            <figure class="c-section-hero__image"></figure>
+            <figure class="c-section-hero__duo-tone" data-target="metrics-hero-duo-tone"></figure>
+            <div class="c-hero-metrics c-hero-metrics--metrics" data-target="hero-metrics">
+              <div class="c-hero-metrics-group" data-target="metrics-time">
+                <figure class="c-metric c-metric--time" data-stagger="metric"></figure>
+                <figure class="c-metric c-metric--time-icon" data-stagger="metric"></figure>
+              </div>
+              <div class="c-hero-metrics-group" data-target="metrics-bpm">
+                <figure class="c-metric c-metric--bpm" data-stagger="metric"></figure>
+                <figure class="c-metric c-metric--bpm-icon" data-stagger="metric"></figure>
+              </div>
+              <div class="c-hero-metrics-group" data-target="metrics-calories">
+                <figure class="c-metric c-metric--calories" data-stagger="metric"></figure>
+                <figure class="c-metric c-metric--calories-icon" data-stagger="metric"></figure>
+              </div>
             </div>
           </div>
         </div>
@@ -122,18 +134,41 @@
           </div>
         </div>
         <div class="l-service-media l-metric-media">
-          <div class="c-metric-sync" data-target="metrics-heart-rate" data-trigger="metrics-heart-rate">
-            <div class="c-metric-sync__devices" data-target="metrics-heart-rate-renders"></div>
-            <p class="large-print compact--print" data-target="metrics-heart-rate-intro"></p>
+          <div class="c-metric-sync">
+            <div class="c-metric-sync__devices" data-target="metrics-devices" data-trigger="metrics-devices">
+              <div class="c-apple-watch" data-target="metrics-apple-watch">
+                <figure class="c-apple-watch__mock"></figure>
+                <div class="c-apple-watch-screen">
+                  <figure class="c-apple-watch-screen__static"></figure>
+                  <video
+                    class="c-apple-watch-screen__video"
+                    playsinline="true"
+                    aria-hidden="true"
+                    data-target="metrics-watch-video"
+                  ></video>
+                </div>
+              </div>
+              <div class="c-iphone c-iphone--landscape" data-target="metrics-iphone">
+                <figure class="c-iphone__mock"></figure>
+                <div class="c-iphone-screen">
+                  <figure class="c-iphone-screen__static"></figure>
+                  <video
+                    class="c-iphone-screen__video"
+                    playsinline="true"
+                    aria-hidden="true"
+                    data-target="metrics-iphone-video"
+                  ></video>
+                </div>
+              </div>
+            </div>
+            <p class="large-print compact--print" data-target="metrics-sync-intro"></p>
           </div>
         </div>
 
-        <div
-          class="l-service-value-prop l-margin--top-xl"
-          data-target="metrics-milestone"
-          data-trigger="metrics-milestone"
-        >
-          <div class="c-ipad" data-target="metrics-ipad"></div>
+        <div class="l-service-value-prop l-margin--top-xl" data-trigger="metrics-milestone">
+          <div class="c-ipad" data-target="metrics-ipad">
+            <figure class="c-ipad__mock"></figure>
+          </div>
           <p class="large-print compact--print l-section--reveal" data-target="metrics-milestone-intro"></p>
         </div>
 
@@ -142,7 +177,18 @@
           data-target="metrics-competition"
           data-trigger="metrics-competition"
         >
-          <div class="c-apple-tv c-apple-tv--small" data-target="metrics-tv"></div>
+          <div class="c-apple-tv c-apple-tv--small" data-target="metrics-apple-tv">
+            <figure class="c-apple-tv__mock"></figure>
+            <div class="c-apple-tv-screen">
+              <figure class="c-apple-tv-screen__static"></figure>
+              <video
+                class="c-apple-tv-screen__video"
+                playsinline="true"
+                aria-hidden="true"
+                data-target="metrics-apple-tv-video"
+              ></video>
+            </div>
+          </div>
           <p class="large-print compact--print l-section--reveal" data-target="metrics-competition-intro"></p>
         </div>
       </section>

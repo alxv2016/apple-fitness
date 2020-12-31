@@ -88,6 +88,10 @@ const intro = {
       );
       this.ipadWatch.prepend(el);
       if (this.ipadWatch.lastElementChild) {
+        this.ipadWatch.lastElementChild.setAttribute(
+          'style',
+          `-webkit-mask-image: url("${introData.lock_up.video_mask.url}");`
+        );
         const el = util.renderImage(this.ipadWatch.lastElementChild.firstElementChild as HTMLElement)(
           introData.lock_up.static.url
         );

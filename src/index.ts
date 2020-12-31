@@ -68,7 +68,7 @@ function accessData(data: any) {
   const serviceData = data.filter((content: any) => content.slice_type === 'more_info')[0];
   //hero.processData(heroData, valuePropData, pricingData);
   intro.processData(introData);
-  // metrics.processData(metricsData);
+  metrics.processData(metricsData);
   // workouts.processData(workoutsData);
   // trainers.processData(trainersData);
   // appleMusic.processData(trainersData, songsData, albumData);

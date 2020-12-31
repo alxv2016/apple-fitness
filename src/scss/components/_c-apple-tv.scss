@@ -29,8 +29,6 @@
       height: 560px;
     }
   }
-
-  &__mock-dimmed,
   &__mock {
     position: absolute;
     height: inherit;
@@ -39,19 +37,11 @@
     background-repeat: no-repeat;
     mask-size: contain;
     mask-repeat: no-repeat;
-  }
-
-  &__mock-dimmed {
-    z-index: 3;
-    opacity: 1;
-  }
-  &__mock {
-    z-index: 2;
     &::after {
       position: absolute;
       content: '';
       top: 0;
-      z-index: 3;
+      z-index: 6;
       height: 100%;
       width: 100%;
       opacity: 0;
