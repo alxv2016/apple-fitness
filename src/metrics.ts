@@ -161,11 +161,11 @@ const metrics = {
         end: 'bottom center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const ipadWatchHide = util.calculateScroll(progress, 3, 20);
+          const previousHide = util.calculateScroll(progress, 3, 20);
           const heroReveal = util.calculateScroll(progress, 4);
           if (this.previous) {
-            this.previous.style.setProperty('--progress-start', `${ipadWatchHide.start}%`);
-            this.previous.style.setProperty('--progress-end', `${ipadWatchHide.end}%`);
+            this.previous.style.setProperty('--progress-start', `${previousHide.start}%`);
+            this.previous.style.setProperty('--progress-end', `${previousHide.end}%`);
           }
           if (this.hero) {
             this.hero.style.setProperty('--progress-start', `${heroReveal.start}%`);

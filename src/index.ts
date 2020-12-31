@@ -69,7 +69,7 @@ function accessData(data: any) {
   //hero.processData(heroData, valuePropData, pricingData);
   intro.processData(introData);
   metrics.processData(metricsData);
-  // workouts.processData(workoutsData);
+  workouts.processData(workoutsData);
   // trainers.processData(trainersData);
   // appleMusic.processData(trainersData, songsData, albumData);
   // compatibility.processData(compatibilityData);

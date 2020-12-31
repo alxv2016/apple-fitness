@@ -2,10 +2,11 @@ import gsap from 'gsap';
 import util from './utility';
 
 const workouts = {
-  metricsCompetition: document.querySelector<HTMLElement>('[data-target="metrics-competition"]'),
-  hero: document.querySelector<HTMLElement>('[data-target="workouts-hero"]'),
-  workoutsHeroMetrics: document.querySelector<HTMLElement>('[data-target="workouts-hero-metrics"]'),
-  workoutsContent: document.querySelector<HTMLElement>('[data-target="workouts-content"]'),
+  previous: util.selectElement('[data-target="metrics-competition"]'),
+  hero: util.selectElement('[data-target="workouts-hero"]'),
+  heroMetrics: util.selectElement('[data-target="workouts-hero-metrics"]'),
+  workoutsContent: util.selectElement('[data-target="workouts-content"]'),
+
   workoutIcons: document.querySelector<HTMLElement>('[data-target="workout-icons"]'),
   popularWorkouts: document.querySelector<HTMLElement>('[data-target="popular-workouts"]'),
   popularWorkoutsIntro: document.querySelector<HTMLElement>('[data-target="popular-workouts-intro"]'),
@@ -18,33 +19,33 @@ const workouts = {
   ipadSearch: document.querySelector<HTMLElement>('[data-target="search-ipad"]'),
   processData(workoutsData: any) {
     this.renderHero(workoutsData.primary);
-    this.renderWorkouts(workoutsData.items);
-    this.renderWorkoutAnywhere(workoutsData.primary);
-    this.renderValueContent(workoutsData.primary);
+    // this.renderWorkouts(workoutsData.items);
+    // this.renderWorkoutAnywhere(workoutsData.primary);
+    // this.renderValueContent(workoutsData.primary);
     this.renderAnimations();
   },
   renderHero(workoutsData: any) {
-    const renders = {
-      shadow: util.createElement('figure', 'c-section-hero__shadow'),
-      image: util.createElement('figure', 'c-section-hero__image'),
-      duoTone: util.createElement('figure', 'c-section-hero__duo-tone', 'workouts-hero-duo-tone'),
-      metrics: {
-        yoga: util.createElement('figure', 'c-metric c-metric--yoga', 'workouts-metric-yoga'),
-        clock: util.createElement('figure', 'c-metric c-metric--clock', 'workouts-metric-clock'),
-        music: util.createElement('figure', 'c-metric c-metric--music', 'workouts-metric-music'),
-      },
-    };
     if (this.hero) {
-      util.renderImage(renders.shadow, workoutsData.hero.shadow.url);
-      util.renderImage(renders.image, workoutsData.hero.url, workoutsData.hero.mask.url);
-      util.renderImage(renders.duoTone, workoutsData.hero.duo_tone.url, workoutsData.hero.mask.url);
-      this.hero.prepend(renders.shadow, renders.image, renders.duoTone);
+      const el1 = util.renderImage(this.hero.firstElementChild as HTMLElement)(workoutsData.hero.shadow.url);
+      const el2 = util.renderImage(this.hero.firstElementChild?.nextElementSibling as HTMLElement)(
+        workoutsData.hero.url,
+        workoutsData.hero.mask.url
+      );
+      const el3 = util.renderImage(this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement)(
+        workoutsData.hero.duo_tone.url,
+        workoutsData.hero.mask.url
+      );
+      this.hero.prepend(el1, el2, el3);
     }
-    if (this.workoutsHeroMetrics) {
-      util.renderImage(renders.metrics.yoga, workoutsData.metric_yoga.url);
-      util.renderImage(renders.metrics.clock, workoutsData.metric_clock.url);
-      util.renderImage(renders.metrics.music, workoutsData.metric_music.url);
-      this.workoutsHeroMetrics.append(renders.metrics.yoga, renders.metrics.clock, renders.metrics.music);
+    if (this.heroMetrics) {
+      const metric1 = util.renderImage(this.heroMetrics.firstElementChild as HTMLElement)(workoutsData.metric_yoga.url);
+      const metric2 = util.renderImage(this.heroMetrics.firstElementChild?.nextElementSibling as HTMLElement)(
+        workoutsData.metric_clock.url
+      );
+      const metric3 = util.renderImage(
+        this.heroMetrics.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement
+      )(workoutsData.metric_music.url);
+      this.heroMetrics.append(metric1, metric2, metric3);
     }
     if (this.workoutsContent) {
       Array.from(this.workoutsContent.children).forEach((item) => {
@@ -65,93 +66,93 @@ const workouts = {
       this.popularWorkoutsIntro.innerHTML = workoutsData.popular_workouts[0].text;
     }
   },
-  renderWorkouts(workoutsData: any) {
-    const workouts = workoutsData.map((item: any) => {
-      const workoutType = {
-        id: item.workout_id,
-        icon: {
-          container: util.createElement('div', 'c-workout-icon'),
-          video: util.createVideoElement('video', 'c-workout-icon__video', 'workout-icon-video'),
-          videoSrc: require(`./assets/${item.workout_id}.mp4`),
-          image: util.createElement('figure', 'c-workout-icon__static'),
-        },
-        label: util.createElement('p', 'c-workout__label'),
-      };
-      util.renderVideo(
-        workoutType.icon.image,
-        workoutType.icon.video,
-        item.workout_icon.url,
-        workoutType.icon.videoSrc
-      );
-      workoutType.label.textContent = item.workout_label;
-      workoutType.icon.container.append(workoutType.icon.image, workoutType.icon.video);
-      return workoutType;
-    });
-    if (this.workoutIcons) {
-      Array.from(this.workoutIcons.children).forEach((item, i) => {
-        item.append(workouts[i].icon.container, workouts[i].label);
-      });
-    }
-  },
-  renderWorkoutAnywhere(workoutsData: any) {
-    const renders = {
-      container: util.createElement('div', 'c-background-hero__container'),
-      media: util.createElement('div', 'c-background-hero-media'),
-      image: util.createElement('figure', 'c-background-hero-media__static'),
-      video: util.createVideoElement('video', 'c-background-hero-media__video', 'background-hero-video'),
-      videoSrc: require('./assets/workout_anywhere.mp4'),
-    };
-    util.renderVideo(renders.image, renders.video, workoutsData.anywhere_anytime.url, renders.videoSrc);
-    renders.media.append(renders.image, renders.video);
-    renders.container.append(renders.media);
-    if (this.backgroundHero) {
-      this.backgroundHero.append(renders.container);
-    }
-    if (this.workoutsAnywhereHeadline) {
-      this.workoutsAnywhereHeadline.textContent = workoutsData.anywhere_headling[0].text;
-    }
-    if (this.workoutsAnywhereIntro) {
-      this.workoutsAnywhereIntro.textContent = workoutsData.anywhere_intro[0].text;
-    }
-  },
-  renderValueContent(workoutsData: any) {
-    const renders = {
-      ipadSmartSuggestions: {
-        image: util.createElement('figure', 'c-ipad__mock'),
-      },
-      ipadSearch: {
-        image: util.createElement('figure', 'c-ipad__mock'),
-      },
-    };
-    util.renderImage(
-      renders.ipadSmartSuggestions.image,
-      workoutsData.smart_suggestions.url,
-      workoutsData.smart_suggestions.mask.url
-    );
-    util.renderImage(renders.ipadSearch.image, workoutsData.search.url, workoutsData.search.mask.url);
-    if (this.workoutsSmartSuggestions) {
-      Array.from(this.workoutsSmartSuggestions.children).forEach((item) => {
-        const data = item.getAttribute('data-target');
-        if (data === 'smart-suggestions-ipad') {
-          item.append(renders.ipadSmartSuggestions.image);
-        }
-        if (data === 'smart-suggestions-intro') {
-          item.innerHTML = workoutsData.suggestions_intro[0].text;
-        }
-      });
-    }
-    if (this.workoutsSearch) {
-      Array.from(this.workoutsSearch.children).forEach((item) => {
-        const data = item.getAttribute('data-target');
-        if (data === 'search-ipad') {
-          item.append(renders.ipadSearch.image);
-        }
-        if (data === 'search-intro') {
-          item.innerHTML = workoutsData.search_intro[0].text;
-        }
-      });
-    }
-  },
+  // renderWorkouts(workoutsData: any) {
+  //   const workouts = workoutsData.map((item: any) => {
+  //     const workoutType = {
+  //       id: item.workout_id,
+  //       icon: {
+  //         container: util.createElement('div', 'c-workout-icon'),
+  //         video: util.createVideoElement('video', 'c-workout-icon__video', 'workout-icon-video'),
+  //         videoSrc: require(`./assets/${item.workout_id}.mp4`),
+  //         image: util.createElement('figure', 'c-workout-icon__static'),
+  //       },
+  //       label: util.createElement('p', 'c-workout__label'),
+  //     };
+  //     util.renderVideo(
+  //       workoutType.icon.image,
+  //       workoutType.icon.video,
+  //       item.workout_icon.url,
+  //       workoutType.icon.videoSrc
+  //     );
+  //     workoutType.label.textContent = item.workout_label;
+  //     workoutType.icon.container.append(workoutType.icon.image, workoutType.icon.video);
+  //     return workoutType;
+  //   });
+  //   if (this.workoutIcons) {
+  //     Array.from(this.workoutIcons.children).forEach((item, i) => {
+  //       item.append(workouts[i].icon.container, workouts[i].label);
+  //     });
+  //   }
+  // },
+  // renderWorkoutAnywhere(workoutsData: any) {
+  //   const renders = {
+  //     container: util.createElement('div', 'c-background-hero__container'),
+  //     media: util.createElement('div', 'c-background-hero-media'),
+  //     image: util.createElement('figure', 'c-background-hero-media__static'),
+  //     video: util.createVideoElement('video', 'c-background-hero-media__video', 'background-hero-video'),
+  //     videoSrc: require('./assets/workout_anywhere.mp4'),
+  //   };
+  //   util.renderVideo(renders.image, renders.video, workoutsData.anywhere_anytime.url, renders.videoSrc);
+  //   renders.media.append(renders.image, renders.video);
+  //   renders.container.append(renders.media);
+  //   if (this.backgroundHero) {
+  //     this.backgroundHero.append(renders.container);
+  //   }
+  //   if (this.workoutsAnywhereHeadline) {
+  //     this.workoutsAnywhereHeadline.textContent = workoutsData.anywhere_headling[0].text;
+  //   }
+  //   if (this.workoutsAnywhereIntro) {
+  //     this.workoutsAnywhereIntro.textContent = workoutsData.anywhere_intro[0].text;
+  //   }
+  // },
+  // renderValueContent(workoutsData: any) {
+  //   const renders = {
+  //     ipadSmartSuggestions: {
+  //       image: util.createElement('figure', 'c-ipad__mock'),
+  //     },
+  //     ipadSearch: {
+  //       image: util.createElement('figure', 'c-ipad__mock'),
+  //     },
+  //   };
+  //   util.renderImage(
+  //     renders.ipadSmartSuggestions.image,
+  //     workoutsData.smart_suggestions.url,
+  //     workoutsData.smart_suggestions.mask.url
+  //   );
+  //   util.renderImage(renders.ipadSearch.image, workoutsData.search.url, workoutsData.search.mask.url);
+  //   if (this.workoutsSmartSuggestions) {
+  //     Array.from(this.workoutsSmartSuggestions.children).forEach((item) => {
+  //       const data = item.getAttribute('data-target');
+  //       if (data === 'smart-suggestions-ipad') {
+  //         item.append(renders.ipadSmartSuggestions.image);
+  //       }
+  //       if (data === 'smart-suggestions-intro') {
+  //         item.innerHTML = workoutsData.suggestions_intro[0].text;
+  //       }
+  //     });
+  //   }
+  //   if (this.workoutsSearch) {
+  //     Array.from(this.workoutsSearch.children).forEach((item) => {
+  //       const data = item.getAttribute('data-target');
+  //       if (data === 'search-ipad') {
+  //         item.append(renders.ipadSearch.image);
+  //       }
+  //       if (data === 'search-intro') {
+  //         item.innerHTML = workoutsData.search_intro[0].text;
+  //       }
+  //     });
+  //   }
+  // },
   hideVideo(ev: any) {
     ev.target.removeEventListener('ended', this.hideVideo);
   },
@@ -159,7 +160,7 @@ const workouts = {
     const workoutIconVideos = document.querySelectorAll('[data-target="workout-icon-video"]');
     const backgroundHeroVideo = document.querySelector<HTMLMediaElement>('[data-target="background-hero-video"]');
 
-    const workoutsHero = gsap.timeline({
+    const hero = gsap.timeline({
       defaults: {
         ease: 'none',
       },
@@ -170,60 +171,78 @@ const workouts = {
         end: 'bottom center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const competitionHide = util.calculateScroll(progress, 3, 20);
+          const previousHide = util.calculateScroll(progress, 3, 20);
           const heroReveal = util.calculateScroll(progress, 4);
+          if (this.previous) {
+            this.previous.style.setProperty('--progress-start', `${previousHide.start}%`);
+            this.previous.style.setProperty('--progress-end', `${previousHide.end}%`);
+          }
           if (this.hero) {
             this.hero.style.setProperty('--progress-start', `${heroReveal.start}%`);
             this.hero.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
-          if (this.metricsCompetition) {
-            this.metricsCompetition.style.setProperty('--progress-start', `${competitionHide.start}%`);
-            this.metricsCompetition.style.setProperty('--progress-end', `${competitionHide.end}%`);
-          }
         },
       },
     });
 
-    workoutsHero
+    hero
       .to('[data-target="workouts-hero-duo-tone"]', {
         opacity: 0,
-        delay: 0.025,
+        delay: 0.25,
       })
-      .to(
-        '[data-target="workouts-metric-music"]',
-        {
-          yPercent: -160,
-        },
-        0
-      )
-      .from(
-        '[data-target="workouts-metric-clock"]',
-        {
-          yPercent: 20,
-        },
-        0
-      )
-      .to(
-        '[data-target="workouts-metric-yoga"]',
-        {
-          yPercent: 180,
-        },
-        0
-      );
+      .from('[data-target="workouts-intro"]', {
+        stagger: 0.25,
+        opacity: 0,
+        y: 60,
+      });
 
-    gsap.from('[data-target="workouts-intro"]', {
-      stagger: 0.25,
-      ease: 'none',
-      opacity: 0,
-      y: 50,
+    const heroMetrics = gsap.timeline({
+      defaults: {
+        ease: 'none',
+        duration: 6,
+      },
       scrollTrigger: {
         markers: false,
-        trigger: '[data-trigger="workouts-content"]',
+        trigger: '[data-trigger="workouts-hero"]',
+        start: 'top center',
+        end: 'bottom center',
         scrub: 0.65,
-        start: '-=400 center',
-        end: 'center center',
       },
     });
+
+    heroMetrics
+      .fromTo(
+        '[data-target="metric-music"]',
+        {
+          yPercent: 0,
+          opacity: 0.45,
+        },
+        {
+          yPercent: -180,
+          opacity: 1,
+        },
+        0.65
+      )
+      .from(
+        '[data-target="metric-clock"]',
+        {
+          yPercent: -10,
+          opacity: 0,
+        },
+        0.45
+      )
+      .fromTo(
+        '[data-target="metric-yoga"]',
+        {
+          yPercent: 0,
+          opacity: 0,
+        },
+        {
+          yPercent: 100,
+          opacity: 1,
+        },
+        0.65
+      );
 
     const workoutIcons = gsap.timeline({
       defaults: {
