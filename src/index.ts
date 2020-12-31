@@ -10,8 +10,9 @@ import appleMusic from './music';
 import accordion from './accordion';
 import compatibility from './compatibility';
 import serviceInfo from './service-info';
+import valueProp from './value-prop';
+import pricing from './pricing';
 header.init();
-hero.randomizeHero();
 proccessData();
 
 async function masterRef(): Promise<string> {
@@ -41,9 +42,22 @@ async function proccessData() {
 
 function accessData(data: any) {
   console.log(data);
-  const heroData = data.filter((content: any) => content.slice_type === 'hero_section')[0];
-  const valuePropData = data.filter((content: any) => content.slice_type === 'value_prop')[0];
-  const pricingData = data.filter((content: any) => content.slice_type === 'pricing')[0];
+  data.forEach((dataSlice: any) => {
+    switch (true) {
+      case dataSlice.slice_type === 'hero_section':
+        hero.processData(dataSlice);
+        break;
+      case dataSlice.slice_type === 'value_prop':
+        valueProp.processData(dataSlice);
+        break;
+      case dataSlice.slice_type === 'pricing':
+        pricing.processData(dataSlice);
+        break;
+    }
+  });
+  // const heroData = data.filter((content: any) => content.slice_type === 'hero_section')[0];
+  // const valuePropData = data.filter((content: any) => content.slice_type === 'value_prop')[0];
+  // const pricingData = data.filter((content: any) => content.slice_type === 'pricing')[0];
   const introData = data.filter((content: any) => content.slice_type === 'service_intro')[0];
   const metricsData = data.filter((content: any) => content.slice_type === 'metrics')[0];
   const workoutsData = data.filter((content: any) => content.slice_type === 'workouts')[0];
@@ -52,13 +66,13 @@ function accessData(data: any) {
   const albumData = data.filter((content: any) => content.slice_type === 'apple_music_albums')[0];
   const compatibilityData = data.filter((content: any) => content.slice_type === 'compatibility')[0];
   const serviceData = data.filter((content: any) => content.slice_type === 'more_info')[0];
-  hero.processData(heroData, valuePropData, pricingData);
+  //hero.processData(heroData, valuePropData, pricingData);
   intro.processData(introData);
-  metrics.processData(metricsData);
-  workouts.processData(workoutsData);
-  trainers.processData(trainersData);
-  appleMusic.processData(trainersData, songsData, albumData);
-  compatibility.processData(compatibilityData);
-  serviceInfo.processData(serviceData);
-  accordion.initAccordion();
+  // metrics.processData(metricsData);
+  // workouts.processData(workoutsData);
+  // trainers.processData(trainersData);
+  // appleMusic.processData(trainersData, songsData, albumData);
+  // compatibility.processData(compatibilityData);
+  // serviceInfo.processData(serviceData);
+  // accordion.initAccordion();
 }

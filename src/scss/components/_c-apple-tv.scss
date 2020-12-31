@@ -47,21 +47,21 @@
   }
   &__mock {
     z-index: 2;
-  }
-
-  &::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    z-index: 3;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(
-      175deg,
-      rgba(color('darker'), 0) var(--progress-start),
-      rgba(color('darker'), 1) var(--progress-end)
-    );
-    transform-origin: bottom center;
+    &::after {
+      position: absolute;
+      content: '';
+      top: 0;
+      z-index: 3;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      background: linear-gradient(
+        175deg,
+        rgba(color('darker'), 0) var(--progress-start),
+        rgba(color('darker'), 1) var(--progress-end)
+      );
+      transform-origin: bottom center;
+    }
   }
 }
 

@@ -12,7 +12,6 @@ const serviceInfo = {
     }
   },
   renderAccordionContent(serviceData: any) {
-    console.log(serviceData);
     if (this.serviceHeadings) {
       this.serviceHeadings.forEach((heading, i) => {
         const accordionHeading = document.createTextNode(serviceData[i].topic[0].text);

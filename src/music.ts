@@ -10,7 +10,6 @@ const appleMusic = {
   airPodsRight: document.querySelector<HTMLElement>('[data-target="airpods-right"]'),
   playlist: document.querySelector<HTMLElement>('[data-target="playlist"]'),
   processData(trainersData: any, songsData: any, albumData: any) {
-    console.log(songsData);
     this.renderAlbums(albumData.items);
     this.renderIntro(trainersData.primary);
     this.renderIphone(trainersData.primary);

@@ -184,6 +184,8 @@
     position: absolute;
     height: inherit;
     width: inherit;
+    border-radius: inherit;
+    overflow: hidden;
   }
 
   &__video {

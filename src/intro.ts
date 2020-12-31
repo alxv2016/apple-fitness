@@ -2,16 +2,15 @@ import gsap from 'gsap';
 import util from './utility';
 
 const intro = {
-  heroContent: document.querySelector<HTMLElement>('[data-target="hero-content"]'),
-  appleWatch: document.querySelector<HTMLElement>('[data-target="intro-apple-watch"]'),
-  appleTv: document.querySelector<HTMLElement>('[data-target="intro-apple-tv"]'),
-  iphone: document.querySelector<HTMLElement>('[data-target="intro-iphone"]'),
-  ipad: document.querySelector<HTMLElement>('[data-target="intro-ipad"]'),
-  ipadWatch: document.querySelector<HTMLElement>('[data-target="ipad-watch"]'),
-  appIntro: document.querySelector<HTMLElement>('[data-target="app-intro"]'),
-  appIntroHeading: document.querySelector<HTMLElement>('[data-target="app-intro-heading"]'),
-  deviceSyncUp: document.querySelector<HTMLElement>('[data-target="device-sync-up"]'),
-
+  heroContent: util.selectElement('[data-target="hero-content"]'),
+  appleWatch: util.selectElement('[data-target="intro-apple-watch"]'),
+  appleTv: util.selectElement('[data-target="intro-apple-tv"]'),
+  iphone: util.selectElement('[data-target="intro-iphone"]'),
+  ipad: util.selectElement('[data-target="intro-ipad"]'),
+  ipadWatch: util.selectElement('[data-target="ipad-watch"]'),
+  deviceSyncHeading: util.selectElement('[data-target="device-sync-intro-heading"]'),
+  appIntro: util.selectElement('[data-target="app-intro"]'),
+  appIntroHeading: util.selectElement('[data-target="app-intro-heading"]'),
   processData(introData: any) {
     this.renderDeviceGrid(introData.primary);
     this.renderAppIntro(introData.primary);
@@ -20,56 +19,51 @@ const intro = {
   },
   renderDeviceGrid(introData: any) {
     const renders = {
-      appleWatch: {
-        image: util.createElement('figure', 'c-apple-watch__mock'),
-        screen: {
-          container: util.createElement('div', 'c-apple-watch-screen'),
-          static: util.createElement('figure', 'c-apple-watch-screen__static'),
-          video: util.createVideoElement('video', 'c-apple-watch-screen__video', 'intro-apple-watch-video'),
-          videoSrc: require('./assets/intro_watch_vid.mp4'),
-        },
-      },
-      appleTv: {
-        image: util.createElement('figure', 'c-apple-tv__mock'),
+      ipad: {
+        image: util.renderImage(util.createElement('figure')('c-ipad__mock'))(
+          introData.ipad_render.url,
+          introData.ipad_render.mask.url
+        ),
       },
       iphone: {
-        image: util.createElement('figure', 'c-iphone__mock'),
+        image: util.renderImage(util.createElement('figure')('c-iphone__mock'))(
+          introData.iphone_render.url,
+          introData.iphone_render.mask.url
+        ),
       },
-      ipad: {
-        image: util.createElement('figure', 'c-ipad__mock'),
+      appleTv: {
+        image: util.renderImage(util.createElement('figure')('c-apple-tv__mock'))(
+          introData.apple_tv.url,
+          introData.apple_tv.mask.url
+        ),
       },
     };
-
     if (this.ipad) {
-      util.renderImage(renders.ipad.image, introData.ipad_render.url, introData.ipad_render.mask.url);
       this.ipad.append(renders.ipad.image);
     }
-
     if (this.iphone) {
-      util.renderImage(renders.iphone.image, introData.iphone_render.url, introData.iphone_render.mask.url);
       this.iphone.append(renders.iphone.image);
     }
-
     if (this.appleTv) {
-      util.renderImage(renders.appleTv.image, introData.apple_tv_render.url, introData.apple_tv_render.mask.url);
-      this.appleTv.append(renders.appleTv.image);
+      util.renderImage(this.appleTv.firstElementChild as HTMLElement)(
+        introData.apple_tv.url,
+        introData.apple_tv.mask.url
+      );
     }
-
     if (this.appleWatch) {
-      util.renderImage(
-        renders.appleWatch.image,
+      const el = util.renderImage(this.appleWatch.firstElementChild as HTMLElement)(
         introData.apple_watch_render.url,
         introData.apple_watch_render.mask.url
       );
-      util.renderVideo(
-        renders.appleWatch.screen.static,
-        renders.appleWatch.screen.video,
-        introData.apple_watch_render.static.url,
-        renders.appleWatch.screen.videoSrc
-      );
-
-      renders.appleWatch.screen.container.append(renders.appleWatch.screen.static, renders.appleWatch.screen.video);
-      this.appleWatch.append(renders.appleWatch.image, renders.appleWatch.screen.container);
+      this.appleWatch.prepend(el);
+      if (this.appleWatch.lastElementChild) {
+        const el = util.renderImage(this.appleWatch.lastElementChild.firstElementChild as HTMLElement)(
+          introData.apple_watch_render.static.url
+        );
+        this.appleWatch.lastElementChild.prepend(el);
+        const videoEl = this.appleWatch.lastElementChild.lastElementChild as HTMLMediaElement;
+        videoEl.src = require('./assets/intro_watch_vid.mp4');
+      }
     }
   },
   renderAppIntro(introData: any) {
@@ -87,37 +81,23 @@ const intro = {
     }
   },
   renderDeviceSyncUp(introData: any) {
-    const renders = {
-      image: util.createElement('figure', 'c-ipad-watch__mock'),
-      screen: {
-        container: util.createElement('div', 'c-ipad-watch-screens'),
-        static: util.createElement('figure', 'c-ipad-watch-screens__static'),
-        video: util.createVideoElement('video', 'c-ipad-watch-screens__video', 'ipad-watch-video'),
-        videoSrc: require('./assets/intro_lockup.mp4'),
-      },
-    };
-
-    util.renderImage(renders.image, introData.lock_up.url, introData.lock_up.mask.url);
-    util.renderVideo(
-      renders.screen.static,
-      renders.screen.video,
-      introData.lock_up.static.url,
-      renders.screen.videoSrc
-    );
-    util.maskImage(renders.screen.container, introData.lock_up.video_mask.url);
-
-    if (this.deviceSyncUp) {
-      const elements = this.deviceSyncUp.children;
-      renders.screen.container.append(renders.screen.static, renders.screen.video);
-      Array.from(elements).forEach((el: any) => {
-        const data = el.getAttribute('data-target');
-        if (data === 'ipad-watch') {
-          el.append(renders.image, renders.screen.container);
-        }
-        if (data === 'device-sync-intro-heading') {
-          el.innerHTML = introData.fitness_intro[0].text;
-        }
-      });
+    if (this.ipadWatch) {
+      const el = util.renderImage(this.ipadWatch.firstElementChild as HTMLElement)(
+        introData.lock_up.url,
+        introData.lock_up.mask.url
+      );
+      this.ipadWatch.prepend(el);
+      if (this.ipadWatch.lastElementChild) {
+        const el = util.renderImage(this.ipadWatch.lastElementChild.firstElementChild as HTMLElement)(
+          introData.lock_up.static.url
+        );
+        this.ipadWatch.lastElementChild.prepend(el);
+        const videoEl = this.ipadWatch.lastElementChild.lastElementChild as HTMLMediaElement;
+        videoEl.src = require('./assets/intro_lockup.mp4');
+      }
+    }
+    if (this.deviceSyncHeading) {
+      this.deviceSyncHeading.innerHTML = introData.fitness_intro[0].text;
     }
   },
   hideVideo(ev: any) {
@@ -136,7 +116,7 @@ const intro = {
         trigger: '[data-trigger="device-grid"]',
         start: 'top center',
         end: 'center center',
-        scrub: 0.725,
+        scrub: 0.75,
         onUpdate: ({progress}) => {
           const heroContentHide = util.calculateScroll(progress, 3, 60);
           const appleWatchReveal = util.calculateScroll(progress, 2);
@@ -176,14 +156,18 @@ const intro = {
       .fromTo(
         '[data-target="intro-apple-watch"]',
         {
-          scale: 2.45,
+          scale: 1.95,
           opacity: 0.125,
         },
         {
-          scale: 0.7,
+          //scale: 0.7,
           opacity: 1,
         }
       )
+      .to('[data-target="intro-apple-watch"]', {
+        scale: 0.7,
+        delay: 0.25,
+      })
       .from(
         '[data-target="intro-apple-tv"]',
         {
@@ -191,7 +175,7 @@ const intro = {
           opacity: 0,
           scale: 0.95,
         },
-        0.25
+        0.75
       )
       .from(
         '[data-target="intro-iphone"]',
@@ -200,7 +184,7 @@ const intro = {
           opacity: 0,
           scale: 0.95,
         },
-        0.25
+        0.75
       )
       .from(
         '[data-target="intro-ipad"]',
@@ -209,7 +193,7 @@ const intro = {
           opacity: 0,
           scale: 0.95,
         },
-        0.25
+        0.75
       );
 
     gsap.from('[data-target="app-intro"]', {
