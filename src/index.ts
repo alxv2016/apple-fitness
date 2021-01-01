@@ -66,11 +66,10 @@ function accessData(data: any) {
   const albumData = data.filter((content: any) => content.slice_type === 'apple_music_albums')[0];
   const compatibilityData = data.filter((content: any) => content.slice_type === 'compatibility')[0];
   const serviceData = data.filter((content: any) => content.slice_type === 'more_info')[0];
-  //hero.processData(heroData, valuePropData, pricingData);
   intro.processData(introData);
   metrics.processData(metricsData);
   workouts.processData(workoutsData);
-  // trainers.processData(trainersData);
+  trainers.processData(trainersData);
   // appleMusic.processData(trainersData, songsData, albumData);
   // compatibility.processData(compatibilityData);
   // serviceInfo.processData(serviceData);

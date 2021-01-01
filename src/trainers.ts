@@ -4,11 +4,12 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const trainers = {
-  hero: document.querySelector<HTMLElement>('[data-target="trainers-hero"]'),
-  trainersContent: document.querySelector<HTMLElement>('[data-target="trainers-content"]'),
-  trainersTitle: document.querySelector<HTMLElement>('[data-group="trainers-title"]'),
-  trainersGroupA: document.querySelector<HTMLElement>('[data-target="trainers-group-a"]'),
-  trainersGroupB: document.querySelector<HTMLElement>('[data-target="trainers-group-b"]'),
+  hero: util.selectElement('[data-target="trainer-hero-image"]'),
+  trainersContent: util.selectElement('[data-target="trainers-content"]'),
+  trainersTitle: util.selectElement('[data-group="trainers-title"]'),
+  trainersGroupA: util.selectElement('[data-target="trainers-group-a"]'),
+  trainersGroupB: util.selectElement('[data-target="trainers-group-b"]'),
+
   trainers: document.querySelector<HTMLElement>('[data-target="trainers"]'),
   processData(trainersData: any) {
     this.renderHero(trainersData.primary);
@@ -16,19 +17,23 @@ const trainers = {
     this.renderAnimation();
   },
   renderHero(trainersData: any) {
-    const renders = {
-      shadow: util.createElement('figure', 'c-section-hero__shadow'),
-      image: util.createElement('figure', 'c-section-hero__image'),
-      duoTone: util.createElement('figure', 'c-section-hero__duo-tone', 'trainers-hero-duo-tone'),
-      bw: util.createElement('figure', 'c-section-hero__bw', 'trainers-hero-bw'),
-    };
     if (this.hero) {
-      util.renderImage(renders.shadow, trainersData.trainers_hero.shadow.url);
-      util.renderImage(renders.image, trainersData.trainers_hero.url, trainersData.trainers_hero.mask.url);
-      util.renderImage(renders.duoTone, trainersData.trainers_hero.duo_tone.url, trainersData.trainers_hero.mask.url);
-      util.renderImage(renders.bw, trainersData.trainers_hero.bw.url, trainersData.trainers_hero.mask.url);
-      this.hero.append(renders.shadow, renders.image, renders.duoTone, renders.bw);
+      const el1 = util.renderImage(this.hero.firstElementChild as HTMLElement)(trainersData.trainers_hero.shadow.url);
+      const el2 = util.renderImage(this.hero.firstElementChild?.nextElementSibling as HTMLElement)(
+        trainersData.trainers_hero.url,
+        trainersData.trainers_hero.mask.url
+      );
+      const el3 = util.renderImage(this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement)(
+        trainersData.trainers_hero.duo_tone.url,
+        trainersData.trainers_hero.mask.url
+      );
+      const el4 = util.renderImage(this.hero.lastElementChild as HTMLElement)(
+        trainersData.trainers_hero.bw.url,
+        trainersData.trainers_hero.mask.url
+      );
+      this.hero.append(el1, el2, el3, el4);
     }
+
     if (this.trainersContent) {
       Array.from(this.trainersContent.children).forEach((item) => {
         switch (true) {
@@ -46,62 +51,36 @@ const trainers = {
     }
   },
   renderTrainers(trainersData: any) {
-    const trainersGroupA = trainersData
-      .filter((trainers: any) => trainers.group_id === 'group_a')
-      .map((trainer: any) => {
-        const renders = {
-          trainerCard: util.createElement('div', 'c-trainer-card'),
-          container: util.createElement('div', 'c-trainer-card__container'),
-          image: util.createElement('figure', 'c-trainer-card-image'),
-          label: util.createElement('span', 'c-trainer-card-label'),
-        };
-        util.renderImage(renders.image, trainer.trainer_image.url);
-        renders.label.textContent = trainer.trainer_name;
-        renders.container.append(renders.image, renders.label);
-        renders.trainerCard.append(renders.container);
-        return renders.trainerCard;
+    const trainersGroupAData = trainersData.filter((trainer: any) => trainer.group_id === 'group_a');
+    const trainersGroupBData = trainersData.filter((trainer: any) => trainer.group_id === 'group_b');
+
+    if (this.trainersGroupA) {
+      Array.from(this.trainersGroupA.children).forEach((item, i) => {
+        const image = util.renderImage(util.createElement('figure')('c-trainer-card-image'))(
+          trainersGroupAData[i].trainer_image.url
+        );
+        const label = util.createElement('span')('c-trainer-card-label');
+        label.textContent = trainersGroupAData[i].trainer_name;
+        let el = item.firstElementChild as HTMLElement;
+        el.append(image, label);
+        const clone = item.cloneNode(true);
+        this.trainersGroupA?.append(clone);
       });
+    }
 
-    const trainersGroupAClone = trainersGroupA.map((item: any) => {
-      const clone = item.cloneNode(true);
-      return clone;
-    });
-
-    const trainersGroupAMerged = trainersGroupA.concat(trainersGroupAClone);
-
-    const trainersGroupB = trainersData
-      .filter((trainers: any) => trainers.group_id === 'group_b')
-      .map((trainer: any) => {
-        const renders = {
-          trainerCard: util.createElement('div', 'c-trainer-card'),
-          container: util.createElement('div', 'c-trainer-card__container'),
-          image: util.createElement('figure', 'c-trainer-card-image'),
-          label: util.createElement('span', 'c-trainer-card-label'),
-        };
-        util.renderImage(renders.image, trainer.trainer_image.url);
-        renders.label.textContent = trainer.trainer_name;
-        renders.container.append(renders.image, renders.label);
-        renders.trainerCard.append(renders.container);
-        return renders.trainerCard;
+    if (this.trainersGroupB) {
+      Array.from(this.trainersGroupB.children).forEach((item, i) => {
+        const image = util.renderImage(util.createElement('figure')('c-trainer-card-image'))(
+          trainersGroupBData[i].trainer_image.url
+        );
+        const label = util.createElement('span')('c-trainer-card-label');
+        label.textContent = trainersGroupBData[i].trainer_name;
+        let el = item.firstElementChild as HTMLElement;
+        el.append(image, label);
+        const clone = item.cloneNode(true);
+        this.trainersGroupB?.append(clone);
       });
-
-    const trainersGroupBClone = trainersGroupB.map((item: any) => {
-      const clone = item.cloneNode(true);
-      return clone;
-    });
-
-    const trainersGroupBMerged = trainersGroupB.concat(trainersGroupBClone);
-
-    trainersGroupAMerged.forEach((trainer: any) => {
-      if (this.trainersGroupA) {
-        this.trainersGroupA.append(trainer);
-      }
-    });
-    trainersGroupBMerged.forEach((trainer: any) => {
-      if (this.trainersGroupB) {
-        this.trainersGroupB.append(trainer);
-      }
-    });
+    }
   },
   renderAnimation() {
     ScrollTrigger.create({
@@ -129,14 +108,14 @@ const trainers = {
     ScrollTrigger.create({
       markers: false,
       trigger: '[data-trigger="pinned-content"]',
-      start: 'top top',
-      end: 'center top',
+      start: 'top 40',
+      end: 'center 40',
       pin: true,
       pinSpacing: true,
       scrub: 0.75,
     });
 
-    const trainersHero = gsap.timeline({
+    const heroDuotone = gsap.timeline({
       defaults: {
         ease: 'none',
       },
@@ -147,12 +126,52 @@ const trainers = {
         end: '+=120% top',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const heroReveal = util.calculateScroll(progress, 3, 10);
-          const titleReveal = util.calculateScroll(progress);
+          const heroReveal = util.calculateScroll(progress, 4);
           if (this.hero) {
             this.hero.style.setProperty('--progress-start', `${heroReveal.start}%`);
             this.hero.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
+        },
+      },
+    });
+
+    heroDuotone
+      .to('[data-target="trainer-duo-tone"]', {
+        opacity: 0,
+        delay: 0.25,
+      })
+      .to('[data-target="trainer-bw"]', {
+        opacity: 1,
+        delay: 0.125,
+      });
+
+    gsap.to('[data-target="trainer-hero"]', {
+      ease: 'none',
+      scale: 1.25,
+      backgroundColor: '#131331',
+      delay: 0.75,
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="trainer-hero"]',
+        start: '-=200 center',
+        end: 'center center',
+        scrub: 0.65,
+      },
+    });
+
+    gsap.from('[data-target="trainers-intro"]', {
+      stagger: 0.25,
+      ease: 'none',
+      opacity: 0,
+      y: 50,
+      scrollTrigger: {
+        markers: false,
+        trigger: '[data-trigger="trainers-content"]',
+        start: '-=200 center',
+        end: 'center center',
+        scrub: 0.65,
+        onUpdate: ({progress}) => {
+          const titleReveal = util.calculateScroll(progress, 3, 10);
           if (this.trainersTitle) {
             this.trainersTitle.style.setProperty('--progress-start', `${titleReveal.start}%`);
             this.trainersTitle.style.setProperty('--progress-end', `${titleReveal.end}%`);
@@ -160,41 +179,6 @@ const trainers = {
         },
       },
     });
-
-    trainersHero
-      .to('[data-target="trainers-hero-duo-tone"]', {
-        opacity: 0,
-        delay: 0.45,
-      })
-      .to('[data-target="trainers-hero-bw"]', {
-        opacity: 1,
-        delay: 0.25,
-      })
-      .from(
-        '[data-target="trainers-hero"]',
-        {
-          scale: 1.45,
-          y: 120,
-        },
-        0
-      )
-      .to(
-        '[data-target="trainers-hero"]',
-        {
-          backgroundColor: '#131331',
-        },
-        0.45
-      )
-      .from(
-        '[data-target="trainers-intro"]',
-        {
-          stagger: 0.25,
-          ease: 'none',
-          opacity: 0,
-          y: 50,
-        },
-        0.45
-      );
   },
 };
 

@@ -13,25 +13,6 @@ const util = {
       return el;
     };
   },
-  // createMetric(metricClass: string, iconClass: string, dataName: string) {
-  //   const renders = {
-  //     metric: util.createElement('figure', `c-metric ${metricClass}`, dataName),
-  //     metric_icon: util.createElement('figure', `c-metric ${iconClass}`, dataName),
-  //   };
-  //   return renders;
-  // },
-  // createVideoElement(tag: string) {
-  //   const el = document.createElement(tag) as HTMLMediaElement;
-  //   el.muted = true;
-  //   el.setAttribute('playsinline', 'true');
-  //   el.setAttribute('aria-hidden', 'true');
-  //   el.setAttribute('muted', 'true');
-  //   return function (className: string | null = null, data: string | null = null) {
-  //     className ? (el.className = className) : el;
-  //     data ? el.setAttribute('data-target', data) : el;
-  //     return el;
-  //   };
-  // },
   randomize(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
@@ -49,18 +30,6 @@ const util = {
       return el;
     };
   },
-  // renderVideo(imageEl: HTMLElement, videoEL: HTMLMediaElement) {
-  //   return (url: string, videoSrc: any) => {
-  //     const cleanUrl = this.cleanUrl(url);
-  //     imageEl.style.backgroundImage = `url("${cleanUrl}")`;
-  //     videoEL.src = videoSrc;
-  //     return (className: string) => {
-  //       const container = this.createElement('div')(className);
-  //       container.append(imageEl, videoEL);
-  //       return container;
-  //     };
-  //   };
-  // },
   calculateScroll(progress: number, distance: number = 3, delay: number = 0) {
     let scrollProgress = Math.floor(progress * 100) - delay;
     let endProgress = scrollProgress * distance;

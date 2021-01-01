@@ -5,7 +5,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 1.2rem;
 
   &--metrics {
     width: 375px;
@@ -34,9 +33,12 @@
   }
 
   &--trainers {
+    position: relative;
     width: 420px;
     height: 595px;
-    transform-origin: top center;
+    border-radius: 1.25rem;
+    background-color: transparent;
+    overflow: hidden;
     @include breakpoint(md) {
       width: 628px;
       height: 890px;
@@ -45,6 +47,15 @@
       width: 860px;
       height: 1218px;
     }
+  }
+
+  &__trainer-image {
+    position: relative;
+    z-index: 1;
+    padding-top: $spacing--4xl;
+    transform-origin: top center;
+    width: 100%;
+    height: 100%;
   }
 
   &__shadow,
@@ -255,11 +266,3 @@
     }
   }
 }
-
-// .c-section-hero-clipper {
-//   --clip-progress: 0;
-//   clip-path: inset(
-//     calc(var(--clip-progress) / 10) calc(var(--clip-progress) / 2) calc(var(--clip-progress) * 1.1)
-//       calc(var(--clip-progress) / 2) round 20px
-//   );
-// }
