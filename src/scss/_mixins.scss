@@ -88,3 +88,10 @@
     max-width: $max-width;
   }
 }
+
+@mixin elevate-1($color, $opacity: false) {
+  box-shadow: 0 1px 3px rgba($color, 0.12), 0 1px 2px rgba($color, 0.24);
+  @if $opacity {
+    box-shadow: 0 1px 3px rgba($color, $opacity), 0 1px 2px rgba($color, $opacity);
+  }
+}

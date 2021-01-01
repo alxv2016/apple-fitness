@@ -107,5 +107,9 @@ const util = {
       end: endProgress,
     };
   },
+  checkConfirmation() {
+    const key = localStorage.getItem('confirmed');
+    return key ? JSON.parse(key) : false;
+  },
 };
 export default util;

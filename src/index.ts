@@ -12,6 +12,23 @@ import compatibility from './compatibility';
 import serviceInfo from './service-info';
 import valueProp from './value-prop';
 import pricing from './pricing';
+import util from './utility';
+
+const banner = util.selectElement('[data-target="notification-banner"]');
+const bannerBtn = util.selectElement('[data-target="notification-banner-button"]');
+if (banner && bannerBtn) {
+  if (util.checkConfirmation()) {
+    banner.setAttribute('style', 'transform: translateY(100%); visibility: hidden;');
+  } else {
+    banner.removeAttribute('style');
+    bannerBtn.addEventListener('click', (ev) => {
+      banner.setAttribute('style', 'transform: translateY(100%); visibility: hidden;');
+      localStorage.setItem('confirmed', 'true');
+      return util.handlePauseEvent(ev);
+    });
+  }
+}
+
 header.init();
 proccessData();
 
