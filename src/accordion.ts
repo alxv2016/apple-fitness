@@ -3,8 +3,8 @@ class Accordion {
   accordionPanels: NodeListOf<Element>;
   expanded: boolean;
   constructor() {
-    this.accordionHeaders = document.querySelectorAll('.js-accordion-header');
-    this.accordionPanels = document.querySelectorAll('.js-accordion-panel');
+    this.accordionHeaders = document.querySelectorAll('[data-target="accordion-header"]');
+    this.accordionPanels = document.querySelectorAll('[data-target="accordion-panel"]');
     this.expanded = false;
     this.togglePanel = this.togglePanel.bind(this);
     this.initAccordion();

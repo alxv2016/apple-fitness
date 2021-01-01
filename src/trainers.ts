@@ -98,12 +98,13 @@ const trainers = {
       },
     });
 
-    gsap.to('[data-group="trainer-profiles"]', {
+    const profiles = gsap.to('[data-group="trainer-profiles"]', {
       duration: 95,
       ease: 'none',
       xPercent: -50,
       repeat: -1,
     });
+    util.mediaControl(profiles);
 
     ScrollTrigger.create({
       markers: false,

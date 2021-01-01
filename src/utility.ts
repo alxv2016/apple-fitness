@@ -1,3 +1,5 @@
+import gsap from 'gsap';
+
 const util = {
   selectElement(tag: string) {
     return document.querySelector<HTMLElement>(tag);
@@ -29,6 +31,39 @@ const util = {
       }
       return el;
     };
+  },
+  mediaControl(gsapTween: any) {
+    const mediaControl = this.selectElement('[data-target="media-control"]');
+    const playIcon = this.selectElement('[data-target="play-icon"]');
+    const pauseIcon = this.selectElement('[data-target="pause-icon"]');
+    if (mediaControl) {
+      let a11yMsg = 'animation of trainers for Apple Fitness Plus';
+      let btnLabel = mediaControl.firstElementChild as HTMLElement;
+      mediaControl.setAttribute('aria-label', `Pause ${a11yMsg}`);
+      mediaControl.addEventListener('click', (ev) => {
+        if (gsapTween.paused()) {
+          mediaControl.setAttribute('aria-label', `Pause ${a11yMsg}`);
+          if (playIcon && pauseIcon) {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+          }
+          btnLabel.textContent = 'Pause';
+          gsapTween.play();
+        } else {
+          mediaControl.setAttribute('aria-label', `Play ${a11yMsg}`);
+          if (playIcon && pauseIcon) {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+          }
+          btnLabel.textContent = 'Play';
+          gsapTween.pause();
+        }
+        return this.handlePauseEvent(ev);
+      });
+    }
+  },
+  handlePauseEvent(ev: Event) {
+    ev.target?.removeEventListener('click', this.handlePauseEvent);
   },
   calculateScroll(progress: number, distance: number = 3, delay: number = 0) {
     let scrollProgress = Math.floor(progress * 100) - delay;

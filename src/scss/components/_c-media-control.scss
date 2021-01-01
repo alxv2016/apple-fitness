@@ -1,0 +1,24 @@
+.c-media-control {
+  position: relative;
+  @include button-reset;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  height: 46px;
+  width: 46px;
+  padding: 0;
+  margin: $spacing--xs;
+  cursor: pointer;
+  &-pause,
+  &-play {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+  &-play {
+    display: none;
+  }
+  &-pause {
+    display: block;
+  }
+}

@@ -22,7 +22,8 @@
       border: 1px solid transparent;
       border-bottom: 1px solid rgba(color('offwhite'), 0.125);
       line-height: 1.25;
-      &:focus {
+      &:focus,
+      &:hover {
         color: color('exercise');
       }
       @include breakpoint(lg) {
@@ -30,7 +31,8 @@
       }
     }
 
-    button:focus {
+    button:focus,
+    button:hover {
       .accordion-icon::after,
       .accordion-icon::before {
         background-color: color('exercise');
