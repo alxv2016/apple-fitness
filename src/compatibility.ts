@@ -25,8 +25,8 @@ const compatibility = {
     if (this.deviceIcons) {
       this.deviceIcons.forEach((item, i) => {
         if (item.firstElementChild) {
-          const el = item.firstElementChild as HTMLElement;
-          util.renderImage(el, compatibilityData[i].device_icon.url);
+          const el = util.renderImage(item.firstElementChild as HTMLElement)(compatibilityData[i].device_icon.url);
+          item.prepend(el);
         }
         if (item.lastElementChild) {
           item.lastElementChild.textContent = compatibilityData[i].device_label;

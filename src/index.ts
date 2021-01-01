@@ -70,8 +70,8 @@ function accessData(data: any) {
   metrics.processData(metricsData);
   workouts.processData(workoutsData);
   trainers.processData(trainersData);
-  // appleMusic.processData(trainersData, songsData, albumData);
-  // compatibility.processData(compatibilityData);
-  // serviceInfo.processData(serviceData);
-  // accordion.initAccordion();
+  appleMusic.processData(trainersData, songsData, albumData);
+  compatibility.processData(compatibilityData);
+  serviceInfo.processData(serviceData);
+  accordion.initAccordion();
 }
