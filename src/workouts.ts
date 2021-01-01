@@ -289,6 +289,7 @@ const workouts = {
             video.loop = true;
             video.play();
             video.addEventListener('ended', this.hideVideo);
+            util.videoControl(video);
           } else {
             if (backgroundHeroVideo) {
               video.pause();

@@ -13,4 +13,11 @@
   &__heading {
     max-width: 568px;
   }
+
+  &__media-control {
+    position: absolute;
+    z-index: 6;
+    right: $spacing--lg;
+    bottom: 180px;
+  }
 }

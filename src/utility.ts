@@ -32,6 +32,37 @@ const util = {
       return el;
     };
   },
+  videoControl(video: HTMLMediaElement) {
+    const videoControl = this.selectElement('[data-target="video-control"]');
+    const playIcon = this.selectElement('[data-target="video-play-icon"]');
+    const pauseIcon = this.selectElement('[data-target="video-pause-icon"]');
+    if (videoControl) {
+      let a11yMsg = 'video of People working out with Apple Fitness+ at different places';
+      let btnLabel = videoControl.firstElementChild as HTMLElement;
+      videoControl.setAttribute('aria-label', `Pause ${a11yMsg}`);
+      videoControl.addEventListener('click', (ev) => {
+        console.log(video.paused);
+        if (video.paused) {
+          videoControl.setAttribute('aria-label', `Pause ${a11yMsg}`);
+          if (playIcon && pauseIcon) {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+          }
+          btnLabel.textContent = 'Pause';
+          video.play();
+        } else {
+          videoControl.setAttribute('aria-label', `Play ${a11yMsg}`);
+          if (playIcon && pauseIcon) {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+          }
+          btnLabel.textContent = 'Play';
+          video.pause();
+        }
+        return this.handlePauseEvent(ev);
+      });
+    }
+  },
   mediaControl(gsapTween: any) {
     const mediaControl = this.selectElement('[data-target="media-control"]');
     const playIcon = this.selectElement('[data-target="play-icon"]');
