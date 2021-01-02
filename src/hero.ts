@@ -64,9 +64,11 @@ const hero = {
         scrub: 0.45,
         onUpdate: ({progress}) => {
           const heroHide = util.calculateScroll(progress, 3, 20);
-          if (this.hero) {
-            this.hero.style.setProperty('--progress-start', `${heroHide.start}%`);
-            this.hero.style.setProperty('--progress-end', `${heroHide.end}%`);
+          if (this.heroContainer) {
+            let el = this.heroContainer.lastElementChild as HTMLElement;
+            el.classList.add('l-hero--hide');
+            el.style.setProperty('--end-progress-start', `${heroHide.start}%`);
+            el.style.setProperty('--end-progress-end', `${heroHide.end}%`);
           }
         },
       },

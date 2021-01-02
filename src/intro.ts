@@ -114,11 +114,14 @@ const intro = {
           const previous = util.calculateScroll(progress, 4, 45);
           const appleWatchReveal = util.calculateScroll(progress);
           if (this.heroContent) {
+            this.heroContent.classList.remove('l-content--reveal');
+            this.heroContent.classList.add('l-content--hide');
             this.heroContent.style.setProperty('--end-progress-start', `${previous.start}%`);
             this.heroContent.style.setProperty('--end-progress-end', `${previous.end}%`);
           }
           if (this.appleWatch) {
             let el = this.appleWatch.firstElementChild as HTMLElement;
+            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${appleWatchReveal.start}%`);
             el.style.setProperty('--progress-end', `${appleWatchReveal.end}%`);
           }
@@ -208,15 +211,17 @@ const intro = {
         scrub: 0.65,
         onUpdate: ({progress}) => {
           const ipadWatchReveal = util.calculateScroll(progress);
-          const previous = util.calculateScroll(progress, 4, 40);
-          if (this.appIntro) {
-            this.appIntro.style.setProperty('--progress-start', `${previous.start}%`);
-            this.appIntro.style.setProperty('--progress-end', `${previous.end}%`);
-          }
+          const previous = util.calculateScroll(progress, 3, 40);
           if (this.ipadWatch) {
             let el = this.ipadWatch.firstElementChild as HTMLElement;
+            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${ipadWatchReveal.start}%`);
             el.style.setProperty('--progress-end', `${ipadWatchReveal.end}%`);
+          }
+          if (this.appIntro) {
+            this.appIntro.classList.add('l-content--fall-behind');
+            this.appIntro.style.setProperty('--end-progress-start', `${previous.start}%`);
+            this.appIntro.style.setProperty('--end-progress-end', `${previous.end}%`);
           }
         },
         onEnter: ({isActive}) => {

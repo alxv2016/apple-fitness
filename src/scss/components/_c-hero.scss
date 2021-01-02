@@ -1,14 +1,12 @@
 .c-hero {
-  --progress-start: 0%;
-  --progress-end: 0%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: $spacing--lg;
   overflow: hidden;
   &__container {
     position: relative;
-    top: 28px;
     z-index: 1;
     width: 682px;
     height: 556px;
@@ -43,21 +41,6 @@
     mask-size: contain;
     @include breakpoint(md) {
       left: 0;
-    }
-  }
-
-  &-image {
-    &::after {
-      position: absolute;
-      content: '';
-      z-index: 2;
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(
-        355deg,
-        rgba(color('darker'), 1) var(--progress-start),
-        rgba(color('darker'), 0) var(--progress-end)
-      );
     }
   }
 

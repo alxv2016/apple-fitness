@@ -38,14 +38,10 @@ const valueProp = {
         scrub: 0.65,
         onUpdate: ({progress}) => {
           const contentReveal = util.calculateScroll(progress, 1.6, 0);
-          const titleReveal = util.calculateScroll(progress, 3, 20);
           if (this.heroContent) {
+            this.heroContent.classList.add('l-content--reveal');
             this.heroContent.style.setProperty('--progress-start', `${contentReveal.start}%`);
             this.heroContent.style.setProperty('--progress-end', `${contentReveal.end}%`);
-          }
-          if (this.heroTitle) {
-            this.heroTitle.style.setProperty('--progress-start', `${titleReveal.start}%`);
-            this.heroTitle.style.setProperty('--progress-end', `${titleReveal.end}%`);
           }
         },
       },

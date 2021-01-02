@@ -85,29 +85,6 @@ const trainers = {
   renderAnimation() {
     ScrollTrigger.create({
       markers: false,
-      trigger: '[data-trigger="trainers"]',
-      start: '-=200 top',
-      end: 'center top',
-      scrub: 0.65,
-      onUpdate: ({progress}) => {
-        const trainersReveal = util.calculateScroll(progress, 4, 4);
-        if (this.trainers) {
-          this.trainers.style.setProperty('--progress-start', `${trainersReveal.start}%`);
-          this.trainers.style.setProperty('--progress-end', `${trainersReveal.end}%`);
-        }
-      },
-    });
-
-    const profiles = gsap.to('[data-group="trainer-profiles"]', {
-      duration: 95,
-      ease: 'none',
-      xPercent: -50,
-      repeat: -1,
-    });
-    util.mediaControl(profiles);
-
-    ScrollTrigger.create({
-      markers: false,
       trigger: '[data-trigger="pinned-content"]',
       start: 'top 40',
       end: '240 40',
@@ -130,6 +107,7 @@ const trainers = {
           const heroReveal = util.calculateScroll(progress, 4);
           if (this.hero) {
             let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
+            el.classList.add('l-hero--reveal');
             el.style.setProperty('--progress-start', `${heroReveal.start}%`);
             el.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
@@ -171,6 +149,30 @@ const trainers = {
         scrub: 0.65,
       },
     });
+
+    ScrollTrigger.create({
+      markers: false,
+      trigger: '[data-trigger="trainers"]',
+      start: '-=200 top',
+      end: 'center top',
+      scrub: 0.65,
+      onUpdate: ({progress}) => {
+        const trainersReveal = util.calculateScroll(progress, 4, 4);
+        if (this.trainers) {
+          this.trainers.classList.add('l-content--reveal');
+          this.trainers.style.setProperty('--progress-start', `${trainersReveal.start}%`);
+          this.trainers.style.setProperty('--progress-end', `${trainersReveal.end}%`);
+        }
+      },
+    });
+
+    const profiles = gsap.to('[data-group="trainer-profiles"]', {
+      duration: 95,
+      ease: 'none',
+      xPercent: -50,
+      repeat: -1,
+    });
+    util.mediaControl(profiles);
   },
 };
 

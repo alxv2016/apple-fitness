@@ -35,13 +35,13 @@
   }
 }
 
-.l-section--reveal,
-.l-device-reveal,
-.l-hero-reveal {
+.l-content--reveal,
+.l-device--reveal,
+.l-hero--reveal {
   --progress-start: 0%;
   --progress-end: 0%;
   //position: relative;
-  &::after {
+  &::before {
     position: absolute;
     content: '';
     top: 0;
@@ -58,19 +58,58 @@
   }
 }
 
-.l-section--shadow-out {
-  --progress-start: 0%;
-  --progress-end: 0%;
+.l-content--hide,
+.l-hero--hide {
+  --end-progress-start: 0%;
+  --end-progress-end: 0%;
   &::after {
     position: absolute;
     content: '';
-    z-index: 1;
+    top: 0;
+    left: 0;
+    z-index: 2;
     height: 100%;
     width: 100%;
     background: linear-gradient(
       355deg,
-      rgba(color('darker'), 1) var(--progress-start),
-      rgba(color('darker'), 0) var(--progress-end)
+      rgba(color('darker'), 1) var(--end-progress-start),
+      rgba(color('darker'), 0) var(--end-progress-end)
+    );
+  }
+}
+
+.l-content--fall-behind {
+  --end-progress-start: 0%;
+  --end-progress-end: 0%;
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      355deg,
+      rgba(color('darker'), 0.9) var(--end-progress-start),
+      rgba(color('darker'), 0) var(--end-progress-end)
+    );
+  }
+}
+
+.l-background--reveal {
+  --progress-start: 0%;
+  --progress-end: 0%;
+  &:before {
+    position: absolute;
+    z-index: 2;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(
+      circle,
+      rgba(color('darker'), 0) var(--progress-start),
+      rgba(color('darker'), 1) var(--progress-end)
     );
   }
 }

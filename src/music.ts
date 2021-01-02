@@ -81,6 +81,7 @@ const appleMusic = {
           const iphoneReveal = util.calculateScroll(progress, 3, 4);
           if (this.iphone) {
             let el = this.iphone.firstElementChild as HTMLElement;
+            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${iphoneReveal.start}%`);
             el.style.setProperty('--progress-end', `${iphoneReveal.end}%`);
           }
