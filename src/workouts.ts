@@ -139,7 +139,7 @@ const workouts = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="workouts-hero"]',
-        start: 'top center',
+        start: '-=100 center',
         end: 'bottom center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
@@ -150,8 +150,9 @@ const workouts = {
             this.previous.style.setProperty('--progress-end', `${previousHide.end}%`);
           }
           if (this.hero) {
-            this.hero.style.setProperty('--progress-start', `${heroReveal.start}%`);
-            this.hero.style.setProperty('--progress-end', `${heroReveal.end}%`);
+            let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
+            el.style.setProperty('--progress-start', `${heroReveal.start}%`);
+            el.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
         },
       },
@@ -160,7 +161,7 @@ const workouts = {
     hero
       .to('[data-target="workouts-hero-duo-tone"]', {
         opacity: 0,
-        delay: 0.25,
+        delay: 0.45,
       })
       .from('[data-target="workouts-intro"]', {
         stagger: 0.25,
@@ -219,13 +220,14 @@ const workouts = {
     const workoutIcons = gsap.timeline({
       defaults: {
         ease: 'none',
+        duration: 4,
       },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="popular-workouts"]',
         scrub: 0.65,
-        start: '-=200 center',
-        end: 'center center',
+        start: 'top center',
+        end: '450 center',
         onEnter: ({isActive}) => {
           if (isActive) {
             workoutIconVideos.forEach((iconVideo: Element) => {
@@ -244,21 +246,25 @@ const workouts = {
         scale: 2.25,
         opacity: 0,
       })
-      .from(
-        '[data-workout="other"]',
-        {
-          scale: 0.75,
-          opacity: 0,
-        },
-        0.4
-      )
-      .from('[data-target="workout-icon-label"]', {
+      .from('[data-workout="other"]', {
+        scale: 0.75,
         opacity: 0,
       })
-      .from('[data-target="popular-workouts-intro"]', {
-        opacity: 0,
-        y: 40,
-      });
+      .from(
+        '[data-target="workout-icon-label"]',
+        {
+          opacity: 0,
+        },
+        4
+      )
+      .from(
+        '[data-target="popular-workouts-intro"]',
+        {
+          opacity: 0,
+          y: 40,
+        },
+        4
+      );
 
     const backgroundHero = gsap.timeline({
       defaults: {
@@ -271,11 +277,11 @@ const workouts = {
         end: 'bottom center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
-          const previousHide = util.calculateScroll(progress, 4, 20);
+          const previous = util.calculateScroll(progress, 4, 20);
           const backgroundHeroReveal = util.calculateScroll(progress);
           if (this.popularWorkouts) {
-            this.popularWorkouts.style.setProperty('--progress-start', `${previousHide.start}%`);
-            this.popularWorkouts.style.setProperty('--progress-end', `${previousHide.end}%`);
+            this.popularWorkouts.style.setProperty('--progress-start', `${previous.start}%`);
+            this.popularWorkouts.style.setProperty('--progress-end', `${previous.end}%`);
           }
           if (this.backgroundHero) {
             this.backgroundHero.style.setProperty('--progress-start', `${backgroundHeroReveal.start}%`);
@@ -316,20 +322,22 @@ const workouts = {
     const smartSuggestions = gsap.timeline({
       defaults: {
         ease: 'none',
+        duration: 4,
       },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="workouts-smart-suggestions"]',
         start: '-=100 center',
-        end: 'center center',
+        end: '450 center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
           const smartSuggestions = this.ipadSmartSuggestion?.nextElementSibling as HTMLElement;
           const ipadReveal = util.calculateScroll(progress);
           const smartSuggestionsReveal = util.calculateScroll(progress, 2, 4);
           if (this.ipadSmartSuggestion) {
-            this.ipadSmartSuggestion.style.setProperty('--progress-start', `${ipadReveal.start}%`);
-            this.ipadSmartSuggestion.style.setProperty('--progress-end', `${ipadReveal.end}%`);
+            let el = this.ipadSmartSuggestion.firstElementChild as HTMLMediaElement;
+            el.style.setProperty('--progress-start', `${ipadReveal.start}%`);
+            el.style.setProperty('--progress-end', `${ipadReveal.end}%`);
           }
           if (smartSuggestions) {
             smartSuggestions.style.setProperty('--progress-start', `${smartSuggestionsReveal.start}%`);
@@ -343,22 +351,18 @@ const workouts = {
       .fromTo(
         '[data-target="smart-suggestions-ipad"]',
         {
-          scale: 0.94,
-          opacity: 0.25,
+          scale: 0.92,
+          opacity: 0.125,
         },
         {
           scale: 1,
           opacity: 1,
         }
       )
-      .from(
-        '[data-target="smart-suggestions-intro"]',
-        {
-          opacity: 0,
-          y: -80,
-        },
-        0.45
-      );
+      .from('[data-target="smart-suggestions-intro"]', {
+        opacity: 0,
+        y: -80,
+      });
 
     const workoutsSearch = gsap.timeline({
       defaults: {
@@ -368,15 +372,16 @@ const workouts = {
         markers: false,
         trigger: '[data-trigger="workouts-search"]',
         start: '-=100 center',
-        end: 'center center',
+        end: '450 center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
           const searchIntro = this.ipadSearch?.nextElementSibling as HTMLElement;
           const ipadReveal = util.calculateScroll(progress);
           const searchIntroReveal = util.calculateScroll(progress, 2, 4);
           if (this.ipadSearch) {
-            this.ipadSearch.style.setProperty('--progress-start', `${ipadReveal.start}%`);
-            this.ipadSearch.style.setProperty('--progress-end', `${ipadReveal.end}%`);
+            let el = this.ipadSearch.firstElementChild as HTMLElement;
+            el.style.setProperty('--progress-start', `${ipadReveal.start}%`);
+            el.style.setProperty('--progress-end', `${ipadReveal.end}%`);
           }
           if (searchIntro) {
             searchIntro.style.setProperty('--progress-start', `${searchIntroReveal.start}%`);
@@ -390,22 +395,18 @@ const workouts = {
       .fromTo(
         '[data-target="search-ipad"]',
         {
-          scale: 0.94,
-          opacity: 0.25,
+          scale: 0.92,
+          opacity: 0.125,
         },
         {
           scale: 1,
           opacity: 1,
         }
       )
-      .from(
-        '[data-target="search-intro"]',
-        {
-          opacity: 0,
-          y: -80,
-        },
-        0.45
-      );
+      .from('[data-target="search-intro"]', {
+        opacity: 0,
+        y: -80,
+      });
   },
 };
 

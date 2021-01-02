@@ -16,8 +16,12 @@
 
   &__media-control {
     position: absolute;
+    display: none;
     z-index: 6;
     right: $spacing--lg;
     bottom: 180px;
+    @include breakpoint(md) {
+      display: block;
+    }
   }
 }

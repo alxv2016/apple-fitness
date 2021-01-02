@@ -147,26 +147,12 @@
 }
 
 .c-workout-icon {
-  --progress-start: 0%;
-  --progress-end: 0%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 95px;
   height: 95px;
-  &::after {
-    position: absolute;
-    content: '';
-    z-index: 2;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(
-      355deg,
-      rgba(color('darker'), 1) var(--progress-start),
-      rgba(color('darker'), 0) var(--progress-end)
-    );
-  }
   @include breakpoint(md) {
     height: 116px;
     width: 116px;

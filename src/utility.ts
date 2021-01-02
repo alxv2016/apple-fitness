@@ -41,7 +41,6 @@ const util = {
       let btnLabel = videoControl.firstElementChild as HTMLElement;
       videoControl.setAttribute('aria-label', `Pause ${a11yMsg}`);
       videoControl.addEventListener('click', (ev) => {
-        console.log(video.paused);
         if (video.paused) {
           videoControl.setAttribute('aria-label', `Pause ${a11yMsg}`);
           if (playIcon && pauseIcon) {

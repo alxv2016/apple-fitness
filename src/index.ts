@@ -30,6 +30,7 @@ if (banner && bannerBtn) {
 }
 
 header.init();
+accordion.initAccordion();
 proccessData();
 
 async function masterRef(): Promise<string> {
@@ -58,37 +59,18 @@ async function proccessData() {
 }
 
 function accessData(data: any) {
-  console.log(data);
-  data.forEach((dataSlice: any) => {
-    switch (true) {
-      case dataSlice.slice_type === 'hero_section':
-        hero.processData(dataSlice);
-        break;
-      case dataSlice.slice_type === 'value_prop':
-        valueProp.processData(dataSlice);
-        break;
-      case dataSlice.slice_type === 'pricing':
-        pricing.processData(dataSlice);
-        break;
-    }
-  });
-  // const heroData = data.filter((content: any) => content.slice_type === 'hero_section')[0];
-  // const valuePropData = data.filter((content: any) => content.slice_type === 'value_prop')[0];
-  // const pricingData = data.filter((content: any) => content.slice_type === 'pricing')[0];
-  const introData = data.filter((content: any) => content.slice_type === 'service_intro')[0];
-  const metricsData = data.filter((content: any) => content.slice_type === 'metrics')[0];
-  const workoutsData = data.filter((content: any) => content.slice_type === 'workouts')[0];
-  const trainersData = data.filter((content: any) => content.slice_type === 'trainers')[0];
-  const songsData = data.filter((content: any) => content.slice_type === 'apple_music_songs')[0];
-  const albumData = data.filter((content: any) => content.slice_type === 'apple_music_albums')[0];
-  const compatibilityData = data.filter((content: any) => content.slice_type === 'compatibility')[0];
-  const serviceData = data.filter((content: any) => content.slice_type === 'more_info')[0];
-  intro.processData(introData);
-  metrics.processData(metricsData);
-  workouts.processData(workoutsData);
-  trainers.processData(trainersData);
-  appleMusic.processData(trainersData, songsData, albumData);
-  compatibility.processData(compatibilityData);
-  serviceInfo.processData(serviceData);
-  accordion.initAccordion();
+  const mappedData = data.reduce((acc: any, cur: any) => {
+    const obj = Object.assign(acc, {[cur.slice_type]: cur});
+    return obj;
+  }, {});
+  hero.processData(mappedData.hero_section);
+  valueProp.processData(mappedData.value_prop);
+  pricing.processData(mappedData.pricing);
+  intro.processData(mappedData.service_intro);
+  metrics.processData(mappedData.metrics);
+  workouts.processData(mappedData.workouts);
+  trainers.processData(mappedData.trainers);
+  appleMusic.processData(mappedData.trainers, mappedData.apple_music_songs, mappedData.apple_music_albums);
+  compatibility.processData(mappedData.compatibility);
+  serviceInfo.processData(mappedData.more_info);
 }

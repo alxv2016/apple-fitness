@@ -1,5 +1,4 @@
 import gsap from 'gsap';
-import appleMusic from './music';
 import util from './utility';
 
 const intro = {
@@ -108,32 +107,20 @@ const intro = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="device-grid"]',
-        start: 'top center',
-        end: 'center center',
-        scrub: 0.75,
+        start: '-=100 center',
+        end: 'bottom center',
+        scrub: 0.65,
         onUpdate: ({progress}) => {
-          const heroContentHide = util.calculateScroll(progress, 3, 60);
-          const appleWatchReveal = util.calculateScroll(progress, 2);
-          const devicesReveal = util.calculateScroll(progress, 3, 10);
+          const previous = util.calculateScroll(progress, 4, 45);
+          const appleWatchReveal = util.calculateScroll(progress);
           if (this.heroContent) {
-            this.heroContent.style.setProperty('--end-progress-start', `${heroContentHide.start}%`);
-            this.heroContent.style.setProperty('--end-progress-end', `${heroContentHide.end}%`);
-          }
-          if (this.iphone) {
-            this.iphone.style.setProperty('--progress-start', `${devicesReveal.start}%`);
-            this.iphone.style.setProperty('--progress-end', `${devicesReveal.end}%`);
-          }
-          if (this.appleTv) {
-            this.appleTv.style.setProperty('--progress-start', `${devicesReveal.start}%`);
-            this.appleTv.style.setProperty('--progress-end', `${devicesReveal.end}%`);
-          }
-          if (this.ipad) {
-            this.ipad.style.setProperty('--progress-start', `${devicesReveal.start}%`);
-            this.ipad.style.setProperty('--progress-end', `${devicesReveal.end}%`);
+            this.heroContent.style.setProperty('--end-progress-start', `${previous.start}%`);
+            this.heroContent.style.setProperty('--end-progress-end', `${previous.end}%`);
           }
           if (this.appleWatch) {
-            this.appleWatch.style.setProperty('--progress-start', `${appleWatchReveal.start}%`);
-            this.appleWatch.style.setProperty('--progress-end', `${appleWatchReveal.end}%`);
+            let el = this.appleWatch.firstElementChild as HTMLElement;
+            el.style.setProperty('--progress-start', `${appleWatchReveal.start}%`);
+            el.style.setProperty('--progress-end', `${appleWatchReveal.end}%`);
           }
         },
         onEnter: ({isActive}) => {
@@ -151,18 +138,22 @@ const intro = {
       .fromTo(
         '[data-target="intro-apple-watch"]',
         {
-          scale: 1.95,
           opacity: 0.125,
         },
         {
-          //scale: 0.7,
           opacity: 1,
         }
       )
-      .to('[data-target="intro-apple-watch"]', {
-        scale: 0.7,
-        delay: 0.25,
-      })
+      .fromTo(
+        '[data-target="intro-apple-watch"]',
+        {
+          scale: 1.75,
+        },
+        {
+          scale: 0.7,
+        },
+        0.45
+      )
       .from(
         '[data-target="intro-apple-tv"]',
         {
@@ -194,42 +185,38 @@ const intro = {
     gsap.from('[data-target="app-intro"]', {
       ease: 'none',
       opacity: 0,
+      duration: 4,
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="app-intro"]',
-        start: '-=400 center',
-        end: 'center center',
-        scrub: 0.65,
-        onUpdate: ({progress}) => {
-          const appReveal = util.calculateScroll(progress, 3.5);
-          if (this.appIntroHeading) {
-            this.appIntroHeading.style.setProperty('--progress-start', `${appReveal.start}%`);
-            this.appIntroHeading.style.setProperty('--progress-end', `${appReveal.end}%`);
-          }
-        },
+        start: '-=100 center',
+        end: 'bottom center',
+        scrub: 0.45,
       },
     });
 
     const ipadWatch = gsap.timeline({
       defaults: {
         ease: 'none',
+        duration: 4,
       },
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="device-sync-up"]',
-        start: '-=200 center',
-        end: '350 center',
+        start: '-=100 center',
+        end: '450 center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
           const ipadWatchReveal = util.calculateScroll(progress);
-          const appIntroHide = util.calculateScroll(progress, 3, 60);
+          const previous = util.calculateScroll(progress, 4, 40);
           if (this.appIntro) {
-            this.appIntro.style.setProperty('--progress-start', `${appIntroHide.start}%`);
-            this.appIntro.style.setProperty('--progress-end', `${appIntroHide.end}%`);
+            this.appIntro.style.setProperty('--progress-start', `${previous.start}%`);
+            this.appIntro.style.setProperty('--progress-end', `${previous.end}%`);
           }
           if (this.ipadWatch) {
-            this.ipadWatch.style.setProperty('--progress-start', `${ipadWatchReveal.start}%`);
-            this.ipadWatch.style.setProperty('--progress-end', `${ipadWatchReveal.end}%`);
+            let el = this.ipadWatch.firstElementChild as HTMLElement;
+            el.style.setProperty('--progress-start', `${ipadWatchReveal.start}%`);
+            el.style.setProperty('--progress-end', `${ipadWatchReveal.end}%`);
           }
         },
         onEnter: ({isActive}) => {
@@ -247,8 +234,8 @@ const intro = {
       .fromTo(
         '[data-target="ipad-watch"]',
         {
-          scale: 0.94,
-          opacity: 0.25,
+          scale: 0.92,
+          opacity: 0.125,
         },
         {
           scale: 1,
@@ -268,7 +255,7 @@ const intro = {
         {
           y: 60,
         },
-        0.25
+        0.125
       );
   },
 };

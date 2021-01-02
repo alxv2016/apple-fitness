@@ -35,10 +35,12 @@
   }
 }
 
-.l-section--reveal {
+.l-section--reveal,
+.l-device-reveal,
+.l-hero-reveal {
   --progress-start: 0%;
   --progress-end: 0%;
-  position: relative;
+  //position: relative;
   &::after {
     position: absolute;
     content: '';

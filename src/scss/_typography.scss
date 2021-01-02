@@ -130,6 +130,18 @@ form legend {
   color: transparent;
 }
 
+.title--move {
+  --progress-start: 40%;
+  --progress-end: 90%;
+  background: linear-gradient(
+    145deg,
+    rgba(color('exercise'), 1) var(--progress-start),
+    rgba(color('move'), 1) var(--progress-end)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
 .title--reveal {
   --progress-start: 0%;
   --progress-end: 0%;

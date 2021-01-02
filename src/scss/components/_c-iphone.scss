@@ -1,6 +1,4 @@
 .c-iphone {
-  --progress-start: 0%;
-  --progress-end: 0%;
   position: relative;
   display: flex;
   align-items: center;
@@ -47,21 +45,6 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     z-index: 2;
-    &::after {
-      position: absolute;
-      content: '';
-      top: 0;
-      z-index: 3;
-      height: 100%;
-      width: 100%;
-      border-radius: 46px;
-      background: linear-gradient(
-        175deg,
-        rgba(color('darker'), 0) var(--progress-start),
-        rgba(color('darker'), 1) var(--progress-end)
-      );
-      transform-origin: bottom center;
-    }
   }
 }
 
@@ -90,8 +73,6 @@
 
   &__left,
   &__right {
-    // --progress-start: 0%;
-    // --progress-end: 0%;
     position: relative;
     width: 82px;
     height: 114px;
@@ -103,20 +84,6 @@
     background-repeat: no-repeat;
     mask-size: contain;
     mask-repeat: no-repeat;
-    // &::after {
-    //   position: absolute;
-    //   content: '';
-    //   top: 0;
-    //   z-index: 3;
-    //   height: 100%;
-    //   width: 100%;
-    //   background: linear-gradient(
-    //     175deg,
-    //     rgba(color('darker'), 0) var(--progress-start),
-    //     rgba(color('darker'), 1) var(--progress-end)
-    //   );
-    //   transform-origin: bottom center;
-    // }
   }
 
   &__left {

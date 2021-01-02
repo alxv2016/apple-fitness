@@ -48,21 +48,20 @@ const hero = {
         const div = util.createElement('div')(`c-hero-logo__container ${logoClass}`);
         const fig = util.createElement('figure')('c-logo');
         div.append(fig);
-        if (this.heroLogo) {
-          this.heroLogo.append(div);
-        }
+        this.heroLogo?.append(div);
       });
     }
   },
   renderAnimations() {
     gsap.to('[data-target="hero-container"]', {
-      y: -40,
+      y: 20,
+      duration: 6,
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="hero"]',
         start: 'top top',
         end: 'bottom top',
-        scrub: 0.65,
+        scrub: 0.45,
         onUpdate: ({progress}) => {
           const heroHide = util.calculateScroll(progress, 3, 20);
           if (this.hero) {

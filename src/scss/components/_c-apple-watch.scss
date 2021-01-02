@@ -1,6 +1,4 @@
 .c-apple-watch {
-  --progress-start: 0%;
-  --progress-end: 0%;
   position: relative;
   display: flex;
   align-items: center;
@@ -26,20 +24,6 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     z-index: 2;
-    &::after {
-      position: absolute;
-      content: '';
-      top: 0;
-      z-index: 4;
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(
-        175deg,
-        rgba(color('darker'), 0) var(--progress-start),
-        rgba(color('darker'), 1) var(--progress-end)
-      );
-      transform-origin: bottom center;
-    }
   }
 }
 

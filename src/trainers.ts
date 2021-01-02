@@ -90,7 +90,7 @@ const trainers = {
       end: 'center top',
       scrub: 0.65,
       onUpdate: ({progress}) => {
-        const trainersReveal = util.calculateScroll(progress, 3, 10);
+        const trainersReveal = util.calculateScroll(progress, 4, 4);
         if (this.trainers) {
           this.trainers.style.setProperty('--progress-start', `${trainersReveal.start}%`);
           this.trainers.style.setProperty('--progress-end', `${trainersReveal.end}%`);
@@ -110,7 +110,7 @@ const trainers = {
       markers: false,
       trigger: '[data-trigger="pinned-content"]',
       start: 'top 40',
-      end: 'center 40',
+      end: '240 40',
       pin: true,
       pinSpacing: true,
       scrub: 0.75,
@@ -122,43 +122,41 @@ const trainers = {
       },
       scrollTrigger: {
         markers: false,
-        trigger: '[data-trigger="workouts-search"]',
-        start: 'center top',
-        end: '+=120% top',
+        trigger: '[data-trigger="trainer-hero"]',
+        start: '-=300 center',
+        end: 'center center',
         scrub: 0.65,
         onUpdate: ({progress}) => {
           const heroReveal = util.calculateScroll(progress, 4);
           if (this.hero) {
-            this.hero.style.setProperty('--progress-start', `${heroReveal.start}%`);
-            this.hero.style.setProperty('--progress-end', `${heroReveal.end}%`);
+            let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
+            el.style.setProperty('--progress-start', `${heroReveal.start}%`);
+            el.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
         },
       },
     });
 
     heroDuotone
+      .to('[data-target="trainer-hero"]', {
+        scale: 1.4,
+        duration: 4,
+      })
+      .to(
+        '[data-target="trainer-hero"]',
+        {
+          backgroundColor: '#131331',
+          duration: 4,
+        },
+        1.25
+      )
       .to('[data-target="trainer-duo-tone"]', {
         opacity: 0,
-        delay: 0.25,
+        delay: 0.45,
       })
       .to('[data-target="trainer-bw"]', {
         opacity: 1,
-        delay: 0.125,
       });
-
-    gsap.to('[data-target="trainer-hero"]', {
-      ease: 'none',
-      scale: 1.25,
-      backgroundColor: '#131331',
-      delay: 0.75,
-      scrollTrigger: {
-        markers: false,
-        trigger: '[data-trigger="trainer-hero"]',
-        start: '-=200 center',
-        end: 'center center',
-        scrub: 0.65,
-      },
-    });
 
     gsap.from('[data-target="trainers-intro"]', {
       stagger: 0.25,
@@ -171,13 +169,6 @@ const trainers = {
         start: '-=200 center',
         end: 'center center',
         scrub: 0.65,
-        onUpdate: ({progress}) => {
-          const titleReveal = util.calculateScroll(progress, 3, 10);
-          if (this.trainersTitle) {
-            this.trainersTitle.style.setProperty('--progress-start', `${titleReveal.start}%`);
-            this.trainersTitle.style.setProperty('--progress-end', `${titleReveal.end}%`);
-          }
-        },
       },
     });
   },

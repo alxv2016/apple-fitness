@@ -78,18 +78,19 @@ const appleMusic = {
         end: 'bottom center',
         scrub: 0.75,
         onUpdate: ({progress}) => {
-          const iphoneReveal = util.calculateScroll(progress, 3, 10);
+          const iphoneReveal = util.calculateScroll(progress, 3, 4);
           if (this.iphone) {
-            this.iphone.style.setProperty('--progress-start', `${iphoneReveal.start}%`);
-            this.iphone.style.setProperty('--progress-end', `${iphoneReveal.end}%`);
+            let el = this.iphone.firstElementChild as HTMLElement;
+            el.style.setProperty('--progress-start', `${iphoneReveal.start}%`);
+            el.style.setProperty('--progress-end', `${iphoneReveal.end}%`);
           }
         },
       },
     });
 
     gsap.to('[data-stagger="airpod"]', {
-      stagger: 0.125,
       y: -490,
+      duration: 6,
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="apple-music"]',

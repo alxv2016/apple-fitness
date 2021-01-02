@@ -1,6 +1,4 @@
 .c-trainers {
-  --progress-start: 0%;
-  --progress-end: 0%;
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -12,20 +10,6 @@
     align-items: center;
     justify-content: space-around;
     flex-wrap: nowrap;
-  }
-  &::before {
-    position: absolute;
-    content: '';
-    top: 0;
-    z-index: 3;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(
-      175deg,
-      rgba(color('darker'), 0) var(--progress-start),
-      rgba(color('darker'), 1) var(--progress-end)
-    );
-    transform-origin: bottom center;
   }
 }
 
@@ -92,13 +76,3 @@
     }
   }
 }
-
-// .c-trainers--animate {
-//   animation: moveSlideshow 60s linear infinite;
-// }
-
-// @keyframes moveSlideshow {
-//   100% {
-//     -webkit-transform: translateX(-50%);
-//   }
-// }
