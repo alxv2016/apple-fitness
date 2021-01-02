@@ -83,16 +83,6 @@ const trainers = {
     }
   },
   renderAnimation() {
-    ScrollTrigger.create({
-      markers: false,
-      trigger: '[data-trigger="pinned-content"]',
-      start: 'top 40',
-      end: '240 40',
-      pin: true,
-      pinSpacing: true,
-      scrub: 0.75,
-    });
-
     const heroDuotone = gsap.timeline({
       defaults: {
         ease: 'none',
@@ -100,19 +90,24 @@ const trainers = {
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="trainer-hero"]',
-        start: '-=300 center',
+        start: '-=340 center',
         end: 'center center',
         scrub: 0.65,
+        onEnter: ({isActive}) => {
+          if (isActive && this.hero) {
+            let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
+            el.classList.add('l-hero--reveal');
+          }
+          if (isActive && this.trainers) {
+            this.trainers.classList.add('l-content--reveal');
+          }
+        },
         onUpdate: ({progress}) => {
           const heroReveal = util.calculateScroll(progress, 4);
           if (this.hero) {
             let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
-            el.classList.add('l-hero--reveal');
             el.style.setProperty('--progress-start', `${heroReveal.start}%`);
             el.style.setProperty('--progress-end', `${heroReveal.end}%`);
-          }
-          if (this.trainers) {
-            this.trainers.classList.add('l-content--reveal');
           }
         },
       },
@@ -121,7 +116,7 @@ const trainers = {
     heroDuotone
       .to('[data-target="trainer-hero"]', {
         scale: 1.4,
-        duration: 4,
+        duration: 3,
       })
       .to(
         '[data-target="trainer-hero"]',
@@ -131,10 +126,14 @@ const trainers = {
         },
         1.25
       )
-      .to('[data-target="trainer-duo-tone"]', {
-        opacity: 0,
-        delay: 0.45,
-      })
+      .to(
+        '[data-target="trainer-duo-tone"]',
+        {
+          opacity: 0,
+          delay: 0.75,
+        },
+        0.75
+      )
       .to('[data-target="trainer-bw"]', {
         opacity: 1,
       });
@@ -143,7 +142,7 @@ const trainers = {
       stagger: 0.25,
       ease: 'none',
       opacity: 0,
-      y: 50,
+      y: 60,
       scrollTrigger: {
         markers: false,
         trigger: '[data-trigger="trainers-content"]',

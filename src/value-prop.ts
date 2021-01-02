@@ -36,10 +36,14 @@ const valueProp = {
         start: '-=600 center',
         end: 'bottom center',
         scrub: 0.65,
+        onEnter: ({isActive}) => {
+          if (isActive && this.heroContent) {
+            this.heroContent.classList.add('l-content--reveal');
+          }
+        },
         onUpdate: ({progress}) => {
           const contentReveal = util.calculateScroll(progress, 1.6, 0);
           if (this.heroContent) {
-            this.heroContent.classList.add('l-content--reveal');
             this.heroContent.style.setProperty('--progress-start', `${contentReveal.start}%`);
             this.heroContent.style.setProperty('--progress-end', `${contentReveal.end}%`);
           }

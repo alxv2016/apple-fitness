@@ -114,19 +114,24 @@ const intro = {
           const previous = util.calculateScroll(progress, 4, 45);
           const appleWatchReveal = util.calculateScroll(progress);
           if (this.heroContent) {
-            this.heroContent.classList.remove('l-content--reveal');
-            this.heroContent.classList.add('l-content--hide');
             this.heroContent.style.setProperty('--end-progress-start', `${previous.start}%`);
             this.heroContent.style.setProperty('--end-progress-end', `${previous.end}%`);
           }
           if (this.appleWatch) {
             let el = this.appleWatch.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${appleWatchReveal.start}%`);
             el.style.setProperty('--progress-end', `${appleWatchReveal.end}%`);
           }
         },
         onEnter: ({isActive}) => {
+          if (isActive && this.heroContent) {
+            this.heroContent.classList.remove('l-content--reveal');
+            this.heroContent.classList.add('l-content--hide');
+          }
+          if (isActive && this.appleWatch) {
+            let el = this.appleWatch.firstElementChild as HTMLElement;
+            el.classList.add('l-device--reveal');
+          }
           if (isActive && appleWatchVideo) {
             let video = appleWatchVideo as HTMLMediaElement;
             video.muted = true;
@@ -214,17 +219,22 @@ const intro = {
           const previous = util.calculateScroll(progress, 3, 40);
           if (this.ipadWatch) {
             let el = this.ipadWatch.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${ipadWatchReveal.start}%`);
             el.style.setProperty('--progress-end', `${ipadWatchReveal.end}%`);
           }
           if (this.appIntro) {
-            this.appIntro.classList.add('l-content--fall-behind');
             this.appIntro.style.setProperty('--end-progress-start', `${previous.start}%`);
             this.appIntro.style.setProperty('--end-progress-end', `${previous.end}%`);
           }
         },
         onEnter: ({isActive}) => {
+          if (isActive && this.ipadWatch) {
+            let el = this.ipadWatch.firstElementChild as HTMLElement;
+            el.classList.add('l-device--reveal');
+          }
+          if (isActive && this.appIntro) {
+            this.appIntro.classList.add('l-content--fall-behind');
+          }
           if (isActive && ipadWatchVideo) {
             let video = ipadWatchVideo as HTMLMediaElement;
             video.muted = true;

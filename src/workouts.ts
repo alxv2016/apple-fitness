@@ -142,17 +142,24 @@ const workouts = {
         start: '-=100 center',
         end: 'bottom center',
         scrub: 0.65,
+        onEnter: ({isActive}) => {
+          if (isActive && this.previous) {
+            this.previous.classList.add('l-content--hide');
+          }
+          if (isActive && this.hero) {
+            let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
+            el.classList.add('l-hero--reveal');
+          }
+        },
         onUpdate: ({progress}) => {
           const previous = util.calculateScroll(progress, 3, 20);
           const heroReveal = util.calculateScroll(progress, 4);
           if (this.previous) {
-            this.previous.classList.add('l-content--hide');
             this.previous.style.setProperty('--end-progress-start', `${previous.start}%`);
             this.previous.style.setProperty('--end-progress-end', `${previous.end}%`);
           }
           if (this.hero) {
             let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
-            el.classList.add('l-hero--reveal');
             el.style.setProperty('--progress-start', `${heroReveal.start}%`);
             el.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
@@ -282,19 +289,24 @@ const workouts = {
           const previous = util.calculateScroll(progress, 4, 20);
           const backgroundHeroReveal = util.calculateScroll(progress);
           if (this.popularWorkouts) {
-            this.popularWorkouts.classList.add('l-content--hide');
             this.popularWorkouts.style.setProperty('--end-progress-start', `${previous.start}%`);
             this.popularWorkouts.style.setProperty('--end-progress-end', `${previous.end}%`);
           }
           if (this.backgroundHero) {
             let el = this.backgroundHero.firstElementChild as HTMLElement;
-            el.classList.add('l-background--reveal');
             el.style.setProperty('--progress-start', `${backgroundHeroReveal.start}%`);
             el.style.setProperty('--progress-end', `${backgroundHeroReveal.end}%`);
           }
         },
         onEnter: ({isActive}) => {
           let video = backgroundHeroVideo as HTMLMediaElement;
+          if (isActive && this.popularWorkouts) {
+            this.popularWorkouts.classList.add('l-content--hide');
+          }
+          if (isActive && this.backgroundHero) {
+            let el = this.backgroundHero.firstElementChild as HTMLElement;
+            el.classList.add('l-background--reveal');
+          }
           if (isActive && backgroundHeroVideo) {
             video.muted = true;
             video.loop = true;
@@ -335,18 +347,26 @@ const workouts = {
         start: '-=100 center',
         end: '450 center',
         scrub: 0.65,
+        onEnter: ({isActive}) => {
+          const smartSuggestions = this.ipadSmartSuggestion?.nextElementSibling as HTMLElement;
+          if (isActive && this.ipadSmartSuggestion) {
+            let el = this.ipadSmartSuggestion.firstElementChild as HTMLMediaElement;
+            el.classList.add('l-device--reveal');
+          }
+          if (isActive && smartSuggestions) {
+            smartSuggestions.classList.add('l-content--reveal');
+          }
+        },
         onUpdate: ({progress}) => {
           const smartSuggestions = this.ipadSmartSuggestion?.nextElementSibling as HTMLElement;
           const ipadReveal = util.calculateScroll(progress);
           const smartSuggestionsReveal = util.calculateScroll(progress, 2, 4);
           if (this.ipadSmartSuggestion) {
             let el = this.ipadSmartSuggestion.firstElementChild as HTMLMediaElement;
-            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${ipadReveal.start}%`);
             el.style.setProperty('--progress-end', `${ipadReveal.end}%`);
           }
           if (smartSuggestions) {
-            smartSuggestions.classList.add('l-content--reveal');
             smartSuggestions.style.setProperty('--progress-start', `${smartSuggestionsReveal.start}%`);
             smartSuggestions.style.setProperty('--progress-end', `${smartSuggestionsReveal.end}%`);
           }
@@ -381,18 +401,26 @@ const workouts = {
         start: '-=100 center',
         end: '450 center',
         scrub: 0.65,
+        onEnter: ({isActive}) => {
+          const searchIntro = this.ipadSearch?.nextElementSibling as HTMLElement;
+          if (isActive && this.ipadSearch) {
+            let el = this.ipadSearch.firstElementChild as HTMLElement;
+            el.classList.add('l-device--reveal');
+          }
+          if (isActive && searchIntro) {
+            searchIntro.classList.add('l-content--reveal');
+          }
+        },
         onUpdate: ({progress}) => {
           const searchIntro = this.ipadSearch?.nextElementSibling as HTMLElement;
           const ipadReveal = util.calculateScroll(progress);
           const searchIntroReveal = util.calculateScroll(progress, 2, 4);
           if (this.ipadSearch) {
             let el = this.ipadSearch.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${ipadReveal.start}%`);
             el.style.setProperty('--progress-end', `${ipadReveal.end}%`);
           }
           if (searchIntro) {
-            searchIntro.classList.add('l-content--reveal');
             searchIntro.style.setProperty('--progress-start', `${searchIntroReveal.start}%`);
             searchIntro.style.setProperty('--progress-end', `${searchIntroReveal.end}%`);
           }

@@ -62,11 +62,16 @@ const hero = {
         start: 'top top',
         end: 'bottom top',
         scrub: 0.45,
+        onEnter: ({isActive}) => {
+          if (isActive && this.heroContainer) {
+            let el = this.heroContainer.lastElementChild as HTMLElement;
+            el.classList.add('l-hero--hide');
+          }
+        },
         onUpdate: ({progress}) => {
           const heroHide = util.calculateScroll(progress, 3, 20);
           if (this.heroContainer) {
             let el = this.heroContainer.lastElementChild as HTMLElement;
-            el.classList.add('l-hero--hide');
             el.style.setProperty('--end-progress-start', `${heroHide.start}%`);
             el.style.setProperty('--end-progress-end', `${heroHide.end}%`);
           }

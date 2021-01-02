@@ -77,11 +77,16 @@ const appleMusic = {
         start: '-=240 center',
         end: 'bottom center',
         scrub: 0.75,
+        onEnter: ({isActive}) => {
+          if (isActive && this.iphone) {
+            let el = this.iphone.firstElementChild as HTMLElement;
+            el.classList.add('l-device--reveal');
+          }
+        },
         onUpdate: ({progress}) => {
           const iphoneReveal = util.calculateScroll(progress, 3, 4);
           if (this.iphone) {
             let el = this.iphone.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${iphoneReveal.start}%`);
             el.style.setProperty('--progress-end', `${iphoneReveal.end}%`);
           }

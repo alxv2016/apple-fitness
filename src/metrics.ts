@@ -160,17 +160,24 @@ const metrics = {
         start: '-=100 center',
         end: 'bottom center',
         scrub: 0.65,
+        onEnter: ({isActive}) => {
+          if (isActive && this.previous) {
+            this.previous.classList.add('l-content--hide');
+          }
+          if (isActive && this.hero) {
+            let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
+            el.classList.add('l-hero--reveal');
+          }
+        },
         onUpdate: ({progress}) => {
           const previous = util.calculateScroll(progress, 3, 20);
           const heroReveal = util.calculateScroll(progress, 4);
           if (this.previous) {
-            this.previous.classList.add('l-content--hide');
             this.previous.style.setProperty('--end-progress-start', `${previous.start}%`);
             this.previous.style.setProperty('--end-progress-end', `${previous.end}%`);
           }
           if (this.hero) {
             let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
-            el.classList.add('l-hero--reveal');
             el.style.setProperty('--progress-start', `${heroReveal.start}%`);
             el.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
@@ -225,12 +232,15 @@ const metrics = {
           const appleWatchReveal = util.calculateScroll(progress);
           if (this.metricsAppleWatch) {
             let el = this.metricsAppleWatch.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${appleWatchReveal.start}%`);
             el.style.setProperty('--progress-end', `${appleWatchReveal.end}%`);
           }
         },
         onEnter: ({isActive}) => {
+          if (isActive && this.metricsAppleWatch) {
+            let el = this.metricsAppleWatch.firstElementChild as HTMLElement;
+            el.classList.add('l-device--reveal');
+          }
           if (isActive && appleWatchVideo) {
             let video = appleWatchVideo as HTMLMediaElement;
             video.muted = true;
@@ -274,10 +284,14 @@ const metrics = {
         xPercent: -34,
         duration: 6,
       })
-      .from('[data-target="metrics-sync-intro"]', {
-        y: 60,
-        opacity: 0,
-      });
+      .from(
+        '[data-target="metrics-sync-intro"]',
+        {
+          y: 60,
+          opacity: 0,
+        },
+        5.25
+      );
 
     const milestone = gsap.timeline({
       defaults: {
@@ -290,17 +304,24 @@ const metrics = {
         start: '-=100 center',
         end: '450 center',
         scrub: 0.65,
+        onEnter: ({isActive}) => {
+          if (isActive && this.metricsIpad) {
+            let el = this.metricsIpad.firstElementChild as HTMLElement;
+            el.classList.add('l-device--reveal');
+          }
+          if (isActive && this.milestoneIntro) {
+            this.milestoneIntro.classList.add('l-content--reveal');
+          }
+        },
         onUpdate: ({progress}) => {
           const ipadReveal = util.calculateScroll(progress);
           const milestoneReveal = util.calculateScroll(progress, 2, 4);
           if (this.metricsIpad) {
             let el = this.metricsIpad.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${ipadReveal.start}%`);
             el.style.setProperty('--progress-end', `${ipadReveal.end}%`);
           }
           if (this.milestoneIntro) {
-            this.milestoneIntro.classList.add('l-content--reveal');
             this.milestoneIntro.style.setProperty('--progress-start', `${milestoneReveal.start}%`);
             this.milestoneIntro.style.setProperty('--progress-end', `${milestoneReveal.end}%`);
           }
@@ -342,17 +363,22 @@ const metrics = {
           const competitionReveal = util.calculateScroll(progress, 2, 4);
           if (this.metricsAppleTv) {
             let el = this.metricsAppleTv.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
             el.style.setProperty('--progress-start', `${appleTvReveal.start}%`);
             el.style.setProperty('--progress-end', `${appleTvReveal.end}%`);
           }
           if (this.competitionIntro) {
-            this.competitionIntro.classList.add('l-content--reveal');
             this.competitionIntro.style.setProperty('--progress-start', `${competitionReveal.start}%`);
             this.competitionIntro.style.setProperty('--progress-end', `${competitionReveal.end}%`);
           }
         },
         onEnter: ({isActive}) => {
+          if (isActive && this.metricsAppleTv) {
+            let el = this.metricsAppleTv.firstElementChild as HTMLElement;
+            el.classList.add('l-device--reveal');
+          }
+          if (isActive && this.competitionIntro) {
+            this.competitionIntro.classList.add('l-content--reveal');
+          }
           if (isActive && appleTvVideo) {
             let video = appleTvVideo as HTMLMediaElement;
             video.muted = true;
