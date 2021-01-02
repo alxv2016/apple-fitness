@@ -154,7 +154,7 @@ const trainers = {
     });
 
     ScrollTrigger.create({
-      markers: true,
+      markers: false,
       trigger: '[data-trigger="trainers"]',
       start: '-=200 center',
       end: 'center center',
