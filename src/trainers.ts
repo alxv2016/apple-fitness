@@ -111,6 +111,9 @@ const trainers = {
             el.style.setProperty('--progress-start', `${heroReveal.start}%`);
             el.style.setProperty('--progress-end', `${heroReveal.end}%`);
           }
+          if (this.trainers) {
+            this.trainers.classList.add('l-content--reveal');
+          }
         },
       },
     });
@@ -151,15 +154,14 @@ const trainers = {
     });
 
     ScrollTrigger.create({
-      markers: false,
+      markers: true,
       trigger: '[data-trigger="trainers"]',
-      start: '-=200 top',
-      end: 'center top',
+      start: '-=200 center',
+      end: 'center center',
       scrub: 0.65,
       onUpdate: ({progress}) => {
         const trainersReveal = util.calculateScroll(progress, 4, 4);
         if (this.trainers) {
-          this.trainers.classList.add('l-content--reveal');
           this.trainers.style.setProperty('--progress-start', `${trainersReveal.start}%`);
           this.trainers.style.setProperty('--progress-end', `${trainersReveal.end}%`);
         }
