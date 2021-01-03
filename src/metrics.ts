@@ -20,6 +20,9 @@ const metrics = {
     this.renderAnimations();
   },
   renderHero(metricsData: any) {
+    if (this.previous) {
+      this.previous.classList.add('l-content--hide');
+    }
     if (this.hero) {
       const el1 = util.renderImage(this.hero.firstElementChild as HTMLElement)(metricsData.metrics_hero.shadow.url);
       const el2 = util.renderImage(this.hero.firstElementChild?.nextElementSibling as HTMLElement)(
@@ -30,6 +33,7 @@ const metrics = {
         metricsData.metrics_hero.duo_tone.url,
         metricsData.metrics_hero.mask.url
       );
+      el3.classList.add('l-hero--reveal');
       this.hero.prepend(el1, el2, el3);
       if (this.heroMetrics) {
         Array.from(this.heroMetrics.children).forEach((metric) => {
@@ -80,6 +84,7 @@ const metrics = {
         metricsData.metrics_watch.url,
         metricsData.metrics_watch.mask.url
       );
+      el.classList.add('l-device--reveal');
       this.metricsAppleWatch.prepend(el);
       if (this.metricsAppleWatch.lastElementChild) {
         const el = util.renderImage(this.metricsAppleWatch.lastElementChild.firstElementChild as HTMLElement)(
@@ -115,6 +120,7 @@ const metrics = {
         metricsData.metrics_ipad.url,
         metricsData.metrics_ipad.mask.url
       );
+      el.classList.add('l-device--reveal');
       this.metricsIpad.prepend(el);
     }
 
@@ -123,6 +129,7 @@ const metrics = {
         metricsData.metrics_tv.url,
         metricsData.metrics_tv.mask.url
       );
+      el.classList.add('l-device--reveal');
       this.metricsAppleTv.prepend(el);
       if (this.metricsAppleTv.lastElementChild) {
         const el = util.renderImage(this.metricsAppleTv.lastElementChild.firstElementChild as HTMLElement)(
@@ -135,10 +142,12 @@ const metrics = {
     }
 
     if (this.milestoneIntro) {
+      this.milestoneIntro.classList.add('l-device--reveal');
       this.milestoneIntro.innerHTML = metricsData.milestone_intro[0].text;
     }
 
     if (this.competitionIntro) {
+      this.competitionIntro.classList.add('l-device--reveal');
       this.competitionIntro.innerHTML = metricsData.competition_intro[0].text;
     }
   },
@@ -160,15 +169,6 @@ const metrics = {
         start: '-=100 center',
         end: 'bottom center',
         scrub: 0.65,
-        onEnter: ({isActive}) => {
-          if (isActive && this.previous) {
-            this.previous.classList.add('l-content--hide');
-          }
-          if (isActive && this.hero) {
-            let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
-            el.classList.add('l-hero--reveal');
-          }
-        },
         onUpdate: ({progress}) => {
           const previous = util.calculateScroll(progress, 3, 20);
           const heroReveal = util.calculateScroll(progress, 4);
@@ -237,10 +237,6 @@ const metrics = {
           }
         },
         onEnter: ({isActive}) => {
-          if (isActive && this.metricsAppleWatch) {
-            let el = this.metricsAppleWatch.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
-          }
           if (isActive && appleWatchVideo) {
             let video = appleWatchVideo as HTMLMediaElement;
             video.muted = true;
@@ -304,15 +300,6 @@ const metrics = {
         start: '-=100 center',
         end: '450 center',
         scrub: 0.65,
-        onEnter: ({isActive}) => {
-          if (isActive && this.metricsIpad) {
-            let el = this.metricsIpad.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
-          }
-          if (isActive && this.milestoneIntro) {
-            this.milestoneIntro.classList.add('l-content--reveal');
-          }
-        },
         onUpdate: ({progress}) => {
           const ipadReveal = util.calculateScroll(progress);
           const milestoneReveal = util.calculateScroll(progress, 2, 4);
@@ -372,13 +359,6 @@ const metrics = {
           }
         },
         onEnter: ({isActive}) => {
-          if (isActive && this.metricsAppleTv) {
-            let el = this.metricsAppleTv.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
-          }
-          if (isActive && this.competitionIntro) {
-            this.competitionIntro.classList.add('l-content--reveal');
-          }
           if (isActive && appleTvVideo) {
             let video = appleTvVideo as HTMLMediaElement;
             video.muted = true;

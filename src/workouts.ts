@@ -24,6 +24,9 @@ const workouts = {
     this.renderAnimations();
   },
   renderHero(workoutsData: any) {
+    if (this.previous) {
+      this.previous.classList.add('l-content--hide');
+    }
     if (this.hero) {
       const el1 = util.renderImage(this.hero.firstElementChild as HTMLElement)(workoutsData.hero.shadow.url);
       const el2 = util.renderImage(this.hero.firstElementChild?.nextElementSibling as HTMLElement)(
@@ -34,6 +37,7 @@ const workouts = {
         workoutsData.hero.duo_tone.url,
         workoutsData.hero.mask.url
       );
+      el3.classList.add('l-hero--reveal');
       this.hero.prepend(el1, el2, el3);
     }
     if (this.heroMetrics) {
@@ -66,6 +70,9 @@ const workouts = {
     }
   },
   renderWorkoutIcons(workoutsData: any) {
+    if (this.popularWorkouts) {
+      this.popularWorkouts.classList.add('l-content--hide');
+    }
     if (this.workoutIcons) {
       this.workoutIcons.forEach((icon, i) => {
         const el = util.renderImage(icon.firstElementChild as HTMLElement)(workoutsData[i].workout_icon.url);
@@ -83,6 +90,10 @@ const workouts = {
     }
   },
   renderWorkoutAnywhere(workoutsData: any) {
+    if (this.backgroundHero) {
+      let el = this.backgroundHero.firstElementChild as HTMLElement;
+      el.classList.add('l-background--reveal');
+    }
     if (this.backgroundMedia) {
       const el = util.renderImage(this.backgroundMedia.firstElementChild as HTMLElement)(
         workoutsData.anywhere_anytime.url
@@ -106,9 +117,11 @@ const workouts = {
         workoutsData.smart_suggestions.url,
         workoutsData.smart_suggestions.mask.url
       );
+      el.classList.add('l-device--reveal');
       this.ipadSmartSuggestion.prepend(el);
       if (this.ipadSmartSuggestion.nextElementSibling) {
         let el = this.ipadSmartSuggestion.nextElementSibling as HTMLElement;
+        el.classList.add('l-content--reveal');
         el.innerHTML = workoutsData.suggestions_intro[0].text;
       }
     }
@@ -118,9 +131,11 @@ const workouts = {
         workoutsData.search.url,
         workoutsData.search.mask.url
       );
+      el.classList.add('l-device--reveal');
       this.ipadSearch.prepend(el);
       if (this.ipadSearch.nextElementSibling) {
         let el = this.ipadSearch.nextElementSibling as HTMLElement;
+        el.classList.add('l-content--reveal');
         el.innerHTML = workoutsData.search_intro[0].text;
       }
     }
@@ -142,15 +157,6 @@ const workouts = {
         start: '-=100 center',
         end: 'bottom center',
         scrub: 0.65,
-        onEnter: ({isActive}) => {
-          if (isActive && this.previous) {
-            this.previous.classList.add('l-content--hide');
-          }
-          if (isActive && this.hero) {
-            let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
-            el.classList.add('l-hero--reveal');
-          }
-        },
         onUpdate: ({progress}) => {
           const previous = util.calculateScroll(progress, 3, 20);
           const heroReveal = util.calculateScroll(progress, 4);
@@ -300,13 +306,6 @@ const workouts = {
         },
         onEnter: ({isActive}) => {
           let video = backgroundHeroVideo as HTMLMediaElement;
-          if (isActive && this.popularWorkouts) {
-            this.popularWorkouts.classList.add('l-content--hide');
-          }
-          if (isActive && this.backgroundHero) {
-            let el = this.backgroundHero.firstElementChild as HTMLElement;
-            el.classList.add('l-background--reveal');
-          }
           if (isActive && backgroundHeroVideo) {
             video.muted = true;
             video.loop = true;
@@ -347,16 +346,6 @@ const workouts = {
         start: '-=100 center',
         end: '450 center',
         scrub: 0.65,
-        onEnter: ({isActive}) => {
-          const smartSuggestions = this.ipadSmartSuggestion?.nextElementSibling as HTMLElement;
-          if (isActive && this.ipadSmartSuggestion) {
-            let el = this.ipadSmartSuggestion.firstElementChild as HTMLMediaElement;
-            el.classList.add('l-device--reveal');
-          }
-          if (isActive && smartSuggestions) {
-            smartSuggestions.classList.add('l-content--reveal');
-          }
-        },
         onUpdate: ({progress}) => {
           const smartSuggestions = this.ipadSmartSuggestion?.nextElementSibling as HTMLElement;
           const ipadReveal = util.calculateScroll(progress);
@@ -401,16 +390,6 @@ const workouts = {
         start: '-=100 center',
         end: '450 center',
         scrub: 0.65,
-        onEnter: ({isActive}) => {
-          const searchIntro = this.ipadSearch?.nextElementSibling as HTMLElement;
-          if (isActive && this.ipadSearch) {
-            let el = this.ipadSearch.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
-          }
-          if (isActive && searchIntro) {
-            searchIntro.classList.add('l-content--reveal');
-          }
-        },
         onUpdate: ({progress}) => {
           const searchIntro = this.ipadSearch?.nextElementSibling as HTMLElement;
           const ipadReveal = util.calculateScroll(progress);

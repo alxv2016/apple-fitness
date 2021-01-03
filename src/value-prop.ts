@@ -10,6 +10,7 @@ const valueProp = {
   },
   renderValueProp: function (heroData: any) {
     if (this.heroContent) {
+      this.heroContent.classList.add('l-content--reveal');
       const heading = this.heroContent.querySelector('[data-target="hero-title"]');
       const valueProps = this.heroContent.querySelectorAll('[data-target="value-prop"]');
       if (heading) {
@@ -36,11 +37,6 @@ const valueProp = {
         start: '-=600 center',
         end: 'bottom center',
         scrub: 0.65,
-        onEnter: ({isActive}) => {
-          if (isActive && this.heroContent) {
-            this.heroContent.classList.add('l-content--reveal');
-          }
-        },
         onUpdate: ({progress}) => {
           const contentReveal = util.calculateScroll(progress, 1.6, 0);
           if (this.heroContent) {

@@ -18,6 +18,9 @@ const intro = {
     this.renderAnimations();
   },
   renderDeviceGrid(introData: any) {
+    if (this.heroContent) {
+      this.heroContent.classList.add('l-content--hide');
+    }
     if (this.ipad) {
       const ipadRender = util.renderImage(this.ipad.firstElementChild as HTMLElement)(
         introData.ipad_render.url,
@@ -44,6 +47,7 @@ const intro = {
         introData.apple_watch_render.url,
         introData.apple_watch_render.mask.url
       );
+      el.classList.add('l-device--reveal');
       this.appleWatch.prepend(el);
       if (this.appleWatch.lastElementChild) {
         const el = util.renderImage(this.appleWatch.lastElementChild.firstElementChild as HTMLElement)(
@@ -57,6 +61,7 @@ const intro = {
   },
   renderAppIntro(introData: any) {
     if (this.appIntro) {
+      this.appIntro.classList.add('l-content--fall-behind');
       const elements = this.appIntro.children;
       Array.from(elements).forEach((el: any) => {
         const data = el.getAttribute('data-target');
@@ -75,6 +80,7 @@ const intro = {
         introData.lock_up.url,
         introData.lock_up.mask.url
       );
+      el.classList.add('l-device--reveal');
       this.ipadWatch.prepend(el);
       if (this.ipadWatch.lastElementChild) {
         this.ipadWatch.lastElementChild.setAttribute(
@@ -124,14 +130,6 @@ const intro = {
           }
         },
         onEnter: ({isActive}) => {
-          if (isActive && this.heroContent) {
-            this.heroContent.classList.remove('l-content--reveal');
-            this.heroContent.classList.add('l-content--hide');
-          }
-          if (isActive && this.appleWatch) {
-            let el = this.appleWatch.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
-          }
           if (isActive && appleWatchVideo) {
             let video = appleWatchVideo as HTMLMediaElement;
             video.muted = true;
@@ -228,13 +226,6 @@ const intro = {
           }
         },
         onEnter: ({isActive}) => {
-          if (isActive && this.ipadWatch) {
-            let el = this.ipadWatch.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
-          }
-          if (isActive && this.appIntro) {
-            this.appIntro.classList.add('l-content--fall-behind');
-          }
           if (isActive && ipadWatchVideo) {
             let video = ipadWatchVideo as HTMLMediaElement;
             video.muted = true;

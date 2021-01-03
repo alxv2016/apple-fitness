@@ -31,6 +31,7 @@ const trainers = {
         trainersData.trainers_hero.bw.url,
         trainersData.trainers_hero.mask.url
       );
+      el3.classList.add('l-hero--reveal');
       this.hero.append(el1, el2, el3, el4);
     }
 
@@ -53,7 +54,9 @@ const trainers = {
   renderTrainers(trainersData: any) {
     const trainersGroupAData = trainersData.filter((trainer: any) => trainer.group_id === 'group_a');
     const trainersGroupBData = trainersData.filter((trainer: any) => trainer.group_id === 'group_b');
-
+    if (this.trainers) {
+      this.trainers.classList.add('l-content--reveal');
+    }
     if (this.trainersGroupA) {
       Array.from(this.trainersGroupA.children).forEach((item, i) => {
         const image = util.renderImage(util.createElement('figure')('c-trainer-card-image'))(
@@ -93,15 +96,6 @@ const trainers = {
         start: '-=340 center',
         end: 'center center',
         scrub: 0.65,
-        onEnter: ({isActive}) => {
-          if (isActive && this.hero) {
-            let el = this.hero.firstElementChild?.nextElementSibling?.nextElementSibling as HTMLElement;
-            el.classList.add('l-hero--reveal');
-          }
-          if (isActive && this.trainers) {
-            this.trainers.classList.add('l-content--reveal');
-          }
-        },
         onUpdate: ({progress}) => {
           const heroReveal = util.calculateScroll(progress, 4);
           if (this.hero) {

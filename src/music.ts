@@ -42,6 +42,7 @@ const appleMusic = {
         trainersData.apple_music.url,
         trainersData.apple_music.mask.url
       );
+      el.classList.add('l-device--reveal');
       this.iphone.prepend(el);
     }
   },
@@ -77,12 +78,6 @@ const appleMusic = {
         start: '-=240 center',
         end: 'bottom center',
         scrub: 0.75,
-        onEnter: ({isActive}) => {
-          if (isActive && this.iphone) {
-            let el = this.iphone.firstElementChild as HTMLElement;
-            el.classList.add('l-device--reveal');
-          }
-        },
         onUpdate: ({progress}) => {
           const iphoneReveal = util.calculateScroll(progress, 3, 4);
           if (this.iphone) {

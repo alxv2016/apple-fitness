@@ -13,6 +13,9 @@ const hero = {
   renderHero: function (heroData: any) {
     const heroIds = ['hero-01', 'hero-02', 'hero-03', 'hero-04'];
     const index = util.randomize(0, 3);
+    if (this.hero) {
+      this.hero.classList.add('l-content--hide');
+    }
     if (this.heroLogo) {
       this.heroLogo.setAttribute('data-hero', heroIds[index]);
     }
@@ -62,18 +65,11 @@ const hero = {
         start: 'top top',
         end: 'bottom top',
         scrub: 0.45,
-        onEnter: ({isActive}) => {
-          if (isActive && this.heroContainer) {
-            let el = this.heroContainer.lastElementChild as HTMLElement;
-            el.classList.add('l-hero--hide');
-          }
-        },
         onUpdate: ({progress}) => {
           const heroHide = util.calculateScroll(progress, 3, 20);
-          if (this.heroContainer) {
-            let el = this.heroContainer.lastElementChild as HTMLElement;
-            el.style.setProperty('--end-progress-start', `${heroHide.start}%`);
-            el.style.setProperty('--end-progress-end', `${heroHide.end}%`);
+          if (this.hero) {
+            this.hero.style.setProperty('--end-progress-start', `${heroHide.start}%`);
+            this.hero.style.setProperty('--end-progress-end', `${heroHide.end}%`);
           }
         },
       },
