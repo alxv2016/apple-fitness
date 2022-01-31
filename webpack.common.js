@@ -47,6 +47,7 @@ module.exports = {
     }),
     new Dotenv({
       path: './.env',
+      systemvars: true,
     }),
   ],
   // 6 Modules (Loaders)
