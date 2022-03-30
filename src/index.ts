@@ -53,7 +53,7 @@ async function proccessData() {
     accessData(appleFitnessData);
     // adde loading skeleton
     // scrollTrigger.initScrollTrigger();
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
   }
 }
